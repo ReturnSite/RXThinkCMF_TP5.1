@@ -305,28 +305,6 @@ if (!function_exists('get_domain')) {
     
 }
 
-if (!function_exists('get_num')) {
-    /**
-     * 获取数值型
-     * @param string $field 要获取的字段名
-     * @return bool
-     */
-    function get_num($field = 'id') 
-    {
-        $_id = input('param.' . $field. '/d', 0);
-        if ($_id > 0) {
-            return $_id;
-        }
-
-        if (request()->isAjax()) {
-            json(['msg'=> '参数传递错误', 'code'=> 0]);
-        } else {
-            throw new HttpException(404, $field.'参数传递错误！');
-        }
-        exit;
-    }
-}
-
 if(!function_exists('get_guid_v4')) {
 
     /**
