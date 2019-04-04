@@ -9,9 +9,20 @@
 // | Author: 牧羊人 <rxthink@gmail.com>
 // +----------------------------------------------------------------------
 
+use think\facade\Env;
+use think\Request;
+
 // 应用公共文件
 
-use think\Request;
+/**
+ * 加载自定义公共配置文件
+ * 
+ * @author 牧羊人
+ * @date 2019-04-04
+ */
+if (is_file(Env::get('app_path') . 'function.php')) {
+    include_once Env::get('app_path') . 'function.php';
+}
 
 if (!function_exists('__')) {
 
@@ -475,7 +486,7 @@ if (!function_exists('is_email')) {
      */
     function is_email($str) 
     {
-        return preg_match("/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/", $str);
+        return preg_match('/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/', $str);
     }
     
 }
@@ -489,7 +500,84 @@ if (!function_exists('is_mobile')) {
      */
     function is_mobile($num) 
     {
-        return preg_match("/^1(3|4|5|7|8)\d{9}$/", $num);
+        return preg_match('/^1(3|4|5|7|8)\d{9}$/', $num);
+    }
+    
+}
+
+if(!function_exists('is_zipcode')) {
+    
+    /**
+     * 验证邮编是否正确
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $code 邮编
+     * @return number
+     */
+    function is_zipcode($code)
+    {
+        return preg_match('/^[1-9][0-9]{5}$/', $code);
+    }
+    
+}
+
+if(!function_exists('is_idcard')) {
+    
+    /**
+     * 验证身份证是否正确
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $idno
+     * @return boolean
+     */
+    function is_idcard($idno)
+    {
+        $idno = strtoupper($idno);
+        $regx = '/(^\d{15}$)|(^\d{17}([0-9]|X)$)/';
+        $arr_split = array();
+        if (!preg_match($regx, $idno)) {
+            return FALSE;
+        }
+        //检查15位
+        if (15==strlen($idno)) {
+            $regx = '/^(\d{6})+(\d{2})+(\d{2})+(\d{2})+(\d{3})$/';
+            @preg_match($regx, $idno, $arr_split);
+            $dtm_birth = "19".$arr_split[2] . '/' . $arr_split[3]. '/' .$arr_split[4];
+            if (!strtotime($dtm_birth)) {
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        } else {
+            //检查18位
+            $regx = '/^(\d{6})+(\d{4})+(\d{2})+(\d{2})+(\d{3})([0-9]|X)$/';
+            @preg_match($regx, $idno, $arr_split);
+            $dtm_birth = $arr_split[2] . '/' . $arr_split[3]. '/' .$arr_split[4];
+            //检查生日日期是否正确
+            if (!strtotime($dtm_birth)) {
+                return FALSE;
+            } else {
+                //检验18位身份证的校验码是否正确。
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                $arr_int = array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+                $arr_ch = array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+                $sign = 0;
+                for ($i=0; $i<17; $i++) {
+                    $b = (int) $idno{$i};
+                    $w = $arr_int[$i];
+                    $sign += $b * $w;
+                }
+                $n = $sign % 11;
+                $val_num = $arr_ch[$n];
+                if ($val_num != substr($idno,17, 1)) {
+                    return FALSE;
+                } else {
+                    return TRUE;
+                }
+            }
+        }
     }
     
 }
@@ -676,4 +764,638 @@ if (!function_exists('xml2array')) {
         return $xml;
     }
 
+}
+
+if(!function_exists('is_login')) {
+    
+    /**
+     * 判断是否登录
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     */
+    function is_login()
+    {
+        
+    }
+}
+
+if(!function_exists('runhook')) {
+    
+    /**
+     * 监听钩子
+     * @param string $name 钩子名称
+     * @param string $params 传入参数
+     * @param string $once 只获取一个有效返回值
+     */
+    function runhook($name = '', $params = null, $once = false)
+    {
+        \think\facade\Hook::listen($name, $params, $once);
+    }
+    
+}
+
+if(!function_exists('get_plugin_class')) {
+    
+    /**
+     * 获取插件类名
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $name 插件类名
+     */
+    function get_plugin_class($name)
+    {
+        return "plugins\\{$name}\\{$name}";
+    }
+    
+}
+
+if(!function_exists('format_time')) {
+    
+    /**
+     * 格式化时间
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $time 时间戳
+     * @param string $format 输出格式
+     * @return string
+     */
+    function format_time($time = null, $format = 'Y-m-d H:i')
+    {
+        return !$time ? '' : date($format, intval($time));
+    }
+    
+}
+
+if(!function_exists('format_date')) {
+    
+    /**
+     * 格式化日期
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $time 时间戳
+     * @param string $format 输出格式
+     * @return string
+     */
+    function format_date($time = null, $format = 'yyyy-mm-dd')
+    {
+        $format_map = [
+            'yyyy' => 'Y',
+            'yy'   => 'y',
+            'MM'   => 'F',
+            'M'    => 'M',
+            'mm'   => 'm',
+            'm'    => 'n',
+            'DD'   => 'l',
+            'D'    => 'D',
+            'dd'   => 'd',
+            'd'    => 'j',
+        ];
+        
+        // 提取格式
+        preg_match_all('/([a-zA-Z]+)/', $format, $matches);
+        $replace = [];
+        foreach ($matches[1] as $match) {
+            $replace[] = isset($format_map[$match]) ? $format_map[$match] : '';
+        }
+        
+        // 替换成date函数支持的格式
+        $format = str_replace($matches[1], $replace, $format);
+        $time = $time === null ? time() : intval($time);
+        return date($format, $time);
+    }
+    
+}
+
+if(!function_exists('format_datetime')) {
+    
+    /**
+     * 格式化时间戳为日期时间
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $time 时间戳
+     * @param string $format 输出格式
+     * @return string
+     */
+    function format_datetime($time, $format = 'Y-m-d H:i:s')
+    {
+        if (empty($time)) return '--';
+        $time = is_numeric($time) ? $time : strtotime($time);
+        return date($format, $time);
+    }
+    
+}
+
+if(!function_exists('plugin_action_exists')) {
+    
+    /**
+     * 检查插件控制器是否存在某操作
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $name 插件名
+     * @param string $controller 控制器
+     * @param string $action 操作方法
+     */
+    function plugin_action_exists($name = '', $controller = '', $action = '')
+    {
+        if (strpos($name, '/')) {
+            list($name, $controller, $action) = explode('/', $name);
+        }
+        return method_exists("plugins\\{$name}\\controller\\{$controller}", $action);
+    }
+    
+}
+
+if(!function_exists('plugin_model_exists')) {
+    
+    /**
+     * 检查插件模型是否存在
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $name 插件名
+     * @return boolean
+     */
+    function plugin_model_exists($name = '')
+    {
+        return class_exists("plugins\\{$name}\\model\\{$name}");
+    }
+    
+}
+
+if(!function_exists('plugin_validate_exists')) {
+    
+    /**
+     * 检查插件验证器是否存在
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $name 插件名
+     * @return boolean
+     */
+    function plugin_validate_exists($name = '')
+    {
+        return class_exists("plugins\\{$name}\\validate\\{$name}");
+    }
+    
+}
+
+if(!function_exists('get_plugin_model')) {
+    
+    /**
+     * 获取插件模型实例
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $name 插件名
+     * @return unknown
+     */
+    function get_plugin_model($name)
+    {
+        $class = "plugins\\{$name}\\model\\{$name}";
+        return new $class;
+    }
+    
+}
+
+if(!function_exists('plugin_run')) {
+    
+    /**
+     * 执行插件动作
+     * 也可以用这种方式调用：plugin_run('插件名/控制器/动作', [参数1,参数2...])
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $name 插件名
+     * @param string $controller 控制器
+     * @param string $action 工作
+     * @param unknown $params 参数
+     */
+    function plugin_run($name = '', $controller = '', $action = '', $params = [])
+    {
+        if (strpos($name, '/')) {
+            $params = is_array($controller) ? $controller : (array)$controller;
+            list($name, $controller, $action) = explode('/', $name);
+        }
+        if (!is_array($params)) {
+            $params = (array)$params;
+        }
+        $class = "plugins\\{$name}\\controller\\{$controller}";
+        $obj = new $class;
+        return call_user_func_array([$obj, $action], $params);
+    }
+    
+}
+
+if(!function_exists('get_plugin_validate')) {
+    
+    /**
+     * 获取插件验证类实例
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $name 插件名
+     * @return unknown
+     */
+    function get_plugin_validate($name = '')
+    {
+        $class = "plugins\\{$name}\\validate\\{$name}";
+        return new $class;
+    }
+    
+}
+
+if(!function_exists('plugin_url')) {
+    
+    /**
+     * 生成插件操作链接
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param string $url 链接：插件名称/控制器/操作
+     * @param unknown $param 参数
+     * @param string $module 模块名，admin需要登录验证，index不需要登录验证
+     * @return string
+     */
+    function plugin_url($url = '', $param = [], $module = 'admin')
+    {
+        $params = [];
+        $url = explode('/', $url);
+        if (isset($url[0])) {
+            $params['_plugin'] = $url[0];
+        }
+        if (isset($url[1])) {
+            $params['_controller'] = $url[1];
+        }
+        if (isset($url[2])) {
+            $params['_action'] = $url[2];
+        }
+        
+        // 合并参数
+        $params = array_merge($params, $param);
+        
+        // 返回url地址
+        return url($module .'/plugin/execute', $params);
+    }
+    
+}
+
+if(!function_exists('get_server_ip')) {
+    
+    /**
+     * 获取服务端IP地址
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @return string
+     */
+    function get_server_ip()
+    {
+        if(isset($_SERVER)){
+            if($_SERVER['SERVER_ADDR']){
+                $server_ip = $_SERVER['SERVER_ADDR'];
+            }else{
+                $server_ip = $_SERVER['LOCAL_ADDR'];
+            }
+        }else{
+            $server_ip = getenv('SERVER_ADDR');
+        }
+        return $server_ip;
+    }
+    
+}
+
+if(!function_exists('get_random_str')) {
+    
+    /**
+     * 生成随机字符串
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param number $length 生成长度
+     * @param number $type $type 生成类型：0-小写字母+数字，1-小写字母，2-大写字母，3-数字，4-小写+大写字母，5-小写+大写+数字
+     * @return string
+     */
+    function get_random_str($length = 8, $type = 0)
+    {
+        $a = 'abcdefghijklmnopqrstuvwxyz';
+        $A = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $n = '0123456789';
+        
+        switch ($type) {
+            case 1: $chars = $a; break;
+            case 2: $chars = $A; break;
+            case 3: $chars = $n; break;
+            case 4: $chars = $a.$A; break;
+            case 5: $chars = $a.$A.$n; break;
+            default: $chars = $a.$n;
+        }
+        
+        $str = '';
+        for ($i = 0; $i < $length; $i++) {
+            $str .= $chars[ mt_rand(0, strlen($chars) - 1) ];
+        }
+        return $str;
+    }
+    
+}
+
+if(!function_exists('format_money_yuan')) {
+    
+    /**
+     * 以分为单位的金额转换成元
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $money
+     * @return string
+     */
+    function format_money_yuan($money)
+    {
+        if ($money>0) {
+            return number_format($money/100, 2, ".", "");
+        }
+        return "0.00";
+    }
+    
+}
+
+if(!function_exists('format_money_cent')) {
+    
+    /**
+     * 以元为单位的金额转化成分
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $money
+     * @return string
+     */
+    function format_money_cent($money)
+    {
+        return (string)($money*100);
+    }
+    
+}
+
+if(!function_exists('format_bank_card_no')) {
+    
+    /**
+     * 银行卡格式转换
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $card_no 银行卡号
+     * @param string $is_cover 
+     * @return string
+     */
+    function format_bank_card_no($card_no,$is_cover = true)
+    {
+        if($is_cover){
+            //截取银行卡号前4位
+            $prefix = substr($card_no,0,4);
+            //截取银行卡号后4位
+            $suffix = substr($card_no,-4,4);
+             
+            $format_card_no = $prefix." **** **** **** ".$suffix;
+        }else{
+            $arr = str_split($card_no,4);//4的意思就是每4个为一组
+            $format_card_no = implode(' ',$arr);
+        }
+        return $format_card_no;
+    }
+    
+}
+
+if(!function_exists('strip_html_tags')) {
+    
+    /**
+     * 去除HTML标签、图像等 仅保留文本
+     * 
+     * @author 模样热
+     * @date 2019-04-04
+     * @param unknown $str 字符串
+     * @param number $length 指定截取长度（默认全返回）
+     */
+    function strip_html_tags($str, $length = 0)
+    {
+        $str = htmlspecialchars_decode($str);//把一些预定义的 HTML 实体转换为字符
+        $str = str_replace("&nbsp;","",$str);//将空格替换成空
+        $str = strip_tags($str);//函数剥去字符串中的 HTML、XML 以及 PHP 的标签,获取纯文本内容
+        $str = str_replace(array("\n", "\r\n", "\r"), ' ', $str);
+        $preg = '/<script[\s\S]*?<\/script>/i';
+        $str = preg_replace($preg,"",$str,-1);//剥离JS代码
+        if($length==2) {
+            //返回字符串中的前100字符串长度的字符
+            $str = mb_substr($str, 0, $length,"utf-8");
+        }
+        return $str;
+    }
+    
+}
+
+if(!function_exists('strip_html_tags2')) {
+    
+    /**
+     * 去除指定HTML标签
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $tags 指定的标签
+     * @param unknown $str 字符串
+     * @param number $content 是否删除标签内的内容 0保留内容 1不保留内容
+     * 
+     * 示例：echo strip_html_tags(array('a','img'),$str)
+     */
+    function strip_html_tags2($tags, $str, $content = 0)
+    {
+        if($content){
+            $html = array();
+            foreach ($tags as $tag) {
+                $html[] = '/(<'.$tag.'.*?>[\s|\S]*?<\/'.$tag.'>)/';
+            }
+            $result = preg_replace($html,'',$str);
+        }else{
+            $html = array();
+            foreach ($tags as $tag) {
+                $html[] = "/(<(?:\/".$tag."|".$tag.")[^>]*>)/i";
+            }
+            $result = preg_replace($html, '', $str);
+        }
+        return $result;
+    }
+    
+}
+
+if(!function_exists('sub_str')) {
+    
+    /**
+     * 字符串截取
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $str 需要截取的字符串
+     * @param number $start 开始位置
+     * @param unknown $length 截取长度
+     * @param string $suffix 截断显示字符
+     * @param string $charset 编码格式
+     * @return string
+     */
+    function sub_str($str, $start = 0, $length, $suffix=true, $charset="utf-8")
+    {
+        if(function_exists("mb_substr"))
+            $slice = mb_substr($str, $start, $length, $charset);
+        elseif(function_exists('iconv_substr')) {
+            $slice = iconv_substr($str,$start,$length,$charset);
+        }else{
+            $re['utf-8']   = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+            $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
+            $re['gbk']  = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+            $re['big5']   = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+            preg_match_all($re[$charset], $str, $match);
+            $slice = join("",array_slice($match[0], $start, $length));
+        }
+        $omit = mb_strlen($str) >=$length ? '...' : '';
+        return $suffix ? $slice.$omit : $slice;
+    }
+    
+}
+
+if(!function_exists('get_zodiac_sign')) {
+    
+    
+    /**
+     * 根据月、日获取星座
+     * 
+     * @author 模样人
+     * @date 2019-04-04
+     * @param unknown $month 月
+     * @param unknown $day 日
+     * @return boolean|multitype:
+     */
+    function get_zodiac_sign($month, $day)
+    {
+        // 检查参数有效性
+        if ($month < 1 || $month > 12 || $day < 1 || $day > 31) {
+            return false;
+        }
+            
+        // 星座名称以及开始日期
+        $signs = array(
+            array( "20" => "水瓶座"),
+            array( "19" => "双鱼座"),
+            array( "21" => "白羊座"),
+            array( "20" => "金牛座"),
+            array( "21" => "双子座"),
+            array( "22" => "巨蟹座"),
+            array( "23" => "狮子座"),
+            array( "23" => "处女座"),
+            array( "23" => "天秤座"),
+            array( "24" => "天蝎座"),
+            array( "22" => "射手座"),
+            array( "22" => "摩羯座")
+        );
+        list($sign_start, $sign_name) = each($signs[(int)$month-1]);
+        if ($day < $sign_start) {
+            list($sign_start, $sign_name) = each($signs[($month -2 < 0) ? $month = 11: $month -= 2]);
+        }
+        return $sign_name;        
+    }
+    
+}
+
+if(!function_exists('get_format_time')) {
+    
+    /**
+     * 获取格式化显示时间
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @param unknown $time 传入时间
+     * @return string 格式化结果
+     */
+    function get_format_time($time)
+    {
+        $time = (int) substr($time, 0, 10);
+        $int = time() - $time;
+        $str = '';
+        if ($int <= 2){
+            $str = sprintf('刚刚', $int);
+        }elseif ($int < 60){
+            $str = sprintf('%d秒前', $int);
+        }elseif ($int < 3600){
+            $str = sprintf('%d分钟前', floor($int / 60));
+        }elseif ($int < 86400){
+            $str = sprintf('%d小时前', floor($int / 3600));
+        }elseif ($int < 1728000){
+            $str = sprintf('%d天前', floor($int / 86400));
+        }else{
+            $str = date('Y-m-d H:i:s', $time);
+        }
+        return $str;
+    }
+    
+}
+
+if(!function_exists('get_device_type')) {
+    
+    /**
+     * 获取设备类型
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @return number 0：其他  1：iOS  2：Android
+     */
+    function get_device_type()
+    {
+        //全部变成小写字母
+        $agent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        $type = 0;
+        //分别进行判断
+        if(strpos($agent, 'iphone')!==false || strpos($agent, 'ipad')!==false){
+            $type = 1;
+        }
+        if(strpos($agent, 'android')!==false){
+            $type = 2;
+        }
+        return $type;
+    }
+    
+}
+
+if(!function_exists('is_mobile_visit')) {
+    
+    /**
+     * 检测是否手机访问
+     * 
+     * @author 牧羊人
+     * @date 2019-04-04
+     * @return boolean
+     */
+    function is_mobile_visit()
+    {
+        $useragent=isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+        $useragent_commentsblock=preg_match('|\(.*?\)|',$useragent,$matches)>0?$matches[0]:'';
+        function _is_mobile($substrs,$text){
+            foreach($substrs as $substr)
+                if(false!==strpos($text,$substr)){
+                return true;
+            }
+            return false;
+        }
+        $mobile_os_list=array('Google Wireless Transcoder','Windows CE','WindowsCE','Symbian','Android','armv6l','armv5','Mobile','CentOS','mowser','AvantGo','Opera Mobi','J2ME/MIDP','Smartphone','Go.Web','Palm','iPAQ');
+        $mobile_token_list=array('Profile/MIDP','Configuration/CLDC-','160×160','176×220','240×240','240×320','320×240','UP.Browser','UP.Link','SymbianOS','PalmOS','PocketPC','SonyEricsson','Nokia','BlackBerry','Vodafone','BenQ','Novarra-Vision','Iris','NetFront','HTC_','Xda_','SAMSUNG-SGH','Wapaka','DoCoMo','iPhone','iPod');
+        
+        $found_mobile=_is_mobile($mobile_os_list,$useragent_commentsblock) ||
+        _is_mobile($mobile_token_list,$useragent);
+        if ($found_mobile){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
 }

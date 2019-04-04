@@ -25,7 +25,11 @@
         "mtdowling/cron-expression": "^1.2",
         "phpoffice/phpspreadsheet": "^1.3",
         "topthink/think-worker": "^2.0",
-        "workerman/workerman-for-win": "^3.5"
+        "workerman/workerman-for-win": "^3.5",
+        "aliyuncs/oss-sdk-php": "^2.3",
+        "tecnickcom/tcpdf": "^6.2",
+        "endroid/qrcode": "^3.5",
+        "jpush/jpush": "*"
     },
     "autoload": {
         "psr-4": {
