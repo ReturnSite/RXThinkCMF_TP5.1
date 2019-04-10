@@ -10,234 +10,345 @@
 // +----------------------------------------------------------------------
 
 /**
- * 基类模型
+ * 业务基类模型
  * 
  * @author 牧羊人
  * @date 2019-03-27
  */
 namespace app\common\model;
-use think\Model;
-use think\facade\Cache;
-class BaseModel extends Model
+class BaseModel extends CommonModel
 {
     /**
-     * 重置缓存函数
+     * 初始化模型
      * 
      * @author 牧羊人
      * @date 2019-03-27
+     * (non-PHPdoc)
+     * @see \think\Model::initialize()
      */
-    function _cacheReset($id, $data=[], $isEdit=false)
+    function initialize()
     {
-        if(!$data) {
-            $this->resetCacheFunc('info', $id);
-        }
-        if($isEdit) {
-            $info = $this->getCacheFunc("info", $id);
-        }
-        $info = $info ? $info : [];
-        if(is_array($data)) {
-            $info = array_merge($info, $data);
-        }else{
-            $info = $data;
-        }
-        $cacheKey = $this->getCacheKey('info',$id);
-        $result = $this->setCache($cacheKey, $info);
-        return $result;
+        parent::initialize();
+        //TODO...
     }
     
     /**
-     * 删除缓存
+     * 添加或编辑
      * 
      * @author 牧羊人
      * @date 2019-03-27
      */
-    function _cacheDelete($id)
+    function edit($data=[], &$error='', $is_sql=false)
     {
-        $cacheKey = $this->getCacheKey("info",$id);
-        $result = $this->deleteCache($cacheKey);
-        return $result;
-    }
-    
-    /**
-     * 获取缓存
-     * 
-     * @author 牧羊人
-     * @date 2019-03-27
-     */
-    function _cacheInfo($id)
-    {
-        if(!$id) {
-            return false;
-        }
-        $data = $this->get((int)$id)->toArray();
-        return $data;
-    }
-    
-    /**
-     * 重置缓存函数
-     * 
-     * @author 牧羊人
-     * @date 2019-03-27
-     */
-    function resetCacheFunc($funcName, $id='')
-    {
-        $cacheKey = $this->getCacheKey($funcName,$id);
-        $result = $this->deleteCache($cacheKey);
-        return $result;
-    }
-    
-    /**
-     * 获取缓存函数
-     * 
-     * @author 牧羊人
-     * @date 2019-03-27
-     */
-    function getCacheFunc($funcName, $id)
-    {
-        $argList = func_get_args();
-        $cacheKey = $this->getCacheKey($funcName,$id);
-        $data = $this->getCache($cacheKey);
-        if(!$data) {
-            if($this->name) {
-                array_shift($argList);
+        // 基础参数设置
+        $id = (int)$data['id'];
+        if($id) {
+            if(empty($data['update_time'])) {
+                $data['update_time'] = time();
             }
-            $act = "_cache".ucfirst($funcName);
-            $data = call_user_func_array(array($this, $act), $argList);
-            $this->setCache($cacheKey, $data);
+            if (empty($data['update_user'])) {
+                $data['update_user'] = (int)$_SESSION['adminId'];
+            }
+        } else {
+            if(empty($data['create_time'])) {
+                $data['create_time'] = time();
+            }
+            if (empty($data['create_user'])) {
+                $data['create_user'] = (int)$_SESSION['adminId'];
+            }
         }
-        return $data;
-    }
-    
-    /**
-     * 获取缓存KEY
-     * 
-     * @author 牧羊人
-     * @date 2019-03-27
-     */
-    function getCacheKey()
-    {
-        $argList = func_get_args();
-        if ($this->name) {
-            array_unshift($argList, 'yk_' . $this->name);
-        }
-        $cacheKey = implode("_", $argList);
-        return $cacheKey;
-    }
-    
-    /**
-     * 设置缓存
-     * 
-     * @author 牧羊人
-     * @date 2019-03-27
-     */
-    function setCache($cacheKey, $data, $ttl=0)
-    {
         
-        if(!$data) {
-            return false;
+        // 格式化表数据
+        $this->formatData($data, $id);
+        
+        // 入库处理
+        if($id) {
+            //修改数据
+            $result = $this->update($data,['id'=>$id]);
+            // 打印SQL
+            if($is_sql) echo $this->getLastSql();
+            $rowId = $id;
+        }else{
+            // 新增数据
+            $result = $this->create($data);
+            // 打印SQL
+            if($is_sql) echo $this->getLastSql();
+            // 获取新增数据ID
+            $rowId = $this->getLastInsID();
         }
-        $isGzcompress = gzcompress(json_encode($data));
-        if($isGzcompress) {
-            $result =  Cache::set($cacheKey, $isGzcompress, $ttl);
+        if($result!==false) {
+            // 重置缓存
+            $data['id'] = $rowId;
+            $this->_cacheReset($rowId, $data, $id);
+        }
+        return $rowId;
+    }
+    
+    /**
+     * 删除记录
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function drop($id, $is_sql=false)
+    {
+        $result = $this->where([
+            'id'=>$id,
+        ])->setField('mark','0');
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        if($result!==false) {
+            //删除成功
+            $this->_cacheDelete($id);
         }
         return $result;
     }
     
     /**
-     * 获取缓存
-     * 
+     * 获取缓存信息
+     *
      * @author 牧羊人
      * @date 2019-03-27
      */
-    function getCache($cacheKey)
+    function getInfo($id)
     {
-        $data = Cache::get($cacheKey);
-        if($data) {
-            $data = json_decode(gzuncompress($data),true);
-        }
-        return $data;
-    }
+        $info = $this->getCacheFunc("info", $id);
+        if($info) {
     
-    /**
-     * 删除缓存
-     * 
-     * @author 牧羊人
-     * @date 2019-03-27
-     */
-    function deleteCache($cacheKey)
-    {
-        if(Cache::has($cacheKey)) {
-            return Cache::rm($cacheKey);
-        }
-        return false;
-    }
-    
-    /**
-     * 格式化表数据
-     * 
-     * @author 牧羊人
-     * @date 2019-03-27
-     */
-    function formatData(&$data=[], $id=0, $table='')
-    {
-        $dataList = array();
-        $tables = $table ? explode(",", $table) : array($this->getTable());
-        $newData = array();
-        foreach ($tables as $table) {
-            $tempData = array();
-            $fieldInfoList = $this->getTableFieldInfo($table);
-            foreach ($fieldInfoList as $field=>$fieldInfo) {
-                if ($field == "id") continue;
-                //对强制
-                if (isset($data[$field])) {
-                    if ($fieldInfo['Type']=="int") {
-                        $newData[$field] = (int) $data[$field];
-                    } else {
-                        $newData[$field] = (string) $data[$field];
-                    }
-                }
-                if (!isset($data[$field]) && in_array($field, array('upd_time','add_time'))) {
-                    continue;
-                }
-                //插入数据-设置默认值
-                if (!$id && !isset($data[$field])) {
-                    $newData[$field] = $fieldInfo['Default'];
-                }
-                if (isset($newData[$field])) {
-                    $tempData[$field] = $newData[$field];
-                }
+            // 添加时间
+            if(isset($info['create_time'])) {
+                $info['format_create_time'] = date('Y-m-d H:i:s',$info['create_time']);
             }
-            $dataList[] = $tempData;
+    
+            //更新时间
+            if(isset($info['update_time'])) {
+                $info['format_update_time'] = date('Y-m-d H:i:s',$info['update_time']);
+            }
+            
+            // 格式化信息
+            if(method_exists($this, 'formatInfo')) {
+                $info = $this->formatInfo($info);
+            }
+    
         }
-        $data = $newData;
-        return $dataList;
+        return $info;
     }
     
     /**
-     * 获取表字段
+     * 格式化信息
      * 
      * @author 牧羊人
      * @date 2019-03-27
      */
-    function getTableFieldInfo($table='')
+    function formatInfo($info)
     {
-        $table = $table ? $table : $this->getTable();
-        $fieldList = $this->query("SHOW FIELDS FROM {$table}");
-        $infoList = array();
-        foreach ($fieldList as $row) {
-            if ((strpos($row['Type'], "int") === false) || (strpos($row['Type'], "bigint") !== false)) {
-                $type = "string";
-                $default = $row['Default'] ? $row['Default'] : "";
-            } else {
-                $type = "int";
-                $default = $row['Default'] ? $row['Default'] : 0;
-            }
-            $infoList[$row['Field']] = array(
-                'Type'=>$type,
-                'Default'=>$default
-            );
+        // TODO...
+        return $info;
+    }
+    
+    /**
+     * 查询记录总数
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getCount($map=[], $fields = null, $is_sql=false)
+    {
+        //查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else{
+            $map .= " AND mark=1 ";
         }
-        return $infoList;
+        if($fields) {
+            $count = $this->where($map)->count($fields);
+        }else{
+            $count = $this->where($map)->count();
+        }
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return (int)$count;
+    }
+    
+    /**
+     * 获取某个字段的求和值
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getSum($map=[], $field, $is_sql=false)
+    {
+        //查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else{
+            $map .= " AND mark=1 ";
+        }
+        $result = $this->where($map)->sum($field);
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return $result;
+    }
+    
+    /**
+     * 获取某个字段的最大值
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getMax($map=[], $field, $force = true, $is_sql=false)
+    {
+        //查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else{
+            $map .= " AND mark=1 ";
+        }
+        $result = $this->where($map)->max($field, $force);
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return $result;
+    }
+    
+    /**
+     * 获取某个字段的最小值
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getMin($map=[], $field, $force = true, $is_sql=false)
+    {
+        //查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else{
+            $map .= " AND mark=1 ";
+        }
+        $result = $this::where($map)->min($field, $force);
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return $result;
+    }
+    
+    /**
+     * 获取某个字段的平均值
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getAvg($map=[], $field, $is_sql=false)
+    {
+        // 查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else{
+            $map .= " AND mark=1 ";
+        }
+        $result = $this->where($map)->avg($field);
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return $result;
+    }
+    
+    /**
+     * 获取某个字段的值
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getValue($map = [], $field = 'id', $is_sql = false)
+    {
+        // 查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else {
+            $map .= " AND mark=1 ";
+        }
+        $result = $this::where($map)->value($field);
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return $result;
+    }
+    
+    /**
+     * 查询单条记录
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getOne($map = [], $field = true, $is_sql = false)
+    {
+        // 查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else {
+            $map .= " AND mark=1 ";
+        }
+        $result = $this::where($map)->field($field)->find();
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return $result ? $result->toArray() : [];
+    }
+    
+    /**
+     * 查询多条记录
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getList($map = [], $order = 'id DESC', $offset = 0, $limit = 10000, $is_sql = false)
+    {
+        // 查询条件
+        if(is_array($map)) {
+            $map['mark'] = 1;
+        }else {
+            $map .= " AND mark=1 ";
+        }
+        $result = [];
+        $list = $this->where($map)->order($order)->limit($offset, $limit)->column("id");
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        if(!$list) {
+            return $result;
+        }
+        foreach ($list as $val) {
+            $info = $this->getInfo($val);
+            if(!$info) continue;
+            $result[] = $info;
+        }
+        return $result;
+    }
+    
+    /**
+     * 根据ID获取某一行的值
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getRow($id, $field = true, $is_sql = false)
+    {
+        $result = $this::where('id', $id)->field($field)->find()->toArray();
+        // 打印SQL
+        if($is_sql) $this->getLastSql();
+        return $result;
+    }
+    
+    /**
+     * 获取某一列的值
+     * 
+     * @author 牧羊人
+     * @date 2019-03-27
+     */
+    function getColumn($map = [], $field, $key='', $is_sql = false)
+    {
+        if($key) {
+            $result = $this->where($map)->column($field, $key);
+        }else {
+            $result = $this->where($map)->column($field);
+        }
+        // 打印SQL
+        if($is_sql) echo $this->getLastSql();
+        return $result;
     }
     
 }

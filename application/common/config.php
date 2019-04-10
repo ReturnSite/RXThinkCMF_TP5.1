@@ -35,9 +35,9 @@ define('UPLOAD_URL', 'http://upload.rxthink.com');
 // 定义临时上传域名
 define('UPLOAD_TEMP_URL', 'http://upload.rxthink.com/temp');
 // 定义普通图片域名
-define('IMAGE_URL','http://images.rxthink.com');
+define('IMAGE_URL', 'http://images.rxthink.com');
 // 定义文章图片域名
-define('IMG_URL','http://img.rxthink.com');
+define('IMG_URL', 'http://img.rxthink.com');
 // 定义文件上传目录
 define('ATTACHMENT_PATH', 'E:\xampp\htdocs\RXThink\RXThink5.1_V2.0_DEV\public\uploads');
 // 定义图片上传目录

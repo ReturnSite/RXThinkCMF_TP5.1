@@ -1,15 +1,14 @@
 <?php
-
-namespace app\common\behavior;
+namespace app\admin\behavior;
 
 /**
- * 注册钩子
- *
+ * 后台登录日志
+ * 
  * @author 牧羊人
  * @date 2019-04-04
  *
  */
-class Hook
+class AdminLog
 {
     /**
      * 执行行为 run方法是Behavior唯一的接口
@@ -21,4 +20,5 @@ class Hook
     {
         // TODO...
     }
+    
 }

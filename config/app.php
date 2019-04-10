@@ -21,9 +21,9 @@ return [
     // 应用地址
     'app_host'               => '',
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
-    'app_trace'              => true,
+    'app_trace'              => false,
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
@@ -47,9 +47,9 @@ return [
     // 默认语言
     'default_lang'           => 'zh-cn',
     // 应用类库后缀
-    'class_suffix'           => true,
+    'class_suffix'           => false,
     // 控制器类后缀
-    'controller_suffix'      => true,
+    'controller_suffix'      => false,
 
     // +----------------------------------------------------------------------
     // | 模块设置

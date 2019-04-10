@@ -1,25 +1,18 @@
 <?php
-
-
 namespace app\admin\model;
+
 use app\common\model\BaseModel;
 
-/**
- * 人员管理-模型
- *
- * @author 牧羊人
- * @date 2019-03-20
- */
-class AdminModel extends BaseModel
+class AdminDep extends BaseModel
 {
     // 设置数据表
-    protected $table = 'yk_admin';
+    protected $table = 'yk_admin_dep';
     
     /**
      * 初始化模型
      * 
      * @author 牧羊人
-     * @date 2019-03-20
+     * @date 2019-04-09
      * (non-PHPdoc)
      * @see \app\common\model\CBaseModel::initialize()
      */
@@ -33,14 +26,14 @@ class AdminModel extends BaseModel
      * 获取缓存信息
      * 
      * @author 牧羊人
-     * @date 2019-03-20
+     * @date 2019-04-09
      * (non-PHPdoc)
      * @see \app\common\model\CBaseModel::getInfo()
      */
     function getInfo($id)
     {
         $info = parent::getInfo($id);
-        if($info) {
+        if ($info) {
             // TODO...
         }
         return $info;
