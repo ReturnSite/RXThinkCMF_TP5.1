@@ -1,180 +1,261 @@
-![](https://box.kancloud.cn/5a0aaa69a5ff42657b5c4715f3d49221) 
 
-ThinkPHP 5.1（LTS版本） —— 12载初心，你值得信赖的PHP框架
-===============
+<h1 align="center"> RXThinkCMF权限(RBAC)及内容管理框架</h1>
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/top-think/framework/badges/quality-score.png?b=5.1)](https://scrutinizer-ci.com/g/top-think/framework/?branch=5.1)
-[![Build Status](https://travis-ci.org/top-think/framework.svg?branch=master)](https://travis-ci.org/top-think/framework)
-[![Total Downloads](https://poser.pugx.org/topthink/framework/downloads)](https://packagist.org/packages/topthink/framework)
-[![Latest Stable Version](https://poser.pugx.org/topthink/framework/v/stable)](https://packagist.org/packages/topthink/framework)
-[![PHP Version](https://img.shields.io/badge/php-%3E%3D5.6-8892BF.svg)](http://www.php.net/)
-[![License](https://poser.pugx.org/topthink/framework/license)](https://packagist.org/packages/topthink/framework)
+[![RXThinkCMF](https://img.shields.io/hexpm/l/plug.svg)](http://www.rxthink.cn/)
+[![RXThinkCMF](https://img.shields.io/badge/RXThinkCMF-v2.0.0-brightgreen.svg)](http://www.rxthink.cn/)
+[![star](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/star.svg?theme=dark)](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/stargazers)
+[![fork](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/fork.svg?theme=dark)](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/members)
 
-ThinkPHP5.1对底层架构做了进一步的改进，减少依赖，其主要特性包括：
+<p align="center">
+<img src="https://images.gitee.com/uploads/images/2019/0517/232335_2588e5e3_478496.png" />
+</p>
 
- + 采用容器统一管理对象
- + 支持Facade
- + 注解路由支持
- + 路由跨域请求支持
- + 配置和路由目录独立
- + 取消系统常量
- + 助手函数增强
- + 类库别名机制
- + 增加条件查询
- + 改进查询机制
- + 配置采用二级
- + 依赖注入完善
- + 支持`PSR-3`日志规范
- + 中间件支持（V5.1.6+）
- + Swoole/Workerman支持（V5.1.18+）
+## 项目介绍
+RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框架，框架中集成了权限管理、模块管理、插件管理、钩子管理、数据库管理、富文本编辑器(已集成ueditor,kindeditor)，后台支持多主题切换、布局管理、广告管理、配置管理、字典管理、切图管理、CMS内容管理等常用功能模块，以方便开发者快速构建自己的应用。RXThinkCMF框架专注于为中小企业提供最佳的行业基础后台框架解决方案，执行效率、扩展性、稳定性值得信赖，操作体验流畅，使用非常优化，欢迎大家使用及进行二次开发。
 
 
-> ThinkPHP5的运行环境要求PHP5.6以上。
-
-## 安装
-
-使用composer安装
-
-~~~
-composer create-project topthink/think tp
-~~~
-
-启动服务
-
-~~~
-cd tp
-php think run
-~~~
-
-然后就可以在浏览器中访问
-
-~~~
-http://localhost:8000
-~~~
-
-更新框架
-~~~
-composer update topthink/framework
-~~~
+* 模块化：全新的架构和模块化的开发机制，便于灵活扩展和二次开发。
+* 模型/栏目/分类信息体系：通过栏目和模型绑定，以及不同的模型类型，不同栏目可以实现差异化的功能，轻松实现诸如资讯、下载、讨论和图片等功能。通过分类信息和栏目绑定，可以自动建立索引表，轻松实现复杂的信息检索。
+* RXThinkCMF是一套基于ThinkPHP + Layui开发出来的框架。
+* 支持SQLServer、MySQL、Oracle、PostgreSQL、SQLite等多数据库类型。模块化设计，层次结构清晰。  
+* AUTH权限认证，操作权限控制精密细致，对所有管理链接都进行权限验证，可控制到导航菜单、功能按钮。提高开发效率及质量。
+* 常用类封装，日志、缓存、验证、字典、文件（本地、七牛云）。等等，目前兼容浏览器（Chrome、Firefox、360浏览器等）
+* 适用范围：可以开发OA、ERP、BPM、CRM、WMS、TMS、MIS、BI、电商平台后台、物流管理系统、快递管理系统、教务管理系统等各类管理软件。
+ 
+## 环境要求:
+* PHP >= 5.6.0
+* PDO PHP Extension
+* MBstring PHP Extension
+* CURL PHP Extension
+* 开启静态重写
+* 要求环境支持pathinfo
+* 要求安装Zip扩展(插件/模块市场需要)
 
 
-## 在线手册
+## 开发者信息
+* 系统名称：RXThinkCMF权限(RBAC)及内容管理框架  
+* 作者[牧羊人]：南京RXThink研发工作室
+* 作者QQ：1175401194  
+* 官网网址：[http://www.rxthink.cn/](http://www.rxthink.cn/)  
+* 文档网址：[http://docs.v5.1.rxthink.cn/](http://docs.v5.1.rxthink.cn/)  
+* 开源协议：Apache 2.0
 
-+ [完全开发手册](https://www.kancloud.cn/manual/thinkphp5_1/content)
-+ [升级指导](https://www.kancloud.cn/manual/thinkphp5_1/354155) 
 
-## 目录结构
+## 后台演示（用户名:admin 密码:admin123）
+- RXThinkCMF_TP5.1_V2.0.0版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
+- RXThinkCMF_TP5.0_V2.0.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
+- RXThinkCMF_TP3.2_V2.0.0版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
 
-初始的目录结构如下：
 
-~~~
-www  WEB部署目录（或者子目录）
-├─application           应用目录
-│  ├─common             公共模块目录（可以更改）
-│  ├─module_name        模块目录
-│  │  ├─common.php      模块函数文件
-│  │  ├─controller      控制器目录
-│  │  ├─model           模型目录
-│  │  ├─view            视图目录
-│  │  └─ ...            更多类库目录
-│  │
-│  ├─command.php        命令行定义文件
-│  ├─common.php         公共函数文件
-│  └─tags.php           应用行为扩展定义文件
-│
-├─config                应用配置目录
-│  ├─module_name        模块配置目录
-│  │  ├─database.php    数据库配置
-│  │  ├─cache           缓存配置
-│  │  └─ ...            
-│  │
-│  ├─app.php            应用配置
-│  ├─cache.php          缓存配置
-│  ├─cookie.php         Cookie配置
-│  ├─database.php       数据库配置
-│  ├─log.php            日志配置
-│  ├─session.php        Session配置
-│  ├─template.php       模板引擎配置
-│  └─trace.php          Trace配置
-│
-├─route                 路由定义目录
-│  ├─route.php          路由定义
-│  └─...                更多
-│
-├─public                WEB目录（对外访问目录）
-│  ├─index.php          入口文件
-│  ├─router.php         快速测试文件
-│  └─.htaccess          用于apache的重写
-│
-├─thinkphp              框架系统目录
-│  ├─lang               语言文件目录
-│  ├─library            框架类库目录
-│  │  ├─think           Think类库包目录
-│  │  └─traits          系统Trait目录
-│  │
-│  ├─tpl                系统模板目录
-│  ├─base.php           基础定义文件
-│  ├─console.php        控制台入口文件
-│  ├─convention.php     框架惯例配置文件
-│  ├─helper.php         助手函数文件
-│  ├─phpunit.xml        phpunit配置文件
-│  └─start.php          框架入口文件
-│
-├─extend                扩展类库目录
-├─runtime               应用的运行时目录（可写，可定制）
-├─vendor                第三方类库目录（Composer依赖库）
-├─build.php             自动生成定义文件（参考）
-├─composer.json         composer 定义文件
-├─LICENSE.txt           授权说明文件
-├─README.md             README 文件
-├─think                 命令行入口文件
-~~~
+## 技术支持
 
-> 可以使用php自带webserver快速测试
-> 切换到根目录后，启动命令：php think run
+技术支持QQ：1175401194    
+[官方交流群：262206078](http://shang.qq.com/wpa/qunwpa?idkey=84899631e9f8d6b1d4c2749dbb1ebecc3faca80b3595877a9109447941128bf1)
 
-## 命名规范
+## QQ交流群
 
-`ThinkPHP5`遵循PSR-2命名规范和PSR-4自动加载规范，并且注意如下规范：
+官方交流群：262206078 [![点击加群](https://images.gitee.com/uploads/images/2019/0519/192303_fb9f6f39_478496.png "点击加群")](https://jq.qq.com/?_wv=1027&k=5sCX1VA)，如有问题会有人解答和修复，免费开源版源码请至群内获取。
 
-### 目录和文件
 
-*   目录不强制规范，驼峰和小写+下划线模式均支持；
-*   类库、函数文件统一以`.php`为后缀；
-*   类的文件名均以命名空间定义，并且命名空间的路径和类库文件所在路径一致；
-*   类名和类文件名保持一致，统一采用驼峰法命名（首字母大写）；
+## 官方技术交流二维码：期待您的加入，欢迎您跟RXThink团队一起成长！！
 
-### 函数和类、属性命名
+![QQ群二维码](https://images.gitee.com/uploads/images/2019/0517/232339_9751292e_478496.png "gh_03bc4364b4dc_344.jpg")
 
-*   类的命名采用驼峰法，并且首字母大写，例如 `User`、`UserType`，默认不需要添加后缀，例如`UserController`应该直接命名为`User`；
-*   函数的命名使用小写字母和下划线（小写字母开头）的方式，例如 `get_client_ip`；
-*   方法的命名使用驼峰法，并且首字母小写，例如 `getUserName`；
-*   属性的命名使用驼峰法，并且首字母小写，例如 `tableName`、`instance`；
-*   以双下划线“__”打头的函数或方法作为魔法方法，例如 `__call` 和 `__autoload`；
 
-### 常量和配置
+## 重写设置
+## [Apache]
+httpd.conf配置文件中加载了mod_rewrite.so模块
+AllowOverride None 将None改为 All
+把下面的内容保存为.htaccess文件放到应用入口文件的同级目录下
+ 
+```
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks -Multiviews
+  RewriteEngine On
 
-*   常量以大写字母和下划线命名，例如 `APP_PATH`和 `THINK_PATH`；
-*   配置参数以小写字母和下划线命名，例如 `url_route_on` 和`url_convert`；
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+</IfModule>
 
-### 数据表和字段
+```
+如果为phpstudy
 
-*   数据表和字段采用小写加下划线方式命名，并注意字段名不要以下划线开头，例如 `think_user` 表和 `user_name`字段，不建议使用驼峰和中文作为数据表字段命名。
+```
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks -Multiviews
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
+</IfModule>
+```
+如果还是不行,请添加"?"
 
-## 参与开发
+```
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks -Multiviews
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?/$1 [QSA,PT,L]
+</IfModule>
+```
 
-请参阅 [ThinkPHP5 核心框架包](https://github.com/top-think/framework)。
+## [Nginx]
+在Nginx低版本中，是不支持PATHINFO的，但是可以通过在Nginx.conf中配置转发规则实现：
+```
+location / { // …..省略部分代码
+   if (!-e $request_filename) {
+       rewrite  ^(.*)$  /index.php?s=/$1  last;
+    }
+}
+```
+
+## 部署说明
+
+## 第一步：点击同意安装协议
+
+ ![](http://images.tp3.rxthink.cn/demo/阅读协议.png)
+
+## 第二步：环境检测
+
+大家检测下自己的环境，如果环境提供有误，请修复对应的错误
+
+ ![](http://images.tp3.rxthink.cn/demo/环境检测.png)
+
+## 第三步：创建数据库
+
+大家根据自己的数据库来配置，建议独立数据库。输入创始人的账号信息，记得要保存好自己的用户名密码信息哟。
+
+![](http://images.tp3.rxthink.cn/demo/数据配置.png)  
+
+![](http://images.tp3.rxthink.cn/demo/数据库安装.png)  
+
+
+## 更新说明
+
+# 2019-05-17更新  
+1、【新增】按钮组件公共JS方法实现btnFunc  
+2、【新增】table数据列表新增【一键复制】、【重置按钮】的节点组件
+
+
+# 2019-05-12更新  
+1、【新增】上传图片JS组件UploadFile的实现，switch开关组件formSwitch组件的实现   
+2、【新增】数据库管理模块，实现了立即备份、优化表、回复表、数据库还原等  
+
+
+# 2019-05-05更新  
+1、【新增】查询、导出Excel、导入Excel、批量启用、批量禁用等功能按钮组件化   
+2、【完成】附件管理的功能     
+3、【完成】系统配置管理   
+4、【优化】框架核心JS模块的优化，实现JS、CSS、图片等Webpack一键打包的功能   
+
+  
+# 2019-05-02更新  
+1、【新增】增加提交、重置、关闭按钮的组件灵活配置功能（submit|立即提交,reset|重置,close|关闭）  
+2、【完成】Checkbox常规选择框、复杂选择框的组件实现  
+3、【完成】Radio单选框的组件化实现  
+4、【新增】CURD（增删改查）权限验证模块  
+5、【新增】Redis缓存优化
+
+
+# 2019-04-20更新  
+1、【新增】字典类型模块   
+2、【新增】字典管理模块的实现    
+3、【新增】配置分组模块    
+4、【新增】配置模块的整理功能优化，系统相关配置的表单式管理  
+5、【完成】城市选择组件的常规组件和复杂组件的完善   
+
+
+# 2019-04-05更新
+1、【优化】优化系统底层缓存存储  
+2、【新增】新增BaseModel类的常用CURD（增删改查）常规方法及业务方法    
+3、【新增】缓存调用方法setCache、getCache、resetCache、deleteCache方法的底层优化  
+
+
+# 2019-03-15更新
+1、【完善】新增图片处理常用函数：save_image（保存图片）、create_image_path（创建系统图片存储路径）、save_remote_image（保存网络图片到本地）  
+2、【新增】基类验证类的实现：BaseValidate（验证规则、验证描述、验证场景）    
+3、【新增】新增模型常用函数：getCount、getSum、getMax、getMin、getAvg、getValue、getOne、getRow、getColumn、getList等  
+  
+ 
+# 2019-03-05更新
+1、【完成】对底层架构做了调整，实现了模板继承调用及Layout模板布局  
+2、【新增】模块列表面包屑    
+3、【新增】错误提示403、404、500页面  
+
+
+# 2019-02-10更新
+1、【新增】系统应用初始化行为InitApp  
+2、【新增】初始化基础配置行为InitBase    
+3、【新增】注册钩子InitHook  
+
+
+# 2019-01-27更新
+1、【新增】撰写系统常用函数文件common.php  
+2、【新增】自定义系统常用函数类function.php文件，备注：function.php文件是系统为了扩展，对开发者自行定义函数的文件，二次开发自定义函数全部写于此，禁止在系统框架common.php文件中进行书写，以免影响系统后续升级优化   
+3、【完善】调整及优化系统控制器基类配置CommonBase.php文件  
+4、【新增】数据库常用操作方法get_tables_list、table_exist、drop_table、get_table_fields、field_exist等底层函数  
+5、【新增】CRUD扩展方法doInsert、doUpdate、doDelete、doMark（软删除方法）  
+
+
+# 2018-12-15更新  
+1、为了框架能够更好的发展，年底对框架从底层架构进行重构，新增了扩展及行为钩子、插件、组件，使得系统能更加灵活、更加友好；通过组件化、插件化的目的在于提供系统的可维护性、可操作性及提高研发效率，使得在开发过程中可以简单的通过配置、权限赋予、模块调用等实现模块化的开发  
+2、目前系统架构依然采用传统的MVC架构模式，主要是为了广大的用户考虑，目前大部分人对MVC的架构模式比较熟悉和熟练的使用，后期如果有需要，我们会重构系统实现MVP、MVVM或者其他主流架构模式  
+3、新重构的系统版本定位：V2.0  
+
+
+# 2018-11-01更新
+1、【新增】岗位模块、职级模块  
+2、【新增】友情链接模块、城市模块  
+3、【新增】站点模块、栏目模块  
+4、【新增】布局描述模块、布局模块  
+5、【新增】广告描述模块、广告模块  
+
+
+# 2018-09-18更新
+1、【完善】重点优化系统架构部分，实现CRUD权限管理基础性架构设计及研发，方便权限灵活配置  
+2、【新增】新增人员模块功能的实现  
+3、【新增】组件底层架构的搭建及一些常用基础组件的研发，如：switch_check（开发组件）、radio_check（单选组件）、single_select（常规选择下拉组件）等  
+
+
+# 2018-07-08更新
+1、【准备】设计系统框架架构，目前框架支持大后台、API接口、前台、WAP站、Script脚本等  
+2、【准备】准备框架所需要的第三方组件及文件（支持Composer）  
+3、【准备】重点选定系统框架采用传统的MVC架构模式  
+4、【准备】研发框架基础RBAC权限管理模块的搭建及基础模块的开发  
+
+
+# 2018-03-08更新
+1、【准备】整体框架结构的规划、设计、排期与实施  
+2、【优化】鉴于RXThinkCMF_TP3.2_V2.0框架的设计和实践，对框架整体性做重构与改进  
+ 
+
+## 项目截图
+
+![](https://images.gitee.com/uploads/images/2019/0517/232335_2ab0bd93_478496.png)
+![](https://images.gitee.com/uploads/images/2019/0517/232340_ccabf136_478496.png)
+![](https://images.gitee.com/uploads/images/2019/0517/232337_02944d69_478496.png)
+![](https://images.gitee.com/uploads/images/2019/0517/232337_8b51a29b_478496.png)
+![](https://images.gitee.com/uploads/images/2019/0519/182554_6477fadb_478496.png)
+
+
+## 安全&缺陷
+如果你发现了一个安全漏洞或缺陷，请发送邮件到 1175401194@qq.com,所有的安全漏洞都将及时得到解决。
+
+
+## 鸣谢
+感谢[ThinkPHP](http://www.thinkphp.cn)、[JQuery](http://jquery.com)、[Layui](http://www.layui.com)等优秀开源项目。
 
 ## 版权信息
 
-ThinkPHP遵循Apache2开源协议发布，并提供免费使用。
+RXThinkCMF提供个人非商业用途免费使用，商业需授权。
 
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
-版权所有Copyright © 2006-2018 by ThinkPHP (http://thinkphp.cn)
+版权所有Copyright © 2017-2019 rxthink.cn (http://www.rxthink.cn)
 
 All rights reserved。
-
-ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
 
 更多细节参阅 [LICENSE.txt](LICENSE.txt)
