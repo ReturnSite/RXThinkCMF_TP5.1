@@ -60,7 +60,7 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 
 ## 官方技术交流二维码：期待您的加入，欢迎您跟RXThink团队一起成长！！
 
-![QQ群二维码](https://images.gitee.com/uploads/images/2019/0517/232339_9751292e_478496.png "gh_03bc4364b4dc_344.jpg")
+
 
 
 ## 重写设置
