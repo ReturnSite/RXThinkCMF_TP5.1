@@ -11,17 +11,22 @@
 
 // 应用行为扩展定义文件
 
+// 行为路径
+$behavior_path = 'app\\common\\behavior\\';
+
 return [
     // 应用初始化
     'app_init'     => [
-        'app\\common\\behavior\\Config', // 注册配置行为
+        $behavior_path . 'InitApp', // 初始化应用
     ],
     // 应用开始
     'app_begin'    => [
-        'app\\common\\behavior\\Hook', // 注册钩子行为
+        $behavior_path . 'InitHook', // 注册钩子行为
     ],
     // 模块初始化
-    'module_init'  => [],
+    'module_init'  => [
+        $behavior_path . 'InitBase', // 初始化配置行为
+    ],
     // 操作开始执行
     'action_begin' => [],
     // 视图内容过滤

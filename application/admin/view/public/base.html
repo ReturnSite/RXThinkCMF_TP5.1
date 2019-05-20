@@ -1,0 +1,50 @@
+
+<!-- 引入头部 -->
+{include file="public/header" /}
+
+<style>
+html {
+    background-color: #F1F2F7;
+}
+.layui-form-item {
+
+    margin-bottom: 0px;
+    clear: both;
+    *zoom: 1;
+
+}
+.layui-form-item .layui-inline {
+
+    margin-bottom: 0px;
+    margin-right: 0px;
+
+}
+.layui-form-item .layui-input-inline {
+
+    float: left;
+    width: 190px;
+    margin-right: 0px;
+
+}
+</style>
+
+<!-- 面包屑 -->
+{include file="public/crumb" /}
+
+<!-- 主体部分开始 -->
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+        
+            <!-- 内容区 -->
+			{block name="content"}
+				内容区
+			{/block}
+			
+        </div>
+    </div>
+</div>
+<!-- 主体部分结束 -->
+
+<!-- 引入脚部 -->
+{include file="public/footer" /}

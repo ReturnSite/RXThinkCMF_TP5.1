@@ -22,12 +22,18 @@ use think\Controller;
 class BaseWidget extends Controller
 {
     /**
-     * 初始化方法(non-PHPdoc)
+     * 初始化方法
+     * 
+     * @author 牧羊人
+     * @date 2019-04-22
+     * (non-PHPdoc)
      * @see \think\Controller::initialize()
      */
     function initialize()
     {
         parent::initialize();
-        // TODO...
+        
+        // 取消模板布局
+        $this->view->engine->layout(false);
     }
 }

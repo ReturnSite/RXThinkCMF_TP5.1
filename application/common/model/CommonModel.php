@@ -30,19 +30,19 @@ class CommonModel extends Model
      */
     function _cacheReset($id, $data = [], $isEdit = false)
     {
-        if(!$data) {
+        if (!$data) {
             $this->resetCacheFunc('info', $id);
         }
-        if($isEdit) {
+        $info = [];
+        if ($isEdit) {
             $info = $this->getCacheFunc("info", $id);
         }
-        $info = $info ? $info : [];
-        if(is_array($data)) {
+        if (is_array($data)) {
             $info = array_merge($info, $data);
         }else{
             $info = $data;
         }
-        $cacheKey = $this->getCacheKey('info',$id);
+        $cacheKey = $this->getCacheKey('info', $id);
         $result = $this->setCache($cacheKey, $info);
         return $result;
     }
@@ -55,7 +55,7 @@ class CommonModel extends Model
      */
     function _cacheDelete($id)
     {
-        $cacheKey = $this->getCacheKey("info",$id);
+        $cacheKey = $this->getCacheKey("info", $id);
         $result = $this->deleteCache($cacheKey);
         return $result;
     }
@@ -68,7 +68,7 @@ class CommonModel extends Model
      */
     function _cacheInfo($id)
     {
-        if(!$id) {
+        if (!$id) {
             return false;
         }
         $data = $this->get((int)$id)->toArray();
@@ -83,7 +83,7 @@ class CommonModel extends Model
      */
     function resetCacheFunc($funcName, $id = '')
     {
-        $cacheKey = $this->getCacheKey($funcName,$id);
+        $cacheKey = $this->getCacheKey($funcName, $id);
         $result = $this->deleteCache($cacheKey);
         return $result;
     }
@@ -97,10 +97,10 @@ class CommonModel extends Model
     function getCacheFunc($funcName, $id)
     {
         $argList = func_get_args();
-        $cacheKey = $this->getCacheKey($funcName,$id);
+        $cacheKey = $this->getCacheKey($funcName, $id);
         $data = $this->getCache($cacheKey);
-        if(!$data) {
-            if($this->name) {
+        if (!$data) {
+            if ($this->name) {
                 array_shift($argList);
             }
             $act = "_cache".ucfirst($funcName);
@@ -134,12 +134,11 @@ class CommonModel extends Model
      */
     function setCache($cacheKey, $data, $ttl = 0)
     {
-        
-        if(!$data) {
-            return false;
+        if (!$data) {
+            return Cache::set($cacheKey, null);
         }
         $isGzcompress = gzcompress(json_encode($data));
-        if($isGzcompress) {
+        if ($isGzcompress) {
             $result =  Cache::set($cacheKey, $isGzcompress, $ttl);
         }
         return $result;
@@ -154,8 +153,8 @@ class CommonModel extends Model
     function getCache($cacheKey)
     {
         $data = Cache::get($cacheKey);
-        if($data) {
-            $data = json_decode(gzuncompress($data),true);
+        if ($data) {
+            $data = json_decode(gzuncompress($data), true);
         }
         return $data;
     }
@@ -168,7 +167,7 @@ class CommonModel extends Model
      */
     function deleteCache($cacheKey)
     {
-        if(Cache::has($cacheKey)) {
+        if (Cache::has($cacheKey)) {
             return Cache::rm($cacheKey);
         }
         return false;

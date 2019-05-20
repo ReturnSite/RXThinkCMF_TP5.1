@@ -13,7 +13,13 @@
 // | 应用设置
 // +----------------------------------------------------------------------
 
-$config = include_once '../application/common/config.php';
+use \think\facade\Env;
+//use \think\Env;
+
+// 自定义配置
+if (file_exists($config_url = Env::get('root_path').'config/config.inc.php')) {
+    $config = include $config_url;
+}
 
 return [
     // 应用名称
@@ -21,15 +27,18 @@ return [
     // 应用地址
     'app_host'               => '',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => false,//Env::get('app.debug', true),
     // 应用Trace
-    'app_trace'              => false,
+    'app_trace'              => false,//Env::get('app.trace', false),
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
     'auto_bind_module'       => false,
     // 注册的根命名空间
-    'root_namespace'         => [],
+    'root_namespace'         => [
+        'addons'    => Env::get('root_path'). 'addons/',
+        'plugins'   => Env::get('root_path'). 'plugins/'
+    ],
     // 默认输出类型
     'default_return_type'    => 'html',
     // 默认AJAX 数据返回格式,可选json xml ...
@@ -144,6 +153,8 @@ return [
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
     'exception_handle'       => '',
-    'config'                  => $config,
-
+    //插件路径
+    'addon_path'             => './addons/',
+    // 自定义配置文件
+    'config'                 => $config,
 ];

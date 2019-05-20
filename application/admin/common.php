@@ -8,3 +8,43 @@
 // +----------------------------------------------------------------------
 // | Author: 牧羊人 <rxthink@gmail.com>
 // +----------------------------------------------------------------------
+
+if (!function_exists('make_option')) {
+    
+    /**
+     * 下拉选择框组件
+     * 
+     * @author 牧羊人
+     * @date 2019-04-28
+     * @param unknown $data 下拉框数据源
+     * @param number $selected_id_id 选择数据ID
+     * @param string $show_field 显示名称
+     * @param string $val_field 显示值
+     * @return string
+     */
+    function make_option($data, $selected_id = 0, $show_field = 'name', $val_field = 'id')
+    {
+        $html = '';
+        $show_field_arr = explode(',', $show_field);
+        if(is_array($data)) {
+            foreach ($data as $k => $v) {
+                $show_text = '';
+                if (is_array( $v )) {
+                    foreach ($show_field_arr as $s) {
+                        $show_text .= $v[$s].' ';
+                    }
+                    $show_text = substr($show_text, 0, -1);
+                    $val_field && $k = $v[$val_field];
+                } else {
+                    $show_text = $v;
+                }
+                $sel = '';
+                if ($selected_id && $k == $selected_id) {
+                    $sel = 'selected';
+                }
+                $html .= '<option value = ' . $k . ' ' . $sel . '>' . $show_text . '</option>';
+            }
+        }
+        echo $html;
+    }
+}

@@ -10,7 +10,7 @@ return [
     // 布局模板开关
     'layout_on'          => true,
     // 布局模板入口文件
-    'layout_name'        => 'layout/layout',
+    'layout_name'        => 'public/layout',
     // 布局模板的内容替换标识
     'layout_item'        => '{__CONTENT__}',
     // 视图输出字符串内容替换
@@ -19,5 +19,6 @@ return [
         '__ADMIN__'     => '/static/admin',
         '__JS__'        => '/static/js',
         '__CSS__'       => '/static/css',
+        '__IMAGES__'    => '/static/images',
     ],
 ];

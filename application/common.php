@@ -76,7 +76,7 @@ if (!function_exists('array2xml')) {
 if(!function_exists('array_sort')) {
 
     /**
-     * 二位数据排序
+     * 二位数组排序
      * @param unknown $arr
      * @param unknown $keys
      * @param string $desc
@@ -1092,10 +1092,11 @@ if(!function_exists('format_money_yuan')) {
      * @param unknown $money
      * @return string
      */
-    function format_money_yuan($money)
+    function format_money_yuan($money = 0)
     {
         if ($money>0) {
             return number_format($money/100, 2, ".", "");
+            //return sprintf("%.2f", $money);
         }
         return "0.00";
     }
@@ -1130,7 +1131,7 @@ if(!function_exists('format_bank_card_no')) {
      * @param string $is_cover 
      * @return string
      */
-    function format_bank_card_no($card_no,$is_cover = true)
+    function format_bank_card_no($card_no, $is_cover = true)
     {
         if($is_cover){
             //截取银行卡号前4位
@@ -1376,4 +1377,277 @@ if(!function_exists('is_mobile_visit')) {
         }
     }
     
+}
+
+if (!function_exists('get_password')) {
+    
+    /**
+     * 获取双MD5加密密码
+     * 
+     * @author 牧羊人
+     * @date 2019-04-21
+     * @param unknown $password 加密字符串
+     * @return string MD5加密字符串输出
+     */
+    function get_password($password)
+    {
+        return md5(md5($password));
+    }
+    
+}
+
+if (!function_exists('get_image_url')) {
+    
+    /**
+     * 获取网络图片地址
+     * 
+     * @author 牧羊人
+     * @date 2019-04-21
+     * @param unknown $image_url 图片地址
+     * @return string 输出网络图片地址
+     */
+    function get_image_url($image_url)
+    {
+        return IMG_URL . $image_url;
+    }
+    
+}
+
+if (!function_exists('encrypt')) {
+    /**
+     * DES加密
+     * 
+     * @author 模样人
+     * @date 2019-04-27
+     * @param unknown $str 加密数据
+     * @param unknown $key 加密KEY
+     * @return string 加密后字符串
+     */
+    function encrypt($str, $key)
+    {
+        $prep_code = serialize($data);
+        $block = mcrypt_get_block_size('des', 'ecb');
+        if (($pad = $block - (strlen($prep_code) % $block)) < $block) {
+            $prep_code .= str_repeat(chr($pad), $pad);
+        }
+        $encrypt = mcrypt_encrypt(MCRYPT_DES, $key, $prep_code, MCRYPT_MODE_ECB);
+        return base64_encode($encrypt);
+        
+    }
+}
+
+if (!function_exists('decrypt')) {
+    
+    /**
+     * DES解密
+     * 
+     * @author 牧羊人
+     * @date 2019-04-07
+     * @param unknown $str 解密字符串
+     * @param unknown $key 解密KEY
+     * @return mixed
+     */
+    function decrypt($str, $key)
+    {
+        $str = base64_decode($str);
+        $str = mcrypt_decrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
+        $block = mcrypt_get_block_size('des', 'ecb');
+        $pad = ord($str[($len = strlen($str)) - 1]);
+        if ($pad && $pad < $block && preg_match('/' . chr($pad) . '{' . $pad . '}$/', $str)) {
+            $str = substr($str, 0, strlen($str) - $pad);
+        }
+        return unserialize($str);
+        
+    }
+}
+
+if (!function_exists('get_hash')) {
+    
+    /**
+     * 获取HASH值
+     * 
+     * @author 牧羊人
+     * @date 2019-04-27
+     * @return string 字符串hash值输出
+     */
+    function get_hash()
+    {
+        $chars   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()+-';
+        $random  = $chars[mt_rand(0,73)] . $chars[mt_rand(0,73)] . $chars[mt_rand(0,73)] . $chars[mt_rand(0,73)] . $chars[mt_rand(0,73)];
+        $content = uniqid() . $random;
+        return sha1($content);
+        
+    }
+}
+
+if (!function_exists('mkdirs')) {
+    
+    /**
+     * 递归创建目录
+     * 
+     * @author 牧羊人
+     * @date 2019-04-27
+     * @param unknown $dir 需要创新的目录
+     * @param number $mode 权限值
+     * @return boolean
+     */
+    function mkdirs($dir, $mode = 0777)
+    {
+        if(is_dir($dir) || mkdir($dir,$mode,true)) return true;
+        if(!mkdirs(dirname($dir),$mode)) return false;
+        return mkdir($dir,$mode,true);
+        
+    }
+}
+
+if (!function_exists('format_mobile')) {
+    
+    /**
+     * 格式化手机号码
+     * 
+     * @author 牧羊人
+     * @date 2019-04-27
+     * @param unknown $mobile
+     */
+    function format_mobile($mobile)
+    {
+        return substr($mobile,0,5)."****".substr($mobile,9,2);
+    }
+}
+
+if (!function_exists('save_image')) {
+    
+    /**
+     * 保存图片
+     * 
+     * @author 牧羊人
+     * @date 2019-04-28
+     * @param unknown $img_url 网络图片地址
+     * @param string $save_dir 图片保存目录
+     * @return boolean|mixed|unknown
+     */
+    function save_image($img_url, $save_dir = '/')
+    {
+        if(!$img_url) {
+            return false;
+        }
+        $save_dir = trim($save_dir, "/");
+        $imgExt = pathinfo($img_url, PATHINFO_EXTENSION);
+        // 是否是本站图片
+        if (strpos($img_url, IMG_URL)!==false) {
+            // 是否是临时文件
+            if (strpos($img_url, 'temp') === false) {
+                return str_replace(IMG_URL, "", $img_url);
+            }
+            $new_path = create_image_path($save_dir, $imgExt);
+            $old_path = str_replace(IMG_URL, IMG_PATH , $img_url);
+            if (!file_exists($old_path)) {
+                return false;
+            }
+            rename($old_path, IMG_PATH . $new_path);
+            return $new_path;
+        }else{
+            // 保存远程图片
+            $new_path = save_remote_image($img_url, $save_dir);
+        }
+        return $new_path;
+    }
+}
+
+if (!function_exists('create_image_path')) {
+    
+    /**
+     * 创建图片存储目录
+     * 
+     * @author 牧羊人
+     * @date 2019-04-28
+     * @param string $save_dir 存储目录
+     * @param string $image_ext 图片后缀
+     * @param string $image_root 图片存储根目录路径
+     * @return string 返回文件目录
+     */
+    function create_image_path($save_dir = "", $image_ext = "", $image_root = IMG_PATH)
+    {
+        $image_dir = date("/Ymd/");
+        if($image_dir) {
+            $image_dir = ($save_dir ? "/" : '') . $save_dir . $image_dir;
+        }
+        // 未指定后缀默认使用JPG
+        if(!$image_ext) {
+            $image_ext = "jpg";
+        }
+        $image_path = $image_root . $image_dir;
+        if(!is_dir($image_path)) {
+            // 创建目录并赋予权限
+            mkdir($image_path, 0777, true);
+        }
+        $file_name = substr(md5(time().rand(0,999999)),8, 16).rand(100,999).".{$image_ext}";
+        $file_path = $image_dir . "/" . $file_name;
+        return $file_path;
+    }
+}
+
+if (!function_exists('save_remote_image')) {
+    
+    /**
+     * 保存网络图片到本地
+     * 
+     * @author 牧羊人
+     * @date 2019-04-28
+     * @param unknown $img_url 网路图片地址
+     * @param string $save_dir 存储目录
+     * @return boolean|Ambigous <boolean, unknown>
+     */
+    function save_remote_image($img_url, $save_dir = '/')
+    {
+        $content = file_get_contents($img_url);
+        if(!$content) {
+            return false;
+        }
+        if($content{0} . $content{1} == "\xff\xd8") {
+            $image_ext = 'jpg';
+        }else if ($content{0} . $content{1} . $content{2} == "\x47\x49\x46") {
+            $image_ext = 'gif';
+        }else if ($content{0} . $content{1} . $content{2} == "\x89\x50\x4e") {
+            $image_ext = 'png';
+        }else{
+            // 不是有效图片
+            return false;
+        }
+        $save_path = create_image_path($save_dir, $image_ext);
+        return file_put_contents(IMG_PATH . $save_path, $content) ? $save_path : false;
+    }
+}
+
+if (!function_exists('save_image_content')) {
+    
+    /**
+     * 富文本信息处理
+     * 
+     * @author 牧羊人
+     * @date 2019-05-08
+     * @param unknown $content 富文本内容
+     * @param string $title 标题
+     * @param string $path 图片存储路径
+     * @return boolean|number
+     */
+    function save_image_content(&$content, $title = false, $path = 'article')
+    {
+        preg_match_all("/<img.*?src=[\"|\']?(.*?)[\"|\']?\s.*?>/i", str_ireplace("\\","", $content), $match);
+        if(!$match[1]) {
+            return false;
+        }
+        $i=0;
+        foreach ($match[1] as $id => $val) {
+            $save_image = save_image($val, $path);
+            if($save_image) {
+                $content = str_replace($val, "[IMG_URL]" . $save_image, $content);
+                $i++;
+            }
+        }
+        if( (strpos($content, 'alt=\"\"') !== false) && $title ) {
+            $content = str_replace('alt=\"\"', 'alt=\"' . $title . '\"', $content);
+        }
+        return $i;
+    }
 }
