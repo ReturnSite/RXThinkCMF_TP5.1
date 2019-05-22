@@ -1,18 +1,36 @@
 
 <h1 align="center"> RXThinkCMF权限(RBAC)及内容管理框架</h1>
 
-[![RXThinkCMF](https://img.shields.io/hexpm/l/plug.svg)](http://www.rxthink.cn/)
-[![RXThinkCMF](https://img.shields.io/badge/RXThinkCMF-v2.0.0-brightgreen.svg)](http://www.rxthink.cn/)
-[![star](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/star.svg?theme=dark)](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/stargazers)
-[![fork](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/fork.svg?theme=dark)](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/members)
+<p align="center">
+	<a href="http://www.rxthink.cn/">
+	    <img src="https://img.shields.io/hexpm/l/plug.svg" />
+	</a>
+	<a href="http://www.rxthink.cn/">
+	    <img src="https://img.shields.io/badge/RXThinkCMF-v2.0.0-brightgreen.svg" />
+	</a>
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/stargazers">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/star.svg?theme=dark" />
+	</a>
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/members">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/fork.svg?theme=dark" />
+	</a>
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0_PRO/repository/archive/master.zip">
+	    <img src="https://img.shields.io/badge/download-1820m-red.svg" />
+	</a>
+</p>
 
 <p align="center">
 <img src="https://images.gitee.com/uploads/images/2019/0517/232335_2588e5e3_478496.png" />
 </p>
 
+### 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！
+### 如果您想获悉项目实时更新信息，您可以点右上角 "Fork" 感谢您的支持！
+### 官方网址：http://www.rxthink.cn/
+### 帮助文档：http://docs.v5.1.rxthink.cn/
+### 本项目还在不断开发完善中,如有建议或问题请官方论坛反馈，论坛地址:http://wwww.rxthink.cn
+
 ## 项目介绍
 RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框架，框架中集成了权限管理、模块管理、插件管理、钩子管理、数据库管理、富文本编辑器(已集成ueditor,kindeditor)，后台支持多主题切换、布局管理、广告管理、配置管理、字典管理、切图管理、CMS内容管理等常用功能模块，以方便开发者快速构建自己的应用。RXThinkCMF框架专注于为中小企业提供最佳的行业基础后台框架解决方案，执行效率、扩展性、稳定性值得信赖，操作体验流畅，使用非常优化，欢迎大家使用及进行二次开发。
-
 
 * 模块化：全新的架构和模块化的开发机制，便于灵活扩展和二次开发。
 * 模型/栏目/分类信息体系：通过栏目和模型绑定，以及不同的模型类型，不同栏目可以实现差异化的功能，轻松实现诸如资讯、下载、讨论和图片等功能。通过分类信息和栏目绑定，可以自动建立索引表，轻松实现复杂的信息检索。
@@ -30,6 +48,17 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 * 开启静态重写
 * 要求环境支持pathinfo
 * 要求安装Zip扩展(插件/模块市场需要)
+
+
+### 功能特性
+- **严谨规范：** 提供一套有利于团队协作的结构设计、编码、数据等规范。
+- **高效灵活：** 清晰的分层设计、钩子行为扩展机制，解耦设计更能灵活应对需求变更。
+- **严谨安全：** 清晰的系统执行流程，严谨的异常检测和安全机制，详细的日志统计，为系统保驾护航。
+- **组件化：** 完善的组件化设计，丰富的表单组件，让开发列表和表单更得心应手。无需前端开发，省时省力。
+- **简单上手快：** 结构清晰、代码规范、在开发快速的同时还兼顾性能的极致追求。
+- **自身特色：** 权限管理、组件丰富、第三方应用多、分层解耦化设计和先进的设计思想。
+- **高级进阶：** 分布式、负载均衡、集群、Redis、分库分表。 
+- **命令行：** 命令行功能，一键管理应用扩展。 
 
 
 ## 开发者信息
