@@ -8,11 +8,11 @@
 	<a href="http://www.rxthink.cn/">
 	    <img src="https://img.shields.io/badge/RXThinkCMF-v2.0.0-brightgreen.svg" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/stargazers">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/star.svg?theme=dark" />
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/stargazers">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/star.svg?theme=dark" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/members">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/fork.svg?theme=dark" />
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/members">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/fork.svg?theme=dark" />
 	</a>
 	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0_PRO/repository/archive/master.zip">
 	    <img src="https://img.shields.io/badge/download-1820m-red.svg" />
