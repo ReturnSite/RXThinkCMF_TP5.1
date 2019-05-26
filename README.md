@@ -1,20 +1,20 @@
 
-<h1 align="center"> RXThinkCMF权限(RBAC)及内容管理框架</h1>
+<h1 align="center"> RXThinkCMF_TP5.1权限(RBAC)及内容管理框架</h1>
 
 <p align="center">
 	<a href="http://www.rxthink.cn/">
 	    <img src="https://img.shields.io/hexpm/l/plug.svg" />
 	</a>
 	<a href="http://www.rxthink.cn/">
-	    <img src="https://img.shields.io/badge/RXThinkCMF-v2.0.0-brightgreen.svg" />
+	    <img src="https://img.shields.io/badge/RXThinkCMF_TP5.1-v2.0.0-brightgreen.svg" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/stargazers">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/star.svg?theme=dark" />
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/stargazers">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/badge/star.svg?theme=dark" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/members">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/fork.svg?theme=dark" />
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/members">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/badge/fork.svg?theme=dark" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0_PRO/repository/archive/master.zip">
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1_V2.0_PRO/repository/archive/master.zip">
 	    <img src="https://img.shields.io/badge/download-1820m-red.svg" />
 	</a>
 </p>
@@ -30,11 +30,11 @@
 ### 本项目还在不断开发完善中,如有建议或问题请官方论坛反馈，论坛地址:http://www.rxthink.cn
 
 ## 项目介绍
-RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框架，框架中集成了权限管理、模块管理、插件管理、钩子管理、数据库管理、富文本编辑器(已集成ueditor,kindeditor)，后台支持多主题切换、布局管理、广告管理、配置管理、字典管理、切图管理、CMS内容管理等常用功能模块，以方便开发者快速构建自己的应用。RXThinkCMF框架专注于为中小企业提供最佳的行业基础后台框架解决方案，执行效率、扩展性、稳定性值得信赖，操作体验流畅，使用非常优化，欢迎大家使用及进行二次开发。
+RXThinkCMF_TP5.1 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框架，框架中集成了权限管理、模块管理、插件管理、钩子管理、数据库管理、富文本编辑器(已集成ueditor,kindeditor)，后台支持多主题切换、布局管理、广告管理、配置管理、字典管理、切图管理、CMS内容管理等常用功能模块，以方便开发者快速构建自己的应用。RXThinkCMF_TP5.1框架专注于为中小企业提供最佳的行业基础后台框架解决方案，执行效率、扩展性、稳定性值得信赖，操作体验流畅，使用非常优化，欢迎大家使用及进行二次开发。
 
 * 模块化：全新的架构和模块化的开发机制，便于灵活扩展和二次开发。
 * 模型/栏目/分类信息体系：通过栏目和模型绑定，以及不同的模型类型，不同栏目可以实现差异化的功能，轻松实现诸如资讯、下载、讨论和图片等功能。通过分类信息和栏目绑定，可以自动建立索引表，轻松实现复杂的信息检索。
-* RXThinkCMF是一套基于ThinkPHP + Layui开发出来的框架。
+* RXThinkCMF_TP5.1是一套基于ThinkPHP + Layui开发出来的框架。
 * 支持SQLServer、MySQL、Oracle、PostgreSQL、SQLite等多数据库类型。模块化设计，层次结构清晰。  
 * AUTH权限认证，操作权限控制精密细致，对所有管理链接都进行权限验证，可控制到导航菜单、功能按钮。提高开发效率及质量。
 * 常用类封装，日志、缓存、验证、字典、文件（本地、七牛云）。等等，目前兼容浏览器（Chrome、Firefox、360浏览器等）
@@ -62,7 +62,7 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 
 
 ## 开发者信息
-* 系统名称：RXThinkCMF权限(RBAC)及内容管理框架  
+* 系统名称：RXThinkCMF_TP5.1权限(RBAC)及内容管理框架  
 * 作者[牧羊人]：南京RXThink研发工作室
 * 作者QQ：1175401194  
 * 官网网址：[http://www.rxthink.cn/](http://www.rxthink.cn/)  
@@ -71,9 +71,9 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 
 
 ## 后台演示（用户名:admin 密码:admin123）
-- RXThinkCMF_TP5.1_V2.0.0版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
-- RXThinkCMF_TP5.0_V2.0.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
-- RXThinkCMF_TP3.2_V2.0.0版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
+- RXThinkCMF_TP5.1_TP5.1_V2.0.0版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
+- RXThinkCMF_TP5.1_TP5.0_V2.0.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
+- RXThinkCMF_TP5.1_TP3.2_V2.0.0版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
 
 
 ## 技术支持
@@ -258,7 +258,7 @@ location / { // …..省略部分代码
 
 # 2018-03-08更新
 1、【准备】整体框架结构的规划、设计、排期与实施  
-2、【优化】鉴于RXThinkCMF_TP3.2_V2.0框架的设计和实践，对框架整体性做重构与改进  
+2、【优化】鉴于RXThinkCMF_TP5.1_TP3.2_V2.0框架的设计和实践，对框架整体性做重构与改进  
  
 
 ## 项目截图
@@ -279,7 +279,7 @@ location / { // …..省略部分代码
 
 ## 版权信息
 
-RXThinkCMF提供个人非商业用途免费使用，商业需授权。
+RXThinkCMF_TP5.1提供个人非商业用途免费使用，商业需授权。
 
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 
