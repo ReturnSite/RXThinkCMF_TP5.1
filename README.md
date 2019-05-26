@@ -91,183 +91,59 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 ![QQ群二维码](http://images.tp3.rxthink.cn/demo/qq.png "gh_03bc4364b4dc_344.jpg")
 
 
-## 重写设置
-## [Apache]
-httpd.conf配置文件中加载了mod_rewrite.so模块
-AllowOverride None 将None改为 All
-把下面的内容保存为.htaccess文件放到应用入口文件的同级目录下
- 
+#### 项目结构
 ```
-<IfModule mod_rewrite.c>
-  Options +FollowSymlinks -Multiviews
-  RewriteEngine On
+RXThink
+├─Application  应用目录
+│
+├─Doc  文档存放目录
+│
+├─Runtime 临时文件存放目录
+│ 
+├─Public 公共资源文件目录
+│  ├─Admin 后台资源目录
+│  │    ├─js JS目录
+│  │    ├─css CSS目录
+│  │    ├─layui Layui目录
+│  │    └─images 图片目录
+│  ├─Home 前台资源目录
+│  │    ├─js JS目录
+│  │    ├─css CSS目录
+│  │    ├─layui Layui目录
+│  │    └─images 图片目录
+├─ThinkPH 框架目录
+│ 
+├─admin.php 后台入口
+│ 
+├─index.php 前台入口
+│ 
+├─api.php 接口入口
+│ 
+├─script.php 脚本入口
+│ 
+├─wap.php WAP入口
 
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
-</IfModule>
-
-```
-如果为phpstudy
-
-```
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks -Multiviews
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
-</IfModule>
-```
-如果还是不行,请添加"?"
-
-```
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks -Multiviews
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?/$1 [QSA,PT,L]
-</IfModule>
 ```
 
-## [Nginx]
-在Nginx低版本中，是不支持PATHINFO的，但是可以通过在Nginx.conf中配置转发规则实现：
-```
-location / { // …..省略部分代码
-   if (!-e $request_filename) {
-       rewrite  ^(.*)$  /index.php?s=/$1  last;
-    }
-}
-```
+<br>
 
-## 部署说明
-
-## 第一步：点击同意安装协议
-
- ![](http://images.tp3.rxthink.cn/demo/阅读协议.png)
-
-## 第二步：环境检测
-
-大家检测下自己的环境，如果环境提供有误，请修复对应的错误
-
- ![](http://images.tp3.rxthink.cn/demo/环境检测.png)
-
-## 第三步：创建数据库
-
-大家根据自己的数据库来配置，建议独立数据库。输入创始人的账号信息，记得要保存好自己的用户名密码信息哟。
-
-![](http://images.tp3.rxthink.cn/demo/数据配置.png)  
-
-![](http://images.tp3.rxthink.cn/demo/数据库安装.png)  
-
-
-## 更新说明
-
-# 2019-05-17更新  
-1、【新增】按钮组件公共JS方法实现btnFunc  
-2、【新增】table数据列表新增【一键复制】、【重置缓存】的节点组件
-
-
-# 2019-05-12更新  
-1、【新增】上传图片JS组件UploadFile的实现，switch开关组件formSwitch组件的实现   
-2、【新增】数据库管理模块，实现了立即备份、优化表、回复表、数据库还原等  
-
-
-# 2019-05-05更新  
-1、【新增】查询、导出Excel、导入Excel、批量启用、批量禁用等功能按钮组件化   
-2、【完成】附件管理的功能     
-3、【完成】系统配置管理   
-4、【优化】框架核心JS模块的优化，实现JS、CSS、图片等Webpack一键打包的功能   
-
-  
-# 2019-05-02更新  
-1、【新增】增加提交、重置、关闭按钮的组件灵活配置功能（submit|立即提交,reset|重置,close|关闭）  
-2、【完成】Checkbox常规选择框、复杂选择框的组件实现  
-3、【完成】Radio单选框的组件化实现  
-4、【新增】CURD（增删改查）权限验证模块  
-5、【新增】Redis缓存优化
-
-
-# 2019-04-20更新  
-1、【新增】字典类型模块   
-2、【新增】字典管理模块的实现    
-3、【新增】配置分组模块    
-4、【新增】配置模块的整理功能优化，系统相关配置的表单式管理  
-5、【完成】城市选择组件的常规组件和复杂组件的完善   
-
-
-# 2019-04-05更新
-1、【优化】优化系统底层缓存存储  
-2、【新增】新增BaseModel类的常用CURD（增删改查）常规方法及业务方法    
-3、【新增】缓存调用方法setCache、getCache、resetCache、deleteCache方法的底层优化  
-
-
-# 2019-03-15更新
-1、【完善】新增图片处理常用函数：save_image（保存图片）、create_image_path（创建系统图片存储路径）、save_remote_image（保存网络图片到本地）  
-2、【新增】基类验证类的实现：BaseValidate（验证规则、验证描述、验证场景）    
-3、【新增】新增模型常用函数：getCount、getSum、getMax、getMin、getAvg、getValue、getOne、getRow、getColumn、getList等  
-  
- 
-# 2019-03-05更新
-1、【完成】对底层架构做了调整，实现了模板继承调用及Layout模板布局  
-2、【新增】模块列表面包屑    
-3、【新增】错误提示403、404、500页面  
-
-
-# 2019-02-10更新
-1、【新增】系统应用初始化行为InitApp  
-2、【新增】初始化基础配置行为InitBase    
-3、【新增】注册钩子InitHook  
-
-
-# 2019-01-27更新
-1、【新增】撰写系统常用函数文件common.php  
-2、【新增】自定义系统常用函数类function.php文件，备注：function.php文件是系统为了扩展，对开发者自行定义函数的文件，二次开发自定义函数全部写于此，禁止在系统框架common.php文件中进行书写，以免影响系统后续升级优化   
-3、【完善】调整及优化系统控制器基类配置CommonBase.php文件  
-4、【新增】数据库常用操作方法get_tables_list、table_exist、drop_table、get_table_fields、field_exist等底层函数  
-5、【新增】CRUD扩展方法doInsert、doUpdate、doDelete、doMark（软删除方法）  
-
-
-# 2018-12-15更新  
-1、为了框架能够更好的发展，年底对框架从底层架构进行重构，新增了扩展及行为钩子、插件、组件，使得系统能更加灵活、更加友好；通过组件化、插件化的目的在于提供系统的可维护性、可操作性及提高研发效率，使得在开发过程中可以简单的通过配置、权限赋予、模块调用等实现模块化的开发  
-2、目前系统架构依然采用传统的MVC架构模式，主要是为了广大的用户考虑，目前大部分人对MVC的架构模式比较熟悉和熟练的使用，后期如果有需要，我们会重构系统实现MVP、MVVM或者其他主流架构模式  
-3、新重构的系统版本定位：V2.0  
-
-
-# 2018-11-01更新
-1、【新增】岗位模块、职级模块  
-2、【新增】友情链接模块、城市模块  
-3、【新增】站点模块、栏目模块  
-4、【新增】布局描述模块、布局模块  
-5、【新增】广告描述模块、广告模块  
-
-
-# 2018-09-18更新
-1、【完善】重点优化系统架构部分，实现CRUD权限管理基础性架构设计及研发，方便权限灵活配置  
-2、【新增】新增人员模块功能的实现  
-3、【新增】组件底层架构的搭建及一些常用基础组件的研发，如：switch_check（开发组件）、radio_check（单选组件）、single_select（常规选择下拉组件）等  
-
-
-# 2018-07-08更新
-1、【准备】设计系统框架架构，目前框架支持大后台、API接口、前台、WAP站、Script脚本等  
-2、【准备】准备框架所需要的第三方组件及文件（支持Composer）  
-3、【准备】重点选定系统框架采用传统的MVC架构模式  
-4、【准备】研发框架基础RBAC权限管理模块的搭建及基础模块的开发  
-
-
-# 2018-03-08更新
-1、【准备】整体框架结构的规划、设计、排期与实施  
-2、【优化】鉴于RXThinkCMF_TP3.2_V2.0框架的设计和实践，对框架整体性做重构与改进  
- 
-
-## 项目截图
-
-![](https://images.gitee.com/uploads/images/2019/0517/232335_2ab0bd93_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0517/232340_ccabf136_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0517/232337_02944d69_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0517/232337_8b51a29b_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0519/182554_6477fadb_478496.png)
+#### 效果图
+- 欢迎页
+![login.png](http://images.kivii.renxixi.com/rxthink/1.png "欢迎页")
+- 菜单页
+![index.png](http://images.kivii.renxixi.com/rxthink/2.png "菜单页")
+- 菜单图标
+![user.png](http://images.kivii.renxixi.com/rxthink/3.png "菜单图标")
+- 角色权限配置
+![role.png](http://images.kivii.renxixi.com/rxthink/4.png "角色权限配置")
+- 系统常用配置
+![permission.png](http://images.kivii.renxixi.com/rxthink/5.png "系统常用配置")
+- 分类选择
+![menu.png](http://images.kivii.renxixi.com/rxthink/6.png "分类选择")
+- SKU图集上传
+![button.png](http://images.kivii.renxixi.com/rxthink/7.png "SKU图集上传")
+- 属性值管理
+![button.png](http://images.kivii.renxixi.com/rxthink/8.png "属性值管理")
 
 
 ## 安全&缺陷
