@@ -1,5 +1,5 @@
 <if condition="in_array('sys:' . lcfirst($app) . ':' .$funcAct,$funcList)">
 	<a href="javascript:" class="layui-btn btnOption {$funcColor} <if condition='$funcType eq 2'>layui-btn-xs<else/>layui-btn-small</if> btn{$funcAct|ucfirst}" id="{$funcAct}" data-param='{$param}' lay-event="{$funcAct}">
-		<i class="layui-icon larry-icon {$funcIcon}"></i> {$funcName}
+		<i class="layui-icon {$funcIcon}"></i> {$funcName}
 	</a>
 </if>

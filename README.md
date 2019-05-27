@@ -8,13 +8,13 @@
 	<a href="http://www.rxthink.cn/">
 	    <img src="https://img.shields.io/badge/RXThinkCMF_TP5.1-v2.0.0-brightgreen.svg" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/stargazers">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/badge/star.svg?theme=dark" />
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/stargazers">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/star.svg?theme=dark" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/members">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1/badge/fork.svg?theme=dark" />
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/members">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/fork.svg?theme=dark" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_TP5.1_V2.0_PRO/repository/archive/master.zip">
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0_PRO/repository/archive/master.zip">
 	    <img src="https://img.shields.io/badge/download-1820m-red.svg" />
 	</a>
 </p>
@@ -91,61 +91,11 @@ RXThinkCMF_TP5.1 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管�
 ![QQ群二维码](http://images.tp3.2.rxthink.cn/demo/qq.png "gh_03bc4364b4dc_344.jpg")
 
 
-## 重写设置
-## [Apache]
-httpd.conf配置文件中加载了mod_rewrite.so模块
-AllowOverride None 将None改为 All
-把下面的内容保存为.htaccess文件放到应用入口文件的同级目录下
- 
-```
-<IfModule mod_rewrite.c>
-  Options +FollowSymlinks -Multiviews
-  RewriteEngine On
-
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
-</IfModule>
-
-```
-如果为phpstudy
-
-```
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks -Multiviews
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
-</IfModule>
-```
-如果还是不行,请添加"?"
-
-```
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks -Multiviews
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?/$1 [QSA,PT,L]
-</IfModule>
-```
-
-## [Nginx]
-在Nginx低版本中，是不支持PATHINFO的，但是可以通过在Nginx.conf中配置转发规则实现：
-```
-location / { // …..省略部分代码
-   if (!-e $request_filename) {
-       rewrite  ^(.*)$  /index.php?s=/$1  last;
-    }
-}
-```
-
 ## 部署说明
 
 ## 第一步：点击同意安装协议
 
- ![](http://images.tp3.2.2.rxthink.cn/demo/阅读协议.png)
+ ![](http://images.tp3.2.rxthink.cn/demo/阅读协议.png)
 
 ## 第二步：环境检测
 
