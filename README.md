@@ -1,22 +1,40 @@
 
-<h1 align="center"> RXThinkCMF权限(RBAC)及内容管理框架</h1>
+<h1 align="center"> RXThinkCMF_TP5.1权限(RBAC)及内容管理框架</h1>
 
-[![RXThinkCMF](https://img.shields.io/hexpm/l/plug.svg)](http://www.rxthink.cn/)
-[![RXThinkCMF](https://img.shields.io/badge/RXThinkCMF-v2.0.0-brightgreen.svg)](http://www.rxthink.cn/)
-[![star](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/star.svg?theme=dark)](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/stargazers)
-[![fork](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/badge/fork.svg?theme=dark)](https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0/members)
+<p align="center">
+	<a href="http://www.rxthink.cn/">
+	    <img src="https://img.shields.io/hexpm/l/plug.svg" />
+	</a>
+	<a href="http://www.rxthink.cn/">
+	    <img src="https://img.shields.io/badge/RXThinkCMF_TP5.1-v2.0.0-brightgreen.svg" />
+	</a>
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/stargazers">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/star.svg?theme=dark" />
+	</a>
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/members">
+	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/fork.svg?theme=dark" />
+	</a>
+	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0_PRO/repository/archive/master.zip">
+	    <img src="https://img.shields.io/badge/download-1820m-red.svg" />
+	</a>
+</p>
 
 <p align="center">
 <img src="https://images.gitee.com/uploads/images/2019/0517/232335_2588e5e3_478496.png" />
 </p>
 
-## 项目介绍
-RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框架，框架中集成了权限管理、模块管理、插件管理、钩子管理、数据库管理、富文本编辑器(已集成ueditor,kindeditor)，后台支持多主题切换、布局管理、广告管理、配置管理、字典管理、切图管理、CMS内容管理等常用功能模块，以方便开发者快速构建自己的应用。RXThinkCMF框架专注于为中小企业提供最佳的行业基础后台框架解决方案，执行效率、扩展性、稳定性值得信赖，操作体验流畅，使用非常优化，欢迎大家使用及进行二次开发。
+### 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！
+### 如果您想获悉项目实时更新信息，您可以点右上角 "Fork" 感谢您的支持！
+### 官方网址：http://www.rxthink.cn/
+### 帮助文档：http://docs.v5.1.rxthink.cn/
+### 本项目还在不断开发完善中,如有建议或问题请官方论坛反馈，论坛地址:http://www.rxthink.cn
 
+## 项目介绍
+RXThinkCMF_TP5.1 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框架，框架中集成了权限管理、模块管理、插件管理、钩子管理、数据库管理、富文本编辑器(已集成ueditor,kindeditor)，后台支持多主题切换、布局管理、广告管理、配置管理、字典管理、切图管理、CMS内容管理等常用功能模块，以方便开发者快速构建自己的应用。RXThinkCMF_TP5.1框架专注于为中小企业提供最佳的行业基础后台框架解决方案，执行效率、扩展性、稳定性值得信赖，操作体验流畅，使用非常优化，欢迎大家使用及进行二次开发。
 
 * 模块化：全新的架构和模块化的开发机制，便于灵活扩展和二次开发。
 * 模型/栏目/分类信息体系：通过栏目和模型绑定，以及不同的模型类型，不同栏目可以实现差异化的功能，轻松实现诸如资讯、下载、讨论和图片等功能。通过分类信息和栏目绑定，可以自动建立索引表，轻松实现复杂的信息检索。
-* RXThinkCMF是一套基于ThinkPHP + Layui开发出来的框架。
+* RXThinkCMF_TP5.1是一套基于ThinkPHP + Layui开发出来的框架。
 * 支持SQLServer、MySQL、Oracle、PostgreSQL、SQLite等多数据库类型。模块化设计，层次结构清晰。  
 * AUTH权限认证，操作权限控制精密细致，对所有管理链接都进行权限验证，可控制到导航菜单、功能按钮。提高开发效率及质量。
 * 常用类封装，日志、缓存、验证、字典、文件（本地、七牛云）。等等，目前兼容浏览器（Chrome、Firefox、360浏览器等）
@@ -32,8 +50,19 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 * 要求安装Zip扩展(插件/模块市场需要)
 
 
+### 功能特性
+- **严谨规范：** 提供一套有利于团队协作的结构设计、编码、数据等规范。
+- **高效灵活：** 清晰的分层设计、钩子行为扩展机制，解耦设计更能灵活应对需求变更。
+- **严谨安全：** 清晰的系统执行流程，严谨的异常检测和安全机制，详细的日志统计，为系统保驾护航。
+- **组件化：** 完善的组件化设计，丰富的表单组件，让开发列表和表单更得心应手。无需前端开发，省时省力。
+- **简单上手快：** 结构清晰、代码规范、在开发快速的同时还兼顾性能的极致追求。
+- **自身特色：** 权限管理、组件丰富、第三方应用多、分层解耦化设计和先进的设计思想。
+- **高级进阶：** 分布式、负载均衡、集群、Redis、分库分表。 
+- **命令行：** 命令行功能，一键管理应用扩展。 
+
+
 ## 开发者信息
-* 系统名称：RXThinkCMF权限(RBAC)及内容管理框架  
+* 系统名称：RXThinkCMF_TP5.1权限(RBAC)及内容管理框架  
 * 作者[牧羊人]：南京RXThink研发工作室
 * 作者QQ：1175401194  
 * 官网网址：[http://www.rxthink.cn/](http://www.rxthink.cn/)  
@@ -42,9 +71,9 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 
 
 ## 后台演示（用户名:admin 密码:admin123）
-- RXThinkCMF_TP5.1_V2.0.0版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
-- RXThinkCMF_TP5.0_V2.0.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
-- RXThinkCMF_TP3.2_V2.0.0版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
+- RXThinkCMF_TP5.1_TP5.1_V2.0.0版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
+- RXThinkCMF_TP5.1_TP5.0_V2.0.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
+- RXThinkCMF_TP5.1_TP3.2_V2.0.0版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
 
 
 ## 技术支持
@@ -59,85 +88,35 @@ RXThinkCMF 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管理框�
 
 ## 官方技术交流二维码：期待您的加入，欢迎您跟RXThink团队一起成长！！
 
-![QQ群二维码](http://images.tp3.rxthink.cn/demo/qq.png "gh_03bc4364b4dc_344.jpg")
+![QQ群二维码](http://images.tp3.2.rxthink.cn/demo/qq.png "gh_03bc4364b4dc_344.jpg")
 
-
-## 重写设置
-## [Apache]
-httpd.conf配置文件中加载了mod_rewrite.so模块
-AllowOverride None 将None改为 All
-把下面的内容保存为.htaccess文件放到应用入口文件的同级目录下
- 
-```
-<IfModule mod_rewrite.c>
-  Options +FollowSymlinks -Multiviews
-  RewriteEngine On
-
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
-</IfModule>
-
-```
-如果为phpstudy
-
-```
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks -Multiviews
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php [L,E=PATH_INFO:$1]
-</IfModule>
-```
-如果还是不行,请添加"?"
-
-```
-<IfModule mod_rewrite.c>
-Options +FollowSymlinks -Multiviews
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?/$1 [QSA,PT,L]
-</IfModule>
-```
-
-## [Nginx]
-在Nginx低版本中，是不支持PATHINFO的，但是可以通过在Nginx.conf中配置转发规则实现：
-```
-location / { // …..省略部分代码
-   if (!-e $request_filename) {
-       rewrite  ^(.*)$  /index.php?s=/$1  last;
-    }
-}
-```
 
 ## 部署说明
 
 ## 第一步：点击同意安装协议
 
- ![](http://images.tp3.rxthink.cn/demo/阅读协议.png)
+ ![](http://images.tp3.2.rxthink.cn/demo/阅读协议.png)
 
 ## 第二步：环境检测
 
 大家检测下自己的环境，如果环境提供有误，请修复对应的错误
 
- ![](http://images.tp3.rxthink.cn/demo/环境检测.png)
+ ![](http://images.tp3.2.rxthink.cn/demo/环境检测.png)
 
 ## 第三步：创建数据库
 
 大家根据自己的数据库来配置，建议独立数据库。输入创始人的账号信息，记得要保存好自己的用户名密码信息哟。
 
-![](http://images.tp3.rxthink.cn/demo/数据配置.png)  
+![](http://images.tp3.2.rxthink.cn/demo/数据配置.png)  
 
-![](http://images.tp3.rxthink.cn/demo/数据库安装.png)  
+![](http://images.tp3.2.rxthink.cn/demo/数据库安装.png)  
 
 
 ## 更新说明
 
 # 2019-05-17更新  
 1、【新增】按钮组件公共JS方法实现btnFunc  
-2、【新增】table数据列表新增【一键复制】、【重置按钮】的节点组件
+2、【新增】table数据列表新增【一键复制】、【重置缓存】的节点组件
 
 
 # 2019-05-12更新  
@@ -229,7 +208,7 @@ location / { // …..省略部分代码
 
 # 2018-03-08更新
 1、【准备】整体框架结构的规划、设计、排期与实施  
-2、【优化】鉴于RXThinkCMF_TP3.2_V2.0框架的设计和实践，对框架整体性做重构与改进  
+2、【优化】鉴于RXThinkCMF_TP5.1_TP3.2_V2.0框架的设计和实践，对框架整体性做重构与改进  
  
 
 ## 项目截图
@@ -250,7 +229,7 @@ location / { // …..省略部分代码
 
 ## 版权信息
 
-RXThinkCMF提供个人非商业用途免费使用，商业需授权。
+RXThinkCMF_TP5.1提供个人非商业用途免费使用，商业需授权。
 
 本项目包含的第三方源码和二进制文件之版权信息另行标注。
 

@@ -27,5 +27,5 @@ if (!is_file(__DIR__ . '/../install.lock')) {
     Container::get('app')->bind('install')->run()->send();
 } else {
     // 执行应用并响应
-    Container::get('app')->run()->send();
+    Container::get('app')->bind('admin')->run()->send();
 }
