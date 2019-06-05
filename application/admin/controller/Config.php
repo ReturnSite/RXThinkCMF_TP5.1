@@ -82,4 +82,106 @@ class Config extends AdminBase
         ]);
     }
     
+    /**
+     * 系统配置
+     * 
+     * @author 牧羊人
+     * @date 2019-06-02
+     */
+    public function group()
+    {
+        if (IS_POST) {
+            $result = $this->service->group();
+            return $result;
+        }
+        // 配置分组ID
+        $group_id = request()->param('group_id', 1);
+        
+        // 获取配置分组
+        $config_group_model = new ConfigGroup();
+        $config_group_list = $config_group_model->where(['mark' => 1])->select();
+        $this->assign('config_group_list', $config_group_list);
+        
+        // 获取元素列表
+        $list = $this->model->getList([['group_id', '=', $group_id]], "id asc");
+        if ($list) {
+            foreach ($list as &$val) {
+                if ($val['type'] == "select") {
+                    // 单选下拉
+                    $val['format_name'] = "{$val['name']}|1|{$val['title']}|name|id";
+                }
+                if ($val['type'] == 'checkbox') {
+                    // 复选框
+                    $val['format_name'] = "{$val['name']}-checkbox|name|id";
+                    
+                    // 组件数据源
+                    $options_list = [];
+                    if ($val['options']) {
+                        $options = preg_split("/[\r\n]/",$val['options']);
+                        if ($options && is_array($options)) {
+                            foreach ($options as $v) {
+                                $item = explode(':', $v);
+                                $options_list[] = [
+                                    'id'    => $item[0],
+                                    'name'  => $item[1],
+                                ];
+                            }
+                        }
+                    }
+                    $val['format_options'] = $options_list;
+                    
+                    // 选中的值
+                    if ($val['value']) {
+                        $val['format_value'] = explode(',', $val['value']);
+                    }
+                }
+                if ($val['type'] == 'radio') {
+                    // 单选
+                    $val['format_name'] = "{$val['name']}|name|id";
+                    
+                    // 组件数据源
+                    $options_list = [];
+                    if ($val['options']) {
+                        $options = preg_split("/[\r\n]/",$val['options']);
+                        if ($options && is_array($options)) {
+                            foreach ($options as $v) {
+                                $item = explode(':', $v);
+                                $options_list[] = [
+                                    'id'    => $item[0],
+                                    'name'  => $item[1],
+                                ];
+                            }
+                        }
+                    }
+                    $val['format_options'] = $options_list;
+                }
+                if ($val['type'] == 'select') {
+                    // 下拉选择
+                    $val['format_name'] = "{$val['name']}|1|{$val['title']}|name|id";
+                    
+                    // 组件数据源
+                    $options_list = [];
+                    if ($val['options']) {
+                        $options = preg_split("/[\r\n]/",$val['options']);
+                        if ($options && is_array($options)) {
+                            foreach ($options as $v) {
+                                $item = explode(':', $v);
+                                $options_list[] = [
+                                    'id'    => $item[0],
+                                    'name'  => $item[1],
+                                ];
+                            }
+                        }
+                    }
+                    $val['format_options'] = $options_list;
+                }
+            }
+        }
+        $this->assign('list', $list);
+        
+        return $this->render('',[
+            'group_id' => $group_id,
+        ]);
+    }
+    
 }

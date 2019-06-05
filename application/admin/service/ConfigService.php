@@ -61,4 +61,31 @@ class ConfigService extends BaseService
         
     }
     
+    /**
+     * 分组信息编辑
+     * 
+     * @author zongjl
+     * @date 2019-06-02
+     */
+    function group()
+    {
+        $data = request()->param();
+        
+        // 分组ID
+        $group_id = (int)$data['group_id'];
+        unset($data['group_id']);
+        
+        if ($data) {
+            foreach ($data as $key => $val) {
+                if (strpos($key, 'checkbox')) {
+                    $item = explode('-', $key);
+                    $val = implode(',', array_keys($val));
+                }
+            }
+        }
+        
+        
+        print_r($data);exit;
+    }
+    
 }

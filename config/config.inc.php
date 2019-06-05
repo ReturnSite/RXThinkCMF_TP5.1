@@ -39,7 +39,7 @@ defined('IMG_URL') or define('IMG_URL', 'http://img.rxthink.com');
 // 定义文章图片域名
 defined('IMAGE_URL') or define('IMAGE_URL', 'http://images.rxthink.com');
 // 定义文件上传目录
-defined('ATTACHMENT_PATH') or define('ATTACHMENT_PATH', 'D:\sites\RXThink\RXThink5.1_V2.0_DEV\public\uploads');
+defined('ATTACHMENT_PATH') or define('ATTACHMENT_PATH', 'C:\xampp\htdocs\RXThink\RXThink5.1_V2.0_DEV\public\uploads');
 // 定义图片上传目录
 defined('IMG_PATH') or define('IMG_PATH', ATTACHMENT_PATH."/img");
 // 定义临时文件目录

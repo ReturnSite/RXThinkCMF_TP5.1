@@ -50,55 +50,17 @@ layui.use(['func','form'],function(){
 		
 	}else{
 		
-		//初始化类型:1单行文本 2多行文本 3富文本 4图片 5图片集
-		var ctype = $("#type").val();
-		if(ctype==1) {
-			//单行文本
-			$(".content1").removeClass("layui-hide");
-		}else if(ctype==2){
-			//多行文本
-			$(".content2").removeClass("layui-hide");
-		}else if(ctype==3) {
-			//富文本
-			$(".content3").removeClass("layui-hide");
-		}else if(ctype==4) {
-			//单张图片
-			$(".image").removeClass("layui-hide");
-		}else if(ctype==5) {
-			//图集
-			$(".imgs").removeClass("layui-hide");
-		}
+		// 【日期选择】
+		func.initDate(['date_select|date'],function(value,date){
+			console.log("当前选择日期:"+value);
+			console.log("日期详细信息："+JSON.stringify(date));
+		});
 		
-		//【监听选择类型】
-	    form.on('select(type)', function (data) {
-	 
-	    	//预先全部隐藏
-	    	$(".image").addClass("layui-hide");
-	    	$(".imgs").addClass("layui-hide");
-	    	$(".content1").addClass("layui-hide");
-	    	$(".content2").addClass("layui-hide");
-	    	$(".content3").addClass("layui-hide");
-	    	
-	    	var type = data.value;
-	    	
-	    	if(type==1) {
-	    		//单行文本
-	    		$(".content1").removeClass("layui-hide");
-	    	}else if(type==2) {
-	    		//多行文本
-	    		$(".content2").removeClass("layui-hide");
-	    	}else if(type==3) {
-	    		//富文本
-	    		$(".content3").removeClass("layui-hide");
-	    	}else if(type==4) {
-	    		//单张图片
-	    		$(".image").removeClass("layui-hide");
-	    	}else if(type==5) {
-	    		//多张图集
-	    		$(".imgs").removeClass("layui-hide");
-	    	}
-	    	
-	    });
+		// 【时间选择】
+		func.initDate(['datetime_select|datetime'],function(value,date){
+			console.log("当前选择日期:"+value);
+			console.log("日期详细信息："+JSON.stringify(date));
+		});
 		
 	}
 

@@ -191,7 +191,7 @@ class AdminBase extends CommonBase
         // 默认参数
         $data = func_get_args();
         if ($data) {
-            foreach ($data[0] as $key => $val) {
+            foreach ($data as $key => $val) {
                 $this->assign($key, $val);
             }
         }
@@ -211,13 +211,13 @@ class AdminBase extends CommonBase
             return $result;
         }
         $info = [];
-        $id = input("get.id",0);
+        $id = input("get.id", 0);
         if ($id) {
             $info = $this->model->getInfo($id);
         } else {
             $data = func_get_args();
             if ($data) {
-                foreach ($data[0] as $key => $val) {
+                foreach ($data as $key => $val) {
                     $info[$key] = $val;
                 }
             }

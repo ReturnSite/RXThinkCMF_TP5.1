@@ -1154,7 +1154,7 @@ if(!function_exists('strip_html_tags')) {
     /**
      * 去除HTML标签、图像等 仅保留文本
      * 
-     * @author 模样热
+     * @author 牧羊人
      * @date 2019-04-04
      * @param unknown $str 字符串
      * @param number $length 指定截取长度（默认全返回）
@@ -1249,7 +1249,7 @@ if(!function_exists('get_zodiac_sign')) {
     /**
      * 根据月、日获取星座
      * 
-     * @author 模样人
+     * @author 牧羊人
      * @date 2019-04-04
      * @param unknown $month 月
      * @param unknown $day 日
@@ -1417,7 +1417,7 @@ if (!function_exists('encrypt')) {
     /**
      * DES加密
      * 
-     * @author 模样人
+     * @author 牧羊人
      * @date 2019-04-27
      * @param unknown $str 加密数据
      * @param unknown $key 加密KEY

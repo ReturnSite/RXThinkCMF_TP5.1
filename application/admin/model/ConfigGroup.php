@@ -55,5 +55,4 @@ class ConfigGroup extends BaseModel
         }
         return $info;
     }
-    
 }
