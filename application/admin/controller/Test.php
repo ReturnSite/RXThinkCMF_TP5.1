@@ -1,24 +1,32 @@
 <?php
+// +----------------------------------------------------------------------
+// | RXThinkCMF框架 [ RXThinkCMF ]
+// +----------------------------------------------------------------------
+// | 版权所有 2017~2019 南京RXThink工作室
+// +----------------------------------------------------------------------
+// | 官方网站: http://www.rxthink.cn
+// +----------------------------------------------------------------------
+// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// +----------------------------------------------------------------------
 
 namespace app\admin\controller;
-
 
 use util\QrcodeService;
 
 class Test extends AdminBase
 {
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new \app\admin\model\Admin();
     }
 
-    function index()
+    public function index()
     {
         return $this->fetch();
     }
 
-    function create_qrcode()
+    public function createQrcode()
     {
         // 自定义二维码配置
         $config = [
