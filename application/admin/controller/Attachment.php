@@ -8,27 +8,23 @@ use app\admin\validate\Attachment as AttachmentValidate;
 
 /**
  * 附件-控制器
- * 
  * @author 牧羊人
- * @date 2019-05-09
- *
+ * @date 2019/5/9
+ * Class Attachment
+ * @package app\admin\controller
  */
 class Attachment extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-05-09
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/5/9
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new AttachmentModel();
         $this->service = new AttachmentService();
         $this->validate = new AttachmentValidate();
     }
-    
 }

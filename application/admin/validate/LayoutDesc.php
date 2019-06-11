@@ -15,12 +15,12 @@ use app\common\validate\BaseValidate;
 
 /**
  * 布局描述-验证类
- * 
  * @author 牧羊人
- * @date 2019-05-05
- *
+ * @date 2019/5/5
+ * Class LayoutDesc
+ * @package app\admin\validate
  */
 class LayoutDesc extends BaseValidate
 {
-    
+
 }

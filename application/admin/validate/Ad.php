@@ -15,12 +15,12 @@ use app\common\validate\BaseValidate;
 
 /**
  * 广告-验证类
- * 
  * @author 牧羊人
- * @date 2019-05-05
- *
+ * @date 2019/5/5
+ * Class Ad
+ * @package app\admin\validate
  */
 class Ad extends BaseValidate
 {
-    
+
 }

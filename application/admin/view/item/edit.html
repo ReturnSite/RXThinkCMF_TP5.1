@@ -2,7 +2,7 @@
 	<input name="id" id="id" type="hidden" value="{$info.id|default=0}">
 	<div class="layui-form-item">
 		<label class="layui-form-label">站点图片：</label>
-		{:widget('upload/upload_single_image',array('image',isset($info['image_url']) ? $info['image_url'] : '','90x90'))}
+		{:widget('upload/uploadSingleImage',array('image',isset($info['image_url']) ? $info['image_url'] : '','90x90'))}
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-inline">
@@ -14,7 +14,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">站点类型：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('type|1|站点类型|name|id',config('config.item_type'),isset($info['type']) ? $info['type'] : 1))}
+				{:widget('common/singleSelect',array('type|1|站点类型|name|id',config('config.item_type'),isset($info['type']) ? $info['type'] : 1))}
 			</div>
 		</div>
 	</div>
@@ -28,7 +28,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">二级域名：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('is_domain','是|否',isset($info['is_domain']) ? $info['is_domain'] : 2))}
+				{:widget('common/switchCheck',array('is_domain','是|否',isset($info['is_domain']) ? $info['is_domain'] : 2))}
 			</div>
 		</div>
 	</div>
@@ -42,7 +42,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">状态：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('status','是|否',isset($info['status']) ? $info['status'] : 1))}
+				{:widget('common/switchCheck',array('status','是|否',isset($info['status']) ? $info['status'] : 1))}
 			</div>
 		</div>
 	</div>

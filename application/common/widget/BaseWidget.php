@@ -14,25 +14,23 @@ namespace app\common\widget;
 use think\Controller;
 
 /**
- * 挂件基类
- *
+ * 组件基类
  * @author 牧羊人
- * @date 2019-04-04
+ * @date 2019/4/4
+ * Class BaseWidget
+ * @package app\common\widget
  */
 class BaseWidget extends Controller
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-04-22
-     * (non-PHPdoc)
-     * @see \think\Controller::initialize()
+     * @date 2019/4/22
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
-        
+
         // 取消模板布局
         $this->view->engine->layout(false);
     }

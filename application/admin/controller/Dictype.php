@@ -8,28 +8,23 @@ use app\admin\validate\Dictype as DictypeValidate;
 
 /**
  * 字典类型-控制器
- * 
  * @author 牧羊人
- * @date 2019-05-09
- *
+ * @date 2019/5/9
+ * Class Dictype
+ * @package app\admin\controller
  */
 class Dictype extends AdminBase
 {
-    
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-05-09
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/5/9
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new DictypeModel();
         $this->service = new DictypeService();
         $this->validate = new DictypeValidate();
     }
-    
 }

@@ -15,25 +15,21 @@ use app\admin\model\Level as LevelModel;
 
 /**
  * 职级-服务类
- * 
  * @author 牧羊人
- * @date 2019-04-24
- *
+ * @date 2019/4/24
+ * Class LevelService
+ * @package app\admin\service
  */
 class LevelService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-04-24
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/4/24
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new LevelModel();
     }
-    
 }

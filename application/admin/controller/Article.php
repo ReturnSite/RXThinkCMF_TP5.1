@@ -8,22 +8,19 @@ use app\admin\validate\Article as ArticleValidate;
 
 /**
  * 文章-控制器
- * 
  * @author 牧羊人
- * @date 2019-05-08
- *
+ * @date 2019/5/8
+ * Class Article
+ * @package app\admin\controller
  */
 class Article extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-05-08
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/5/8
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new ArticleModel();

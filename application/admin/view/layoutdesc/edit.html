@@ -15,7 +15,7 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label">站点名称：</label>
 		<div class="layui-input-block">
-			{:widget('common/single_select',array('page_id|1|站点名称|name|id',db('item')->where(['status'=>1,'mark'=>1])->select(),isset($info['page_id']) ? $info['page_id'] : 0))}
+			{:widget('common/singleSelect',array('page_id|1|站点名称|name|id',db('item')->where(['status'=>1,'mark'=>1])->select(),isset($info['page_id']) ? $info['page_id'] : 0))}
 		</div>
 	</div>
 	<div class="layui-form-item">

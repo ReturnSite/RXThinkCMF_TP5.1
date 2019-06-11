@@ -17,27 +17,23 @@ use app\admin\validate\Level as LevelValidate;
 
 /**
  * 职级-控制器
- * 
  * @author 牧羊人
- * @date 2019-04-24
- *
+ * @date 2019/4/24
+ * Class Level
+ * @package app\admin\controller
  */
 class Level extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-04-24
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/4/24
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new LevelModel();
         $this->service = new LevelService();
         $this->validate = new LevelValidate();
     }
-    
 }

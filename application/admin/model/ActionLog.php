@@ -5,40 +5,39 @@ namespace app\admin\model;
 use app\common\model\BaseModel;
 
 /**
- * 登录日志-模型
- * 
+ * 行为日志-模型
  * @author 牧羊人
- * @date 2019-05-14
- *
+ * @date 2019/5/14
+ * Class ActionLog
+ * @package app\admin\model
  */
 class ActionLog extends BaseModel
 {
     // 设置数据表
     protected $table = 'think_action_log';
-    
+
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-05-14
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::initialize()
+     * @date 2019/5/14
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
+
     /**
      * 获取缓存信息
-     * 
+     * @param int $id 记录ID
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-05-14
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::getInfo()
+     * @date 2019/5/14
      */
-    function getInfo($id)
+    public function getInfo($id)
     {
         $info = parent::getInfo($id);
         if ($info) {
@@ -46,5 +45,4 @@ class ActionLog extends BaseModel
         }
         return $info;
     }
-    
 }

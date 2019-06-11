@@ -8,27 +8,23 @@ use app\admin\validate\Item as ItemValidate;
 
 /**
  * 站点-控制器
- * 
  * @author 牧羊人
- * @date 2019-05-05
- *
+ * @date 2019/5/5
+ * Class Item
+ * @package app\admin\controller
  */
 class Item extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-05-05
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/5/5
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new ItemModel();
         $this->service = new ItemService();
         $this->validate = new ItemValidate();
     }
-    
 }

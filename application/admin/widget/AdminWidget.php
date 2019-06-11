@@ -15,28 +15,26 @@ use app\common\widget\BaseWidget;
 
 /**
  * 后台挂件基类
- * 
  * @author 牧羊人
- * @date 2019-04-22
- *
+ * @date 2019/5/9
+ * Class AdminWidget
+ * @package app\admin\widget
  */
 class AdminWidget extends BaseWidget
 {
-    // 模型、服务
-    protected $model, $service;
-    
+    // 模型
+    protected $model;
+    // 服务
+    protected $service;
+
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-04-22
-     * (non-PHPdoc)
-     * @see \app\common\widget\BaseWidget::initialize()
+     * @date 2019/5/9
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
 }

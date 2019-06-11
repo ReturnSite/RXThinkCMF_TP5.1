@@ -6,39 +6,33 @@ use app\admin\model\City as CityModel;
 
 /**
  * 城市-服务类
- * 
  * @author 牧羊人
- * @date 2019-05-07
- *
+ * @date 2019/5/7
+ * Class CityService
+ * @package app\admin\service
  */
 class CityService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-05-07
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/5/7
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new CityModel();
     }
-    
+
     /**
      * 获取数据列表
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-05-07
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::getList()
+     * @date 2019/5/7
      */
-    function getList()
+    public function getList()
     {
         $list = $this->model->getAll();
         return message("操作成功", true, $list);
     }
-    
 }

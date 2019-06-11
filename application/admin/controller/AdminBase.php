@@ -11,115 +11,118 @@
 
 namespace app\admin\controller;
 
-use app\common\controller\CommonBase;
+use app\common\controller\BaseController;
 use app\admin\model\Admin;
 
 /**
  * 后台基类控制器
- *
  * @author 牧羊人
- * @date 2019-02-25
+ * @date 2019/2/25
+ * Class AdminBase
+ * @package app\admin\controller
  */
-class AdminBase extends CommonBase
+class AdminBase extends BaseController
 {
-    // 模型、服务、校验
-    protected $model, $service, $validate;
+    // 模型
+    protected $model;
+    // 服务
+    protected $service;
+    // 校验
+    protected $validate;
+    // 登录ID
+    protected $admin_id;
     // 登录信息
-    protected $admin_id, $admin_info;
+    protected $admin_info;
     // 权限
     protected $system_auth;
     // 请求参数
     protected $param;
-    
+
     /**
      * 初始化操作
-     * 
      * @author 牧羊人
-     * @date 2019-02-25
-     * (non-PHPdoc)
-     * @see \app\common\controller\BaseController::initialize()
+     * @date 2019/2/25
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
-        
+
         // 初始化配置
         $this->initConfig();
-        
+
         // 登录校验
         $this->checkLogin();
-        
+
 //         // 权限校验
 //         $this->checkAuth();
-        
     }
-    
+
     /**
      * 初始化配置
-     * 
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function initConfig()
+    public function initConfig()
     {
         // 请求参数
         $this->param = $this->request->param();
         $this->assign('site_name', config('config')['site_name']);
         $this->assign('nick_name', config('config')['nick_name']);
-        
+
         // 分页基础默认值
         defined('PERPAGE') or define('PERPAGE', isset($this->param['limit']) ? $this->param['limit'] : 20);
         defined('PAGE') or define('PAGE', isset($this->param['page']) ? $this->param['page'] : 1);
     }
-    
+
     /**
      * 检查登录
-     * 
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function checkLogin()
+    public function checkLogin()
     {
         $noLoginActs = ['Login'];
         if (session('admin_id') == null && !in_array($this->request->controller(), $noLoginActs)) {
             $this->redirect('/login/index');
             exit;
         }
-        
+
         // 登录用户ID
         $admin_id = session('admin_id');
         $this->admin_id = $admin_id;
-        
+
         // 登录用户信息
         $admin_model = new Admin();
         $admin_info = $admin_model->getInfo($admin_id);
         $this->admin_info = $admin_info;
-        
+
         // 数据渲染
-        $this->assign("admin_id" , $this->admin_id);
+        $this->assign("admin_id", $this->admin_id);
         $this->assign('admin_info', $this->admin_info);
         $this->system_auth = $this->admin_info['system_auth'];
     }
-    
+
     /**
      * 检查权限
-     * 
+     * @return array 返回结果
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function checkAuth()
+    public function checkAuth()
     {
-        if (!in_array($this->request->controller(), ['Login','Index'])) {
-        
-            $reqestUrl = "/".$this->request->controller()."/" . $this->request->action();
+        if (!in_array($this->request->controller(), ['Login', 'Index'])) {
+            $reqest_url = "/" . $this->request->controller() . "/" . $this->request->action();
             $funcInfo = db('menu')->where([
-                'type'      => 4,
-                'url'       => $reqestUrl,
-                'mark'      => 1
+                'type' => 4,
+                'url' => $reqest_url,
+                'mark' => 1
             ])->find();
             if (!$funcInfo) {
                 if (IS_POST || IS_GET) {
-                    return message('暂无操作权限',false);
+                    return message('暂无操作权限', false);
                 }
                 $this->render('Public/404');
                 exit;
@@ -128,61 +131,58 @@ class AdminBase extends CommonBase
             $funcList = [];
             if (is_array($funcArr)) {
                 $keys = array_values($funcArr);
-                $map['id'] = array('in',$keys);
+                $map['id'] = array('in', $keys);
                 $funcList = db('menu')->where($map)->column('auth');
             }
             if (!in_array($funcInfo['auth'], $funcList)) {
                 if (IS_POST) {
-                    return message('暂无操作权限',false);
+                    return message('暂无操作权限', false);
                 }
                 $this->render('Public/404');
                 exit;
             }
-            $this->assign('funcList',$funcList);
-        
+            $this->assign('funcList', $funcList);
         }
     }
-    
+
     /**
      * 获取导航菜单
-     * 
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function getNavbar()
+    public function getNavbar()
     {
         //TODO...
     }
-    
+
     /**
      * 获取面包屑
-     * 
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function getCrumb()
+    public function getCrumb()
     {
         //TODO...
     }
-    
+
     /**
      * 空操作捕捉
-     *
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function _empty()
+    public function _empty()
     {
         return $this->render("public/403");
     }
-    
+
     /**
      * 控制器默认入口
-     * 
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function index()
+    public function index()
     {
         if (IS_POST) {
             $result = $this->service->getList();
@@ -197,14 +197,14 @@ class AdminBase extends CommonBase
         }
         return $this->render();
     }
-    
+
     /**
      * 添加或编辑入口
-     * 
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function edit()
+    public function edit()
     {
         if (IS_POST) {
             $result = $this->service->edit();
@@ -225,14 +225,14 @@ class AdminBase extends CommonBase
         $this->assign('info', $info);
         return $this->render();
     }
-    
+
     /**
      * 详情入口
-     * 
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function detail()
+    public function detail()
     {
         if (IS_POST) {
             $result = $this->service->edit();
@@ -241,18 +241,18 @@ class AdminBase extends CommonBase
         $id = input("get.id", 0);
         if ($id) {
             $info = $this->model->getInfo($id);
-            $this->assign('info',$info);
+            $this->assign('info', $info);
         }
         return $this->render();
     }
-    
+
     /**
      * 删除单条记录
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function drop()
+    public function drop()
     {
         if (IS_POST) {
             $id = input('post.id');
@@ -266,14 +266,14 @@ class AdminBase extends CommonBase
             return message($this->model->getError(), false);
         }
     }
-    
+
     /**
      * 重置缓存
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-05-09
+     * @date 2019/5/12
      */
-    function cache()
+    public function cache()
     {
         if (IS_POST) {
             $id = input('post.id');
@@ -287,21 +287,21 @@ class AdminBase extends CommonBase
             return message("缓存重置成功");
         }
     }
-    
+
     /**
      * 一键复制
-     * 
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-05-09
+     * @date 2019/5/12
      */
-    function copy()
+    public function copy()
     {
         if (IS_POST) {
             $result = $this->service->edit();
             return $result;
         }
         $info = [];
-        $id = input("get.id",0);
+        $id = input("get.id", 0);
         if ($id) {
             $info = $this->model->getInfo($id);
         } else {
@@ -317,14 +317,14 @@ class AdminBase extends CommonBase
         $this->assign('info', $info);
         return $this->render('edit');
     }
-    
+
     /**
      * 更新单个字段
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-05-12
+     * @date 2019/5/12
      */
-    function update()
+    public function update()
     {
         if (IS_POST) {
             $data = request()->param();
@@ -336,14 +336,14 @@ class AdminBase extends CommonBase
             }
         }
     }
-    
+
     /**
      * 批量删除记录
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function batchDrop()
+    public function batchDrop()
     {
         if (IS_POST) {
             $ids = explode(',', $_POST['id']);
@@ -351,20 +351,21 @@ class AdminBase extends CommonBase
             $num = 0;
             foreach ($ids as $key => $val) {
                 $res = $this->model->drop($val);
-                if ($res!==false) $num++;
+                if ($res !== false) {
+                    $num++;
+                }
             }
             return message('本次共选择' . count($ids) . "个条数据,删除" . $num . "个");
         }
     }
-    
+
     /**
      * 批量重置缓存
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-05-09
-     * @return Ambigous <number, multitype:string unknown >
+     * @date 2019/5/9
      */
-    function batchCache()
+    public function batchCache()
     {
         if (IS_POST) {
             $ids = explode(',', $_POST['id']);
@@ -375,14 +376,14 @@ class AdminBase extends CommonBase
             return message('重置缓存成功！');
         }
     }
-    
+
     /**
      * 批量设置状态
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-05-15
+     * @date 2019/5/15
      */
-    function batchStatus()
+    public function batchStatus()
     {
         if (IS_POST) {
             $ids = explode(',', $_POST['id']);
@@ -396,21 +397,24 @@ class AdminBase extends CommonBase
                     'id' => $val,
                     'status' => $status,
                 ]);
-                if ($result) $num++;
+                if ($result) {
+                    $num++;
+                }
             }
             return message("本次共更新【{$num}】条记录");
         }
     }
-    
+
     /**
      * 模板渲染
-     * 
+     * @param string $tpl 模板地址
+     * @param array $data 参数
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-02-25
+     * @date 2019/2/25
      */
-    function render($tpl = "", $data = [])
+    public function render($tpl = "", $data = [])
     {
         return $this->fetch($tpl, $data);
     }
-    
 }

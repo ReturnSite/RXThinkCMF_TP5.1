@@ -14,85 +14,87 @@ namespace app\admin\model;
 use app\common\model\BaseModel;
 
 /**
- * 菜单模型
- * 
+ * 菜单-模型
  * @author 牧羊人
- * @date 2019-04-21
- *
+ * @date 2019/4/21
+ * Class Menu
+ * @package app\admin\model
  */
 class Menu extends BaseModel
 {
     // 设置数据表
     protected $table = 'think_menu';
-    
+
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-04-21
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::initialize()
+     * @date 2019/4/21
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
+
     /**
      * 获取缓存信息
-     * 
+     * @param int $id 记录ID
+     * @return mixed 返回结果
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-04-21
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::getInfo()
+     * @date 2019/4/21
      */
-    function getInfo($id)
+    public function getInfo($id)
     {
         $info = parent::getInfo($id);
         if ($info) {
-            
             // 菜单类型
             if ($info['type']) {
                 $info['type_name'] = config('config.menu_type')[$info['type']];
             }
-            
+
             // 上级菜单
             if ($info['parent_id']) {
                 $parent_info = $this->getInfo($info['parent_id']);
                 $info['parent_name'] = $parent_info['name'];
             }
-            
+
             // 菜单地址
             if ($info['type'] == 3) {
                 $map = [
                     'parent_id' => $id,
-                    'type'      =>4,
-                    'name'      =>"查看",
-                    'is_show'   =>1,
-                    'mark'      =>1,
+                    'type' => 4,
+                    'name' => "查看",
+                    'is_show' => 1,
+                    'mark' => 1,
                 ];
                 $result = $this->where($map)->find();
-                if($result) {
+                if ($result) {
                     $info['to_url'] = $result['url'] . $result['param'];
                 }
             }
-            
         }
         return $info;
     }
-    
+
     /**
      * 获取子级
-     * 
+     * @param int $parent_id 上级ID
+     * @param bool $is_menu 是否菜单true或false
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-05-07
+     * @date 2019/4/21
      */
-    function getChilds($parent_id = 0, $is_menu=true)
+    public function getChilds($parent_id = 0, $is_menu = true)
     {
         $map = [
             'parent_id' => $parent_id,
-            'mark'      => 1,
+            'mark' => 1,
         ];
         $result = $this->where($map)->order("sort asc")->select();
         $list = [];
@@ -100,7 +102,9 @@ class Menu extends BaseModel
             foreach ($result as $val) {
                 $id = (int)$val['id'];
                 $info = $this->getInfo($id);
-                if (!$info) continue;
+                if (!$info) {
+                    continue;
+                }
                 $info['title'] = $info['name'];
                 $info['font'] = "larry-icon";
                 $childs_list = $this->getChilds($id, $is_menu);
@@ -120,5 +124,4 @@ class Menu extends BaseModel
         }
         return $list;
     }
-    
 }

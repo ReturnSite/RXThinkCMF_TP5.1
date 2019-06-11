@@ -13,24 +13,25 @@ namespace app\common\behavior;
 
 /**
  * 初始化基础配置行为
- * 
  * @author 牧羊人
- * @date 2019-04-24
- *
+ * @date 2019/4/24
+ * Class InitBase
+ * @package app\common\behavior
  */
 class InitBase
 {
     /**
      * 执行行为 run方法是Behavior唯一的接口
-     *
      * @author 牧羊人
-     * @date 2019-04-24
+     * @date 2019/4/24
      */
     public function run()
     {
         // 安装系统直接return
-        if (defined('SYSTEM_INSTALL')) return;
-        
+        if (defined('SYSTEM_INSTALL')) {
+            return;
+        }
+
         // TODO...
     }
 }

@@ -16,64 +16,63 @@ use app\admin\model\AdminRole as AdminRoleModel;
 
 /**
  * 人员管理-模型
- *
- * @author 牧羊人
- * @date 2019-03-20
+ * @author zongjl
+ * @date 2019/6/10
+ * Class Admin
+ * @package app\admin\model
  */
 class Admin extends BaseModel
 {
     // 设置数据表
     protected $table = 'think_admin';
-    
+
     /**
      * 初始化模型
-     * 
-     * @author 牧羊人
-     * @date 2019-03-20
-     * (non-PHPdoc)
-     * @see \app\common\model\CBaseModel::initialize()
+     * @author zongjl
+     * @date 2019/6/10
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
+
     /**
      * 获取缓存信息
-     * 
-     * @author 牧羊人
-     * @date 2019-03-20
-     * (non-PHPdoc)
-     * @see \app\common\model\CBaseModel::getInfo()
+     * @param int $id 记录ID
+     * @return mixed 返回结果
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author zongjl
+     * @date 2019/6/10
      */
-    function getInfo($id)
+    public function getInfo($id)
     {
         $info = parent::getInfo($id);
         if ($info) {
-
             // 头像
             if ($info['avatar']) {
                 $info['avatar_url'] = get_image_url($info['avatar']);
             }
-            
+
             // 入职日期
             if ($info['entry_date']) {
                 $info['format_entry_date'] = datetime($info['entry_date'], 'Y-m-d');
             }
-            
+
             // 性别
             if ($info['gender']) {
                 $info['gender_name'] = config('config.gender_list')[$info['gender']];
             }
-            
+
             // 岗位
             if ($info['position_id']) {
                 $position_model = new Position();
                 $position_info = $position_model->getInfo($info['position_id']);
                 $info['position_name'] = $position_info['name'];
             }
-            
+
             // 独立权限
             $auth_list = [];
             if ($info['auth']) {
@@ -84,19 +83,19 @@ class Admin extends BaseModel
                     }
                 }
             }
-            
+
             // 角色权限
             if ($info['role_ids']) {
                 $role_ids = explode(',', $info['role_ids']);
                 $admin_role_model = new AdminRoleModel();
-                $role_auth = $admin_role_model->get_role_auth($role_ids);
+                $role_auth = $admin_role_model->getRoleAuth($role_ids);
                 if (is_array($role_auth)) {
                     foreach ($role_auth as $kt => $vt) {
                         $auth_list[$kt][] = $vt;
                     }
                 }
             }
-            
+
             // 权限重组
             $auth = [];
             foreach ($auth_list as $key => $val) {
@@ -112,9 +111,8 @@ class Admin extends BaseModel
                 }
             }
             $info['system_auth'] = $auth;
-            
+
         }
         return $info;
     }
-    
 }

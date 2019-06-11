@@ -6,25 +6,22 @@ use app\common\model\BaseModel;
 
 /**
  * 定时任务-模型
- * 
  * @author 牧羊人
- * @date 2019-05-20
- *
+ * @date 2019/5/20
+ * Class Crontab
+ * @package app\admin\model
  */
 class Crontab extends BaseModel
 {
     // 设置数据表
     protected $table = 'think_crontab';
-    
+
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-05-20
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::initialize()
+     * @date 2019/5/20
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
@@ -32,13 +29,15 @@ class Crontab extends BaseModel
     
     /**
      * 获取缓存信息
-     * 
+     * @param int $id 记录ID
+     * @return mixed 返回结果
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-05-20
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::getInfo()
+     * @date 2019/5/20
      */
-    function getInfo($id)
+    public function getInfo($id)
     {
         $info = parent::getInfo($id);
         if ($info) {
@@ -46,5 +45,4 @@ class Crontab extends BaseModel
         }
         return $info;
     }
-    
 }

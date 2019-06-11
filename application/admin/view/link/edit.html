@@ -18,13 +18,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">友链类型：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('type|1|友链类型|name|id',config('config.link_type'),isset($info['type']) ? $info['type'] : 0))}
+				{:widget('common/singleSelect',array('type|1|友链类型|name|id',config('config.link_type'),isset($info['type']) ? $info['type'] : 0))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">使用平台：</label>
 			<div class="layui-input-block">
-				{:widget('common/single_select',array('platform|1|所属平台|name|id',config('config.link_platform'),isset($info['platform']) ? $info['platform'] : 1))}
+				{:widget('common/singleSelect',array('platform|1|所属平台|name|id',config('config.link_platform'),isset($info['platform']) ? $info['platform'] : 1))}
 			</div>
 		</div>
 	</div>
@@ -32,19 +32,19 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">友链形式：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('form|1|友链形式|name|id',config('config.link_form'),isset($info['form']) ? $info['form'] : 1))}
+				{:widget('common/singleSelect',array('form|1|友链形式|name|id',config('config.link_form'),isset($info['form']) ? $info['form'] : 1))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">状态：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('status','正常|停用',isset($info['status']) ? $info['status'] : 2))}
+				{:widget('common/switchCheck',array('status','正常|停用',isset($info['status']) ? $info['status'] : 2))}
 			</div>
 		</div>
 	</div>
 	<div class="layui-form-item layui-hide image">
 		<label class="layui-form-label">友链图片：</label>
-		{:widget('upload/upload_single_image',array('image',isset($info['image_url']) ? $info['image_url'] : '','90x90'))}
+		{:widget('upload/uploadSingleImage',array('image',isset($info['image_url']) ? $info['image_url'] : '','90x90'))}
 	</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">序号：</label>

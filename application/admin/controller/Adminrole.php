@@ -17,27 +17,23 @@ use app\admin\validate\AdminRole as AdminRoleValidate;
 
 /**
  * 角色-控制器
- * 
  * @author 牧羊人
- * @date 2019-04-22
- *
+ * @date 2019/4/22
+ * Class Adminrole
+ * @package app\admin\controller
  */
 class Adminrole extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-04-22
-     * (non-PHPdoc)
-     * @see \app\admin\controller\Adminbase::initialize()
+     * @date 2019/4/22
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new AdminRoleModel();
         $this->service = new AdminRoleService();
         $this->validate = new AdminRoleValidate();
     }
-    
 }

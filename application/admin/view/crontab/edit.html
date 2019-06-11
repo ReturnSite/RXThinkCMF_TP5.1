@@ -10,7 +10,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">任务类型：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('type|1|任务类型|name|id',config('config.crontab_type'),isset($info['type']) ? $info['type'] : 1))}
+				{:widget('common/singleSelect',array('type|1|任务类型|name|id',config('config.crontab_type'),isset($info['type']) ? $info['type'] : 1))}
 			</div>
 		</div>
 	</div>
@@ -65,7 +65,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">状态：</label>
 			<div class="layui-input-block">
-				{:widget('common/switch_check',array('status','在用|禁用',isset($info['status']) ? $info['status'] : 1))}
+				{:widget('common/switchCheck',array('status','在用|禁用',isset($info['status']) ? $info['status'] : 1))}
 			</div>
 		</div>
 	</div>

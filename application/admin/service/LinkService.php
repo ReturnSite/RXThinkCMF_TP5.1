@@ -15,56 +15,50 @@ use app\admin\model\Link as LinkModel;
 
 /**
  * 友链-服务类
- * 
  * @author 牧羊人
- * @date 2019-04-29
- *
+ * @date 2019/4/29
+ * Class LinkService
+ * @package app\admin\service
  */
 class LinkService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-04-29
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/4/29
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new LinkModel();
     }
-    
+
     /**
      * 添加或编辑
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-04-29
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::edit()
+     * @date 2019/4/29
      */
-    function edit()
+    public function edit()
     {
         $data = request()->param();
         $image = trim($data['image']);
         $form = (int)$data['form'];
-        
+
         //字段验证
-        if(!$data['id'] && $form==2 && !$image) {
-            return message('请上传图片',false);
+        if (!$data['id'] && $form == 2 && !$image) {
+            return message('请上传图片', false);
         }
-        if($form==1) {
+        if ($form == 1) {
             //文字
             $data['image'] = '';
         }
-        
+
         //图片处理
-        if(strpos($image, "temp")) {
-            $data['image'] = save_image($image,'link');
+        if (strpos($image, "temp")) {
+            $data['image'] = save_image($image, 'link');
         }
-        
+
         return parent::edit($data);
     }
-    
 }

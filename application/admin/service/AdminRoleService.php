@@ -15,25 +15,21 @@ use app\admin\model\AdminRole as AdminRoleModel;
 
 /**
  * 角色-服务类
- * 
  * @author 牧羊人
- * @date 2019-04-22
- *
+ * @date 2019/4/22
+ * Class AdminRoleService
+ * @package app\admin\service
  */
 class AdminRoleService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-04-22
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/4/22
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new AdminRoleModel();
     }
-    
 }

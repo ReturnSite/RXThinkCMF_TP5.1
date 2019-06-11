@@ -16,13 +16,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">使用平台：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('platform|1|所属平台|name|id',config('config.platform_type'),isset($info['platform']) ? $info['platform'] : 0))}
+				{:widget('common/simpleSelect',array('platform|1|所属平台|name|id',config('config.platform_type'),isset($info['platform']) ? $info['platform'] : 0))}
 			</div>
 		</div>
 	</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">选择站点：</label>
-		{:widget('item/item_select',array(isset($info['item_id']) ? $info['item_id'] : 0,isset($info['cate_id']) ? $info['cate_id'] : 0,2))}
+		{:widget('item/itemSelect',array(isset($info['item_id']) ? $info['item_id'] : 0,isset($info['cate_id']) ? $info['cate_id'] : 0,2))}
 	</div>
 	<div class="layui-form-item layui-form-text">
 		<label class="layui-form-label">描述：</label>

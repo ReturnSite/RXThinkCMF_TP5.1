@@ -8,27 +8,23 @@ use app\admin\validate\AdminOrg as AdminOrgValidate;
 
 /**
  * 组织机构-控制器
- * 
  * @author 牧羊人
- * @date 2019-05-07
- *
+ * @date 2019/5/7
+ * Class Adminorg
+ * @package app\admin\controller
  */
 class Adminorg extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-05-07
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/5/7
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new AdminOrgModel();
         $this->service = new AdminOrgService();
         $this->validate = new AdminOrgValidate();
     }
-    
 }

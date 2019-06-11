@@ -15,43 +15,39 @@ use app\admin\model\User as UserModel;
 
 /**
  * 会员-服务类
- * 
  * @author 牧羊人
- * @date 2019-04-29
- *
+ * @date 2019/4/29
+ * Class UserService
+ * @package app\admin\service
  */
 class UserService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-04-29
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/4/29
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new UserModel();
     }
-    
+
     /**
      * 设置状态
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-04-30
+     * @date 2019/4/29
      */
-    function setStatus()
+    public function setStatus()
     {
         $data = request()->param();
-        if(!$data['id']) {
+        if (!$data['id']) {
             return message('会员ID不能为空', false);
         }
-        if(!$data['status']) {
+        if (!$data['status']) {
             return message('会员状态不能为空', false);
         }
         return parent::edit($data);
     }
-    
 }

@@ -17,41 +17,37 @@ use app\admin\validate\User as UserValidate;
 
 /**
  * 会员-控制器
- * 
  * @author 牧羊人
- * @date 2019-04-29
- *
+ * @date 2019/4/30
+ * Class User
+ * @package app\admin\controller
  */
 class User extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-04-29
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/4/30
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new UserModel();
         $this->service = new UserService();
         $this->validate = new UserValidate();
     }
-    
+
     /**
      * 设置状态
-     * 
+     * @return mixed
      * @author 牧羊人
-     * @date 201-04-30
+     * @date 2019/4/30
      */
-    function setStatus()
+    public function setStatus()
     {
         if (IS_POST) {
             $result = $this->service->setStatus();
             return $result;
         }
     }
-    
 }

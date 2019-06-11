@@ -13,51 +13,51 @@ namespace util;
 
 /**
  * HTTP网络请求类
- * 
  * @author 牧羊人
- * @date 2019-04-04
- *
+ * @date 2019/4/4
+ * Class Http
+ * @package util
  */
-class Http 
+class Http
 {
     /**
      * 模拟网络GET请求
-     * 
-     * @author 模样人
-     * @date 2019-04-04
-     * @param unknown $url 请求URL地址
-     * @param unknown $query 请求参数
-     * @param unknown $options CURL参数
+     * @param string $url 请求URL地址
+     * @param array $query 请求参数
+     * @param array $options 请求参数
+     * @return bool|string 返回结果
+     * @author 牧羊人
+     * @date 2019/4/4
      */
     public static function get($url, $query = [], $options = [])
     {
         $options['query'] = $query;
         return self::request('get', $url, $options);
     }
-    
+
     /**
      * 模拟网络POST请求
-     * 
+     * @param string $url 请求URL地址
+     * @param array $data 请求数据
+     * @param array $options 请求参数
+     * @return bool|string 返回结果
      * @author 牧羊人
-     * @date 2019-04-04
-     * @param unknown $url HTTP请求URL地址
-     * @param unknown $data POST请求数据
-     * @param unknown $options CURL参数
+     * @date 2019/4/4
      */
     public static function post($url, $data = [], $options = [])
     {
         $options['data'] = $data;
         return self::request('post', $url, $options);
     }
-    
+
     /**
      * CURL模拟网络请求
-     * 
+     * @param string $method 请求方式
+     * @param string $url 请求地址
+     * @param array $options 请求参数
+     * @return bool|string 返回结果
      * @author 牧羊人
-     * @date 2019-04-04
-     * @param unknown $method 请求方式
-     * @param unknown $url 请求地址
-     * @param unknown $options 请求参数[headers,data]
+     * @date 2019/4/4
      */
     public static function request($method, $url, $options = [])
     {
@@ -79,7 +79,7 @@ class Http
         // POST 数据设置
         if (strtolower($method) === 'post') {
             curl_setopt($curl, CURLOPT_POST, true);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, self::_buildHttpData($options['data']));
+            curl_setopt($curl, CURLOPT_POSTFIELDS, self::buildHttpData($options['data']));
         }
         // 请求超时设置
         if (isset($options['timeout']) && is_numeric($options['timeout'])) {
@@ -98,52 +98,59 @@ class Http
         curl_close($curl);
         return $content;
     }
-    
+
     /**
      * POST数据过滤处理
-     * 
-     * @author 模样人
-     * @date 2019-04-04
-     * @param unknown $data 需要处理的数据
-     * @param string $build 是否编译数据
+     * @param array $data 需要处理的数据
+     * @param bool $build 是否编译数据
+     * @return array|string 返回结果
+     * @author 牧羊人
+     * @date 2019/4/4
      */
-    public static function _buildHttpData($data, $build = true)
+    public static function buildHttpData($data, $build = true)
     {
-        if (!is_array($data)) return $data;
-        foreach ($data as $key => $value) if (is_object($value) && $value instanceof \CURLFile) {
-            $build = false;
-        } elseif (is_string($value) && class_exists('CURLFile', false) && stripos($value, '@') === 0) {
-            if (($filename = realpath(trim($value, '@'))) && file_exists($filename)) {
-                list($build, $data[$key]) = [false, new \CURLFile($filename)];
+        if (!is_array($data)) {
+            return $data;
+        }
+        foreach ($data as $key => $value) {
+            if (is_object($value) && $value instanceof \CURLFile) {
+                $build = false;
+            } elseif (is_string($value) && class_exists('CURLFile', false) && stripos($value, '@') === 0) {
+                if (($filename = realpath(trim($value, '@'))) && file_exists($filename)) {
+                    list($build, $data[$key]) = [false, new \CURLFile($filename)];
+                }
             }
         }
         return $build ? http_build_query($data) : $data;
     }
-    
+
     /**
      * 获取浏览器代理信息
-     * 
+     * @return mixed 返回结果
      * @author 牧羊人
-     * @date 2019-04-04
-     * @return unknown|Ambigous <string>
+     * @date 2019/4/4
      */
     private static function getUserAgent()
     {
-        if (!empty($_SERVER['HTTP_USER_AGENT'])) return $_SERVER['HTTP_USER_AGENT'];
+        if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+            return $_SERVER['HTTP_USER_AGENT'];
+        }
         $userAgents = [
             "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.57 Safari/536.11",
-            "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50",
+            "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) 
+            AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50",
             "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0",
-            "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3; rv:11.0) like Gecko",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; .NET4.0C; .NET4.0E;
+             .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; InfoPath.3; rv:11.0) like Gecko",
             "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0",
             "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0)",
             "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1",
             "Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1",
             "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; en) Presto/2.8.131 Version/11.11",
             "Opera/9.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/11.11",
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) 
+            AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11",
         ];
         return $userAgents[array_rand($userAgents, 1)];
     }
-    
 }

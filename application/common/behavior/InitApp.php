@@ -15,63 +15,59 @@ use think\Env;
 
 /**
  * 应用初始化行为(初始化应用)
- * 
  * @author 牧羊人
- * @date 2019-04-23
- * @author home
- *
+ * @date 2019/4/23
+ * Class InitApp
+ * @package app\common\behavior
  */
-class InitApp {
-    
+class InitApp
+{
     /**
      * 执行行为 run方法是Behavior唯一的接口
-     * 
      * @author 牧羊人
-     * @date 2019-04-23
-     * @param unknown $params 参数
+     * @date 2019/4/23
      */
     public function run()
     {
         // 初始化常量
         $this->initConst();
-        
+
         // 安装系统直接return
-        if (defined('SYSTEM_INSTALL')) return;
+        if (defined('SYSTEM_INSTALL')) {
+            return;
+        }
 
 //         // 定义模板变量
 //         if (!IS_CLI) {
 //             // TODO...
 //         }
-        
+
 //         // 系统版本
 //         $version = include_once(ROOT_PATH . 'version.php');
 //         config($version);
-        
-        
     }
-    
+
     /**
      * 初始化常量
-     * 
      * @author 牧羊人
-     * @date 2019-04-24
+     * @date 2019/4/23
      */
-    function initConst()
+    private function initConst()
     {
         // 初始化系统常量
         $this->initSystemConst();
-        
+
         // 初始化数据库
         $this->initDbInfo();
     }
-    
+
     /**
      * 初始化系统常量
-     * 
+     *
      * @author 牧羊人
      * @date 2019-04-24
      */
-    function initSystemConst()
+    private function initSystemConst()
     {
         define('THINK_PATH', \Env::get('think_path'));
         define('ROOT_PATH', \Env::get('root_path'));
@@ -84,21 +80,19 @@ class InitApp {
         define('PLUGIN_PATH', ROOT_PATH . 'plugins');
         define('PUBLIC', ROOT_PATH . 'public');
     }
-    
+
     /**
      * 初始化数据库
-     * 
      * @author 牧羊人
-     * @date 2019-04-24
+     * @date 2019/4/23
      */
-    function initDbInfo()
+    private function initDbInfo()
     {
         // 数据表前缀
         define('DB_PREFIX', config('database.prefix'));
-        
+
         // 数据库分页数
         $list_rows = config('paginate.list_rows');
         empty($list_rows) ? define('DB_LIST_ROWS', 20) : define('DB_LIST_ROWS', $list_rows);
     }
-    
 }

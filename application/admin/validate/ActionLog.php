@@ -5,11 +5,11 @@ namespace app\admin\validate;
 use app\common\validate\BaseValidate;
 
 /**
- * 登录日志-验证类
- * 
+ * 行为日志-验证类
  * @author 牧羊人
- * @date 2019-05-14
- *
+ * @date 2019/5/14
+ * Class ActionLog
+ * @package app\admin\validate
  */
 class ActionLog extends BaseValidate
 {

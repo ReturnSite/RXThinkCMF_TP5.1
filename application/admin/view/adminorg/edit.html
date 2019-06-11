@@ -2,7 +2,7 @@
 	<input name="id" id="id" type="hidden" value="{$info.id}">
 	<div class="layui-form-item">
 		<label class="layui-form-label">LOGO：</label>
-		{:widget('upload/upload_single_image',array('logo',isset($info['logo_url']) ? $info['logo_url'] : '','90x90','LOGO'))}
+		{:widget('upload/uploadSingleImage',array('logo',isset($info['logo_url']) ? $info['logo_url'] : '','90x90','LOGO'))}
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-inline">
@@ -48,7 +48,7 @@
 	</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">所属城市：</label>
-		{:widget('city/simple_select',array(isset($info['district_id']) ? $info['district_id'] : 0,3))}
+		{:widget('city/simpleSelect',array(isset($info['district_id']) ? $info['district_id'] : 0,3))}
 	</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">详细地址：</label>

@@ -8,27 +8,23 @@ use app\admin\validate\Crontab as CrontabValidate;
 
 /**
  * 定时任务-控制器
- * 
  * @author 牧羊人
- * @date 2019-05-20
- *
+ * @date 2019/5/20
+ * Class Crontab
+ * @package app\admin\controller
  */
 class Crontab extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-05-20
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/5/20
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new CrontabModel();
         $this->service = new CrontabService();
         $this->validate = new CrontabValidate();
     }
-    
 }

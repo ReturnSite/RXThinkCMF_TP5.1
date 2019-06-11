@@ -17,27 +17,26 @@ use app\admin\validate\Position as PositionValidate;
 
 /**
  * 岗位-控制器
- * 
- * @author 牧羊人
- * @date 2019-04-24
- *
+ * @author zongjl
+ * @date 2019/6/10
+ * Class Position
+ * @package app\admin\controller
  */
 class Position extends AdminBase
 {
     /**
      * 初始化方法
-     * 
+     *
      * @author 牧羊人
      * @date 2019-04-24
      * (non-PHPdoc)
      * @see \app\admin\controller\AdminBase::initialize()
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new PositionModel();
         $this->service = new PositionService();
         $this->validate = new PositionValidate();
     }
-    
 }

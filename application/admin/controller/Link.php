@@ -17,27 +17,23 @@ use app\admin\validate\Link as LinkValidate;
 
 /**
  * 友链-控制器
- * 
  * @author 牧羊人
- * @date 2019-04-29
- *
+ * @date 2019/4/29
+ * Class Link
+ * @package app\admin\controller
  */
 class Link extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-04-29
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/4/29
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new LinkModel();
         $this->service = new LinkService();
         $this->validate = new LinkValidate();
     }
-    
 }

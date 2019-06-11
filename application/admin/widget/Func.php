@@ -13,276 +13,261 @@ namespace app\admin\widget;
 
 /**
  * 功能节点挂件
- * 
  * @author 牧羊人
- * @date 2019-04-22
- *
+ * @date 2019/4/22
+ * Class Func
+ * @package app\admin\widget
  */
 class Func extends AdminWidget
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-04-22
-     * (non-PHPdoc)
-     * @see \app\admin\widget\AdminWidget::initialize()
+     * @date 2019/4/22
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
+
     /**
      * 新增节点
-     * 
-     * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
-     * @param unknown $param 参数
+     * @param string $funcName 节点名称
+     * @param array $param 节点参数
      * @return \think\mixed
+     * @author 牧羊人
+     * @date 2019/4/22
      */
-    function btnAdd($funcName, $param = [])
+    public function btnAdd($funcName, $param = [])
     {
         $this->assign('param', json_encode($param));
         return $this->btnFunc("add", 'layui-icon-add-1', $funcName);
     }
-    
+
     /**
      * 删除节点
-     *
+     * @param string $funcName 节点名称
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnDel($funcName)
+    public function btnDel($funcName)
     {
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/drop");
     }
-    
+
     /**
      * 修改节点
-     * 
+     * @param string $funcName 节点名称
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnEdit($funcName)
+    public function btnEdit($funcName)
     {
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/edit");
     }
-    
+
     /**
      * 查询节点
-     * 
+     * @param string $funcName 节点名称
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-05-11
-     * @param unknown $funcName 节点名称
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnQuery($funcName)
+    public function btnQuery($funcName)
     {
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/query");
     }
-    
+
     /**
      * 详情节点
-     * 
+     * @param string $funcName 节点名称
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnDetail($funcName)
+    public function btnDetail($funcName)
     {
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/detail");
     }
-    
+
     /**
      * 重置缓存节点
-     * 
+     * @param string $funcName 节点名称
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnCache($funcName)
+    public function btnCache($funcName)
     {
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/cache");
     }
-    
+
     /**
      * 一键复制
-     * 
+     * @param string $funcName 节点名称
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-05-09
-     * @param unknown $funcName 节点名称
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnCopy($funcName)
+    public function btnCopy($funcName)
     {
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/copy");
     }
-    
+
     /**
      * 添加子级节点
-     *
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-04-22
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnAdd2()
+    public function btnAdd2()
     {
         return $this->fetch("widget/func/add");
     }
-    
+
     /**
      * 设置权限节点
-     * 
+     * @param string $funcName 节点名称
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
-     * @return \think\mixed
+     * @date 2019/4/22
      */
-    function btnAuth($funcName)
+    public function btnAuth($funcName)
     {
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/auth");
     }
-    
+
     /**
      * 导出节点
-     * 
+     * @param string $funcName 节点名称
+     * @return \think\mixed
      * @author 牧羊人
-     * @date 2019-05-16
-     * @param unknown $funcName 节点名称
+     * @date 2019/4/22
      */
-    function btnExport($funcName)
+    public function btnExport($funcName)
     {
         return $this->btnFunc("export", 'layui-icon-share', $funcName, "layui-btn-normal");
     }
-    
+
     /**
      * 导入节点
-     * 
+     * @param string $funcName 节点名称
+     * @return \think\mixed
      * @author 牧羊人
-     * @date 2019-05-16
-     * @param unknown $funcName 节点名称
+     * @date 2019/4/22
      */
-    function btnImport($funcName)
+    public function btnImport($funcName)
     {
         return $this->btnFunc("import", 'layui-icon-share', $funcName, "layui-btn-normal");
     }
-    
+
     /**
      * 立即备份
-     * 
+     * @param string $funcName 节点名称
+     * @return \think\mixed
      * @author 牧羊人
-     * @date 2019-05-16
-     * @param unknown $funcName 节点名称
+     * @date 2019/4/22
      */
-    function btnBackup($funcName)
+    public function btnBackup($funcName)
     {
         return $this->btnFunc("backup", 'yun-yunzhujibeifen', $funcName, "layui-btn-normal");
     }
-    
+
     /**
      * 优化表
-     * 
+     * @param string $funcName 节点名称
+     * @return \think\mixed
      * @author 牧羊人
-     * @date 2019-05-16
-     * @param unknown $funcName 节点名称
+     * @date 2019/4/22
      */
-    function btnOptimize($funcName)
+    public function btnOptimize($funcName)
     {
         return $this->btnFunc("optimize", 'yun-anquanbaozhang', $funcName, "layui-btn-normal");
     }
-    
+
     /**
      * 立即修复
-     * 
+     * @param string $funcName 节点名称
+     * @return \think\mixed
      * @author 牧羊人
-     * @date 2019-05-16
-     * @param unknown $funcName 节点名称
+     * @date 2019/4/22
      */
-    function btnRepair($funcName)
+    public function btnRepair($funcName)
     {
         return $this->btnFunc("repair", 'yun-weixiu', $funcName, "layui-btn-normal");
     }
-    
+
     /**
      * 批量删除节点
-     *
-     * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
+     * @param string $funcName 节点名称
      * @return \think\mixed
+     * @author 牧羊人
+     * @date 2019/4/22
      */
-    function btnDAll($funcName)
+    public function btnDAll($funcName)
     {
         return $this->btnFunc("batchDrop", 'layui-icon-delete', $funcName, "layui-btn-danger");
     }
-    
+
     /**
      * 批量重置缓存节点
-     * 
-     * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcName 节点名称
+     * @param string $funcName 节点名称
      * @return \think\mixed
+     * @author 牧羊人
+     * @date 2019/4/22
      */
-    function btnCAll($funcName)
+    public function btnCAll($funcName)
     {
         return $this->btnFunc("batchCache", 'layui-icon-set-fill', $funcName, "layui-btn-normal");
     }
 
     /**
      * 批量启用
-     * 
+     * @param string $funcName 节点名称
+     * @return \think\mixed
      * @author 牧羊人
-     * @date 2019-05-15
-     * @param unknown $funcName 节点名称
+     * @date 2019/4/22
      */
-    function btnEAll($funcName)
+    public function btnEAll($funcName)
     {
-        return $this->btnFunc("batchEnable", 'layui-icon-play', $funcName, "layui-btn-warm",1,['status=1']);
+        return $this->btnFunc("batchEnable", 'layui-icon-play', $funcName, "layui-btn-warm", 1, ['status=1']);
     }
-    
+
     /**
      * 批量禁用
-     * 
+     * @param string $funcName 节点名称
+     * @return \think\mixed
      * @author 牧羊人
-     * @date 2019-05-15
-     * @param unknown $funcName 节点名称
+     * @date 2019/4/22
      */
-    function btnSAll($funcName)
+    public function btnSAll($funcName)
     {
-        return $this->btnFunc("batchDisable", 'layui-icon-pause', $funcName, "layui-btn-danger",1,['status=2']);
+        return $this->btnFunc("batchDisable", 'layui-icon-pause', $funcName, "layui-btn-danger", 1, ['status=2']);
     }
-    
+
     /**
      * 按钮节点
-     * 
-     * @author 牧羊人
-     * @date 2019-04-22
-     * @param unknown $funcAct 节点标识
-     * @param unknown $funcIcon 节点Icon
-     * @param unknown $funcName 节点名称
+     * @param string $funcAct 节点标识
+     * @param string $funcIcon 节点Icon
+     * @param string $funcName 节点名称
      * @param string $funcColor 节点背景色
-     * @param number $funcType 节点类型：1大按钮 2小按钮
-     * @param unknown $param 参数
-     * @return \think\mixed
+     * @param int $funcType 节点类型：1大按钮 2小按钮
+     * @param array $param 节点参数
+     * @return mixed
+     * @author 牧羊人
+     * @date 2019/4/22
      */
-    function btnFunc($funcAct, $funcIcon, $funcName, $funcColor='', $funcType=1, $param=[])
+    public function btnFunc($funcAct, $funcIcon, $funcName, $funcColor = '', $funcType = 1, $param = [])
     {
         $this->assign('funcAct', $funcAct);
         $this->assign('funcIcon', $funcIcon);
@@ -292,5 +277,4 @@ class Func extends AdminWidget
         $this->assign('param', json_encode($param));
         return $this->fetch('widget/func/func');
     }
-    
 }

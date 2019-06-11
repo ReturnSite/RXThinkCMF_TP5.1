@@ -6,25 +6,22 @@ use app\admin\model\UserGroup as UserGroupModel;
 
 /**
  * 用户分组-服务类
- * 
  * @author 牧羊人
- * @date 2019-05-08
- *
+ * @date 2019/5/8
+ * Class UserGroupService
+ * @package app\admin\service
  */
 class UserGroupService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-05-08
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/5/8
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new UserGroupModel();
     }
-    
 }
+

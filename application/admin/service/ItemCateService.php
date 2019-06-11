@@ -6,56 +6,49 @@ use app\admin\model\ItemCate as ItemCateModel;
 
 /**
  * 栏目-服务类
- * 
  * @author 牧羊人
- * @date 2019-05-05
- *
+ * @date 2019/5/5
+ * Class ItemCateService
+ * @package app\admin\service
  */
 class ItemCateService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-05-05
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/5/5
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new ItemCateModel();
     }
-    
+
     /**
      * 获取数据列表
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-05-05
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::getList()
+     * @date 2019/5/5
      */
-    function getList()
+    public function getList()
     {
         $list = $this->model->getChilds(0, 0, 1);
         return message("操作成功", true, $list);
     }
-    
+
     /**
      * 添加或编辑
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-05-06
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::edit()
+     * @date 2019/5/5
      */
-    function edit()
+    public function edit()
     {
         $data = request()->param();
-        
+
         $is_cover = $data['is_cover'];
         $cover = trim($data['cover']);
-        
+
         //封面验证
         if ($is_cover == 1 && !$data['id'] && !$cover) {
             return message('请上传栏目封面', false);
@@ -64,10 +57,9 @@ class ItemCateService extends BaseService
             if (strpos($cover, "temp")) {
                 $data['cover'] = save_image($cover, 'itemCate');
             }
-        } else if ($is_cover == 2) {
+        } elseif ($is_cover == 2) {
             $data['cover'] = '';
         }
         return parent::edit($data);
     }
-    
 }

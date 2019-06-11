@@ -15,39 +15,38 @@ use app\common\model\BaseModel;
 
 /**
  * 城市-模型
- * 
  * @author 牧羊人
- * @date 2019-04-30
- *
+ * @date 2019/6/10
+ * Class City
+ * @package app\admin\model
  */
 class City extends BaseModel
 {
     // 设置数据表
     protected $table = 'think_city';
-    
+
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-04-30
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::initialize()
+     * @date 2019/6/10
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
+
     /**
      * 获取缓存信息
-     * 
+     * @param int $id 记录ID
+     * @return mixed 返回结果
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-04-30
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::getInfo()
+     * @date 2019/6/10
      */
-    function getInfo($id)
+    public function getInfo($id)
     {
         $info = parent::getInfo($id);
         if ($info) {
@@ -55,19 +54,24 @@ class City extends BaseModel
         }
         return $info;
     }
-    
+
     /**
      * 获取子级
-     * 
+     * @param int $parent_id 上级ID
+     * @param bool $flag 是否查询子级true或false
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-05-07
+     * @date 2019/6/10
      */
-    function getChilds($parent_id, $flag = false)
+    public function getChilds($parent_id, $flag = false)
     {
         $list = [];
         $result = $this->where([
-            'parent_id' =>$parent_id,
-            'mark'      =>1
+            'parent_id' => $parent_id,
+            'mark' => 1
         ])->order("id asc")->select();
         if ($result) {
             foreach ($result as $val) {
@@ -81,62 +85,66 @@ class City extends BaseModel
                 }
                 if ($flag) {
                     $list[] = $info;
-                }else{
+                } else {
                     $list[$id] = $info;
                 }
             }
         }
         return $list;
     }
-    
+
     /**
      * 获取城市名称
-     * 
+     * @param int $city_id 城市ID
+     * @param string $delimiter 分隔符
+     * @param bool $is_replace 是否替换true或false
+     * @return string 返回结果
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-05-07
-     * @param unknown $city_id 城市ID
-     * @param string $delimiter 分隔符(如：>>)
-     * @param string $is_replace 是否替换字符
-     * @return string 输出城市名称
+     * @date 2019/6/10
      */
-    function get_city_name($city_id, $delimiter = "", $is_replace = false)
+    public function getCityName($city_id, $delimiter = "", $is_replace = false)
     {
         do {
             $info = $this->getInfo($city_id);
-            if ($is_replace){
-                $names[] = str_replace(array("省","市","维吾尔","壮族","回族","自治区"), "", $info['name']);
+            if ($is_replace) {
+                $names[] = str_replace(array("省", "市", "维吾尔", "壮族", "回族", "自治区"), "", $info['name']);
             } else {
                 $names[] = $info['name'];
             }
             $city_id = $info['parent_id'];
-        } while($city_id > 1);
+        } while ($city_id > 1);
         $names = array_reverse($names);
         if (strpos($names[1], $names[0]) === 0) {
             unset($names[0]);
         }
         return implode($delimiter, $names);
     }
-    
+
     /**
      * 获取城市缓存
-     * 
+     * @return mixed
      * @author 牧羊人
-     * @date 2019-05-07
+     * @date 2019/5/7
      */
-    function getAll()
+    public function getAll()
     {
         return $this->getCacheFunc('all', null);
     }
-    
+
     /**
-     * 设置所有缓存
-     * 
+     * 设置全表缓存
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-05-07
+     * @date 2019/5/7
      */
-    function _cacheAll()
+    public function cacheAll()
     {
         return $this->getChilds(1, true);
     }
-    
 }

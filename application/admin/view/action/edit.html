@@ -18,13 +18,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">来源类型：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('source_type|1|来源类型|name|id',config('config.action_source_type'),isset($info['source_type']) ? $info['source_type'] : 0))}
+				{:widget('common/singleSelect',array('source_type|1|来源类型|name|id',config('config.action_source_type'),isset($info['source_type']) ? $info['source_type'] : 0))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">所属模块：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('source_type|1|来源类型|name|id',config('config.action_source_type'),isset($info['source_type']) ? $info['source_type'] : 0))}
+				{:widget('common/singleSelect',array('source_type|1|来源类型|name|id',config('config.action_source_type'),isset($info['source_type']) ? $info['source_type'] : 0))}
 			</div>
 		</div>
 	</div>
@@ -32,13 +32,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">行为执行类型：</label>
 			<div class="layui-input-block">
-				{:widget('common/single_select',array('action_type|1|行为执行类型|name|id',config('config.action_type'),isset($info['action_type']) ? $info['action_type'] : 0))}
+				{:widget('common/singleSelect',array('action_type|1|行为执行类型|name|id',config('config.action_type'),isset($info['action_type']) ? $info['action_type'] : 0))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">行为状态：</label>
 			<div class="layui-input-block">
-				{:widget('common/switch_check',array('status','在用|禁用',isset($info['status']) ? $info['status'] : 1))}
+				{:widget('common/switchCheck',array('status','在用|禁用',isset($info['status']) ? $info['status'] : 1))}
 			</div>
 		</div>
 	</div>

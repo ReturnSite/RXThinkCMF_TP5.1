@@ -11,7 +11,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">所属站点：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('item_id|1|所属站点|name|id',$item_list,isset($info['item_id']) ? $info['item_id'] : 0))}
+				{:widget('common/singleSelect',array('item_id|1|所属站点|name|id',$item_list,isset($info['item_id']) ? $info['item_id'] : 0))}
 			</div>
 		</div>
 	</div>
@@ -20,7 +20,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">有无封面：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('is_cover','有封面|无封面',isset($info['is_cover']) ? $info['is_cover'] : ''))}
+				{:widget('common/switchCheck',array('is_cover','有封面|无封面',isset($info['is_cover']) ? $info['is_cover'] : ''))}
 			</div>
 		</div>
 		{if $info.parent_id gt 0}
@@ -34,7 +34,7 @@
 	</div>
 	<div class="layui-form-item {if $info.is_cover neq 1}layui-hide{/if} cover">
 		<label class="layui-form-label">栏目封面：</label>
-		{:widget('upload/upload_single_image',array('cover',isset($info['cover_url']) ? $info['cover_url'] : '','90x90','封面'))}
+		{:widget('upload/uploadSingleImage',array('cover',isset($info['cover_url']) ? $info['cover_url'] : '','90x90','封面'))}
 	</div>
 	<div class="layui-form-item layui-form-text" style="width:665px;">
 		<label class="layui-form-label">栏目说明：</label>

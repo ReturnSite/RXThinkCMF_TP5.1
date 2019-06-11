@@ -15,31 +15,30 @@ use app\common\validate\BaseValidate;
 
 /**
  * 角色-验证类
- * 
- * #@author 牧羊人
- * @date 2019-04-22
- * @author Administrator
- *
+ * @author 牧羊人
+ * @date 2019/4/22
+ * Class AdminRole
+ * @package app\admin\validate
  */
 class AdminRole extends BaseValidate
 {
-    
+
     // 验证规则
     protected $rule = [
         'name|角色名称' => 'require|length:1,30',
-        'sort|排序'         => 'number',
+        'sort|排序' => 'number',
     ];
-    
+
     // 验证提示语
     protected $message = [
-        'name.require'  => '角色名称不能为空',
-        'name.length'   => '角色名称介于1~30个字符',
-        'sort.number'   => '排序必须为数字',
+        'name.require' => '角色名称不能为空',
+        'name.length' => '角色名称介于1~30个字符',
+        'sort.number' => '排序必须为数字',
     ];
-    
+
     // 验证场景
     protected $scene = [
         'edit' => 'name,sort',
     ];
-    
+
 }

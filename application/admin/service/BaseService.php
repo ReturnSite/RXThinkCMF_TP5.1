@@ -15,43 +15,40 @@ use think\Model;
 
 /**
  * 基类服务
- * 
  * @author 牧羊人
- * @date 2019-04-10
- *
+ * @date 2019/4/10
+ * Class BaseService
+ * @package app\admin\service
  */
 class BaseService extends Model
 {
     // 模型
     protected $model;
-    
+
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-04-10
-     * (non-PHPdoc)
-     * @see \app\common\service\BaseService::initialize()
+     * @date 2019/4/10
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
+
     /**
      * 获取数据列表
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-04-10
+     * @date 2019/4/10
      */
-    function getList()
+    public function getList()
     {
         // 初始化变量
         $map = [];
         $sort = 'id desc';
         $is_sql = 0;
-        
+
         // 获取参数
         $argList = func_get_args();
         if (!empty($argList)) {
@@ -70,41 +67,41 @@ class BaseService extends Model
             if (isset($param['name']) && $param['name']) {
                 $map[] = ['name', 'like', "%{$param['name']}%"];
             }
-            
+
             // 筛选标题
             if (isset($param['title']) && $param['title']) {
                 $map[] = ['title', 'like', "%{$param['title']}%"];
             }
-            
+
             // 筛选类型
             if (isset($param['type']) && $param['type']) {
                 $map[] = ['type', '=', $param['type']];
             }
-            
+
             // 筛选状态
             if (isset($param['status']) && $param['status']) {
                 $map[] = ['status', '=', $param['status']];
             }
-            
+
             // 手机号码
             if (isset($param['mobile']) && $param['mobile']) {
                 $map[] = ['mobile', '=', $param['mobile']];
             }
         }
-        
+
         // 设置查询条件
         if (is_array($map)) {
             $map[] = ['mark', '=', 1];
-        }else{
+        } else {
             $map .= " AND mark=1 ";
         }
-        $result = $this->model->where($map)->order($sort)->page(PAGE,PERPAGE)->column("id");
-        
+        $result = $this->model->where($map)->order($sort)->page(PAGE, PERPAGE)->column("id");
+
         // 打印SQL
         if ($is_sql) {
             echo $this->model->getLastSql();
         }
-        
+
         $list = [];
         if (is_array($result)) {
             foreach ($result as $val) {
@@ -112,28 +109,27 @@ class BaseService extends Model
                 $list[] = $info;
             }
         }
-        
+
         //获取数据总数
         $count = $this->model->where($map)->count();
-        
+
         //返回结果
         $message = array(
-            "msg"   => '操作成功',
-            "code"  => 0 ,
-            "data"  => $list,
+            "msg" => '操作成功',
+            "code" => 0,
+            "data" => $list,
             "count" => $count,
         );
         return $message;
     }
-    
+
     /**
      * 添加或编辑
-     * 
+     * @return array
      * @author 牧羊人
-     * @date 2019-04-10
-     * @return Ambigous <number, multitype:string unknown >
+     * @date 2019/4/10
      */
-    function edit()
+    public function edit()
     {
         // 获取参数
         $argList = func_get_args();
@@ -149,7 +145,6 @@ class BaseService extends Model
         if ($rowId) {
             return message();
         }
-        return message($error,false);
+        return message($error, false);
     }
-    
 }

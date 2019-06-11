@@ -6,46 +6,40 @@ use app\admin\model\Ad as AdModel;
 
 /**
  * 广告-服务类
- * 
  * @author 牧羊人
- * @date 2019-05-06
- *
+ * @date 2019/5/6
+ * Class AdService
+ * @package app\admin\service
  */
 class AdService extends BaseService
 {
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-05-06
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::initialize()
+     * @date 2019/5/6
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new AdModel();
     }
-    
+
     /**
      * 添加或编辑
-     * 
+     * @return Ambigous
      * @author 牧羊人
-     * @date 2019-05-07
-     * (non-PHPdoc)
-     * @see \app\admin\service\BaseService::edit()
+     * @date 2019/5/6
      */
-    function edit()
+    public function edit()
     {
         $data = request()->param();
-        
+
         // 图片处理
         $cover = trim($data['cover']);
         if (strpos($cover, "temp")) {
             $data['cover'] = save_image($cover, 'ad');
         }
-        
+
         return parent::edit($data);
     }
-    
 }

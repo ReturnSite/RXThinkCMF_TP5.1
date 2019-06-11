@@ -4,13 +4,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">配置分组：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('group_id|1|配置分组|name|id',db("configGroup")->where(['mark'=>1])->select(),isset($info['group_id']) ? $info['group_id'] : 0))}
+				{:widget('common/singleSelect',array('group_id|1|配置分组|name|id',db("configGroup")->where(['mark'=>1])->select(),isset($info['group_id']) ? $info['group_id'] : 0))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">配置类型：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('type|1|配置类型|name|id',config('config.config_type'),isset($info['type']) ? $info['type'] : 0))}
+				{:widget('common/singleSelect',array('type|1|配置类型|name|id',config('config.config_type'),isset($info['type']) ? $info['type'] : 0))}
 			</div>
 		</div>
 	</div>
@@ -49,7 +49,7 @@
 	<div class="layui-form-item layui-form-text">
 		<label class="layui-form-label">状态：</label>
 		<div class="layui-input-block">
-			{:widget('common/switch_check',array('status','是|否',isset($info['status']) ? $info['status'] : 2))}
+			{:widget('common/switchCheck',array('status','是|否',isset($info['status']) ? $info['status'] : 2))}
 		</div>
 	</div>
 	<div class="layui-form-item">

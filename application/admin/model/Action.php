@@ -6,51 +6,46 @@ use app\common\model\BaseModel;
 
 /**
  * 行为-模型
- * 
  * @author 牧羊人
- * @date 2019-05-14
- * @author Administrator
- *
+ * @date 2019/5/14
+ * Class Action
+ * @package app\admin\model
  */
 class Action extends BaseModel
 {
     // 设置数据表
     protected $table = 'think_action';
-    
+
     /**
      * 初始化模型
-     * 
      * @author 牧羊人
-     * @date 2019-05-14
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::initialize()
+     * @date 2019/5/14
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         // TODO...
     }
-    
+
     /**
      * 获取缓存信息
-     * 
+     * @param int $id
+     * @return mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019-05-14
-     * (non-PHPdoc)
-     * @see \app\common\model\BaseModel::getInfo()
+     * @date 2019/5/14
      */
-    function getInfo($id)
+    public function getInfo($id)
     {
         $info = parent::getInfo($id, true);
         if ($info) {
-            
             // 来源类型
             if ($info['source_type']) {
                 $info['source_type_name'] = config('config.action_source_type')[$info['source_type']];
             }
-            
         }
         return $info;
     }
-    
 }

@@ -2,7 +2,7 @@
 	<input name="id" id="id" type="hidden" value="{$info.id|default=0}">
 	<div class="layui-form-item">
 		<label class="layui-form-label">头像：</label>
-		{:widget('upload/upload_single_image',array('avatar',isset($info['avatar_url']) ? $info['avatar_url'] : '','90x90','头像','','450x450','1/1'))}
+		{:widget('upload/uploadSingleImage',array('avatar',isset($info['avatar_url']) ? $info['avatar_url'] : '','90x90','头像','','450x450','1/1'))}
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-inline">
@@ -43,7 +43,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">性别：</label>
 			<div class="layui-input-block">
-				{:widget('common/single_select',array('gender|1|性别|name|id',config('config.gender_list'),isset($info['gender']) ? $info['gender'] : 1))}
+				{:widget('common/singleSelect',array('gender|1|性别|name|id',config('config.gender_list'),isset($info['gender']) ? $info['gender'] : 1))}
 			</div>
 		</div>
 	</div>
@@ -51,7 +51,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">职位：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('position_id|1|职位|name|id',db('position')->where(['status'=>1,'mark'=>1])->select(),isset($info['position_id']) ? $info['position_id'] : 0))}
+				{:widget('common/singleSelect',array('position_id|1|职位|name|id',db('position')->where(['status'=>1,'mark'=>1])->select(),isset($info['position_id']) ? $info['position_id'] : 0))}
 			</div>
 		</div>
 		<div class="layui-inline">
@@ -86,7 +86,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">所属部门：</label>
 			<div class="layui-input-inline">
-				{:widget('adminDep/complex_select',array('dept_id',isset($info['dept_id']) ? $info['dept_id'] : 0))}
+				{:widget('adminDep/complexSelect',array('dept_id',isset($info['dept_id']) ? $info['dept_id'] : 0))}
 			</div>
 		</div>
 	</div>
@@ -94,19 +94,19 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">管理员：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('is_admin','是|否',isset($info['is_admin']) ? $info['is_admin'] : 2))}
+				{:widget('common/switchCheck',array('is_admin','是|否',isset($info['is_admin']) ? $info['is_admin'] : 2))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">状态：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('status','在用|禁用',isset($info['status']) ? $info['status'] : 1))}
+				{:widget('common/switchCheck',array('status','在用|禁用',isset($info['status']) ? $info['status'] : 1))}
 			</div>
 		</div>
 	</div>
 	<div class="layui-form-item">
 		<label class="layui-form-label">所属城市：</label>
-		{:widget('city/simple_select',array(isset($info['district_id']) ? $info['district_id'] : 0,3))}
+		{:widget('city/simpleSelect',array(isset($info['district_id']) ? $info['district_id'] : 0,3))}
 	</div>
 	<div class="layui-form-item layui-form-text" style="width:665px;">
 		<label class="layui-form-label">备注：</label>

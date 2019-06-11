@@ -3,7 +3,7 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label">切图类型：</label>
 		<div class="layui-input-block">
-			{:widget('common/single_select',array('type|1|切图类型|name|id',config('config.image_cut_type'),isset($info['type']) ? $info['type'] : 0))}
+			{:widget('common/singleSelect',array('type|1|切图类型|name|id',config('config.image_cut_type'),isset($info['type']) ? $info['type'] : 0))}
 		</div>
 	</div>
 	<div class="layui-form-item">

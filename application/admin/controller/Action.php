@@ -8,27 +8,23 @@ use app\admin\validate\Action as ActionValidate;
 
 /**
  * 行为-控制器
- * 
  * @author 牧羊人
- * @date 2019-05-14
- *
+ * @date 2019/5/14
+ * Class Action
+ * @package app\admin\controller
  */
 class Action extends AdminBase
 {
     /**
      * 初始化方法
-     * 
      * @author 牧羊人
-     * @date 2019-05-14
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
+     * @date 2019/5/14
      */
-    function initialize()
+    public function initialize()
     {
         parent::initialize();
         $this->model = new ActionModel();
         $this->service = new ActionService();
         $this->validate = new ActionValidate();
     }
-    
 }

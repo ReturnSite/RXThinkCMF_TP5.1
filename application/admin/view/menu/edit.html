@@ -21,13 +21,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">菜单类型：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('type|1|菜单类型|name|id',config('config.menu_type'),isset($info['type']) ? $info['type'] : 0))}
+				{:widget('common/singleSelect',array('type|1|菜单类型|name|id',config('config.menu_type'),isset($info['type']) ? $info['type'] : 0))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">上级菜单：</label>
 			<div class="layui-input-inline">
-				{:widget('common/single_select',array('parent_id|0|上级菜单|name|id',$menu_list,isset($info['parent_id']) ? $info['parent_id'] : 0))}
+				{:widget('common/singleSelect',array('parent_id|0|上级菜单|name|id',$menu_list,isset($info['parent_id']) ? $info['parent_id'] : 0))}
 			</div>
 		</div>
 	</div>
@@ -63,13 +63,13 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">是否显示：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('is_show','是|否',isset($info['is_show']) ? $info['is_show'] : 1))}
+				{:widget('common/switchCheck',array('is_show','是|否',isset($info['is_show']) ? $info['is_show'] : 1))}
 			</div>
 		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">公共菜单：</label>
 			<div class="layui-input-inline">
-				{:widget('common/switch_check',array('is_public','是|否',isset($info['is_public']) ? $info['is_public'] : 2))}
+				{:widget('common/switchCheck',array('is_public','是|否',isset($info['is_public']) ? $info['is_public'] : 2))}
 			</div>
 		</div>
 	</div>
