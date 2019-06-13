@@ -1851,6 +1851,14 @@ if (!function_exists('upload_image')) {
 }
 
 if (!function_exists('upload_file')) {
+
+    /**
+     * 上传单个文件
+     * @param string $form_name 文件表单名
+     * @return array 返回结果
+     * @author zongjl
+     * @date 2019/6/13
+     */
     function upload_file($form_name = 'file')
     {
         // 获取文件对象
