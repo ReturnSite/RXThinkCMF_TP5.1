@@ -47,7 +47,7 @@ class ActionService extends BaseService
         $map = [];
 
         // 来源类型
-        $source_type = (int)$param['source_type'];
+        $source_type = isset($param['source_type']) ? (int)$param['source_type'] : 0;
         if ($source_type) {
             $map[] = ['source_type', '=', $source_type];
         }

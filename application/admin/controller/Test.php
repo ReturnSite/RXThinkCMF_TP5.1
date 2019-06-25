@@ -23,7 +23,7 @@ class Test extends AdminBase
 
     public function index()
     {
-        return $this->fetch();
+        return $this->fetch("test_index");
     }
 
     public function createQrcode()
@@ -48,5 +48,29 @@ class Test extends AdminBase
 //         print_r($qr_img);exit;
         echo $qr_img;
         exit;
+    }
+
+    public function index2()
+    {
+        return $this->fetch();
+    }
+
+    public function test()
+    {
+        $result = "{\"0\":{\"id\":82,\"name\":\"南京云恒信息技术有限公司\",\"isParent\":true,\"icon\":\"http://static.rxthink.com/admin/images/1_open.png\",\"open\":true,\"children\":[{\"id\":105,\"name\":\"总经办\",\"isParent\":true,\"icon\":\"http://static.rxthink.com/admin/images/1_open.png\",\"url\":\"http://admin.rxthink.com/test/index\"},{\"id\":116,\"name\":\"人事行政部\",\"isParent\":true,\"icon\":\"http://static.rxthink.com/admin/images/1_open.png\"},{\"id\":106,\"name\":\"运营中心\",\"isParent\":true,\"icon\":\"http://static.rxthink.com/admin/images/1_open.png\"},{\"id\":107,\"name\":\"技术中心\",\"isParent\":true,\"icon\":\"http://static.rxthink.com/admin/images/1_open.png\"},{\"id\":133,\"name\":\"生产中心\",\"isParent\":true,\"icon\":\"http://static.rxthink.com/admin/images/1_open.png\"},{\"id\":134,\"name\":\"销售部\",\"isParent\":true,\"icon\":\"http://static.rxthink.com/admin/images/1_open.png\"}]}}";
+        return json_decode($result, true);
+    }
+
+    public function tree()
+    {
+        return $this->fetch();
+    }
+
+    public function main()
+    {
+        $this->assign('left_name', 'main_left');
+        $this->assign('left_url', '/ajax/getCateList');
+        $this->assign('right_url', '/test/index');
+        return $this->fetch("public/main");
     }
 }

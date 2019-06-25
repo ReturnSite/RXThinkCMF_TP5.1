@@ -22,6 +22,7 @@ use think\Request;
 if (is_file(Env::get('app_path') . 'function.php')) {
     include_once Env::get('app_path') . 'function.php';
 }
+
 if (!function_exists('__')) {
 
     /**
@@ -335,6 +336,31 @@ if (!function_exists('datetime')) {
         return date($format, $time);
     }
 
+}
+
+if (!function_exists('data_auth_sign')) {
+
+    /**
+     * 数字签名认证
+     * @param $data 签名认证数据
+     * @return string
+     * @author 牧羊人
+     * @date 2019/2/1
+     */
+    function data_auth_sign($data)
+    {
+        //数据类型检测
+        if (!is_array($data)) {
+            $data = (array)$data;
+        }
+        // 排序
+        ksort($data);
+        // url编码并生成query字符串
+        $code = http_build_query($data);
+        //生成签名
+        $sign = sha1($code);
+        return $sign;
+    }
 }
 
 if (!function_exists('decrypt')) {
@@ -960,6 +986,7 @@ if (!function_exists('get_plugin_class')) {
     }
 
 }
+
 if (!function_exists('get_plugin_model')) {
 
     /**
@@ -976,6 +1003,7 @@ if (!function_exists('get_plugin_model')) {
     }
 
 }
+
 if (!function_exists('get_plugin_validate')) {
 
     /**
@@ -993,6 +1021,24 @@ if (!function_exists('get_plugin_validate')) {
 
 }
 
+if (!function_exists('get_uid')) {
+
+    /**
+     * 获取管理员登录ID
+     * @return bool
+     * @author 牧羊人
+     * @date 2019/2/1
+     */
+    function get_uid()
+    {
+        $admin_info = session('admin_info');
+        if (session('admin_auth_sign') == data_auth_sign($admin_info)) {
+            return $admin_info['uid'];
+        } else {
+            return false;
+        }
+    }
+}
 
 if (!function_exists('hide_str')) {
 
@@ -1087,6 +1133,27 @@ if (!function_exists('hook')) {
         \think\facade\Hook::listen($name, $params, $once);
     }
 
+}
+
+if (!function_exists('ip2city')) {
+
+    /**
+     * 根据IP获取城市信息
+     * @param string $ip IP地址
+     * @return string 返回结果
+     * @author 牧羊人
+     * @date 2019/6/21
+     */
+    function ip2city($ip)
+    {
+        $url = "http://ip.taobao.com/service/getIpInfo.php?ip={$ip}";
+        $ip = json_decode(file_get_contents($url));
+        if ((string)$ip->code == '1') {
+            return '';
+        }
+        $data = (array)$ip->data;
+        return $data['region'] . " " . $data['city'] . " " . $data['isp'];
+    }
 }
 
 if (!function_exists('is_email')) {
@@ -1229,6 +1296,25 @@ if (!function_exists('is_empty')) {
 
         // 默认返回false
         return false;
+    }
+}
+
+if (!function_exists('is_login')) {
+
+    /**
+     * 验证管理员是否登录
+     * @return bool
+     * @author 牧羊人
+     * @date 2019/2/1
+     */
+    function is_login()
+    {
+        $uid = get_uid();
+        if ($uid) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -1798,7 +1884,7 @@ if (!function_exists('upload_image')) {
      * 上传单张图片
      * @param string $form_name 文件表单名
      * @return array 返回结果
-     * @author zongjl
+     * @author 牧羊人
      * @date 2019/6/11
      */
     function upload_image($form_name = 'file')
@@ -1856,7 +1942,7 @@ if (!function_exists('upload_file')) {
      * 上传单个文件
      * @param string $form_name 文件表单名
      * @return array 返回结果
-     * @author zongjl
+     * @author 牧羊人
      * @date 2019/6/13
      */
     function upload_file($form_name = 'file')

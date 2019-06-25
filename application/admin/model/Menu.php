@@ -82,7 +82,7 @@ class Menu extends BaseModel
     /**
      * 获取子级
      * @param int $parent_id 上级ID
-     * @param bool $is_menu 是否菜单true或false
+     * @param bool $isMenu 是否菜单true或false
      * @return array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
@@ -90,7 +90,7 @@ class Menu extends BaseModel
      * @author 牧羊人
      * @date 2019/4/21
      */
-    public function getChilds($parent_id = 0, $is_menu = true)
+    public function getChilds($parent_id = 0, $isMenu = true)
     {
         $map = [
             'parent_id' => $parent_id,
@@ -107,17 +107,16 @@ class Menu extends BaseModel
                 }
                 $info['title'] = $info['name'];
                 $info['font'] = "larry-icon";
-                $childs_list = $this->getChilds($id, $is_menu);
-                if ($childs_list) {
-                    if ($info['type'] == 3) {
-                        if ($is_menu) {
-                            $info['children'] = $childs_list;
-                        } else {
-                            $info['funcList'] = $childs_list;
-                        }
+                $itemList = $this->getChilds($id, $isMenu);
+                $itemList = is_array($itemList) ? $itemList : [];
+                if ($info['type'] == 3) {
+                    if ($isMenu) {
+                        $info['children'] = $itemList;
                     } else {
-                        $info['children'] = $childs_list;
+                        $info['funcList'] = $itemList;
                     }
+                } else {
+                    $info['children'] = $itemList;
                 }
                 $list[] = $info;
             }
