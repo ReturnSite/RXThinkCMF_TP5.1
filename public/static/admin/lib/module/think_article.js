@@ -32,7 +32,7 @@ layui.use(['form', 'func'], function () {
             , {field: 'view_num', width: 100, title: '浏览数', align: 'center', sort: true}
             , {field: 'format_create_user', width: 150, title: '创建人', align: 'center', sort: true}
             , {field: 'format_create_time', width: 180, title: '创建时间', align: 'center',}
-            , {fixed: 'right', width: 180, title: '功能操作', align: 'center', toolbar: '#toolBar'}
+            , {fixed: 'right', width: 150, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 
         //【TABLE渲染】

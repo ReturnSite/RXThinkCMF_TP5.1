@@ -41,7 +41,18 @@ class CityService extends BaseService
      */
     public function getList()
     {
-        $list = $this->model->getAll();
-        return message("操作成功", true, $list);
+        // 查询条件
+        $map = [
+            ['parent_id', '>=', 1],
+        ];
+        $list = $this->model->getAll($map);
+        //返回结果
+        $message = array(
+            "msg" => '操作成功',
+            "code" => 0,
+            "data" => $list,
+            "count" => count($list),
+        );
+        return $message;
     }
 }

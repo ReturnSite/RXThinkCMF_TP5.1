@@ -51,68 +51,70 @@ html {
     background-position: right center;
 }
 
-.layui-form-label{
-	float:left;display:block;
-	padding:9px 15px;
-	width:100px;
-	font-weight:400;
-	line-height:20px;
-	text-align:right
+.layui-form-label {
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    width: 100px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right
 }
-.layui-input-block{
-	margin-left:130px;
-	min-height:36px
+
+.layui-input-block {
+    margin-left: 130px;
+    min-height: 36px
 }
 
 /* 输入框添加蓝色边框效果，阴影边框效果  */
 .layui-input:focus,
 .layui-textarea:focus {
-	border-color: rgba(29, 210, 175, 0.8) !important;
-	-webkit-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
-	-moz-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
-	box-shadow: 0 0 5px rgba(29, 210, 175, .5);
-	border: 2px solid #dce4ec;
+    border-color: rgba(29, 210, 175, 0.8) !important;
+    -webkit-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
+    -moz-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
+    box-shadow: 0 0 5px rgba(29, 210, 175, .5);
+    border: 2px solid #dce4ec;
 }
 
 .layui-input:hover,
 .layui-textarea:hover {
-	border-color: rgba(29, 210, 175, 0.8) !important;
-	-webkit-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
-	-moz-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
-	box-shadow: 0 0 5px rgba(29, 210, 175, .5);
-	border: 2px solid #dce4ec;
+    border-color: rgba(29, 210, 175, 0.8) !important;
+    -webkit-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
+    -moz-box-shadow: 0 0 5px rgba(29, 210, 175, .5);
+    box-shadow: 0 0 5px rgba(29, 210, 175, .5);
+    border: 2px solid #dce4ec;
 }
 
 /* 表单验证失败红色边框效果，阴影效果 */
-.layui-form-danger, .layui-form-danger:focus, .layui-form-danger:hover{
-	border-color: rgba(255,87,34, .8) !important;
-	-webkit-box-shadow: 0 0 5px rgba(255,87,34, .5);
-	-moz-box-shadow: 0 0 5px rgba(255,87,34, .5);
-	box-shadow: 0 0 5px rgba(255,87,34, .5);
-	border: 2px solid #ff5722;
+.layui-form-danger, .layui-form-danger:focus, .layui-form-danger:hover {
+    border-color: rgba(255, 87, 34, .8) !important;
+    -webkit-box-shadow: 0 0 5px rgba(255, 87, 34, .5);
+    -moz-box-shadow: 0 0 5px rgba(255, 87, 34, .5);
+    box-shadow: 0 0 5px rgba(255, 87, 34, .5);
+    border: 2px solid #ff5722;
 }
 
-.value_col{
-	text-align:center !important;
+.value_col {
+    text-align: center !important;
 }
 
-.value_col2{
-	text-align:left !important;
+.value_col2 {
+    text-align: left !important;
 }
 
 .layui-layout-admin .layui-footer {
     padding: 10px 0;
     text-align: center;
-    box-shadow: 0 -1px 2px 0 rgba(0,0,0,.05);
-	background-color: white;
+    box-shadow: 0 -1px 2px 0 rgba(0, 0, 0, .05);
+    background-color: white;
 }
 
 /* 按钮渐变色效果 */
 .layui-btn-test {
     background-color: #009688;
     background-repeat: repeat-y;
-    background-image: -moz-linear-gradient(left,#29adeb,#177ce3);
-    background-image: -webkit-linear-gradient(left,#29adeb,#177ce3);
-    background-image: -o-linear-gradient(left,#29adeb,#177ce3);
-    background-image: linear-gradient(left,#29adeb,#177ce3);
+    background-image: -moz-linear-gradient(left, #29adeb, #177ce3);
+    background-image: -webkit-linear-gradient(left, #29adeb, #177ce3);
+    background-image: -o-linear-gradient(left, #29adeb, #177ce3);
+    background-image: linear-gradient(left, #29adeb, #177ce3);
 }

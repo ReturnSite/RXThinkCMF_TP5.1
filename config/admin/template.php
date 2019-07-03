@@ -26,8 +26,8 @@ return [
     'tpl_replace_string' => [
         '__STATIC__'    => '/static',
         '__ADMIN__'     => '/static/admin',
-        '__JS__'        => '/static/js',
-        '__CSS__'       => '/static/css',
-        '__IMAGES__'    => '/static/images',
+        '__JS__'        => '/static/admin/js',
+        '__CSS__'       => '/static/admin/css',
+        '__IMAGES__'    => '/static/admin/images',
     ],
 ];

@@ -542,39 +542,39 @@ if (!function_exists('format_bank_card')) {
 }
 
 
-if (!function_exists('format_yuan')) {
+if (!function_exists('format_money')) {
 
     /**
-     * 以分为单位的金额转换成元
-     * @param int $money 金额
-     * @return string 返回格式化的金额
+     * 金额格式转化
+     * @param int $number 数字金额
+     * @param bool $flag 是否转换为元true或false
+     * @return string
      * @author 牧羊人
-     * @date 2019/4/5
+     * @date 2019/6/28
      */
-    function format_yuan($money = 0)
+    function format_money($number, $flag = false)
     {
-        if ($money > 0) {
-            return number_format($money / 100, 2, ".", "");
+        // 是否转化为元
+        if ($flag) {
+            $number = $number / 100;
         }
-        return "0.00";
+        return number_format($number, 2, '.', '');
     }
-
 }
 
-if (!function_exists('format_cent')) {
+if (!function_exists('format_money')) {
 
     /**
-     * 以元为单位的金额转化成分
-     * @param $money 金额
-     * @return string 返回格式化的金额
+     * 金额格式转化
+     * @param int $number 数字金额
+     * @return string
      * @author 牧羊人
-     * @date 2019/4/5
+     * @date 2019/6/28
      */
-    function format_cent($money)
+    function format_money($number)
     {
-        return (string)($money * 100);
+        return number_format($number, 2, '.', '');
     }
-
 }
 
 if (!function_exists('get_domain')) {
@@ -1449,6 +1449,39 @@ if (!function_exists('copydirs')) {
     }
 }
 
+if (!function_exists('mbsubstr')) {
+    /**
+     * 字符串截取，支持中文和其他编码
+     * @param string $str 需要转换的字符串
+     * @param int $start 开始位置
+     * @param int $length 截取长度
+     * @param string $encoding 编码格式
+     * @param string $suffix 截断显示字符
+     * @return false|mixed|string 返回结果
+     * @author 牧羊人
+     * @date 2019/6/28
+     */
+    function mbsubstr($str, $start = 0, $length = null, $encoding = "utf-8", $suffix = '...')
+    {
+        if (function_exists("mb_substr")) {
+            $slice = mb_substr($str, $start, $length, $encoding);
+        } elseif (function_exists('iconv_substr')) {
+            $slice = iconv_substr($str, $start, $length, $encoding);
+            if (false === $slice) {
+                $slice = '';
+            }
+        } else {
+            $re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+            $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
+            $re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+            $re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+            preg_match_all($re[$encoding], $str, $match);
+            $slice = join("", array_slice($match[0], $start, $length));
+        }
+        return $suffix ? $slice . $suffix : $slice;
+    }
+}
+
 if (!function_exists('message')) {
 
     /**
@@ -1991,5 +2024,138 @@ if (!function_exists('upload_file')) {
             'file_name' => $file_name,
         ];
         return message(MESSAGE_OK, true, $result);
+    }
+}
+
+if (!function_exists('zip_file')) {
+
+    /**
+     * 打包压缩文件及文件夹
+     * @param array $files 文件
+     * @param string $zipName 压缩包名称
+     * @param bool $isDown 压缩后是否下载true或false
+     * @return string 返回结果
+     * @author 牧羊人
+     * @date 2019/6/27
+     */
+    function zip_file($files = [], $zipName = '', $isDown = true)
+    {
+        // 文件名为空则生成文件名
+        if (empty($zipName)) {
+            $zipName = date('YmdHis') . '.zip';
+        }
+
+        // 实例化类,使用本类，linux需开启zlib，windows需取消php_zip.dll前的注释
+        $zip = new \ZipArchive;
+        /*
+         * 通过ZipArchive的对象处理zip文件
+         * $zip->open这个方法如果对zip文件对象操作成功，$zip->open这个方法会返回TRUE
+         * $zip->open这个方法第一个参数表示处理的zip文件名。
+         * 这里重点说下第二个参数，它表示处理模式
+         * ZipArchive::OVERWRITE 总是以一个新的压缩包开始，此模式下如果已经存在则会被覆盖。
+         * ZipArchive::OVERWRITE 不会新建，只有当前存在这个压缩包的时候，它才有效
+         * */
+        if ($zip->open($zipName, \ZIPARCHIVE::OVERWRITE | \ZIPARCHIVE::CREATE) !== true) {
+            exit('无法打开文件，或者文件创建失败');
+        }
+
+        // 打包处理
+        if (is_string($files)) {
+            // 文件夹整体打包
+            addFileToZip($files, $zip);
+        } else {
+            // 文件打包
+            foreach ($files as $val) {
+                if (file_exists($val)) {
+                    // 添加文件
+                    $zip->addFile($val, basename($val));
+                }
+            }
+        }
+        // 关闭
+        $zip->close();
+
+        // 验证文件是否存在
+        if (!file_exists($zipName)) {
+            exit("文件不存在");
+        }
+
+        if ($isDown) {
+            // 下载压缩包
+            header("Cache-Control: public");
+            header("Content-Description: File Transfer");
+            header('Content-disposition: attachment; filename=' . basename($zipName)); //文件名
+            header("Content-Type: application/zip"); //zip格式的
+            header("Content-Transfer-Encoding: binary"); //告诉浏览器，这是二进制文件
+            header('Content-Length: ' . filesize($zipName)); //告诉浏览器，文件大小
+            @readfile($zipName);
+        } else {
+            // 直接返回压缩包地址
+            return $zipName;
+        }
+    }
+}
+
+if (!function_exists('addFileToZip')) {
+
+    /**
+     * 添加文件至压缩包
+     * @param string $path 文件夹路径
+     * @param $zip zip对象
+     * @author 牧羊人
+     * @date 2019/6/27
+     */
+    function addFileToZip($path, $zip)
+    {
+        // 打开文件夹
+        $handler = opendir($path);
+        while (($filename = readdir($handler)) !== false) {
+            if ($filename != "." && $filename != "..") {
+                // 编码转换
+                $filename = iconv('gb2312', 'utf-8', $filename);
+                // 文件夹文件名字为'.'和‘..’，不要对他们进行操作
+                if (is_dir($path . "/" . $filename)) {
+                    // 如果读取的某个对象是文件夹，则递归
+                    addFileToZip($path . "/" . $filename, $zip);
+                } else {
+                    // 将文件加入zip对象
+                    $file_path = $path . "/" . $filename;
+                    $zip->addFile($file_path, basename($file_path));
+                }
+            }
+        }
+        // 关闭文件夹
+        @closedir($path);
+    }
+}
+
+if (!function_exists('unzip_file')) {
+
+    /**
+     * 压缩文件解压
+     * @param string $file 被解压的文件
+     * @param $dirname 解压目录
+     * @return bool 返回结果true或false
+     * @author 牧羊人
+     * @date 2019/6/27
+     */
+    function unzip_file($file, $dirname)
+    {
+        if (!file_exists($file)) {
+            return false;
+        }
+        // zip实例化对象
+        $zipArc = new ZipArchive();
+        // 打开文件
+        if (!$zipArc->open($file)) {
+            return false;
+        }
+        // 解压文件
+        if (!$zipArc->extractTo($dirname)) {
+            // 关闭
+            $zipArc->close();
+            return false;
+        }
+        return $zipArc->close();
     }
 }

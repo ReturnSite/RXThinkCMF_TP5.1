@@ -25,7 +25,7 @@ layui.use(['form', 'func'], function () {
             , {field: 'format_create_user', width: 100, title: '创建人', align: 'center'}
             , {field: 'format_create_time', width: 180, title: '创建时间', align: 'center', sort: true}
             , {field: 'sort', width: 80, title: '排序', align: 'center'}
-            , {fixed: 'right', width: 180, title: '功能操作', align: 'center', toolbar: '#toolBar'}
+            , {fixed: 'right', width: 150, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 
         //【TABLE渲染】

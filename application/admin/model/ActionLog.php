@@ -23,8 +23,7 @@ use app\common\model\BaseModel;
 class ActionLog extends BaseModel
 {
     // 设置数据表
-    protected $table = '';
-
+    protected $table = null;
     // 自定义日志标题
     protected static $title = '';
     // 自定义日志内容
@@ -57,26 +56,26 @@ class ActionLog extends BaseModel
         $tbl = $this->table;
         if (!$this->tableExists($this->table)) {
             $sql = "CREATE TABLE `{$tbl}` (
-				`id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
-				`admin_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '管理员ID',
-				`username` varchar(20) NOT NULL DEFAULT '' COMMENT '管理员用户名',
-				`operate_module` varchar(40) NOT NULL COMMENT '操作模块',
-				`operate_controller` varchar(40) NOT NULL COMMENT '操作控制器',
-				`operate_action` varchar(150) NOT NULL COMMENT '操作方法',
-				`operate_param` text COMMENT '操作参数',
-				`url` varchar(100) NOT NULL DEFAULT '' COMMENT '操作页面',
-				`title` varchar(100) NOT NULL DEFAULT '' COMMENT '日志标题',
-				`content` text NOT NULL DEFAULT '' COMMENT '内容',
-				`ip` varchar(50) NOT NULL DEFAULT '' COMMENT 'IP',
-				`useragent` varchar(255) NOT NULL DEFAULT '' COMMENT 'User-Agent',
-				`sessionid` varchar(100) NOT NULL DEFAULT '' COMMENT 'sessionID',
-				`create_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '操作时间',
-				PRIMARY KEY (`id`),
-				KEY `username` (`username`)
-				) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='管理员日志表';";
+                  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '唯一性标识',
+                  `action_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '行为ID',
+                  `is_admin` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '是否后台操作：1是 2否',
+                  `username` varchar(60) CHARACTER SET utf8mb4 NOT NULL COMMENT '操作人用户名',
+                  `method` varchar(20) CHARACTER SET utf8mb4 NOT NULL COMMENT '请求类型',
+                  `module` varchar(30) NOT NULL COMMENT '模型',
+                  `action` varchar(255) NOT NULL COMMENT '操作方法',
+                  `url` varchar(200) CHARACTER SET utf8mb4 NOT NULL COMMENT '操作页面',
+                  `param` text CHARACTER SET utf8mb4 NOT NULL COMMENT '请求参数(JSON格式)',
+                  `title` varchar(100) NOT NULL COMMENT '日志标题',
+                  `content` varchar(1000) NOT NULL DEFAULT '' COMMENT '内容',
+                  `ip` varchar(18) CHARACTER SET utf8mb4 NOT NULL COMMENT 'IP地址',
+                  `user_agent` varchar(360) CHARACTER SET utf8mb4 NOT NULL COMMENT 'User-Agent',
+                  `create_user` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '添加人',
+                  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+                  `mark` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '有效标识：1正常 0删除',
+                  PRIMARY KEY (`id`) USING BTREE
+                ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COMMENT='系统行为日志表';";
             $this->query($sql);
         }
-
         return $tbl;
     }
 
@@ -109,23 +108,22 @@ class ActionLog extends BaseModel
      */
     public static function record()
     {
-//        $aid = get_uid();
-//        $username = model('admin')->where('id', $aid)->value('username');
-//        $module = request()->module();
-//        $action = request()->url();
-//        $param = request()->param() ? json_encode(request()->param()) : '';
-//        $title = self::$title;
-//        $content = self::$content;
-//        self::create([
-//            'admin_id' => $aid,
-//            'username' => $username,
-//            'module' => $module,
-//            'action' => $action,
-//            'param' => $param,
-//            'title' => $title,
-//            'content' => $content,
-//            'ip' => request()->ip(1),
-//            'user_agent' => request()->server('HTTP_USER_AGENT')
-//        ]);
+        // 日志数据
+        $data = [
+            'username' => '相约在冬季',
+            'module' => request()->module(),
+            'action' => request()->url(),
+            'method' => request()->method(),
+            'url' => request()->url(true), // 获取完成URL
+            'param' => request()->param() ? json_encode(request()->param()) : '',
+            'title' => self::$title,
+            'content' => self::$content,
+            'ip' => request()->ip(),
+            'user_agent' => request()->server('HTTP_USER_AGENT'),
+            'create_user' => get_uid(),
+            'create_time' => time(),
+        ];
+        // 日志入库
+        self::insert($data);
     }
 }

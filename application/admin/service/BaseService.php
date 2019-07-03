@@ -48,6 +48,7 @@ class BaseService extends Model
         $map = [];
         $sort = 'id desc';
         $is_sql = 0;
+        $is_page = true;
 
         // 获取参数
         $argList = func_get_args();
@@ -92,8 +93,10 @@ class BaseService extends Model
         // 设置查询条件
         if (is_array($map)) {
             $map[] = ['mark', '=', 1];
-        } else {
+        } elseif ($map) {
             $map .= " AND mark=1 ";
+        } else {
+            $map .= " mark=1 ";
         }
         $result = $this->model->where($map)->order($sort)->page(PAGE, PERPAGE)->column("id");
 

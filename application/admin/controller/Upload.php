@@ -51,7 +51,6 @@ class Upload extends AdminBase
             //上传成功
             $file_path = IMG_URL . "/temp/" . $info->getSaveName();
             return message("上传成功", true, $file_path);
-
         } else {
             //上传失败
             $error = $file->getError();

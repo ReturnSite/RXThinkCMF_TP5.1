@@ -41,7 +41,7 @@ class MenuService extends BaseService
      */
     public function getList()
     {
-        $list = $this->model->getChilds(0);
+        $list = $this->model->getList([], 'sort asc');
         return message("操作成功", true, $list);
     }
 
@@ -131,10 +131,6 @@ class MenuService extends BaseService
      */
     public function getNavbarMenu($system_auth)
     {
-        if (!$system_auth) {
-            return [];
-        }
-
         $list1 = [];
         $list2 = [];
         $list3 = [];

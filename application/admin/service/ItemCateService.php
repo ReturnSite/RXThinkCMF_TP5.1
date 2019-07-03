@@ -33,17 +33,17 @@ class ItemCateService extends BaseService
         $this->model = new ItemCateModel();
     }
 
-    /**
-     * 获取数据列表
-     * @return array
-     * @author 牧羊人
-     * @date 2019/5/5
-     */
-    public function getList()
-    {
-        $list = $this->model->getChilds(0, 0, 1);
-        return message("操作成功", true, $list);
-    }
+//    /**
+//     * 获取数据列表
+//     * @return array
+//     * @author 牧羊人
+//     * @date 2019/5/5
+//     */
+//    public function getList()
+//    {
+//        $list = $this->model->getChilds(0, 0, 1);
+//        return message("操作成功", true, $list);
+//    }
 
     /**
      * 添加或编辑

@@ -111,7 +111,6 @@ class Admin extends BaseModel
                 }
             }
             $info['system_auth'] = $auth;
-
         }
         return $info;
     }

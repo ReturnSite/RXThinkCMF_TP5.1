@@ -30,8 +30,11 @@ class AdminLog
      */
     public function run($params)
     {
-        // 记录行为日志(登录后记录)
-        ActionLog::record($params);
+        if (IS_POST) {
+            // 记录行为日志(登录后记录)
+            ActionLog::record($params);
+        }
+
 //        // 使用方法
 //        AdminLog::setTitle('登录');
 //        Hook::listen('admin_login_init', $this->request);
