@@ -66,7 +66,7 @@ class AdminAuthService extends BaseService
                     //角色
                     $admin_role_model = new AdminRoleModel();
                     $role_info = $admin_role_model->getInfo($type_id);
-                    $role_list = $role_info['auth_list'];
+                    $role_list = getter($role_info, 'auth_list');
                     $func_list = isset($role_list[$id]) ? $role_list[$id] : [];
 
                 } elseif ($type == 2) {

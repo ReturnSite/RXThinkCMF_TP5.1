@@ -7,6 +7,7 @@ use think\console\Input;
 use think\console\input\Argument;
 use think\console\input\Option;
 use think\console\Output;
+use util\RabbitMQ;
 
 /**
  * 定时任务脚本
@@ -51,16 +52,17 @@ class Hello extends Command
         $queue_name = "Test";
         // 加入队列
         $queue = new RabbitMQ($queue_name);
-//        $queue->put([
-//            'id' => 1,
-//            'name' => '云恒信息科技 ' . date('Y-m-d H:i:s', time()),
-//        ]);
-//        $queue->close();
-//
-//        //拉取队列
-//        $queue = new RabbitMQ($queue_name);
-//        list($ack, $result) = $queue->get();
-//        $ack();
-//        print_r(json_decode($result, true));exit;
+        $queue->put([
+            'id' => 1,
+            'name' => '云恒信息科技 ' . date('Y-m-d H:i:s', time()),
+        ]);
+        $queue->close();
+
+        //拉取队列
+        $queue = new RabbitMQ($queue_name);
+        list($ack, $result) = $queue->get();
+        $ack();
+        print_r(json_decode($result, true));
+        exit;
     }
 }

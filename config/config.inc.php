@@ -39,11 +39,11 @@ defined('IMG_PATH') or define('IMG_PATH', ATTACHMENT_PATH . "/img");
 defined('UPLOAD_TEMP_PATH') or define('UPLOAD_TEMP_PATH', IMG_PATH . '/temp');
 
 //RabbitMQ配置
-define('MQ_IP', '127.0.0.1');
-define('MQ_PORT', '5672');
-define('MQ_USER', 'guest');
-define('MQ_PWD', 'guest');
-define('MQ_HOST', '/');
+defined('MQ_IP') or define('MQ_IP', '127.0.0.1');
+defined('MQ_PORT') or define('MQ_PORT', '5672');
+defined('MQ_USER') or define('MQ_USER', 'guest');
+defined('MQ_PWD') or define('MQ_PWD', 'guest');
+defined('MQ_HOST') or define('MQ_HOST', '/');
 
 //配置文件
 return [
@@ -53,7 +53,7 @@ return [
     'nick_name' => 'RXThinkCMF',
     // 数据库链接
 //    'db_config'     => 'mysql://root:llwx1qaz!#@47.99.90.120:3306/rxthink.v5.1',
-    'db_config' => 'mysql://root:111111@127.0.0.1:3306/rxthink.v5.1',
+    'db_config' => 'mysql://root:@127.0.0.1:3306/rxthink.v5.1',
     // 数据表前缀
     'db_prefix' => 'think_',
     // 数据库编码

@@ -17,7 +17,6 @@ layui.define(['layer', 'table'], function (exports) {
             if (param.data) {
                 treetable.init(param, param.data);
             } else {
-                console.log(11);
                 $.post(param.url, param.where, function (res) {
                     treetable.init(param, res.data);
                 });
