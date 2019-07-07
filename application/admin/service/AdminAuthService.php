@@ -50,38 +50,41 @@ class AdminAuthService extends BaseService
         $param = request()->param();
         $type = (int)$param['type'];
         $type_id = (int)$param['type_id'];
-        $list = $this->model->getChilds(0, false);
+
+        // 查询条件
+        $map = [
+            ['type', '<=', 3],
+        ];
+        $list = $this->model->getList($map, 'sort asc');
         if ($list) {
             foreach ($list as &$val) {
-                foreach ($val['children'] as &$vt) {
-                    foreach ($vt['children'] as &$vo) {
-                        $id = $vo['id'];
+                if ($val['type'] != 3) {
+                    continue;
+                }
+                $id = $val['id'];
+                if ($type == 1) {
+                    //角色
+                    $admin_role_model = new AdminRoleModel();
+                    $role_info = $admin_role_model->getInfo($type_id);
+                    $role_list = getter($role_info, 'auth_list');
+                    $func_list = isset($role_list[$id]) ? $role_list[$id] : [];
 
-                        if ($type == 1) {
-                            //角色
+                } elseif ($type == 2) {
+                    //人员
+                    $admin_model = new AdminModel();
+                    $role_info = $admin_model->getInfo($type_id);
+                    $role_list = $role_info['auth_list'];
+                    $func_list = $role_list[$id];
 
-                            $admin_role_model = new AdminRoleModel();
-                            $role_info = $admin_role_model->getInfo($type_id);
-                            $role_list = $role_info['auth_list'];
-                            $func_list = isset($role_list[$id]) ? $role_list[$id] : [];
+                }
 
-                        } elseif ($type == 2) {
-                            //人员
-
-                            $admin_model = new AdminModel();
-                            $role_info = $admin_model->getInfo($type_id);
-                            $role_list = $role_info['auth_list'];
-                            $func_list = $role_list[$id];
-
-                        }
-
-                        $func_arr = isset($vo['funcList']) ? $vo['funcList'] : '';
-                        if (is_array($func_arr)) {
-                            foreach ($vo['funcList'] as &$v) {
-                                if (in_array($v["id"], $func_list)) {
-                                    $v['selected'] = 1;
-                                }
-                            }
+                // 权限节点
+                $itemList = $this->model->getChilds($id, false);
+                $val['funcList'] = $itemList ? $itemList : [];
+                if ($val['funcList']) {
+                    foreach ($val['funcList'] as &$v) {
+                        if (in_array($v["id"], $func_list)) {
+                            $v['selected'] = 1;
                         }
                     }
                 }

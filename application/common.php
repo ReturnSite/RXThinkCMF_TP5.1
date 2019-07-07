@@ -22,6 +22,7 @@ use think\Request;
 if (is_file(Env::get('app_path') . 'function.php')) {
     include_once Env::get('app_path') . 'function.php';
 }
+
 if (!function_exists('__')) {
 
     /**
@@ -337,6 +338,31 @@ if (!function_exists('datetime')) {
 
 }
 
+if (!function_exists('data_auth_sign')) {
+
+    /**
+     * 数字签名认证
+     * @param $data 签名认证数据
+     * @return string
+     * @author 牧羊人
+     * @date 2019/2/1
+     */
+    function data_auth_sign($data)
+    {
+        //数据类型检测
+        if (!is_array($data)) {
+            $data = (array)$data;
+        }
+        // 排序
+        ksort($data);
+        // url编码并生成query字符串
+        $code = http_build_query($data);
+        //生成签名
+        $sign = sha1($code);
+        return $sign;
+    }
+}
+
 if (!function_exists('decrypt')) {
 
     /**
@@ -516,39 +542,39 @@ if (!function_exists('format_bank_card')) {
 }
 
 
-if (!function_exists('format_yuan')) {
+if (!function_exists('format_money')) {
 
     /**
-     * 以分为单位的金额转换成元
-     * @param int $money 金额
-     * @return string 返回格式化的金额
+     * 金额格式转化
+     * @param int $number 数字金额
+     * @param bool $flag 是否转换为元true或false
+     * @return string
      * @author 牧羊人
-     * @date 2019/4/5
+     * @date 2019/6/28
      */
-    function format_yuan($money = 0)
+    function format_money($number, $flag = false)
     {
-        if ($money > 0) {
-            return number_format($money / 100, 2, ".", "");
+        // 是否转化为元
+        if ($flag) {
+            $number = $number / 100;
         }
-        return "0.00";
+        return number_format($number, 2, '.', '');
     }
-
 }
 
-if (!function_exists('format_cent')) {
+if (!function_exists('format_money')) {
 
     /**
-     * 以元为单位的金额转化成分
-     * @param $money 金额
-     * @return string 返回格式化的金额
+     * 金额格式转化
+     * @param int $number 数字金额
+     * @return string
      * @author 牧羊人
-     * @date 2019/4/5
+     * @date 2019/6/28
      */
-    function format_cent($money)
+    function format_money($number)
     {
-        return (string)($money * 100);
+        return number_format($number, 2, '.', '');
     }
-
 }
 
 if (!function_exists('get_domain')) {
@@ -960,6 +986,7 @@ if (!function_exists('get_plugin_class')) {
     }
 
 }
+
 if (!function_exists('get_plugin_model')) {
 
     /**
@@ -976,6 +1003,7 @@ if (!function_exists('get_plugin_model')) {
     }
 
 }
+
 if (!function_exists('get_plugin_validate')) {
 
     /**
@@ -993,6 +1021,24 @@ if (!function_exists('get_plugin_validate')) {
 
 }
 
+if (!function_exists('get_uid')) {
+
+    /**
+     * 获取管理员登录ID
+     * @return bool
+     * @author 牧羊人
+     * @date 2019/2/1
+     */
+    function get_uid()
+    {
+        $admin_info = session('admin_info');
+        if (session('admin_auth_sign') == data_auth_sign($admin_info)) {
+            return $admin_info['uid'];
+        } else {
+            return false;
+        }
+    }
+}
 
 if (!function_exists('hide_str')) {
 
@@ -1087,6 +1133,27 @@ if (!function_exists('hook')) {
         \think\facade\Hook::listen($name, $params, $once);
     }
 
+}
+
+if (!function_exists('ip2city')) {
+
+    /**
+     * 根据IP获取城市信息
+     * @param string $ip IP地址
+     * @return string 返回结果
+     * @author 牧羊人
+     * @date 2019/6/21
+     */
+    function ip2city($ip)
+    {
+        $url = "http://ip.taobao.com/service/getIpInfo.php?ip={$ip}";
+        $ip = json_decode(file_get_contents($url));
+        if ((string)$ip->code == '1') {
+            return '';
+        }
+        $data = (array)$ip->data;
+        return $data['region'] . " " . $data['city'] . " " . $data['isp'];
+    }
 }
 
 if (!function_exists('is_email')) {
@@ -1232,6 +1299,25 @@ if (!function_exists('is_empty')) {
     }
 }
 
+if (!function_exists('is_login')) {
+
+    /**
+     * 验证管理员是否登录
+     * @return bool
+     * @author 牧羊人
+     * @date 2019/2/1
+     */
+    function is_login()
+    {
+        $uid = get_uid();
+        if ($uid) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
 if (!function_exists('json_indent')) {
 
     /**
@@ -1360,6 +1446,39 @@ if (!function_exists('copydirs')) {
                 copy($item, $dest . "/" . $iterator->getSubPathName());
             }
         }
+    }
+}
+
+if (!function_exists('mbsubstr')) {
+    /**
+     * 字符串截取，支持中文和其他编码
+     * @param string $str 需要转换的字符串
+     * @param int $start 开始位置
+     * @param int $length 截取长度
+     * @param string $encoding 编码格式
+     * @param string $suffix 截断显示字符
+     * @return false|mixed|string 返回结果
+     * @author 牧羊人
+     * @date 2019/6/28
+     */
+    function mbsubstr($str, $start = 0, $length = null, $encoding = "utf-8", $suffix = '...')
+    {
+        if (function_exists("mb_substr")) {
+            $slice = mb_substr($str, $start, $length, $encoding);
+        } elseif (function_exists('iconv_substr')) {
+            $slice = iconv_substr($str, $start, $length, $encoding);
+            if (false === $slice) {
+                $slice = '';
+            }
+        } else {
+            $re['utf-8'] = "/[\x01-\x7f]|[\xc2-\xdf][\x80-\xbf]|[\xe0-\xef][\x80-\xbf]{2}|[\xf0-\xff][\x80-\xbf]{3}/";
+            $re['gb2312'] = "/[\x01-\x7f]|[\xb0-\xf7][\xa0-\xfe]/";
+            $re['gbk'] = "/[\x01-\x7f]|[\x81-\xfe][\x40-\xfe]/";
+            $re['big5'] = "/[\x01-\x7f]|[\x81-\xfe]([\x40-\x7e]|\xa1-\xfe])/";
+            preg_match_all($re[$encoding], $str, $match);
+            $slice = join("", array_slice($match[0], $start, $length));
+        }
+        return $suffix ? $slice . $suffix : $slice;
     }
 }
 
@@ -1798,7 +1917,7 @@ if (!function_exists('upload_image')) {
      * 上传单张图片
      * @param string $form_name 文件表单名
      * @return array 返回结果
-     * @author zongjl
+     * @author 牧羊人
      * @date 2019/6/11
      */
     function upload_image($form_name = 'file')
@@ -1856,7 +1975,7 @@ if (!function_exists('upload_file')) {
      * 上传单个文件
      * @param string $form_name 文件表单名
      * @return array 返回结果
-     * @author zongjl
+     * @author 牧羊人
      * @date 2019/6/13
      */
     function upload_file($form_name = 'file')
@@ -1905,5 +2024,138 @@ if (!function_exists('upload_file')) {
             'file_name' => $file_name,
         ];
         return message(MESSAGE_OK, true, $result);
+    }
+}
+
+if (!function_exists('zip_file')) {
+
+    /**
+     * 打包压缩文件及文件夹
+     * @param array $files 文件
+     * @param string $zipName 压缩包名称
+     * @param bool $isDown 压缩后是否下载true或false
+     * @return string 返回结果
+     * @author 牧羊人
+     * @date 2019/6/27
+     */
+    function zip_file($files = [], $zipName = '', $isDown = true)
+    {
+        // 文件名为空则生成文件名
+        if (empty($zipName)) {
+            $zipName = date('YmdHis') . '.zip';
+        }
+
+        // 实例化类,使用本类，linux需开启zlib，windows需取消php_zip.dll前的注释
+        $zip = new \ZipArchive;
+        /*
+         * 通过ZipArchive的对象处理zip文件
+         * $zip->open这个方法如果对zip文件对象操作成功，$zip->open这个方法会返回TRUE
+         * $zip->open这个方法第一个参数表示处理的zip文件名。
+         * 这里重点说下第二个参数，它表示处理模式
+         * ZipArchive::OVERWRITE 总是以一个新的压缩包开始，此模式下如果已经存在则会被覆盖。
+         * ZipArchive::OVERWRITE 不会新建，只有当前存在这个压缩包的时候，它才有效
+         * */
+        if ($zip->open($zipName, \ZIPARCHIVE::OVERWRITE | \ZIPARCHIVE::CREATE) !== true) {
+            exit('无法打开文件，或者文件创建失败');
+        }
+
+        // 打包处理
+        if (is_string($files)) {
+            // 文件夹整体打包
+            addFileToZip($files, $zip);
+        } else {
+            // 文件打包
+            foreach ($files as $val) {
+                if (file_exists($val)) {
+                    // 添加文件
+                    $zip->addFile($val, basename($val));
+                }
+            }
+        }
+        // 关闭
+        $zip->close();
+
+        // 验证文件是否存在
+        if (!file_exists($zipName)) {
+            exit("文件不存在");
+        }
+
+        if ($isDown) {
+            // 下载压缩包
+            header("Cache-Control: public");
+            header("Content-Description: File Transfer");
+            header('Content-disposition: attachment; filename=' . basename($zipName)); //文件名
+            header("Content-Type: application/zip"); //zip格式的
+            header("Content-Transfer-Encoding: binary"); //告诉浏览器，这是二进制文件
+            header('Content-Length: ' . filesize($zipName)); //告诉浏览器，文件大小
+            @readfile($zipName);
+        } else {
+            // 直接返回压缩包地址
+            return $zipName;
+        }
+    }
+}
+
+if (!function_exists('addFileToZip')) {
+
+    /**
+     * 添加文件至压缩包
+     * @param string $path 文件夹路径
+     * @param $zip zip对象
+     * @author 牧羊人
+     * @date 2019/6/27
+     */
+    function addFileToZip($path, $zip)
+    {
+        // 打开文件夹
+        $handler = opendir($path);
+        while (($filename = readdir($handler)) !== false) {
+            if ($filename != "." && $filename != "..") {
+                // 编码转换
+                $filename = iconv('gb2312', 'utf-8', $filename);
+                // 文件夹文件名字为'.'和‘..’，不要对他们进行操作
+                if (is_dir($path . "/" . $filename)) {
+                    // 如果读取的某个对象是文件夹，则递归
+                    addFileToZip($path . "/" . $filename, $zip);
+                } else {
+                    // 将文件加入zip对象
+                    $file_path = $path . "/" . $filename;
+                    $zip->addFile($file_path, basename($file_path));
+                }
+            }
+        }
+        // 关闭文件夹
+        @closedir($path);
+    }
+}
+
+if (!function_exists('unzip_file')) {
+
+    /**
+     * 压缩文件解压
+     * @param string $file 被解压的文件
+     * @param $dirname 解压目录
+     * @return bool 返回结果true或false
+     * @author 牧羊人
+     * @date 2019/6/27
+     */
+    function unzip_file($file, $dirname)
+    {
+        if (!file_exists($file)) {
+            return false;
+        }
+        // zip实例化对象
+        $zipArc = new ZipArchive();
+        // 打开文件
+        if (!$zipArc->open($file)) {
+            return false;
+        }
+        // 解压文件
+        if (!$zipArc->extractTo($dirname)) {
+            // 关闭
+            $zipArc->close();
+            return false;
+        }
+        return $zipArc->close();
     }
 }

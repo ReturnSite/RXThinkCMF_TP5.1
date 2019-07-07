@@ -58,7 +58,7 @@ class AdminOrg extends BaseModel
             // 获取城市
             if ($info['district_id']) {
                 $city_model = new City();
-                $city_name = $city_model->get_city_name($info['district_id'], ">>", true);
+                $city_name = $city_model->getCityName($info['district_id'], ">>", true);
                 $info['city_name'] = $city_name;
             }
 

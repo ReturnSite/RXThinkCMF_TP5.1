@@ -11,6 +11,8 @@
 
 namespace app\admin\service;
 
+use app\admin\behavior\AdminLog;
+use app\admin\model\ActionLog;
 use think\captcha\Captcha;
 use app\admin\model\Admin;
 use app\admin\model\AdminRmr;
@@ -187,28 +189,12 @@ class AdminService extends BaseService
     public function resetPwd()
     {
         $data = request()->param();
-        $admin_id = (int)$data['id'];
-        $password = trim($data['password']);
-        $password2 = trim($data['password2']);
-        if (!$admin_id) {
-            return message('人员ID不能为空', false);
-        }
-        if (!$password) {
-            return message('请输入登录密码', false);
-        }
-        if (!$password2) {
-            return message('请输入确认密码', false);
-        }
-        if ($password != $password2) {
-            return message('两次输入的密码不一致', false);
-        }
-        $info = $this->model->getInfo($admin_id);
+        $adminId = (int)$data['id'];
+        $info = $this->model->getInfo($adminId);
         if (!$info) {
             return message('当前用户信息不存在', false);
         }
-        $password_str = get_password($password . $info['username']);
-        $item = [];
-        $data['password'] = $password_str;
+        $data['password'] = get_password("123456" . $info['username']);
         return parent::edit($data);
     }
 
@@ -264,9 +250,12 @@ class AdminService extends BaseService
             return message("您的帐号已被禁言，请联系管理员", false);
         }
 
+        // 设置日志标题
+        ActionLog::setTitle("系统登录");
+
         // 本地SESSION存储登录信息
         session('admin_id', $info['id']);
-        
+
         return message('登录成功', true);
     }
 }

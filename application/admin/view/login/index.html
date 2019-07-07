@@ -1,71 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-	<title>RXThink后台管理系统</title>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="Shortcut Icon" href="__ADMIN__/images/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="__ADMIN__/layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="__ADMIN__/css/login.css">
-	<link rel="stylesheet" type="text/css" href="__ADMIN__/css/ladda.min.css">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RXThinkCMF后台管理系统</title>
+    <meta name="keywords" content="RXThinkCMF后台管理系统">
+    <meta name="description" content="RXThinkCMF后台管理系统">
+    <link rel="Shortcut Icon" href="__ADMIN__/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/material-design-iconic-font.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/util.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/login.css">
+    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/ladda.min.css">
 </head>
-<body style="height: 916px;">
-	<div class="login-wall">
-		<div class="login-left">
-			<p style="width:550px;text-align:left;">RXThink后台管理系统，集RBAC权限管理、角色管理、广告管理、站点管理、栏目管理、文章分类等多个模块的集成。</p>
-			<div class="login-left-bg"></div>
-		</div>
-		<div class="login-right">
-			<form class="layui-form" action="">
-				<h1>RXThink_TP5.1_V2.0系统登录</h1>
-				<div class="cell">
-					<span class="icon-user"></span>
-					<input type="text" name="username" id="username" lay-verify="required" lay-vertype="tips" placeholder="登录账号" autocomplete="off">
-				</div>
-				<div class="cell">
-					<span class="icon-pwd"></span>
-					<input type="password" name="password" id="password" lay-verify="required" lay-vertype="tips" placeholder="登录密码" autocomplete="off">
-				</div>
-				<div class="cell">
-					<span class="icon-pwd"></span>
-					<input type="text" name="verify_code" id="verify_code" lay-verify="required" lay-vertype="tips" placeholder="验证码" autocomplete="off" style="width:100px;">
-					<img onclick="this.src='{:captcha_src()}?'+Math.random()" src="{:captcha_src()}" alt="captcha" style="float:right; margin:0px 5px 10px 10px; width:110px;height:40px;" />
-				</div>
-				<div class="login-tip"><span>账号密码错误！</span></div>
-				<div class="wjpwd"><a href="#" target="_blank">忘记密码？</a></div>
-				<div class="login-btn">
-					<button class="layui-btn ladda-button" data-color="mint" data-style="expand-right" lay-submit="" lay-filter="submit">登录</button>
-					<button type="reset" class="layui-btn layui-btn-danger">重置</button>
-				</div>
-			</form>
-		</div>
-		<div class="layui-clear"></div>
-	</div>
-	<div class="login-footer">
-		<p>苏ICP备19005170号 Copyright @ 2017-2019 <a href="http://www.rxthink.cn/" target="_blank">Powered by 南京RXThink工作室</a></p>
-	</div>
-	
-	<!-- 加载js文件-->
-	<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
-	<script type="text/javascript" src="__ADMIN__/js/spin.min.js"></script>
-	<script type="text/javascript" src="__ADMIN__/js/ladda.min.js"></script>
-	
-	<script>
-	    if(window != top){
-	        sessionStorage.clear();
-	        top.location.href = location.href;
-	    }
-	    /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问！！！');
-	    layui.cache.page = 'think_login';
-	    layui.config({
-	       version:"2.0.7",
-	       base:'__ADMIN__'  //实际使用时，建议改成绝对路径
-	    }).extend({
-	        larry:'/js/base'
-	    }).use('larry');
-	</script>
-	
+<body>
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('__ADMIN__/images/login/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form class="layui-form login100-form validate-form">
+                <span class="login100-form-title p-b-49">RXThinkCMF框架</span>
+                <div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名"><span class="label-input100">用户名</span>
+                    <input class="input100" type="text" name="username" id="username" lay-verify="required" lay-vertype="tips" placeholder="请输入用户名" autocomplete="off">
+                    <span class="focus-input100" data-symbol=""></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="请输入密码"><span class="label-input100">密码</span>
+                    <input class="input100" type="password" name="password" id="password" lay-verify="required" lay-vertype="tips" placeholder="请输入密码" autocomplete="off">
+                    <span class="focus-input100" data-symbol=""></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="请输入验证码"><span class="label-input100">验证码</span>
+                    <input class="input100" type="text" name="verify_code" id="verify_code" lay-verify="required" lay-vertype="tips" placeholder="请输入验证码" autocomplete="off" style="width:200px;">
+                    <span class="focus-input100" data-symbol="">
+                        <img onclick="this.src='{:captcha_src()}?'+Math.random()" src="{:captcha_src()}" alt="captcha" style="float:right; margin:20px 0px 10px 10px; width:130px;height:45px;pointer-events: auto;" />
+                    </span>
+                </div>
+                <div class="text-right p-t-8 p-b-31"></div>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" lay-submit="" lay-filter="submit">登 录</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 加载js文件-->
+<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/spin.min.js"></script>
+<script type="text/javascript" src="__ADMIN__/js/ladda.min.js"></script>
+
+<script>
+    if (window != top) {
+        sessionStorage.clear();
+        top.location.href = location.href;
+    }
+    /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问！！！');
+    layui.cache.page = 'think_login';
+    layui.config({
+        version: "2.0.7",
+        base: '__ADMIN__'  //实际使用时，建议改成绝对路径
+    }).extend({
+        larry: '/js/base'
+    }).use('larry');
+</script>
+
 </body>
 </html>

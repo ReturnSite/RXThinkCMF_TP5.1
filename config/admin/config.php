@@ -78,7 +78,7 @@ return [
         8 => [
             'name' => 'batchDrop',
             'title' => '批量删除',
-            'checked' => false,
+            'checked' => true,
         ],
         9 => [
             'name' => 'batchCache',

@@ -25,7 +25,7 @@
 	<div class="layui-form-item">
 		<label class="layui-form-label">文章内容：</label>
 		<div class="layui-input-block">
-			<textarea name="content" id="content" lay-verify="required" class="layui-textarea">{$info.content}</textarea>
+			<textarea name="content" id="content" lay-verify="required" class="layui-textarea">{$info.content|default=''}</textarea>
 			{:widget('editor/getKindeditor',array('default','content','100%',500))}
 		</div>
 	</div>
@@ -35,5 +35,5 @@
 			{:widget('common/singleSelect',array('status|1|文章状态|name|id',config('config.article_status'),isset($info['status']) ? $info['status'] : 1))}
 		</div>
 	</div>
-	{:widget('common/submitBtn',array('submit|立即提交,reset|重置,close|立即关闭', 1))}
+	{:widget('common/submitBtn',array('submit|立即保存,close|关闭', 1))}
 </form>

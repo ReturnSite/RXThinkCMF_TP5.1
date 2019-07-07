@@ -59,6 +59,31 @@ class Config extends BaseModel
                 $groupInfo = $config_group_model->getInfo($info['group_id']);
                 $info['group_name'] = $groupInfo['name'];
             }
+
+            // 类型解析
+            switch ($info['type']) {
+                case "image":
+                    // 单图
+                    $info['image_url'] = get_image_url($info['value']);
+                    break;
+                case "images":
+                    $imgArr = unserialize($info['value']);
+                    if ($imgArr) {
+                        $imgList = [];
+                        foreach ($imgArr as $val) {
+                            $imgList[] = get_image_url($val);
+                        }
+                        $info['imgs_list'] = $imgList;
+                    }
+                    break;
+                case "ueditor":
+                    if ($info['value']) {
+                        while (strstr($info['value'], "[IMG_URL]")) {
+                            $info['value'] = str_replace("[IMG_URL]", IMG_URL, $info['value']);
+                        }
+                    }
+                    break;
+            }
         }
         return $info;
     }

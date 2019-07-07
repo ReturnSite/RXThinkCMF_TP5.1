@@ -123,28 +123,20 @@ class City extends BaseModel
         return implode($delimiter, $names);
     }
 
-    /**
-     * 获取城市缓存
-     * @return mixed
-     * @author 牧羊人
-     * @date 2019/5/7
-     */
-    public function getAll()
-    {
-        return $this->getCacheFunc('all', null);
-    }
-
-    /**
-     * 设置全表缓存
-     * @return array
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     * @author 牧羊人
-     * @date 2019/5/7
-     */
-    public function cacheAll()
-    {
-        return $this->getChilds(1, true);
-    }
+//    /**
+//     * 设置全表缓存
+//     * @param array $map 查询条件
+//     * @param bool $is_pri 是否只缓存主键true或false
+//     * @param bool $pri_key 是否以主键作为键值true或false
+//     * @return array 返回结果
+//     * @throws \think\db\exception\DataNotFoundException
+//     * @throws \think\db\exception\ModelNotFoundException
+//     * @throws \think\exception\DbException
+//     * @author zongjl
+//     * @date 2019/5/7
+//     */
+//    public function cacheAll($map = [], $is_pri = false, $pri_key = false)
+//    {
+//        return $this->getChilds(1, true);
+//    }
 }

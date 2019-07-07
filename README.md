@@ -8,6 +8,9 @@
 	<a href="http://www.rxthink.cn/">
 	    <img src="https://img.shields.io/badge/RXThinkCMF_TP5.1-v2.0.0-brightgreen.svg" />
 	</a>
+	<a href="https://www.layui.com/">
+        <img src="https://img.shields.io/badge/layui-2.4.5-blue.svg" alt="layui">
+    </a>
 	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/stargazers">
 	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/star.svg?theme=dark" />
 	</a>
@@ -68,6 +71,16 @@ RXThinkCMF_TP5.1 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管�
 * 官网网址：[http://www.rxthink.cn/](http://www.rxthink.cn/)  
 * 文档网址：[http://docs.v5.1.rxthink.cn/](http://docs.v5.1.rxthink.cn/)  
 * 开源协议：Apache 2.0
+
+### jwt token鉴权机制
+jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthController获取一个请求令牌(jwt token)，持有jwt token的用户才可以访问服务器的其他资源，如果没有此令牌，则访问接口会直接忽略，请求获取jwt token时，需要携带credenceName和credenceCode(可以是账号密码，可以是手机号验证码等等)，校验credenceName和credenceCode成功后，会颁发给客户端一个jwt token还有一个随机字符串，用于传输过程中对数据进行签名用，签名机制请见下面介绍.基于token的鉴权机制类似于http协议也是无状态的，它不需要在服务端去保留用户的认证信息或者会话信息.这就意味着基于token认证机制的应用不需要去考虑用户在哪一台服务器登录了，这就为应用的扩展提供了便利.
+
+### RXThinkCMF版本说明
+
+| 版本名称 | 说明 | 地址 |
+| :---: | :---: | :---: |
+| RXThinkCMF旗舰版 v2.0 | 最新开源版本，master分支 | https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_PRO |
+| RXThinkCMF专业版 v2.0 | 最新开源版本，master分支 | https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1 |
 
 
 ## 后台演示（用户名:admin 密码:admin123）

@@ -190,8 +190,8 @@ class AdminBase extends BaseController
         }
         // 默认参数
         $data = func_get_args();
-        if ($data) {
-            foreach ($data as $key => $val) {
+        if (isset($data[0])) {
+            foreach ($data[0] as $key => $val) {
                 $this->assign($key, $val);
             }
         }
@@ -216,8 +216,8 @@ class AdminBase extends BaseController
             $info = $this->model->getInfo($id);
         } else {
             $data = func_get_args();
-            if ($data) {
-                foreach ($data as $key => $val) {
+            if (isset($data[0])) {
+                foreach ($data[0] as $key => $val) {
                     $info[$key] = $val;
                 }
             }
@@ -306,7 +306,7 @@ class AdminBase extends BaseController
             $info = $this->model->getInfo($id);
         } else {
             $data = func_get_args();
-            if ($data) {
+            if (isset($data[0])) {
                 foreach ($data[0] as $key => $val) {
                     $info[$key] = $val;
                 }

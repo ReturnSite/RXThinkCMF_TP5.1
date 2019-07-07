@@ -57,7 +57,9 @@ layui.use(['func', 'laydate'], function () {
             } else if (layEvent === 'reset') {
                 //初始化密码
                 var url = cUrl + "/resetPwd/?id=" + data.id;
-                func.showWin("重置密码", url, 450, 250);
+                func.ajaxPost(url, {'id': data.id}, function (data, success) {
+                    console.log("重置密码：" + (success ? "成功" : "失败"));
+                })
             }
         });
 

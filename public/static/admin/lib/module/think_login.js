@@ -15,8 +15,8 @@ layui.define(['form'], function (exports) {
         // 开始
         l.start();
 
-//		// 设置按钮文字“登录中...”及禁止点击状态
-//		$(data.elem).attr('disabled', true).text('登录');
+        // // 设置按钮文字“登录中...”及禁止点击状态
+        // $(data.elem).attr('disabled', true).text('登录');
 
         // 网络请求
         $.post("/login/login", data.field, function (result) {
@@ -49,11 +49,11 @@ layui.define(['form'], function (exports) {
 
                     // 结束
                     l.stop();
-//					
-//					// 设置按钮状态为“登陆”
-//					var login_text = $(data.elem).text().replace('中', '');
-//					// 设置按钮为可点击状态
-//					$(data.elem).text(login_text).removeAttr('disabled');
+                    //
+                    // // 设置按钮状态为“登陆”
+                    // var login_text = $(data.elem).text().replace('中', '');
+                    // // 设置按钮为可点击状态
+                    // $(data.elem).text(login_text).removeAttr('disabled');
                 }, 3000);
             }
         }, 'json');

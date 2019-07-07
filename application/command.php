@@ -9,4 +9,7 @@
 // | Author: 牧羊人 <rxthink.cn@gmail.com>
 // +----------------------------------------------------------------------
 
-return [];
+return [
+    // 指令名 => 脚本完成类名
+    'hello' => 'app\common\command\Hello',
+];

@@ -54,7 +54,6 @@ class AdminRole extends BaseModel
             if ($info['auth']) {
                 $info['auth_list'] = unserialize($info['auth']);
             }
-
         }
         return $info;
     }

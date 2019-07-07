@@ -59,6 +59,7 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         array (
             'PhpOffice\\PhpWord\\' => 18,
             'PhpOffice\\Common\\' => 17,
+            'PhpAmqpLib\\' => 11,
             'Phinx\\' => 6,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
@@ -180,6 +181,10 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         'PhpOffice\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/common/src/Common',
+        ),
+        'PhpAmqpLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib',
         ),
         'Phinx\\' => 
         array (

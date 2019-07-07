@@ -73,6 +73,7 @@ class AdminDep extends BaseModel
      */
     public function getChilds($parent_id = 0, $flag = false)
     {
+        $list = [];
         $map = [
             'parent_id' => $parent_id,
             'mark' => 1,

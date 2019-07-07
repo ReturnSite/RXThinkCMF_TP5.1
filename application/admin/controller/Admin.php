@@ -81,8 +81,7 @@ class Admin extends AdminBase
         // 获取人员角色
         $admin_rmr_model = new AdminRmr();
         $role_list = $admin_rmr_model->getColumn([
-            'admin_id' => $admin_id,
-            'mark' => 1,
+            ['admin_id', '=', $admin_id],
         ], 'role_id');
         $this->assign('checked_list', $role_list);
 
@@ -101,9 +100,5 @@ class Admin extends AdminBase
             $result = $this->service->resetPwd();
             return $result;
         }
-        // 记录ID
-        $id = request()->param('id', 0);
-        $this->assign('id', $id);
-        return $this->render();
     }
 }

@@ -3,99 +3,37 @@
  * @auth 牧羊人
  * @date 2019/5/7
  */
-layui.use(['func', 'common'], function () {
-    var func = layui.func,
-        common = layui.common,
-        $ = layui.$;
+layui.use(['func'], function () {
+
+    //【声明变量】
+    var func = layui.func
+        , $ = layui.$;
 
     if (A == 'index') {
-        //【TREE列数组】
-        var layout =
-            [
-                {
-                    name: 'ID',
-                    headerClass: 'value_col',
-                    colClass: 'value_col',
-                    style: 'width: 5%',
-                    render: function (row) {
-                        return row.id;
-                    }
-                },
-                {
-                    name: '城市名称',
-                    treeNodes: true,
-                    headerClass: 'value_col2',
-                    colClass: 'value_col2',
-                    style: '20%;min-width:200px;',
-                    render: function (row) {
-                        return row.name;
-                    }
-                },
-                {
-                    name: '城市编码(区号)',
-                    headerClass: 'value_col',
-                    colClass: 'value_col',
-                    style: 'width: 15%;min-width:100px;',
-                    render: function (row) {
-                        return row.citycode;
-                    }
-                },
-                {
-                    name: '级别',
-                    headerClass: 'value_col',
-                    colClass: 'value_col',
-                    style: 'width: 10%;min-width:60px;',
-                    render: function (row) {
-                        return '<span class="layui-btn layui-btn-xs layui-badge layui-bg-cyan">' + row.level + '</span>';
-                    }
-                },
-                {
-                    name: '是否开放',
-                    headerClass: 'value_col',
-                    colClass: 'value_col',
-                    style: 'width: 10%;min-width:80px;',
-                    render: function (row) {
-                        return row.is_public == 1 ? "是" : "否";
-                    }
-                },
-                {
-                    name: '排序',
-                    headerClass: 'value_col',
-                    colClass: 'value_col',
-                    style: 'width: 10%;min-width:60px;',
-                    render: function (row) {
-                        return row.sort;
-                    }
-                },
-                {
-                    name: '操作',
-                    headerClass: 'value_col',
-                    colClass: 'value_col2',
-                    style: 'width: 15%;min-width:180px;',
-                    render: function (row) {
-
-                        var strXml = $("#toolBar").html();
-                        var regExp = /<a.*?>([\s\S]*?)<\/a>/g;
-                        var itemArr = strXml.match(regExp);
-                        if (itemArr) {
-                            var itemStr = "";
-                            for (var i = 0; i < itemArr.length; i++) {
-                                if (i == 2 && row.level > 2) continue;
-                                itemStr += itemArr[i].replace('<a', "<a data-id=" + row.id);
-                            }
-                            return itemStr;
-                        }
-                        return "";
-
-                    }
+        //【TABLE列数组】
+        var cols = [
+            {type: 'checkbox'}
+            , {field: 'id', width: 80, title: 'ID', align: 'center'}
+            , {field: 'name', width: 300, title: '城市名称', align: 'left'}
+            , {field: 'citycode', width: 200, title: '城市编码(区号)', align: 'center'}
+            , {
+                field: 'level', width: 100, title: '级别', align: 'center', templet: function (d) {
+                    return '<span class="layui-btn layui-btn-xs layui-badge layui-bg-cyan">' + d.level + '</span>';
                 }
-            ];
+            }
+            , {
+                field: 'is_public', width: 100, title: '是否开放', align: 'center', templet: function (d) {
+                    return d.is_public == 1 ? "是" : "否";
+                }
+            }
+            , {field: 'sort', width: 100, title: '排序', align: 'center'}
+            , {fixed: 'right', width: 200, title: '功能操作', align: 'left', toolbar: '#toolBar'}
+        ];
 
         //【TREE渲染】
-        func.treeIns(layout, "treeList");
+        func.treetable(cols, "tableList", false, 1);
 
         //【设置弹框】
         func.setWin("城市", 500, 400);
     }
 });
-

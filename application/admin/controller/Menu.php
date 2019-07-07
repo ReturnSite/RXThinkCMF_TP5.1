@@ -62,7 +62,7 @@ class Menu extends AdminBase
                         $k = (int)$v['id'];
                         $v['name'] = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--" . $v['name'];
                         $list[$k] = $v;
-                        $clist = $v['children'];
+                        $clist = isset($v['children']) ? $v['children'] : [];
                         if ($clist) {
                             foreach ($clist as &$vt) {
                                 $kt = (int)$vt['id'];

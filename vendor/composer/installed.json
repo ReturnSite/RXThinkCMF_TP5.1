@@ -527,6 +527,79 @@
         ]
     },
     {
+        "name": "php-amqplib/php-amqplib",
+        "version": "v2.7.3",
+        "version_normalized": "2.7.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-amqplib/php-amqplib.git",
+            "reference": "a8ba54bd35b973fc6861e4c2e105f71e9e95f43f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/a8ba54bd35b973fc6861e4c2e105f71e9e95f43f",
+            "reference": "a8ba54bd35b973fc6861e4c2e105f71e9e95f43f",
+            "shasum": ""
+        },
+        "require": {
+            "ext-bcmath": "*",
+            "ext-mbstring": "*",
+            "php": ">=5.3.0"
+        },
+        "replace": {
+            "videlalvaro/php-amqplib": "self.version"
+        },
+        "require-dev": {
+            "phpdocumentor/phpdocumentor": "^2.9",
+            "phpunit/phpunit": "^4.8",
+            "scrutinizer/ocular": "^1.1",
+            "squizlabs/php_codesniffer": "^2.5"
+        },
+        "suggest": {
+            "ext-sockets": "Use AMQPSocketConnection"
+        },
+        "time": "2018-04-30T03:54:54+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.7-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PhpAmqpLib\\": "PhpAmqpLib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Alvaro Videla",
+                "role": "Original Maintainer"
+            },
+            {
+                "name": "John Kelly",
+                "email": "johnmkelly86@gmail.com",
+                "role": "Maintainer"
+            },
+            {
+                "name": "Raúl Araya",
+                "email": "nubeiro@gmail.com",
+                "role": "Maintainer"
+            }
+        ],
+        "description": "Formerly videlalvaro/php-amqplib.  This library is a pure PHP implementation of the AMQP protocol. It's been tested against RabbitMQ.",
+        "homepage": "https://github.com/php-amqplib/php-amqplib/",
+        "keywords": [
+            "message",
+            "queue",
+            "rabbitmq"
+        ]
+    },
+    {
         "name": "phpmailer/phpmailer",
         "version": "v6.0.7",
         "version_normalized": "6.0.7.0",
@@ -823,27 +896,27 @@
     },
     {
         "name": "qiniu/php-sdk",
-        "version": "v7.2.7",
-        "version_normalized": "7.2.7.0",
+        "version": "v7.2.8",
+        "version_normalized": "7.2.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/qiniu/php-sdk.git",
-            "reference": "88d11a5857ebc6871204e9be6ceec54bf5f381e6"
+            "reference": "464f3eb3b0f51586d274733aee67f372fc6276ef"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/88d11a5857ebc6871204e9be6ceec54bf5f381e6",
-            "reference": "88d11a5857ebc6871204e9be6ceec54bf5f381e6",
+            "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/464f3eb3b0f51586d274733aee67f372fc6276ef",
+            "reference": "464f3eb3b0f51586d274733aee67f372fc6276ef",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
         "require-dev": {
-            "phpunit/phpunit": "~4.0",
+            "phpunit/phpunit": "~8.0",
             "squizlabs/php_codesniffer": "~2.3"
         },
-        "time": "2018-11-06T13:34:32+00:00",
+        "time": "2019-06-21T06:22:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -876,8 +949,8 @@
     },
     {
         "name": "symfony/inflector",
-        "version": "v4.3.1",
-        "version_normalized": "4.3.1.0",
+        "version": "v4.3.2",
+        "version_normalized": "4.3.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/inflector.git",
@@ -936,23 +1009,23 @@
     },
     {
         "name": "symfony/options-resolver",
-        "version": "v4.3.1",
-        "version_normalized": "4.3.1.0",
+        "version": "v4.3.2",
+        "version_normalized": "4.3.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/options-resolver.git",
-            "reference": "914e0edcb7cd0c9f494bc023b1d47534f4542332"
+            "reference": "40762ead607c8f792ee4516881369ffa553fee6f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/options-resolver/zipball/914e0edcb7cd0c9f494bc023b1d47534f4542332",
-            "reference": "914e0edcb7cd0c9f494bc023b1d47534f4542332",
+            "url": "https://api.github.com/repos/symfony/options-resolver/zipball/40762ead607c8f792ee4516881369ffa553fee6f",
+            "reference": "40762ead607c8f792ee4516881369ffa553fee6f",
             "shasum": ""
         },
         "require": {
             "php": "^7.1.3"
         },
-        "time": "2019-05-10T05:38:46+00:00",
+        "time": "2019-06-13T11:01:17+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1038,7 +1111,7 @@
             },
             {
                 "name": "Gert de Pagter",
-                "email": "backendtea@gmail.com"
+                "email": "BackEndTea@gmail.com"
             }
         ],
         "description": "Symfony polyfill for ctype functions",
@@ -1052,8 +1125,8 @@
     },
     {
         "name": "symfony/property-access",
-        "version": "v4.3.1",
-        "version_normalized": "4.3.1.0",
+        "version": "v4.3.2",
+        "version_normalized": "4.3.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/property-access.git",
@@ -1553,23 +1626,23 @@
     },
     {
         "name": "workerman/gateway-worker",
-        "version": "v3.0.12",
-        "version_normalized": "3.0.12.0",
+        "version": "v3.0.13",
+        "version_normalized": "3.0.13.0",
         "source": {
             "type": "git",
             "url": "https://github.com/walkor/GatewayWorker.git",
-            "reference": "c206ec41e21f092055d1ddd3ee296895fc004cb5"
+            "reference": "38b44c95f21cd340b5a9cff3987ddb2abb9a2a38"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/walkor/GatewayWorker/zipball/c206ec41e21f092055d1ddd3ee296895fc004cb5",
-            "reference": "c206ec41e21f092055d1ddd3ee296895fc004cb5",
+            "url": "https://api.github.com/repos/walkor/GatewayWorker/zipball/38b44c95f21cd340b5a9cff3987ddb2abb9a2a38",
+            "reference": "38b44c95f21cd340b5a9cff3987ddb2abb9a2a38",
             "shasum": ""
         },
         "require": {
             "workerman/workerman": ">=3.1.8"
         },
-        "time": "2018-08-21T06:17:30+00:00",
+        "time": "2019-07-02T11:55:24+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1589,17 +1662,17 @@
     },
     {
         "name": "workerman/workerman",
-        "version": "v3.5.19",
-        "version_normalized": "3.5.19.0",
+        "version": "v3.5.20",
+        "version_normalized": "3.5.20.0",
         "source": {
             "type": "git",
             "url": "https://github.com/walkor/Workerman.git",
-            "reference": "4e5c24073b431fd950287efbfb5cc9b4c0fc7367"
+            "reference": "4d590130310a8d7632f807120c3ca1c0f55ed0d7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/walkor/Workerman/zipball/4e5c24073b431fd950287efbfb5cc9b4c0fc7367",
-            "reference": "4e5c24073b431fd950287efbfb5cc9b4c0fc7367",
+            "url": "https://api.github.com/repos/walkor/Workerman/zipball/4d590130310a8d7632f807120c3ca1c0f55ed0d7",
+            "reference": "4d590130310a8d7632f807120c3ca1c0f55ed0d7",
             "shasum": ""
         },
         "require": {
@@ -1608,7 +1681,7 @@
         "suggest": {
             "ext-event": "For better performance. "
         },
-        "time": "2019-04-05T10:35:31+00:00",
+        "time": "2019-07-02T10:23:18+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

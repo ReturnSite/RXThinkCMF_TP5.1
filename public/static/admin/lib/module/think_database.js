@@ -18,7 +18,7 @@ layui.use(['func'], function () {
             , {field: 'collation', width: 200, title: '编码', align: 'center'}
             , {field: 'rows', width: 100, title: '记录数', align: 'center'}
             , {field: 'data_length', width: 100, title: '大小', align: 'center'}
-            , {field: 'comment', width: 350, title: '备注', align: 'center'}
+            , {field: 'comment', width: 250, title: '表备注', align: 'center'}
             , {
                 field: '', width: 100, title: '状态', align: 'center', templet: function (d) {
                     return '未备份';
