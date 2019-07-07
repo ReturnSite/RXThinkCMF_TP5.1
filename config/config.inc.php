@@ -53,7 +53,11 @@ return [
     'nick_name' => 'RXThinkCMF',
     // 数据库链接
 //    'db_config'     => 'mysql://root:llwx1qaz!#@47.99.90.120:3306/rxthink.v5.1',
+<<<<<<< HEAD
     'db_config' => 'mysql://root:111111@127.0.0.1:3306/rxthink.v5.1',
+=======
+    'db_config' => 'mysql://root:@127.0.0.1:3306/rxthink.v5.1',
+>>>>>>> 98301f77354602441907577929256d6c7d1fd2b5
     // 数据表前缀
     'db_prefix' => 'think_',
     // 数据库编码
