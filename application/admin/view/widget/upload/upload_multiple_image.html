@@ -50,25 +50,25 @@
 <script type="text/javascript">
 
 layui.use(['upload'],function(){
-	
+
 	// 声明变量
 	var upload = layui.upload
 		,$ = layui.$;
-	
+
 	// 初始化图片隐藏域
 	var ids = '';
-	$('img[name="img_src_{$name}"]').each(function(){  
+	$('img[name="img_src_{$name}"]').each(function(){
 		ids += $(this).attr('src') + ","
 	});
 	ids = ids.substr(0, (ids.length - 1));
 	$("#{$name}").val(ids);
-	
+
 	/**
 	 * 普通图片上传
 	 */
 	var uploadInst = upload.render({
 	    elem: '#btnUploadImg_{$name}'
-		,url: "/upload/upload_image"
+		,url: "/upload/uploadImage"
 		,accept:'images'
 		,acceptMime:'image/*'
 		,exts: "{$uploadImgExt}"
@@ -78,7 +78,7 @@ layui.use(['upload'],function(){
 	  	,number: {$uploadImgMax} //最大上传张数
 		,before: function(obj){
 			//预读本地文件
-			
+
 		}
 		,done: function(res){
 			//上传完毕回调
@@ -91,7 +91,7 @@ layui.use(['upload'],function(){
                 });
 				return false;
 			}
-			
+
 			//如果上传失败
 			if(res.status <= 0){
 				return layer.msg('上传失败');
@@ -107,16 +107,16 @@ layui.use(['upload'],function(){
 						 	'</a>'+
 						 '</div>';
 			$(".img_upload_{$name}").before(attStr);
-			
+
 			//获取最新的图集
 			var ids = '';
-			$('img[name="img_src_{$name}"]').each(function(){  
+			$('img[name="img_src_{$name}"]').each(function(){
 				ids += $(this).attr('src') + ","
 			});
 			ids = ids.substr(0, (ids.length - 1));
 			//给隐藏域赋值
 			$("#{$name}").val(ids);
-			
+
 			return false;
 		}
 		,error: function(){
@@ -124,17 +124,17 @@ layui.use(['upload'],function(){
 			return layer.msg('数据请求异常');
 		}
 	});
-	
+
 });
 
 // 删除图片
 function remove_image_{$name}(obj) {
 	//obj.remove();
 	layui.$(obj).parent().remove();
-	
+
 	//获取最新的图集
 	var ids = '';
-	layui.$('img[name="img_src_{$name}"]').each(function(){  
+	layui.$('img[name="img_src_{$name}"]').each(function(){
 		ids += layui.$(this).attr('src') + ","
 	});
 	ids = ids.substr(0, (ids.length - 1));

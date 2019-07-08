@@ -111,7 +111,7 @@ class Config extends AdminBase
                 }
                 if ($val['type'] == 'checkbox') {
                     // 复选框
-                    $val['format_name'] = "{$val['name']}-checkbox|name|id";
+                    $val['format_name'] = "{$val['name']}__checkbox|name|id";
 
                     // 组件数据源
                     $options_list = [];
