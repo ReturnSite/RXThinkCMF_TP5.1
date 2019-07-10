@@ -103,26 +103,35 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 ![QQ群二维码](http://images.tp3.2.rxthink.cn/demo/qq.png "gh_03bc4364b4dc_344.jpg")
 
+## 效果图展示
+
+#### 1、系统登录
+ ![系统登录](http://images.tp5.1.rxthink.cn/1.png)
+ 
+#### 2、系统主页
+ ![系统主页](http://images.tp5.1.rxthink.cn/2.png)
+ 
+#### 3、func.js方法类库
+ ![JS核心类库](http://images.tp5.1.rxthink.cn/3.png)
+ 
+#### 4、common.js函数类库
+ ![JS核心类库](http://images.tp5.1.rxthink.cn/4.png)
+ 
+#### 5、列表JS案例
+ ![列表JS案例](http://images.tp5.1.rxthink.cn/5.png)
+ 
+#### 6、缓存基类封装
+ ![底层缓存基类封装](http://images.tp5.1.rxthink.cn/6.png)
+ 
+#### 7、模型基类封装
+ ![模型基类封装](http://images.tp5.1.rxthink.cn/7.png)
+ 
+#### 8、系统公共函数封装
+ ![系系统公共函数封装](http://images.tp5.1.rxthink.cn/9.png)
 
 ## 部署说明
 
-## 第一步：点击同意安装协议
-
- ![](http://images.tp3.2.rxthink.cn/demo/阅读协议.png)
-
-## 第二步：环境检测
-
-大家检测下自己的环境，如果环境提供有误，请修复对应的错误
-
- ![](http://images.tp3.2.rxthink.cn/demo/环境检测.png)
-
-## 第三步：创建数据库
-
-大家根据自己的数据库来配置，建议独立数据库。输入创始人的账号信息，记得要保存好自己的用户名密码信息哟。
-
-![](http://images.tp3.2.rxthink.cn/demo/数据配置.png)  
-
-![](http://images.tp3.2.rxthink.cn/demo/数据库安装.png)  
+[点击查看技术文档](http://docs.tp5.1.rxthink.cn)
 
 
 ## 更新说明
