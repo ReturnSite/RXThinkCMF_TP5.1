@@ -84,9 +84,9 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 
 ## 后台演示（用户名:admin 密码:admin123）
-- RXThinkCMF_TP5.1_TP5.1_V2.0.0版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
-- RXThinkCMF_TP5.1_TP5.0_V2.0.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
-- RXThinkCMF_TP5.1_TP3.2_V2.0.0版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
+- RXThinkCMF_TP5.1版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
+- RXThinkCMF_TP5.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
+- RXThinkCMF_TP3.2版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
 
 
 ## 技术支持
@@ -231,16 +231,6 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 # 2018-03-08更新
 1、【准备】整体框架结构的规划、设计、排期与实施  
 2、【优化】鉴于RXThinkCMF_TP5.1_TP3.2_V2.0框架的设计和实践，对框架整体性做重构与改进  
- 
-
-## 项目截图
-
-![](https://images.gitee.com/uploads/images/2019/0517/232335_2ab0bd93_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0517/232340_ccabf136_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0517/232337_02944d69_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0517/232337_8b51a29b_478496.png)
-![](https://images.gitee.com/uploads/images/2019/0519/182554_6477fadb_478496.png)
-
 
 ## 安全&缺陷
 如果你发现了一个安全漏洞或缺陷，请发送邮件到 1175401194@qq.com,所有的安全漏洞都将及时得到解决。
