@@ -16,7 +16,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">使用平台：</label>
 			<div class="layui-input-inline">
-				{:widget('common/simpleSelect',array('platform|1|所属平台|name|id',config('config.platform_type'),isset($info['platform']) ? $info['platform'] : 0))}
+				{:widget('common/singleSelect',array('platform|1|所属平台|name|id',config('config.platform_type'),isset($info['platform']) ? $info['platform'] : 0))}
 			</div>
 		</div>
 	</div>

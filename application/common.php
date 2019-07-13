@@ -562,21 +562,6 @@ if (!function_exists('format_money')) {
     }
 }
 
-if (!function_exists('format_money')) {
-
-    /**
-     * 金额格式转化
-     * @param int $number 数字金额
-     * @return string
-     * @author 牧羊人
-     * @date 2019/6/28
-     */
-    function format_money($number)
-    {
-        return number_format($number, 2, '.', '');
-    }
-}
-
 if (!function_exists('get_domain')) {
 
     /**
