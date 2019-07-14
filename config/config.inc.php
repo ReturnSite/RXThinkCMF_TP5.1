@@ -48,11 +48,11 @@ defined('MQ_HOST') or define('MQ_HOST', '/');
 //配置文件
 return [
     // 企业全称
-    'site_name' => 'RXThinkCMF_TP5.1',
+    'site_name' => 'RXThinkCMF_TP5.1专业版',
     // 企业简称
     'nick_name' => 'RXThinkCMF',
     // 数据库链接
-    'db_config' => 'mysql://root:@127.0.0.1:3306/rxthink.v5.1',
+    'db_config' => 'mysql://root:111111@127.0.0.1:3306/rxthink.v5.1',
     // 数据表前缀
     'db_prefix' => 'think_',
     // 数据库编码
