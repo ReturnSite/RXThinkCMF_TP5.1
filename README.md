@@ -76,8 +76,8 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 | 版本名称 | 说明 | 地址 |
 | :---: | :---: | :---: |
-| RXThinkCMF旗舰版 v2.0 | 最新开源版本，master分支 | https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_PRO |
-| RXThinkCMF专业版 v2.0 | 最新开源版本，master分支 | https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1 |
+| RXThinkCMF_TP5.1专业版 | 最新开源版本，master分支 | https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1 |
+| RXThinkCMF_TP5.1旗舰版 | 最新开源版本，master分支 | https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_PRO |
 
 
 ## 后台演示（用户名:admin 密码:admin123）
