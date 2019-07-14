@@ -17,9 +17,6 @@
 	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/members">
 	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/fork.svg?theme=dark" />
 	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1_V2.0_PRO/repository/archive/master.zip">
-	    <img src="https://img.shields.io/badge/download-1820m-red.svg" />
-	</a>
 </p>
 
 <p align="center">
@@ -29,7 +26,7 @@
 ### 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！
 ### 如果您想获悉项目实时更新信息，您可以点右上角 "Fork" 感谢您的支持！
 ### 官方网址：http://www.rxthink.cn/
-### 帮助文档：http://docs.v5.1.rxthink.cn/
+### 帮助文档：http://docs.tp5.1.rxthink.cn
 ### 本项目还在不断开发完善中,如有建议或问题请官方论坛反馈，论坛地址:http://www.rxthink.cn
 
 ## 项目介绍
@@ -65,11 +62,11 @@ RXThinkCMF_TP5.1 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管�
 
 
 ## 开发者信息
-* 系统名称：RXThinkCMF_TP5.1权限(RBAC)及内容管理框架  
+* 系统名称：RXThinkCMF_TP5.1专业版权限(RBAC)及内容管理框架  
 * 作者[牧羊人]：南京RXThink研发工作室
 * 作者QQ：1175401194  
 * 官网网址：[http://www.rxthink.cn/](http://www.rxthink.cn/)  
-* 文档网址：[http://docs.v5.1.rxthink.cn/](http://docs.v5.1.rxthink.cn/)  
+* 文档网址：[http://docs.tp5.1.rxthink.cn](http://docs.tp5.1.rxthink.cn)  
 * 开源协议：Apache 2.0
 
 ### jwt token鉴权机制
@@ -85,8 +82,6 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 ## 后台演示（用户名:admin 密码:admin123）
 - RXThinkCMF_TP5.1版本：[http://manage.tp5.1.rxthink.cn/](http://manage.tp5.1.rxthink.cn/)
-- RXThinkCMF_TP5.0版本：[http://manage.tp5.0.rxthink.cn/](http://manage.tp5.0.rxthink.cn/)
-- RXThinkCMF_TP3.2版本：[http://manage.tp3.2.rxthink.cn/](http://manage.tp3.2.rxthink.cn/)
 
 
 ## 技术支持
