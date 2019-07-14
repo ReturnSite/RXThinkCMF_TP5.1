@@ -11,12 +11,12 @@
 	<a href="https://www.layui.com/">
         <img src="https://img.shields.io/badge/layui-2.4.5-blue.svg" alt="layui">
     </a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/stargazers">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/star.svg?theme=dark" />
-	</a>
-	<a href="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/members">
-	    <img src="https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/fork.svg?theme=dark" />
-	</a>
+	<a href='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/stargazers'>
+        <img src='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/star.svg?theme=dark' alt='star'></img>
+    </a>
+    <a href='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/members'>
+        <img src='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/badge/fork.svg?theme=dark' alt='fork'></img>
+    </a>
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
 </p>
 
 ### 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！
-### 如果您想获悉项目实时更新信息，您可以点右上角 "Fork" 感谢您的支持！
+### 如果您想获悉项目实时更新信息，您可以点右上角 <a href='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1'><img src='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/widgets/widget_3.svg' alt='Fork me on Gitee'></img></a> 感谢您的支持！
 ### 官方网址：http://www.rxthink.cn/
 ### 帮助文档：http://docs.tp5.1.rxthink.cn
 ### 本项目还在不断开发完善中,如有建议或问题请官方论坛反馈，论坛地址:http://www.rxthink.cn
