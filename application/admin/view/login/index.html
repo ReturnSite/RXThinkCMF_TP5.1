@@ -4,9 +4,9 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RXThinkCMF后台管理系统</title>
-    <meta name="keywords" content="RXThinkCMF后台管理系统">
-    <meta name="description" content="RXThinkCMF后台管理系统">
+    <title>{$site_name}</title>
+    <meta name="keywords" content="{$site_name}">
+    <meta name="description" content="{$site_name}">
     <link rel="Shortcut Icon" href="__ADMIN__/images/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="__ADMIN__/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="__ADMIN__/css/material-design-iconic-font.css">
@@ -19,17 +19,17 @@
     <div class="container-login100" style="background-image: url('__ADMIN__/images/login/bg-01.jpg');">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
             <form class="layui-form login100-form validate-form">
-                <span class="login100-form-title p-b-49">RXThinkCMF框架</span>
+                <span class="login100-form-title p-b-49">{$site_name}</span>
                 <div class="wrap-input100 validate-input m-b-23" data-validate="请输入用户名"><span class="label-input100">用户名</span>
-                    <input class="input100" type="text" name="username" id="username" lay-verify="required" lay-vertype="tips" placeholder="请输入用户名" autocomplete="off">
+                    <input class="input100" type="text" name="username" id="username" value="admin" lay-verify="required" lay-vertype="tips" placeholder="请输入用户名" autocomplete="off">
                     <span class="focus-input100" data-symbol=""></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="请输入密码"><span class="label-input100">密码</span>
-                    <input class="input100" type="password" name="password" id="password" lay-verify="required" lay-vertype="tips" placeholder="请输入密码" autocomplete="off">
+                    <input class="input100" type="password" name="password" id="password" value="admin123" lay-verify="required" lay-vertype="tips" placeholder="请输入密码" autocomplete="off">
                     <span class="focus-input100" data-symbol=""></span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="请输入验证码"><span class="label-input100">验证码</span>
-                    <input class="input100" type="text" name="verify_code" id="verify_code" lay-verify="required" lay-vertype="tips" placeholder="请输入验证码" autocomplete="off" style="width:200px;">
+                    <input class="input100" type="text" name="verify_code" id="verify_code" value="520" lay-verify="required" lay-vertype="tips" placeholder="请输入验证码" autocomplete="off" style="width:200px;">
                     <span class="focus-input100" data-symbol="">
                         <img onclick="this.src='{:captcha_src()}?'+Math.random()" src="{:captcha_src()}" alt="captcha" style="float:right; margin:20px 0px 10px 10px; width:130px;height:45px;pointer-events: auto;" />
                     </span>
