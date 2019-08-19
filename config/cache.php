@@ -19,12 +19,16 @@ use think\facade\Config;
 $config = Config::get('app.config');
 
 // 获取缓存配置
-$cacheConfig = $config['cache_config'];
-$cacheArr = explode('://:@', $cacheConfig);
-$cache_type = strtolower($cacheArr[0]);
-list($cache_host, $cache_port, $cache_db) = preg_split("/[:\/]/", $cacheArr[1]);
+$cacheConfig = isset($config['cache_config']) ? $config['cache_config'] : '';
+if ($cacheConfig) {
+    $cacheArr = explode('://:@', $cacheConfig);
+    $cache_type = strtolower($cacheArr[0]);
+    if ($cache_type != 'file') {
+        list($cache_host, $cache_port, $cache_db) = preg_split("/[:\/]/", $cacheArr[1]);
+    }
+}
 
-if ($cache_type === 'redis') {
+if (isset($cache_type) && $cache_type === 'redis') {
     $cache = [
         // 驱动方式
         'type' => 'redis',
@@ -43,7 +47,7 @@ if ($cache_type === 'redis') {
         // 缓存有效期 0表示永久缓存
         'expire' => 0,
     ];
-} elseif ($cache_type === 'memcache') {
+} elseif (isset($cache_type) && $cache_type === 'memcache') {
     $cache = [
         // 驱动方式
         'type' => 'Memcache',

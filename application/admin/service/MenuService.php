@@ -168,13 +168,19 @@ class MenuService extends BaseService
             if (is_array($item) && count($item) > 0) {
                 $result = array_reverse($item);
 
-                $item1 = $result[0];
-                $item2 = $result[1];
-                $item3 = $result[2];
+                $item1 = isset($result[0]) ? $result[0] : [];
+                $item2 = isset($result[1]) ? $result[1] : [];
+                $item3 = isset($result[2]) ? $result[2] : [];
 
-                $list1[$item1['id']] = $item1;
-                $list2[$item1['id']][$item2['id']] = $item2;
-                $list3[$item2['id']][$item3['id']] = $item3;
+                if (getter($item1, 'id')) {
+                    $list1[$item1['id']] = $item1;
+                    if (getter($item2, 'id')) {
+                        $list2[$item1['id']][$item2['id']] = $item2;
+                    }
+                    if (getter($item3, 'id')) {
+                        $list3[$item2['id']][$item3['id']] = $item3;
+                    }
+                }
             }
         }
         unset($key);
