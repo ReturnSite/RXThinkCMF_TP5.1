@@ -23,7 +23,7 @@ class Accredit
 
     // 请求地址
     const RXTHINK_ACCREDIT_URL = 'http://www.rxthink.com/client_product_accredit';
-    
+
     /**
      * 授权执行
      * @param array $data 参数
@@ -41,8 +41,10 @@ class Accredit
         ], $data);
 
         $data['agent'] = $_SERVER['HTTP_USER_AGENT'];
-        $result = curl_post(self::rxthink_ACCREDIT_URL, $data);
-        $result = json_decode($result, true);
+        //$result = curl_post(self::rxthink_ACCREDIT_URL, $data);
+        $result = [];
+        $result['data'] = get_random_str(32);
+//        $result = json_decode($result, true);
         $install_lock = $result['data'];
 
         // 生成安装文件锁

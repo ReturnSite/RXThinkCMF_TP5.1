@@ -175,7 +175,7 @@ function write_config($config)
         //file_put_contents(APP_PATH . 'install.lock', 'ok');
 
         //写入应用配置文件
-        if (file_put_contents(APP_PATH . 'database.php', $conf)) {
+        if (file_put_contents(ROOT_PATH . 'config/database.php', $conf)) {
             show_msg('配置文件写入成功');
         } else {
             show_msg('配置文件写入失败！', 'error');
@@ -204,7 +204,7 @@ function create_tables($db, $prefix = '')
         $sql = explode(";\n", $sql);
 
         //替换表前缀
-        $orginal = 'eacoo_';
+        $orginal = 'think_';
 
         //开始安装
         show_msg('开始安装数据库...');
@@ -243,13 +243,12 @@ function register_administrator($db, $prefix, $admin)
 {
     show_msg('开始注册创始人帐号...');
 
-    $password = get_password($admin['password']);
+    $password = get_password($admin['password'] . $admin['username']);
 
-    $sql = "INSERT INTO `[PREFIX]admin` (`uid`,`username`,`password`,`nickname`,`email`, `avatar`,`bind_uid`,`sex`,`create_time`,`update_time`,`last_login_ip`,`last_login_time`,`status`) VALUES " .
-        "('1', '[NAME]', '[PASS]', '创始人', '[EMAIL]','http://cdn.eacoo.xin/attachment/static/assets/img/default-avatar.png',1, '0', '[TIME]','[TIME]', '[IP]','[TIME]', '1');";
+    $sql = "INSERT INTO `[PREFIX]admin` (`id`,`organization_id`,`dept_id`,`realname`,`num`, `username`,`password`,`auth`,`role_ids`,`position_id`,`avatar`,`status`,`mobile`,`email`,`identity`,`entry_date`,`province_id`,`city_id`,`district_id`,`is_admin`,`note`,`sort`,`login_num`,`login_ip`,`login_time`,`create_time`,`mark`) VALUES (1, 1, 0, '超级管理员', 'D0001', '[NAME]', '[PASS]', 'a:0:{}', '1', 0, '/admin/20190826//0aab809cad0482cc559.jpg', 1, '15295504264', '[EMAIL]', '320821198902452789', 1557331200, 1387, 1388, 1391, 1,'暂无', 125, 3185, '[IP]', 1555933830, '[TIME]', 1);";
     $sql = str_replace(
         ['[PREFIX]', '[NAME]', '[PASS]', '[EMAIL]', '[TIME]', '[IP]'],
-        [$prefix, $admin['username'], $password, $admin['email'], date('Y-m-d H:i:s'), get_client_ip(1)],
+        [$prefix, $admin['username'], $password, $admin['email'], time(), get_client_ip(1)],
         $sql);
     $db->execute($sql);
     show_msg('创始人帐号注册完成！');
@@ -291,7 +290,7 @@ function update_tables($db, $prefix = '')
     $sql = explode(";\n", $sql);
 
     //替换表前缀
-    $sql = str_replace(" `eacoo_", " `{$prefix}", $sql);
+    $sql = str_replace(" `think_", " `{$prefix}", $sql);
 
     //开始安装
     show_msg('开始升级数据库...');

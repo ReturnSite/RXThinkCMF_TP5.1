@@ -1,46 +1,37 @@
 <?php
 // +----------------------------------------------------------------------
-// | RXThinkCMF框架 [ RXThinkCMF ]
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | Copyright (c) 2006~2017 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
-// | 官方网站: http://www.rxthink.cn
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
-use think\facade\Config;
-
-// 获取自定义配置文件
-$config = Config::get('app.config');
-$db_config = $config['db_config'];
-$itemArr = explode('://', $db_config);
-$db_type = $itemArr[0];
-list($db_user, $db_pwd, $db_host, $db_port, $db_name) = preg_split("/[:@\/]/", $itemArr[1]);
 
 return [
     // 数据库类型
-    'type' => $db_type,//Env::get('database.type', 'mysql'),
+    'type' => 'mysql',
     // 服务器地址
-    'hostname' => $db_host,//Env::get('database.hostname', '127.0.0.1'),
+    'hostname' => '127.0.0.1',
     // 数据库名
-    'database' => $db_name,//Env::get('database.database', 'rxthink'),
+    'database' => 'rxthink.v5.1_2',
     // 用户名
-    'username' => $db_user,//Env::get('database.username', 'root'),
+    'username' => 'root',
     // 密码
-    'password' => $db_pwd,//Env::get('database.password', ''),
+    'password' => '111111',
     // 端口
-    'hostport' => $db_port,//Env::get('database.hostport', ''),
+    'hostport' => '3306',
     // 连接dsn
     'dsn' => '',
     // 数据库连接参数
     'params' => [],
-    // 数据库编码默认采用utf8
-    'charset' => $config['db_charset'],//Env::get('database.charset', 'utf8'),
+    // 数据库编码默认采用utf8mb4
+    'charset' => 'utf8mb4',
     // 数据库表前缀
-    'prefix' => $config['db_prefix'],//Env::get('database.prefix', ''),
+    'prefix' => 'think_',
     // 数据库调试模式
-    'debug' => true,//Env::get('database.debug', true),
+    'debug' => true,
     // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
     'deploy' => 0,
     // 数据库读写是否分离 主从式有效
