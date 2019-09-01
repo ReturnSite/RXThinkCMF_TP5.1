@@ -52,13 +52,18 @@ return [
     // 企业简称
     'nick_name' => 'RXThinkCMF',
     // 数据库链接
-    'db_config' => 'mysql://root:111111@127.0.0.1:3306/rxthink.v5.1',
+    'db_config' => 'mysql://root:@127.0.0.1:3306/rxthink.v5.1',
     // 数据表前缀
     'db_prefix' => 'think_',
     // 数据库编码
     'db_charset' => 'utf8mb4',
+<<<<<<< HEAD
     // 缓存驱动类型及链接(redis)
     'cache_config' => 'redis://:@127.0.0.1:6379/1',
+=======
+//    // 缓存驱动类型及链接(redis)
+//    'cache_config' => 'redis://:@127.0.0.1:6379/1',
+>>>>>>> b8d068a7a30763856e5872fbac13ac8fd5da89bb
 //    // 缓存驱动类型及链接(memcache)
 //    'cache_config' => 'memcache://:@127.0.0.1:11211',
 //    // 缓存驱动(文件类型)

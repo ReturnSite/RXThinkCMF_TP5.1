@@ -588,6 +588,7 @@ class BaseModel extends CacheModel
     }
 
     /**
+<<<<<<< HEAD
      * 获取数据列表
      * @return array|mixed
      * @throws \think\db\exception\DataNotFoundException
@@ -730,6 +731,8 @@ class BaseModel extends CacheModel
     }
 
     /**
+=======
+>>>>>>> b8d068a7a30763856e5872fbac13ac8fd5da89bb
      * 获取全部数据表
      * @return array 返回结果
      * @throws \think\db\exception\BindParamException
@@ -1079,7 +1082,11 @@ class BaseModel extends CacheModel
         $this->setCache($transId, $info[0]);
 
         // 启动事务
+<<<<<<< HEAD
         \Db::startTrans();
+=======
+        Db::startTrans();
+>>>>>>> b8d068a7a30763856e5872fbac13ac8fd5da89bb
     }
 
     /**
@@ -1090,7 +1097,11 @@ class BaseModel extends CacheModel
     public function rollback()
     {
         // 回滚事务
+<<<<<<< HEAD
         \Db::rollback();
+=======
+        Db::rollback();
+>>>>>>> b8d068a7a30763856e5872fbac13ac8fd5da89bb
 
         // 回滚缓存处理
         foreach ($GLOBALS['trans_keys'] as $key) {
@@ -1109,7 +1120,11 @@ class BaseModel extends CacheModel
     public function commit()
     {
         // 提交事务
+<<<<<<< HEAD
         \Db::commit();
+=======
+        Db::commit();
+>>>>>>> b8d068a7a30763856e5872fbac13ac8fd5da89bb
 
         // 事务缓存同步删除
         $GLOBALS['trans'] = false;
