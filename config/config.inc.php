@@ -57,12 +57,12 @@ return [
     'db_prefix' => 'think_',
     // 数据库编码
     'db_charset' => 'utf8mb4',
-    // 缓存驱动类型及链接(redis)
-    'cache_config' => 'redis://:@127.0.0.1:6379/1',
+    // // 缓存驱动类型及链接(redis)
+    // 'cache_config' => 'redis://:@127.0.0.1:6379/1',
 //    // 缓存驱动类型及链接(memcache)
 //    'cache_config' => 'memcache://:@127.0.0.1:11211',
-//    // 缓存驱动(文件类型)
-//    'cache_config' => 'file',
+   // 缓存驱动(文件类型)
+   'cache_config' => 'file',
     // 缓存前缀
     'cache_key' => 'RX51',
     // 上传参数配置
