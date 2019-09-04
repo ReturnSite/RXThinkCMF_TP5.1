@@ -742,6 +742,30 @@ if (!function_exists('get_random_str2')) {
 
 }
 
+if (!function_exists('get_random_code')) {
+
+    /**
+     * 获取指定位数的随机码
+     * @param int $num 随机码长度
+     * @return string 返回字符串
+     * @author zongjl
+     * @date 2019/5/23
+     */
+    function get_random_code($num = 12)
+    {
+        $codeSeeds = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeSeeds .= "abcdefghijklmnopqrstuvwxyz";
+        $codeSeeds .= "0123456789_";
+        $len = strlen($codeSeeds);
+        $code = "";
+        for ($i = 0; $i < $num; $i++) {
+            $rand = rand(0, $len - 1);
+            $code .= $codeSeeds[$rand];
+        }
+        return $code;
+    }
+}
+
 if (!function_exists('get_server_ip')) {
 
     /**
@@ -1464,37 +1488,6 @@ if (!function_exists('mbsubstr')) {
             $slice = join("", array_slice($match[0], $start, $length));
         }
         return $suffix ? $slice . $suffix : $slice;
-    }
-}
-
-if (!function_exists('message')) {
-
-    /**
-     * 消息数组函数
-     * @param string $msg 提示语
-     * @param bool $success 是否成功
-     * @param array $data 结果数据
-     * @return array 返回消息对象
-     * @author 牧羊人
-     * @date 2019/4/5
-     */
-    if (defined('IS_API')) {
-        function message($msg = "系统繁忙，请稍候再试", $success = false, $data = [], $code = 0)
-        {
-            $result = array("success" => $success, "msg" => $msg, "data" => $data);
-            if ($success) {
-                $result['code'] = 10000;
-            } else {
-                $result['code'] = $code ? $code : 90000;
-            }
-            return $result;
-        }
-    } else {
-        function message($msg = "操作成功", $success = true, $data = [])
-        {
-            $result = array("success" => $success, "msg" => $msg, "data" => $data);
-            return $result;
-        }
     }
 }
 

@@ -9,6 +9,24 @@
 // | Author: 牧羊人 <rxthink.cn@gmail.com>
 // +----------------------------------------------------------------------
 
+if (!function_exists('message')) {
+
+    /**
+     * 消息数组函数
+     * @param string $msg 提示语
+     * @param bool $success 是否成功
+     * @param array $data 结果数据
+     * @return array 返回消息对象
+     * @author 牧羊人
+     * @date 2019/4/5
+     */
+    function message($msg = "操作成功", $success = true, $data = [])
+    {
+        $result = array("success" => $success, "msg" => $msg, "data" => $data);
+        return $result;
+    }
+}
+
 if (!function_exists('make_option')) {
 
     /**

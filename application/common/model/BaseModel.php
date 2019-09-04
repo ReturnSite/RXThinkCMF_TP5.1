@@ -588,6 +588,148 @@ class BaseModel extends CacheModel
     }
 
     /**
+     * 获取数据列表
+     * @return array|mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author 牧羊人
+     * @date 2019/8/28
+     */
+    public function getDataList()
+    {
+        // 获取参数
+        $argList = func_get_args();
+
+        // 查询参数
+        $map = isset($argList[0]['query']) ? $argList[0]['query'] : [];
+        // 排序
+        $sort = isset($argList[0]['sort']) ? $argList[0]['sort'] : [['id desc']];
+        // 获取条数
+        $limit = isset($argList[0]['limit']) ? $argList[0]['limit'] : '';
+        // 回调方法名
+        $func = isset($argList[1]) ? $argList[1] : "Short";
+        // 自定义MODEL
+        $model = isset($argList[2]) ? $argList[2] : $this;
+
+        // 闭包查询条件格式化
+        $query = $this->formatQuery($model, $map);
+
+        // 排序(支持多重排序)
+        $query = $query->when($sort, function ($query, $sort) {
+            foreach ($sort as $v) {
+                $query->order($v);
+            }
+        });
+
+        // 查询数据源
+        if ($limit) {
+            list($offset, $page_size) = explode(',', $limit);
+            $query->limit($offset, $page_size);
+        } else {
+            // TODO...
+        }
+
+        // 查询数据并转为数组
+        $result = $query->field('id')->select();
+        $result = $result ? $result->toArray() : [];
+        $list = [];
+        if (is_array($result)) {
+            foreach ($result as $val) {
+                $info = $model->getInfo($val['id']);
+                if (!$info) {
+                    continue;
+                }
+                if (is_object($func)) {
+                    // 方法函数
+                    $data = $func($info);
+                } else {
+                    // 直接返回
+                    $data = $info;
+                }
+                $list[] = $data;
+            }
+        }
+        return $list;
+    }
+
+    /**
+     * 获取分页数据列表
+     * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @author 牧羊人
+     * @date 2019/8/28
+     */
+    public function pageData()
+    {
+        // 获取参数
+        $argList = func_get_args();
+        // 查询参数
+        $map = isset($argList[0]['query']) ? $argList[0]['query'] : [];
+        // 排序
+        $sort = isset($argList[0]['sort']) ? $argList[0]['sort'] : [['id desc']];
+        // 页码
+        $page = isset($argList[0]['page']) ? $argList[0]['page'] : 1;
+        // 每页数
+        $perpage = isset($argList[0]['perpage']) ? $argList[0]['perpage'] : 20;
+        // 回调方法名
+        $func = isset($argList[1]) ? $argList[1] : "Short";
+        // 自定义MODEL
+        $model = isset($argList[2]) ? $argList[2] : $this;
+
+        // 分页设置
+        $start = ($page - 1) * $perpage;
+        $limit = "{$start},{$perpage}";
+
+        // 闭包查询条件格式化
+        $query = $this->formatQuery($model, $map);
+
+        // 查询总数
+        $count = $query->count();
+
+        // 排序(支持多重排序)
+        $query = $query->when($sort, function ($query, $sort) {
+            foreach ($sort as $v) {
+                $query->order($v);
+            }
+        });
+
+        // 分页设置
+        list($offset, $page_size) = explode(',', $limit);
+        $result = $query->limit($offset, $page_size)->field('id')->select();
+        $result = $result ? $result->toArray() : [];
+
+        $list = [];
+        if (is_array($result)) {
+            foreach ($result as $val) {
+                $info = $model->getInfo($val['id']);
+                if (!$info) {
+                    continue;
+                }
+                if (is_object($func)) {
+                    //方法函数
+                    $data = $func($info);
+                } else {
+                    // 直接返回
+                    $data = $info;
+                }
+                $list[] = $data;
+            }
+        }
+
+        // 返回结果
+        $result = array(
+            'count' => $count,
+            'perpage' => $perpage,
+            'page' => $page,
+            'list' => $list,
+        );
+        return $result;
+    }
+
+    /**
      * 获取全部数据表
      * @return array 返回结果
      * @throws \think\db\exception\BindParamException
@@ -937,7 +1079,7 @@ class BaseModel extends CacheModel
         $this->setCache($transId, $info[0]);
 
         // 启动事务
-        Db::startTrans();
+        \Db::startTrans();
     }
 
     /**
@@ -948,7 +1090,7 @@ class BaseModel extends CacheModel
     public function rollback()
     {
         // 回滚事务
-        Db::rollback();
+        \Db::rollback();
 
         // 回滚缓存处理
         foreach ($GLOBALS['trans_keys'] as $key) {
@@ -967,7 +1109,7 @@ class BaseModel extends CacheModel
     public function commit()
     {
         // 提交事务
-        Db::commit();
+        \Db::commit();
 
         // 事务缓存同步删除
         $GLOBALS['trans'] = false;
