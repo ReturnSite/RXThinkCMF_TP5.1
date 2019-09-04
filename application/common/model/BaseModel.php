@@ -588,6 +588,10 @@ class BaseModel extends CacheModel
     }
 
     /**
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a9ce14d74a3e7c20a59ce2f10ee50208028b0901
      * 获取数据列表
      * @return array|mixed
      * @throws \think\db\exception\DataNotFoundException
@@ -730,6 +734,11 @@ class BaseModel extends CacheModel
     }
 
     /**
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> b8d068a7a30763856e5872fbac13ac8fd5da89bb
+>>>>>>> a9ce14d74a3e7c20a59ce2f10ee50208028b0901
      * 获取全部数据表
      * @return array 返回结果
      * @throws \think\db\exception\BindParamException
