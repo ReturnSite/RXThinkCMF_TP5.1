@@ -195,7 +195,11 @@ class Index extends Controller
         $this->status['config'] = 'success';
         $this->status['sql'] = 'primary';
         $this->assign('status', $this->status);
-        echo $this->fetch();
+
+        // 输出模板
+        echo $this->view->fetch();
+
+        // 创建和更新数据库
         if (session('update')) {
             $db_instance = \think\Db::connect();
             //更新数据表
@@ -213,7 +217,7 @@ class Index extends Controller
             register_administrator($db_instance, $dbconfig['prefix'], session('admin_info'));
 
             //创建配置文件
-            $conf = write_config($dbconfig);
+            $conf = write_config($dbconfig, session('web_config'));
             session('config_file', $conf);
         }
 
