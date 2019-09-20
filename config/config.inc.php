@@ -57,10 +57,10 @@ return [
     'db_prefix' => 'think_',
     // 数据库编码
     'db_charset' => 'utf8mb4',
-//    // 缓存驱动类型及链接(redis)
-//    'cache_config' => 'redis://:@127.0.0.1:6379/1',
-//    // 缓存驱动类型及链接(memcache)
-//    'cache_config' => 'memcache://:@127.0.0.1:11211',
+    //    // 缓存驱动类型及链接(redis)
+    //    'cache_config' => 'redis://:@127.0.0.1:6379/1',
+    //    // 缓存驱动类型及链接(memcache)
+    //    'cache_config' => 'memcache://:@127.0.0.1:11211',
     // 缓存驱动(文件类型)
     'cache_config' => 'file',
     // 缓存前缀
@@ -69,8 +69,8 @@ return [
     'upload' => [
         //上传图片参数配置
         'image_config' => [
-            // 图片后缀限制
-            'upload_image_ext' => 'jpg|png|gif|bmp|jpeg',
+        // 图片后缀限制
+        'upload_image_ext' => 'jpg|png|gif|bmp|jpeg',
             // 最大上传文件大小(默认：10MB)
             'upload_image_size' => 1024 * 10,
             // 最大上传数量限制(默认：9张)

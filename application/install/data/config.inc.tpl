@@ -32,7 +32,7 @@ defined('IMG_URL') or define('IMG_URL', 'http://img.[domain]');
 // 定义文章图片域名
 defined('IMAGE_URL') or define('IMAGE_URL', 'http://images.[domain]');
 // 定义文件上传目录
-defined('ATTACHMENT_PATH') or define('ATTACHMENT_PATH', 'D:\sites\RXThinkCMF\RXThinkCMF_TP5.1_DEV\public\uploads');
+defined('ATTACHMENT_PATH') or define('ATTACHMENT_PATH', '[attachment_path]public\uploads');
 // 定义图片上传目录
 defined('IMG_PATH') or define('IMG_PATH', ATTACHMENT_PATH . "/img");
 // 定义临时文件目录

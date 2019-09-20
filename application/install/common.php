@@ -174,6 +174,7 @@ function write_config($config, $web_config)
             // 设置域名及系统名称配置
             $config['domain'] = $domain;
             $config['site_name'] = $web_site_title;
+            $config['attachment_path'] = ROOT_PATH;
         }
         //读取配置内容
         $conf = file_get_contents(APP_PATH . 'install/data/config.inc.tpl');
