@@ -78,13 +78,10 @@ function check_env()
 function check_dirfile()
 {
     $items = [
-        ['dir', '可写', 'bg-green', 'public/uploads/file/'],
-        ['dir', '可写', 'bg-green', 'public/uploads/avatar/'],
-        ['dir', '可写', 'bg-green', 'public/uploads/picture/'],
+        ['dir', '可写', 'bg-green', 'public/uploads/img/'],
+        ['dir', '可写', 'bg-green', 'public/uploads/img/temp/'],
         ['dir', '可写', 'bg-green', 'public/static/plugins/'],
-        ['dir', '可写', 'bg-green', 'apps/'],
         ['dir', '可写', 'bg-green', 'data/backup/'],
-
     ];
 
     foreach ($items as &$val) {
@@ -161,11 +158,25 @@ function check_func()
  * @author 牧羊人
  * @date 2019-04-23
  */
-function write_config($config)
+function write_config($config, $web_config)
 {
     if (is_array($config)) {
+
+        // 系统名称
+        $web_site_title = $web_config['web_site_title'];
+        // 后台访问地址
+        $index_url = $web_config['index_url'];
+        $itemArr = explode('://', $index_url);
+        if (is_array($itemArr)) {
+            $result = explode('.', $itemArr[1]);
+            $domain = $result[1] . "." . $result[2];
+
+            // 设置域名及系统名称配置
+            $config['domain'] = $domain;
+            $config['site_name'] = $web_site_title;
+        }
         //读取配置内容
-        $conf = file_get_contents(APP_PATH . 'install/data/database.tpl');
+        $conf = file_get_contents(APP_PATH . 'install/data/config.inc.tpl');
         //替换配置项
         foreach ($config as $name => $value) {
             $conf = str_replace("[{$name}]", $value, $conf);
@@ -175,7 +186,7 @@ function write_config($config)
         //file_put_contents(APP_PATH . 'install.lock', 'ok');
 
         //写入应用配置文件
-        if (file_put_contents(ROOT_PATH . 'config/database.php', $conf)) {
+        if (file_put_contents(ROOT_PATH . 'config/config.inc.php', $conf)) {
             show_msg('配置文件写入成功');
         } else {
             show_msg('配置文件写入失败！', 'error');
