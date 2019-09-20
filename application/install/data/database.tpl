@@ -9,36 +9,27 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 
-use think\facade\Config;
-
-// 获取自定义配置文件
-$config = Config::get('app.config');
-$db_config = $config['db_config'];
-$itemArr = explode('://', $db_config);
-$db_type = $itemArr[0];
-list($db_user, $db_pwd, $db_host, $db_port, $db_name) = preg_split("/[:@\/]/", $itemArr[1]);
-
 return [
     // 数据库类型
-    'type' => $db_type,
+    'type' => '[type]',
     // 服务器地址
-    'hostname' => $db_host,
+    'hostname' => '[hostname]',
     // 数据库名
-    'database' => $db_name,
+    'database' => '[database]',
     // 用户名
-    'username' => $db_user,
+    'username' => '[username]',
     // 密码
-    'password' => $db_pwd,
+    'password' => '[password]',
     // 端口
-    'hostport' => $db_port,
+    'hostport' => '[hostport]',
     // 连接dsn
     'dsn' => '',
     // 数据库连接参数
     'params' => [],
     // 数据库编码默认采用utf8mb4
-    'charset' =>  $config['db_charset'],
+    'charset' => 'utf8mb4',
     // 数据库表前缀
-    'prefix' => $config['db_prefix'],
+    'prefix' => '[prefix]',
     // 数据库调试模式
     'debug' => true,
     // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
