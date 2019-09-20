@@ -165,7 +165,7 @@ function write_config($config)
 {
     if (is_array($config)) {
         //读取配置内容
-        $conf = file_get_contents(APP_PATH . 'install/data/database.tpl');
+        $conf = file_get_contents(APP_PATH . 'install/data/config.inc.tpl');
         //替换配置项
         foreach ($config as $name => $value) {
             $conf = str_replace("[{$name}]", $value, $conf);
@@ -175,7 +175,7 @@ function write_config($config)
         //file_put_contents(APP_PATH . 'install.lock', 'ok');
 
         //写入应用配置文件
-        if (file_put_contents(ROOT_PATH . 'config/database.php', $conf)) {
+        if (file_put_contents(ROOT_PATH . 'config/config.inc.php', $conf)) {
             show_msg('配置文件写入成功');
         } else {
             show_msg('配置文件写入失败！', 'error');
