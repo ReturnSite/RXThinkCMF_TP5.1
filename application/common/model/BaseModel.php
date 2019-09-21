@@ -246,12 +246,12 @@ class BaseModel extends CacheModel
         if ($info) {
             // 添加时间
             if (isset($info['create_time']) && $info['create_time']) {
-                $info['format_create_time'] = $info['create_time'];//date('Y-m-d H:i:s', $info['create_time']);
+                $info['format_create_time'] = date('Y-m-d H:i:s', $info['create_time']);
             }
 
             //更新时间
             if (isset($info['update_time']) && $info['update_time']) {
-                $info['format_update_time'] = $info['update_time'];//date('Y-m-d H:i:s', $info['update_time']);
+                $info['format_update_time'] = date('Y-m-d H:i:s', $info['update_time']);
             }
 
             // 获取操作人信息
