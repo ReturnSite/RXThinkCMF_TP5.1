@@ -48,7 +48,7 @@ class AdminDep extends BaseModel
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id);
+        $info = parent::getInfo($id, true);
         if ($info) {
             // 获取上级部门
             if ($info['parent_id']) {

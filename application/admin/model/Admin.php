@@ -49,7 +49,7 @@ class Admin extends BaseModel
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id);
+        $info = parent::getInfo($id, true);
         if ($info) {
             // 头像
             if ($info['avatar']) {

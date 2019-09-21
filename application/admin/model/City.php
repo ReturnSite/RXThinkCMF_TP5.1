@@ -48,7 +48,7 @@ class City extends BaseModel
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id);
+        $info = parent::getInfo($id, true);
         if ($info) {
             // TODO...
         }
