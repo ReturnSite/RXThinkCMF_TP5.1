@@ -56,7 +56,7 @@ class Menu extends AdminBase
             foreach ($menuList as $val) {
                 $key = (int)$val['id'];
                 $list[$key] = $val;
-                $vlist = $val['children'];
+                $vlist = isset($val['children']) ? $val['children'] : [];
                 if ($vlist) {
                     foreach ($vlist as &$v) {
                         $k = (int)$v['id'];
