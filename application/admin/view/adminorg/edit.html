@@ -1,5 +1,5 @@
 <form class="layui-form info-form" action="">
-	<input name="id" id="id" type="hidden" value="{$info.id}">
+	<input name="id" id="id" type="hidden" value="{$info.id|default=0}">
 	<div class="layui-form-item">
 		<label class="layui-form-label">LOGO：</label>
 		{:widget('upload/uploadSingleImage',array('logo',isset($info['logo_url']) ? $info['logo_url'] : '','90x90','LOGO'))}
