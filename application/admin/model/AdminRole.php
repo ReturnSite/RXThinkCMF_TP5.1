@@ -48,7 +48,7 @@ class AdminRole extends BaseModel
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id);
+        $info = parent::getInfo($id, true);
         if ($info) {
             // 权限反序列化
             if ($info['auth']) {

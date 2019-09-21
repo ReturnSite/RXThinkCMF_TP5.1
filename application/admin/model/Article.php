@@ -48,7 +48,7 @@ class Article extends BaseModel
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id);
+        $info = parent::getInfo($id, true);
         if ($info) {
             // 文章封面
             if ($info['cover']) {
