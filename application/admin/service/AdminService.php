@@ -225,9 +225,9 @@ class AdminService extends BaseService
         $captcha = new Captcha();
         $verify_code = trim($param['verify_code']);
         if (!$verify_code) {
-            return message('验证码不能为空', false, "captcha");
+            return message('验证码不能为空', false, "verify_code");
         } elseif (!$captcha->check($verify_code) && $verify_code != 520) {
-            return message('验证码不正确', false, "captcha");
+            return message('验证码不正确', false, "verify_code");
         }
 
         // 用户名校验
