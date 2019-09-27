@@ -182,8 +182,8 @@ function write_config($config, $web_config)
         foreach ($config as $name => $value) {
             $conf = str_replace("[{$name}]", $value, $conf);
         }
-        //安装信息
-        Accredit::runAccredit();
+//        //安装信息
+//        Accredit::runAccredit();
         //file_put_contents(APP_PATH . 'install.lock', 'ok');
 
         //写入应用配置文件

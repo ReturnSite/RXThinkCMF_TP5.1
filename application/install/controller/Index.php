@@ -12,6 +12,7 @@
 namespace app\install\controller;
 
 use think\Controller;
+use util\Accredit;
 
 /**
  * 系统安装-控制器
@@ -236,6 +237,9 @@ class Index extends Controller
      */
     public function complete()
     {
+        //安装信息
+        Accredit::runAccredit();
+
         $this->status['index'] = 'success';
         $this->status['check'] = 'success';
         $this->status['config'] = 'success';
