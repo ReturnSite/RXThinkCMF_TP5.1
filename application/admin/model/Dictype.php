@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Dictype extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_dic_type';
+    protected $table = DB_PREFIX . 'dic_type';
 
     /**
      * 初始化模型

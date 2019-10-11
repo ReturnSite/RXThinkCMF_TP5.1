@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Level extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_level';
+    protected $table = DB_PREFIX . 'level';
 
     /**
      * 初始化模型

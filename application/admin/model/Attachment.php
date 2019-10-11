@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Attachment extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_attachment';
+    protected $table = DB_PREFIX . 'attachment';
 
     /**
      * 初始化方法

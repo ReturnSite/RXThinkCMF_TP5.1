@@ -38,7 +38,7 @@ class ActionLog extends BaseModel
     {
         parent::initialize();
         // 设置表名
-        $this->table = 'think_action_log_' . date('Y') . '_' . date('m');
+        $this->table = DB_PREFIX . 'action_log_' . date('Y') . '_' . date('m');
         // 初始化行为日志表
         $this->initTable();
     }

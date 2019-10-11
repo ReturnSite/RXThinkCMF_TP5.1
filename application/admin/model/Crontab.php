@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Crontab extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_crontab';
+    protected $table = DB_PREFIX . 'crontab';
 
     /**
      * 初始化模型

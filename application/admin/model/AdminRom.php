@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class AdminRom extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_admin_rom';
+    protected $table = DB_PREFIX . 'admin_rom';
 
     /**
      * 初始化模型

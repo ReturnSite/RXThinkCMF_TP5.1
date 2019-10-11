@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class AdminOrg extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_admin_org';
+    protected $table = DB_PREFIX . 'admin_org';
 
     /**
      * 初始化模型

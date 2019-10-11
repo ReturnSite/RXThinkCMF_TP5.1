@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class UserGroup extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_user_group';
+    protected $table = DB_PREFIX . 'user_group';
 
     /**
      * 初始化模型

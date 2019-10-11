@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Ad extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_ad';
+    protected $table = DB_PREFIX . 'ad';
 
     /**
      * 初始化模型

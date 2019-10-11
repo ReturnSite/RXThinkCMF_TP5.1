@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class AdSort extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_ad_sort';
+    protected $table = DB_PREFIX . 'ad_sort';
 
     /**
      * 初始化模型

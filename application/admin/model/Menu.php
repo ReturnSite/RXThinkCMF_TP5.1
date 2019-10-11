@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Menu extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_menu';
+    protected $table = DB_PREFIX . 'menu';
 
     /**
      * 初始化模型

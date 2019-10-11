@@ -54,6 +54,20 @@ class BaseModel extends CacheModel
     }
 
     /**
+     * 获取数据表
+     * @param string $table 数据表名
+     * @return string 带前缀的数据表名
+     * @author : zongjl
+     * @date : 2019/10/11$ 8:27$
+     */
+    public function getTableName($table) {
+        if (strpos($table, DB_PREFIX) === false) {
+            $table = DB_PREFIX . $table;
+        }
+        return $table;
+    }
+
+    /**
      * 添加或编辑
      * @param array $data 数据源
      * @param string $error 错误提示

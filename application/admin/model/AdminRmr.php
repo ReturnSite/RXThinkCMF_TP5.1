@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class AdminRmr extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_admin_rmr';
+    protected $table = DB_PREFIX . 'admin_rmr';
 
     /**
      * 初始化模型

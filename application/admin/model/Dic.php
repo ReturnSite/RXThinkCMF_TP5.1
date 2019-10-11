@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Dic extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_dic';
+    protected $table = DB_PREFIX . 'dic';
 
     /**
      * 初始化模型

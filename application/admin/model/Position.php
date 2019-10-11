@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Position extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_position';
+    protected $table = DB_PREFIX . 'position';
 
     /**
      * 初始化模型

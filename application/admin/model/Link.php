@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Link extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_link';
+    protected $table = DB_PREFIX . 'link';
 
     /**
      * 初始化模型

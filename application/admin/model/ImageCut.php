@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class ImageCut extends BaseModel
 {
     // 设置数据表
-    protected $table = "think_image_cut";
+    protected $table = DB_PREFIX . "image_cut";
 
     /**
      * 初始化模型

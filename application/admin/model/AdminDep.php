@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class AdminDep extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_admin_dep';
+    protected $table = DB_PREFIX . 'admin_dep';
 
     /**
      * 初始化模型

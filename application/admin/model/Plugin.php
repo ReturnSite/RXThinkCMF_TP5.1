@@ -14,7 +14,7 @@ use app\common\model\BaseModel;
 class Plugin extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_plugin';
+    protected $table = DB_PREFIX . 'plugin';
 
     // 插件类型
     public $type = [

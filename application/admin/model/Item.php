@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Item extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_item';
+    protected $table = DB_PREFIX . 'item';
 
     /**
      * 初始化模型

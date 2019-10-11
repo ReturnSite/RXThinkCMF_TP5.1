@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Action extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_action';
+    protected $table = DB_PREFIX . 'action';
 
     /**
      * 初始化模型

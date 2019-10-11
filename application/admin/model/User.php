@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class User extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_user';
+    protected $table = DB_PREFIX . 'user';
 
     /**
      * 初始化模型

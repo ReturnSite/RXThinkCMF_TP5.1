@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class LayoutDesc extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_layout_desc';
+    protected $table = DB_PREFIX . 'layout_desc';
 
     /**
      * 初始化模型

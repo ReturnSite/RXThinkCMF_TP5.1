@@ -14,7 +14,7 @@ use app\common\model\BaseModel;
 class Hook extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_hook';
+    protected $table = DB_PREFIX . 'hook';
 
     // 钩子类型
     public $type = [

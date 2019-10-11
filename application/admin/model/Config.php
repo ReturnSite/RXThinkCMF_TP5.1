@@ -23,7 +23,7 @@ use app\common\model\BaseModel;
 class Config extends BaseModel
 {
     // 设置数据表
-    protected $table = 'think_config';
+    protected $table = DB_PREFIX . 'config';
 
     /**
      * 初始化模型
