@@ -1,3 +1,4 @@
-<if condition="in_array('sys:' . lcfirst($app) . ':query',$funcList)">
-	<button class="layui-btn" lay-submit="" lay-filter="searchForm"><i class="layui-icon">&#xe615;</i>{$funcName|default='查询'}</button>
-</if>
+{in name="funcAuth" value="$funcList"}
+<button class="layui-btn" lay-submit="" lay-filter="searchForm"><i class="layui-icon">&#xe615;</i>{$funcName|default='查询'}
+</button>
+{/in}

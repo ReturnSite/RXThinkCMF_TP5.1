@@ -51,12 +51,12 @@ layui.extend({
                 "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-left\" cropper-event=\"rotate\" data-option=\"-15\" title=\"Rotate -90 degrees\"> 向左旋转</button>\n" +
                 "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-right\" cropper-event=\"rotate\" data-option=\"15\" title=\"Rotate 90 degrees\"> 向右旋转</button>\n" +
                 "                </div>\n" +
-                "                <div class=\"layui-col-xs5\" style=\"text-align: right;\">\n" +
-                "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-set-fill\" title=\"移动\"></button>\n" +
-                "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-share\" title=\"放大图片\"></button>\n" +
-                "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-share\" title=\"缩小图片\"></button>\n" +
-                "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-refresh\" cropper-event=\"reset\" title=\"重置图片\"></button>\n" +
-                "                </div>\n" +
+                // "                <div class=\"layui-col-xs5\" style=\"text-align: right;\">\n" +
+                // "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-set-fill\" title=\"移动\"></button>\n" +
+                // "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-share\" title=\"放大图片\"></button>\n" +
+                // "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-share\" title=\"缩小图片\"></button>\n" +
+                // "                    <button type=\"button\" class=\"layui-btn layui-icon layui-icon-refresh\" cropper-event=\"reset\" title=\"重置图片\"></button>\n" +
+                // "                </div>\n" +
                 "            </div>\n" +
                 "        </div>\n" +
                 "        <div class=\"layui-col-xs3\">\n" +

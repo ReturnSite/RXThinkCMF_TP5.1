@@ -7,7 +7,18 @@ namespace Composer\Autoload;
 class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
 {
     public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        'd767e4fc2dc52fe66584ab8c6684783e' => __DIR__ . '/..' . '/adbario/php-dot-notation/src/helpers.php',
+        '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
+        '66453932bc1be9fb2f910a27947d11b6' => __DIR__ . '/..' . '/alibabacloud/client/src/Functions.php',
         'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
         'dc1275c308c5b416beb314b6317daca2' => __DIR__ . '/..' . '/overtrue/pinyin/src/const.php',
@@ -29,6 +40,10 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
             'think\\captcha\\' => 14,
             'think\\' => 6,
         ),
+        'c' => 
+        array (
+            'clagiordano\\weblibs\\configmanager\\' => 34,
+        ),
         'a' => 
         array (
             'app\\' => 4,
@@ -45,10 +60,18 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php72\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\PropertyAccess\\' => 33,
+            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
+            'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\Inflector\\' => 28,
+            'Symfony\\Component\\HttpFoundation\\' => 33,
+            'Symfony\\Component\\Filesystem\\' => 29,
+            'Stringy\\' => 8,
         ),
         'Q' => 
         array (
@@ -56,6 +79,8 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
             'PhpOffice\\PhpWord\\' => 18,
             'PhpOffice\\Common\\' => 17,
             'PhpAmqpLib\\' => 11,
@@ -70,22 +95,27 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
+            'Monolog\\' => 8,
         ),
         'J' => 
         array (
+            'JmesPath\\' => 9,
             'JPush\\' => 6,
         ),
         'G' => 
         array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
             'GatewayWorker\\' => 14,
         ),
         'E' => 
         array (
             'Endroid\\QrCode\\' => 15,
-            'Endroid\\Installer\\' => 18,
         ),
         'D' => 
         array (
+            'Doctrine\\Common\\Cache\\' => 22,
             'DASPRiD\\Enum\\' => 13,
         ),
         'C' => 
@@ -95,6 +125,12 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         'B' => 
         array (
             'BaconQrCode\\' => 12,
+        ),
+        'A' => 
+        array (
+            'AlibabaCloud\\Client\\' => 20,
+            'AlibabaCloud\\' => 13,
+            'Adbar\\' => 6,
         ),
     );
 
@@ -129,6 +165,10 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
             1 => __DIR__ . '/..' . '/topthink/think-image/src',
             2 => __DIR__ . '/..' . '/topthink/think-queue/src',
         ),
+        'clagiordano\\weblibs\\configmanager\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/clagiordano/weblibs-configmanager/src',
+        ),
         'app\\' => 
         array (
             0 => __DIR__ . '/../..' . '/application',
@@ -150,6 +190,18 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
             0 => __DIR__ . '/..' . '/workerman/workerman',
             1 => __DIR__ . '/..' . '/workerman/workerman-for-win',
         ),
+        'Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Intl\\Idn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
@@ -158,17 +210,45 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         array (
             0 => __DIR__ . '/..' . '/symfony/property-access',
         ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
         'Symfony\\Component\\OptionsResolver\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
+        ),
+        'Symfony\\Component\\Mime\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/mime',
         ),
         'Symfony\\Component\\Inflector\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/inflector',
         ),
+        'Symfony\\Component\\HttpFoundation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/http-foundation',
+        ),
+        'Symfony\\Component\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/filesystem',
+        ),
+        'Stringy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/danielstjules/stringy/src',
+        ),
         'Qiniu\\' => 
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'PhpOffice\\PhpWord\\' => 
         array (
@@ -202,9 +282,29 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'JmesPath\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
+        ),
         'JPush\\' => 
         array (
             0 => __DIR__ . '/..' . '/jpush/jpush/src/JPush',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'GatewayWorker\\' => 
         array (
@@ -214,9 +314,9 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         array (
             0 => __DIR__ . '/..' . '/endroid/qrcode/src',
         ),
-        'Endroid\\Installer\\' => 
+        'Doctrine\\Common\\Cache\\' => 
         array (
-            0 => __DIR__ . '/..' . '/endroid/installer/src',
+            0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
         ),
         'DASPRiD\\Enum\\' => 
         array (
@@ -230,6 +330,18 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
         array (
             0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
         ),
+        'AlibabaCloud\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alibabacloud/client/src',
+        ),
+        'AlibabaCloud\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alibabacloud/sdk/src',
+        ),
+        'Adbar\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/adbario/php-dot-notation/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -238,6 +350,34 @@ class ComposerStaticInit5639f71728a8ffbdac0302e4c122042e
             'PHPExcel' => 
             array (
                 0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
+            ),
+        ),
+        'N' => 
+        array (
+            'Neutron' => 
+            array (
+                0 => __DIR__ . '/..' . '/neutron/temporary-filesystem/src',
+            ),
+        ),
+        'F' => 
+        array (
+            'FFMpeg' => 
+            array (
+                0 => __DIR__ . '/..' . '/php-ffmpeg/php-ffmpeg/src',
+            ),
+        ),
+        'E' => 
+        array (
+            'Evenement' => 
+            array (
+                0 => __DIR__ . '/..' . '/evenement/evenement/src',
+            ),
+        ),
+        'A' => 
+        array (
+            'Alchemy' => 
+            array (
+                0 => __DIR__ . '/..' . '/alchemy/binary-driver/src',
             ),
         ),
     );

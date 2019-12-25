@@ -54,20 +54,6 @@ class BaseModel extends CacheModel
     }
 
     /**
-     * 获取数据表
-     * @param string $table 数据表名
-     * @return string 带前缀的数据表名
-     * @author : zongjl
-     * @date : 2019/10/11$ 8:27$
-     */
-    public function getTableName($table) {
-        if (strpos($table, DB_PREFIX) === false) {
-            $table = DB_PREFIX . $table;
-        }
-        return $table;
-    }
-
-    /**
      * 添加或编辑
      * @param array $data 数据源
      * @param string $error 错误提示
@@ -900,6 +886,62 @@ class BaseModel extends CacheModel
             $this->getLastSql();
         }
         return $result;
+    }
+
+    /**
+     * 更新字段
+     * @param array $data 数据源
+     * @param string $error 错误信息
+     * @param bool $is_sql 是否打印SQL
+     * @return bool|int|string 返回结果
+     * @throws \think\db\exception\BindParamException
+     * @throws \think\exception\PDOException
+     * @author 牧羊人
+     * @date 2019/11/1
+     */
+    public function doEdit($data = [], &$error = '', $is_sql = false)
+    {
+        // 基础参数设置
+        $id = isset($data['id']) ? (int)$data['id'] : 0;
+        if (!$id) {
+            return false;
+        }
+        // 更新时间
+        if (empty($data['update_time'])) {
+            $data['update_time'] = time();
+        }
+        // 更新人
+        if (empty($data['update_user'])) {
+            $data['update_user'] = session('admin_id');
+        }
+
+        // 格式化表数据
+        $this->formatData($data, $id);
+
+        // 入库处理
+        if ($id) {
+            //修改数据
+            $result = $this->update($data, ['id' => $id]);
+            // 更新ID
+            $rowId = $id;
+        } else {
+            // 新增数据
+            $result = $this->insertGetId($data);
+            // 新增ID
+            $rowId = $result;
+        }
+
+        // 打印SQL
+        if ($is_sql) {
+            echo $this->getLastSql();
+        }
+
+        if ($result !== false) {
+            // 重置缓存
+            $data['id'] = $rowId;
+            $this->cacheReset($rowId, $data, $id);
+        }
+        return $rowId;
     }
 
     /**

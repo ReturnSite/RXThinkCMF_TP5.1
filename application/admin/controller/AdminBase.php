@@ -53,8 +53,8 @@ class AdminBase extends BaseController
         // 登录校验
         $this->checkLogin();
 
-//         // 权限校验
-//         $this->checkAuth();
+        // 权限校验
+        $this->checkAuth();
     }
 
     /**
@@ -114,34 +114,51 @@ class AdminBase extends BaseController
     public function checkAuth()
     {
         if (!in_array($this->request->controller(), ['Login', 'Index'])) {
-            $reqest_url = "/" . $this->request->controller() . "/" . $this->request->action();
-            $funcInfo = db('menu')->where([
+            // 获取菜单模块信息
+            $menuMod = new \app\admin\model\Menu();
+            $info = $menuMod->getInfoByAttr([
+                ['type', '=', 3],
+                ['url', '=', strtolower($this->request->controller())],
+            ]);
+            if (!$info) {
+                if (IS_POST) {
+                    return message('暂无操作权限', false);
+                }
+                $this->assign('funcList', []);
+                return $this->render('public/404');
+            }
+
+            // 获取操作权限点信息
+            $requestUrl = strtolower("/" . $this->request->controller() . "/" . $this->request->action());
+            $funcInfo = $menuMod->where([
+                'parent_id' => $info['id'],
                 'type' => 4,
-                'url' => $reqest_url,
+                'url' => $requestUrl,
                 'mark' => 1
             ])->find();
             if (!$funcInfo) {
                 if (IS_POST || IS_GET) {
                     return message('暂无操作权限', false);
                 }
-                $this->render('Public/404');
-                exit;
+                return $this->render('public/404');
             }
-            $funcArr = $this->system_auth[$funcInfo['parent_id']];
+
+            // 获取操作权限节点列表
+            $funcArr = isset($this->system_auth[$info['id']]) ? $this->system_auth[$info['id']] : [];
             $funcList = [];
             if (is_array($funcArr)) {
                 $keys = array_values($funcArr);
-                $map['id'] = array('in', $keys);
-                $funcList = db('menu')->where($map)->column('auth');
+                $funcList = $menuMod->where([
+                    ['id', 'in', $keys]
+                ])->column('auth');
             }
+            $this->assign('funcList', $funcList);
             if (!in_array($funcInfo['auth'], $funcList)) {
                 if (IS_POST) {
                     return message('暂无操作权限', false);
                 }
-                $this->render('Public/404');
-                exit;
+                return $this->render('public/404');
             }
-            $this->assign('funcList', $funcList);
         }
     }
 
@@ -244,6 +261,19 @@ class AdminBase extends BaseController
             $this->assign('info', $info);
         }
         return $this->render();
+    }
+
+    /**
+     * 模板渲染
+     * @param string $tpl 模板地址
+     * @param array $data 参数
+     * @return mixed
+     * @author 牧羊人
+     * @date 2019/2/25
+     */
+    public function render($tpl = "", $data = [])
+    {
+        return $this->fetch($tpl, $data);
     }
 
     /**
@@ -406,15 +436,16 @@ class AdminBase extends BaseController
     }
 
     /**
-     * 模板渲染
-     * @param string $tpl 模板地址
-     * @param array $data 参数
+     * 设置状态
      * @return mixed
      * @author 牧羊人
-     * @date 2019/2/25
+     * @date 2019/11/2
      */
-    public function render($tpl = "", $data = [])
+    public function setStatus()
     {
-        return $this->fetch($tpl, $data);
+        if (IS_POST) {
+            $result = $this->service->setStatus();
+            return $result;
+        }
     }
 }

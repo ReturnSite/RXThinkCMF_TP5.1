@@ -29,8 +29,6 @@ defined('UPLOAD_URL') or define('UPLOAD_URL', 'http://upload.[domain]');
 defined('UPLOAD_TEMP_URL') or define('UPLOAD_TEMP_URL', 'http://upload.[domain]/temp');
 // 定义普通图片域名
 defined('IMG_URL') or define('IMG_URL', 'http://img.[domain]');
-// 定义文章图片域名
-defined('IMAGE_URL') or define('IMAGE_URL', 'http://images.[domain]');
 // 定义文件上传目录
 defined('ATTACHMENT_PATH') or define('ATTACHMENT_PATH', '[attachment_path]public\uploads');
 // 定义图片上传目录

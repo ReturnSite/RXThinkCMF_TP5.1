@@ -7,6 +7,7 @@ use think\Controller;
 use app\api\model\User;
 use think\Facade\Config;
 use util\Jwt;
+use util\HttpRequest;
 
 // 处理跨域请求的问题
 header("Access-Control-Allow-Origin: *");
@@ -67,27 +68,38 @@ class APIBase extends BaseController
         $requestId = substr(md5(time() . get_random_code(10) . rand(1, 1000)), 8, 16);
         $this->req_id = $requestId;
 
-        // 不是登录入口全部需要Token令牌验证
-        if (CONTROLLER_NAME != 'login') {
-            // 网络请求参数
-            $this->req = $this->request->param();
+        file_put_contents(RUNTIME_PATH . "3.txt", json_encode($_REQUEST));
 
-            // Token令牌(校验)
-            $token = getter($this->req, 'token', '');
-            if (!$token) {
-                $this->jsonReturn(message(MESSAGE_NO_TOKEN, false, -2));
-            }
+        // 适配网络请求
+        $this->req = HttpRequest::getRequestInfo();
+        unset($this->req['APIDATA']);
+        file_put_contents(RUNTIME_PATH . "1.txt", json_encode($this->req));
 
+        // 临时调试使用
+        $is_decrypt = getter($_REQUEST, 'decrypt');
+        if (!empty($is_decrypt)) {
+            $this->req['decrypt'] = $is_decrypt;
+        }
+
+        // 用户ID
+        $userId = getter($this->req, 'user_id', 0);
+        // Token令牌(校验)
+        $token = getter($this->req, 'token', '');
+        if ($token) {
             // JWT解密token
             $jwt = new Jwt();
             $uid = $jwt->verifyToken($token);
+            file_put_contents(RUNTIME_PATH . "2.txt", 'uid:' . $uid . ",token:" . $token);
             if (!$uid) {
+                $this->jsonReturn(MESSAGE_TOKEN_FAILED, false, '', -2);
+            }
+            if (!$uid || $uid != $userId) {
                 $this->jsonReturn(MESSAGE_TOKEN_FAILED, false, '', -2);
             }
 
             // 根据令牌获取数据信息
             $userModel = new User();
-            $userInfo = $userModel->getInfo($uid);
+            $userInfo = $userModel->getInfo($userId);
             if (!$userInfo) {
                 $this->jsonReturn(MESSAGE_USER_NO_INFO);
             }
@@ -98,7 +110,7 @@ class APIBase extends BaseController
             }
 
             // 设置用户信息
-            $this->userId = $userInfo['id'];
+            $this->userId = $userId;
             $this->userInfo = $userInfo;
         }
     }
@@ -152,14 +164,39 @@ class APIBase extends BaseController
             // 函数模式
             $result = $arr[0];
         }
+        // 格式化数组
+        $result = $this->getStringArray($result);
 
         // 返回结果
         $output = json_encode($result);
-//        $crypt = getCryptDesObject();
-//        $output = $crypt->encrypt($output);
-//        //APP_DEBUG && $output = $crypt->decrypt($output);
-//        $output = $crypt->decrypt($output);
+        // DES加密处理
+        $output = encrypt($output);
+        // DES解密
+        if (getter($this->req, 'decrypt')) {
+            $output = decrypt($output);
+        }
         echo $output;
         exit();
+    }
+
+    /**
+     * 格式化字符串
+     * @param $array
+     * @return mixed
+     * @author 牧羊人
+     * @date 2019/11/5
+     */
+    private function getStringArray($array)
+    {
+        foreach ($array as $key => $row) {
+            if (is_array($row)) {
+                $array[$key] = $this->getStringArray($row);
+            } elseif (is_object($row)) {
+                //TODO...
+            } else {
+                $array[$key] = (string)$row;
+            }
+        }
+        return $array;
     }
 }

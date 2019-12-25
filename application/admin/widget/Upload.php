@@ -101,4 +101,24 @@ class Upload extends AdminWidget
         $this->assign('img_list', $img_list);
         return $this->fetch("widget/upload/upload_multiple_image");
     }
+
+    /**
+     * 上传文件
+     * @param $name
+     * @param array $file
+     * @param string $nameStr
+     * @param int $maxNum
+     * @return mixed
+     * @author 牧羊人
+     * @date 2019/11/9
+     */
+    function uploadMultipleFile($name, $file = [], $nameStr = '附件', $maxNum = 9)
+    {
+        $this->assign('name', $name);
+        $this->assign('file_name', isset($file['file_name']) ? $file['file_name'] : '');
+        $this->assign('file_list', isset($file['file_list']) ? $file['file_list'] : '');
+        $this->assign('nameStr', $nameStr);
+        $this->assign('maxNum', $maxNum);
+        return $this->fetch("widget/upload/upload_multiple_file");
+    }
 }

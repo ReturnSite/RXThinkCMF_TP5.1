@@ -66,10 +66,25 @@ class Common extends AdminWidget
         $show_name = trim($arr[1]);
         $show_value = trim($arr[2]);
 
-        foreach ($list as &$val) {
-            $val['show_value'] = $val[$show_value];
-            $val['show_name'] = $val[$show_name];
-            $val['checked'] = $val[$show_value] == $checked_id;
+        if (is_array($list)) {
+            $item = [];
+            foreach ($list as $key => $val) {
+                if (is_string($val)) {
+                    $item[] = [
+                        'show_value' => $key,
+                        'show_name' => $val,
+                        'checked' => $key == $checked_id,
+                    ];
+                } else {
+                    $item[] = [
+                        'show_value' => $val[$show_value],
+                        'show_name' => $val[$show_name],
+                        'checked' => $val[$show_value] == $checked_id,
+                    ];
+                }
+            }
+            // 重组后的数组赋值给list
+            $list = $item;
         }
         $this->assign('name', $name);
         $this->assign('radio_list', $list);

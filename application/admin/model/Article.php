@@ -111,21 +111,21 @@ class Article extends BaseModel
         }
 
         //开启事务
-        $this->startTrans();
+//        $this->startTrans();
         $rowId = parent::edit($data, $error, $is_sql);
         if (!$rowId) {
             //事务回滚
-            $this->rollback();
+//            $this->rollback();
             return false;
         }
         $result = $this->saveArticleInfo($rowId, $item);
         if (!$result) {
             //事务回滚
-            $this->rollback();
+//            $this->rollback();
             return false;
         }
         //提交事务
-        $this->commit();
+//        $this->commit();
         return $rowId;
     }
 

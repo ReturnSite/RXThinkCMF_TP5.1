@@ -54,6 +54,8 @@ class Func extends AdminWidget
      */
     public function btnDel($funcName)
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":drop";
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/drop");
     }
@@ -67,6 +69,8 @@ class Func extends AdminWidget
      */
     public function btnEdit($funcName)
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":edit";
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/edit");
     }
@@ -80,6 +84,8 @@ class Func extends AdminWidget
      */
     public function btnQuery($funcName)
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":index";
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/query");
     }
@@ -93,6 +99,8 @@ class Func extends AdminWidget
      */
     public function btnDetail($funcName)
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":detail";
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/detail");
     }
@@ -106,6 +114,8 @@ class Func extends AdminWidget
      */
     public function btnCache($funcName)
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":cache";
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/cache");
     }
@@ -119,6 +129,8 @@ class Func extends AdminWidget
      */
     public function btnCopy($funcName)
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":copy";
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/copy");
     }
@@ -131,6 +143,8 @@ class Func extends AdminWidget
      */
     public function btnAdd2()
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":add";
+        $this->assign('funcAuth', $funcAuth);
         return $this->fetch("widget/func/add");
     }
 
@@ -143,6 +157,8 @@ class Func extends AdminWidget
      */
     public function btnAuth($funcName)
     {
+        $funcAuth = 'sys:' . strtolower(CONTROLLER_NAME) . ":setAuth";
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcName', $funcName);
         return $this->fetch("widget/func/auth");
     }
@@ -269,12 +285,16 @@ class Func extends AdminWidget
      */
     public function btnFunc($funcAct, $funcIcon, $funcName, $funcColor = '', $funcType = 1, $param = [])
     {
+        $funcAuth = 'sys:' . lcfirst(CONTROLLER_NAME) . ":" . $funcAct;
+        $this->assign('funcAuth', $funcAuth);
         $this->assign('funcAct', $funcAct);
         $this->assign('funcIcon', $funcIcon);
         $this->assign('funcName', $funcName);
         $this->assign('funcColor', $funcColor);
         $this->assign('funcType', $funcType);
-        $this->assign('param', json_encode($param));
+        if (!empty($param)) {
+            $this->assign('param', json_encode($param));
+        }
         return $this->fetch('widget/func/func');
     }
 }

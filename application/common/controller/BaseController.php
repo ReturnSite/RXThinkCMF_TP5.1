@@ -170,16 +170,7 @@ class BaseController extends Controller
         // 系统静态资源域名
         $this->assign('staticUrl', STATIC_URL);
 
-        // 上传域名
-        $this->assign('uploadUrl', UPLOAD_URL);
-
-        // 临时上传域名
-        $this->assign('uploadTempUrl', UPLOAD_TEMP_URL);
-
-        // 普通图片域名
-        $this->assign('imageUrl', IMAGE_URL);
-
-        // 文章图片域名
+        // 图片域名
         $this->assign('imgUrl', IMG_URL);
     }
 

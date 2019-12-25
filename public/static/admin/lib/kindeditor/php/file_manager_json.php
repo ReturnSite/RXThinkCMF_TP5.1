@@ -7,7 +7,7 @@
  *
  */
 
-require_once '../../libraries/kindeditor/php/JSON.php';
+require_once '/JSON.php';
 
 $php_path = dirname(__FILE__) . '/';
 $php_url = dirname($_SERVER['PHP_SELF']) . '/';

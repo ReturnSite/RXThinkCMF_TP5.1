@@ -13,29 +13,16 @@
 // | 缓存设置
 // +----------------------------------------------------------------------
 
-use think\facade\Config;
-
-// 获取自定义配置文件
-$config = Config::get('app.config');
-
-// 获取缓存配置
-$cacheConfig = isset($config['cache_config']) ? $config['cache_config'] : '';
-if ($cacheConfig) {
-    $cacheArr = explode('://:@', $cacheConfig);
-    $cache_type = strtolower($cacheArr[0]);
-    if ($cache_type != 'file') {
-        list($cache_host, $cache_port, $cache_db) = preg_split("/[:\/]/", $cacheArr[1]);
-    }
-}
-
+// 緩存類型
+$cache_type = Env::get('cache.type', '');
 if (isset($cache_type) && $cache_type === 'redis') {
     $cache = [
         // 驱动方式
         'type' => 'redis',
         // 服务器地址
-        'host' => $cache_host,
+        'host' => Env::get('cache.host', '127.0.0.1'),
         // 服务器端口号
-        'port' => $cache_port,
+        'port' => Env::get('cache.port', '6379'),
         // 密码
         'password' => '',
         // 超时时间（单位：毫秒）
@@ -43,7 +30,7 @@ if (isset($cache_type) && $cache_type === 'redis') {
         // 缓存数据库库号
         'select' => 1,
         // 缓存前缀
-        'prefix' => $config['cache_key'] . "_",
+        'prefix' => Env::get('cache.prefix', 'RX_'),
         // 缓存有效期 0表示永久缓存
         'expire' => 0,
     ];
@@ -52,13 +39,13 @@ if (isset($cache_type) && $cache_type === 'redis') {
         // 驱动方式
         'type' => 'Memcache',
         // 服务器地址
-        'host' => $cache_host,
+        'host' => Env::get('cache.host', '127.0.0.1'),
         // 服务器端口号
-        'port' => $cache_port,
+        'port' => Env::get('cache.port', '11211'),
         // 超时时间（单位：毫秒）
         'timeout' => 3600,
         // 缓存前缀
-        'prefix' => $config['cache_key'] . "_",
+        'prefix' => Env::get('cache.prefix', 'RX_'),
         // 缓存有效期 0表示永久缓存
         'expire' => 0,
     ];
