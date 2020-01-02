@@ -11,7 +11,7 @@
  Target Server Version : 50617
  File Encoding         : 65001
 
- Date: 20/09/2019 13:16:13
+ Date: 02/01/2020 16:20:24
 */
 
 SET NAMES utf8mb4;
@@ -93,7 +93,7 @@ CREATE TABLE `think_ad`  (
 -- Records of think_ad
 -- ----------------------------
 INSERT INTO `think_ad` VALUES (1, '首页顶部广告轮播图一', 1, '/ad/2019/01/11/16/78abe32d5e0deb0c236.png', 4, '暂无', '暂无', '/', 0, 0, 0, 0, 0, 1, 1, 1528251784, 1, 1547194892, 1);
-INSERT INTO `think_ad` VALUES (2, '首页顶部广告轮播图一', 1, '/ad/20190507//1c4d0098f9b42c20454.jpg', 1, '首页顶部广告轮播图一', '首页顶部广告轮播图一', 'http://www.baidu.com', 0, 0, 0, 0, 0, 1, 1, 1546828065, 1, 1557205507, 1);
+INSERT INTO `think_ad` VALUES (2, '首页顶部广告轮播图一', 1, '/ad/20190507//1c4d0098f9b42c20454.jpg', 1, '首页顶部广告轮播图一', '首页顶部广告轮播图一', 'http://www.baidu.com', 0, 0, 0, 0, 0, 1, 1, 1546828065, 1, 1557205507, 0);
 
 -- ----------------------------
 -- Table structure for think_ad_sort
@@ -119,7 +119,7 @@ CREATE TABLE `think_ad_sort`  (
 -- ----------------------------
 -- Records of think_ad_sort
 -- ----------------------------
-INSERT INTO `think_ad_sort` VALUES (1, '首页顶部广告轮播', '暂无2', 1, 2, 1, 1, 1, 1, 1528251754, 1, 1547194882, 1);
+INSERT INTO `think_ad_sort` VALUES (1, '首页顶部广告轮播', '暂无2', 1, 2, 1, 1, 1, 1, 1528251754, 1, 1547194882, 0);
 
 -- ----------------------------
 -- Table structure for think_admin
@@ -157,7 +157,11 @@ CREATE TABLE `think_admin`  (
   `mark` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '有效标记',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mobile`(`mobile`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户管理表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台用户管理表' ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of think_admin
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for think_admin_dep
@@ -177,20 +181,22 @@ CREATE TABLE `think_admin_dep`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `parent_id`(`parent_id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门管理表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '部门管理表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_admin_dep
 -- ----------------------------
-INSERT INTO `think_admin_dep` VALUES (1, 0, '南京云恒信息科技有限公司qw', '', 125, 1, 1561528494, 1, 1565275150, 1);
-INSERT INTO `think_admin_dep` VALUES (2, 1, '技术中心', '', 125, 1, 1561528685, 0, 0, 1);
-INSERT INTO `think_admin_dep` VALUES (3, 1, '产品中心', '', 125, 1, 1561528706, 0, 0, 1);
-INSERT INTO `think_admin_dep` VALUES (4, 2, '后端', '', 125, 1, 1561528724, 1, 1561942951, 1);
-INSERT INTO `think_admin_dep` VALUES (5, 2, '前端', '', 125, 1, 1561528733, 1, 1561530634, 1);
-INSERT INTO `think_admin_dep` VALUES (6, 5, '22', '', 125, 1, 1561530644, 0, 0, 0);
-INSERT INTO `think_admin_dep` VALUES (7, 0, '小公司', '', 125, 1, 1562147027, 1, 1562423496, 0);
-INSERT INTO `think_admin_dep` VALUES (8, 7, '2', '', 125, 1, 1562147033, 0, 0, 0);
-INSERT INTO `think_admin_dep` VALUES (9, 0, 'sf', '', 125, 1, 1565275120, 0, 0, 0);
+INSERT INTO `think_admin_dep` VALUES (1, 0, 'RXThinkCMF南京研发中心', '', 125, 1, 1577943051, 1, 1577943077, 1);
+INSERT INTO `think_admin_dep` VALUES (2, 1, '技术研发中心', '', 125, 1, 1577943087, 1, 1577943174, 1);
+INSERT INTO `think_admin_dep` VALUES (3, 1, '市场推广中心', '', 125, 1, 1577943093, 1, 1577943182, 1);
+INSERT INTO `think_admin_dep` VALUES (4, 1, '运营中心', '', 125, 1, 1577943101, 0, 0, 1);
+INSERT INTO `think_admin_dep` VALUES (5, 1, '售后中心', '', 125, 1, 1577943113, 1, 1577943191, 1);
+INSERT INTO `think_admin_dep` VALUES (6, 1, '产品规划中心', '', 125, 1, 1577943127, 1, 1577943248, 1);
+INSERT INTO `think_admin_dep` VALUES (7, 1, '技术支持中心', '', 125, 1, 1577943147, 1, 1577943199, 1);
+INSERT INTO `think_admin_dep` VALUES (8, 1, '客服中心', '', 125, 1, 1577943207, 0, 0, 1);
+INSERT INTO `think_admin_dep` VALUES (9, 2, '架构设计中心', '', 125, 1, 1577943218, 0, 0, 1);
+INSERT INTO `think_admin_dep` VALUES (10, 2, '技术研发中心', '', 125, 1, 1577943238, 0, 0, 1);
+INSERT INTO `think_admin_dep` VALUES (11, 2, '测试中心', '', 125, 1, 1577943259, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for think_admin_log
@@ -262,7 +268,7 @@ CREATE TABLE `think_admin_rmr`  (
   `mark` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `admin_id`(`admin_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人员角色关系表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 60 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '人员角色关系表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_admin_rmr
@@ -319,11 +325,13 @@ INSERT INTO `think_admin_rmr` VALUES (49, 3, 1, 1, 1567065186, 0, 0, 1);
 INSERT INTO `think_admin_rmr` VALUES (50, 3, 24, 1, 1567065186, 0, 0, 1);
 INSERT INTO `think_admin_rmr` VALUES (51, 3, 26, 1, 1567065186, 0, 0, 1);
 INSERT INTO `think_admin_rmr` VALUES (52, 3, 28, 1, 1567065186, 0, 0, 1);
-INSERT INTO `think_admin_rmr` VALUES (53, 1, 1, 1, 1568260375, 0, 0, 1);
-INSERT INTO `think_admin_rmr` VALUES (54, 1, 24, 1, 1568260375, 0, 0, 1);
-INSERT INTO `think_admin_rmr` VALUES (55, 1, 26, 1, 1568260375, 0, 0, 1);
-INSERT INTO `think_admin_rmr` VALUES (56, 1, 27, 1, 1568260375, 0, 0, 1);
-INSERT INTO `think_admin_rmr` VALUES (57, 1, 28, 1, 1568260375, 0, 0, 1);
+INSERT INTO `think_admin_rmr` VALUES (53, 1, 1, 1, 1568260375, 0, 0, 0);
+INSERT INTO `think_admin_rmr` VALUES (54, 1, 24, 1, 1568260375, 0, 0, 0);
+INSERT INTO `think_admin_rmr` VALUES (55, 1, 26, 1, 1568260375, 0, 0, 0);
+INSERT INTO `think_admin_rmr` VALUES (56, 1, 27, 1, 1568260375, 0, 0, 0);
+INSERT INTO `think_admin_rmr` VALUES (57, 1, 28, 1, 1568260375, 0, 0, 0);
+INSERT INTO `think_admin_rmr` VALUES (58, 1, 1, 1, 1569567623, 0, 0, 0);
+INSERT INTO `think_admin_rmr` VALUES (59, 1, 1, 1, 1574911159, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for think_admin_role
@@ -345,13 +353,13 @@ CREATE TABLE `think_admin_role`  (
 -- ----------------------------
 -- Records of think_admin_role
 -- ----------------------------
-INSERT INTO `think_admin_role` VALUES (1, '超级管理员', 'a:32:{i:3;a:1:{i:0;s:1:\"5\";}i:6;a:2:{i:0;s:1:\"7\";i:1;s:1:\"8\";}i:10;a:7:{i:0;s:2:\"11\";i:1;s:2:\"12\";i:2;s:2:\"13\";i:3;s:2:\"14\";i:4;s:2:\"15\";i:5;s:2:\"16\";i:6;s:2:\"17\";}i:18;a:5:{i:0;s:2:\"21\";i:1;s:2:\"22\";i:2;s:2:\"23\";i:3;s:2:\"24\";i:4;s:2:\"25\";}i:27;a:6:{i:0;s:2:\"28\";i:1;s:2:\"29\";i:2;s:2:\"30\";i:3;s:2:\"31\";i:4;s:2:\"32\";i:5;s:2:\"33\";}i:34;a:6:{i:0;s:2:\"35\";i:1;s:2:\"36\";i:2;s:2:\"37\";i:3;s:2:\"38\";i:4;s:2:\"39\";i:5;s:2:\"40\";}i:41;a:5:{i:0;s:2:\"42\";i:1;s:2:\"43\";i:2;s:2:\"44\";i:3;s:2:\"45\";i:4;s:2:\"46\";}i:47;a:9:{i:0;s:2:\"48\";i:1;s:2:\"49\";i:2;s:2:\"50\";i:3;s:2:\"51\";i:4;s:2:\"52\";i:5;s:2:\"53\";i:6;s:2:\"54\";i:7;s:2:\"55\";i:8;s:2:\"56\";}i:57;a:2:{i:0;s:2:\"58\";i:1;s:2:\"59\";}i:60;a:8:{i:0;s:2:\"61\";i:1;s:2:\"62\";i:2;s:2:\"63\";i:3;s:2:\"64\";i:4;s:2:\"65\";i:5;s:2:\"66\";i:6;s:2:\"67\";i:7;s:2:\"68\";}i:195;a:5:{i:0;s:3:\"196\";i:1;s:3:\"197\";i:2;s:3:\"198\";i:3;s:3:\"199\";i:4;s:3:\"200\";}i:201;a:5:{i:0;s:3:\"202\";i:1;s:3:\"203\";i:2;s:3:\"204\";i:3;s:3:\"205\";i:4;s:3:\"206\";}i:70;a:5:{i:0;s:2:\"71\";i:1;s:2:\"72\";i:2;s:2:\"73\";i:3;s:2:\"74\";i:4;s:2:\"75\";}i:76;a:5:{i:0;s:2:\"77\";i:1;s:2:\"78\";i:2;s:2:\"79\";i:3;s:2:\"80\";i:4;s:2:\"81\";}i:82;a:8:{i:0;s:2:\"83\";i:1;s:2:\"84\";i:2;s:2:\"85\";i:3;s:2:\"86\";i:4;s:2:\"87\";i:5;s:2:\"88\";i:6;s:2:\"89\";i:7;s:2:\"90\";}i:92;a:8:{i:0;s:2:\"93\";i:1;s:2:\"94\";i:2;s:2:\"95\";i:3;s:2:\"96\";i:4;s:2:\"97\";i:5;s:2:\"98\";i:6;s:2:\"99\";i:7;s:3:\"100\";}i:101;a:8:{i:0;s:3:\"102\";i:1;s:3:\"103\";i:2;s:3:\"104\";i:3;s:3:\"105\";i:4;s:3:\"106\";i:5;s:3:\"107\";i:6;s:3:\"108\";i:7;s:3:\"109\";}i:111;a:8:{i:0;s:3:\"112\";i:1;s:3:\"113\";i:2;s:3:\"114\";i:3;s:3:\"115\";i:4;s:3:\"116\";i:5;s:3:\"117\";i:6;s:3:\"118\";i:7;s:3:\"119\";}i:120;a:3:{i:0;s:3:\"121\";i:1;s:3:\"122\";i:2;s:3:\"123\";}i:125;a:9:{i:0;s:3:\"126\";i:1;s:3:\"127\";i:2;s:3:\"128\";i:3;s:3:\"129\";i:4;s:3:\"130\";i:5;s:3:\"131\";i:6;s:3:\"132\";i:7;s:3:\"133\";i:8;s:3:\"134\";}i:135;a:4:{i:0;s:3:\"136\";i:1;s:3:\"137\";i:2;s:3:\"138\";i:3;s:3:\"139\";}i:140;a:2:{i:0;s:3:\"141\";i:1;s:3:\"142\";}i:143;a:8:{i:0;s:3:\"144\";i:1;s:3:\"145\";i:2;s:3:\"146\";i:3;s:3:\"147\";i:4;s:3:\"148\";i:5;s:3:\"149\";i:6;s:3:\"150\";i:7;s:3:\"151\";}i:154;a:5:{i:0;s:3:\"155\";i:1;s:3:\"156\";i:2;s:3:\"157\";i:3;s:3:\"158\";i:4;s:3:\"159\";}i:160;a:6:{i:0;s:3:\"161\";i:1;s:3:\"162\";i:2;s:3:\"163\";i:3;s:3:\"164\";i:4;s:3:\"165\";i:5;s:3:\"166\";}i:168;a:5:{i:0;s:3:\"169\";i:1;s:3:\"170\";i:2;s:3:\"171\";i:3;s:3:\"172\";i:4;s:3:\"173\";}i:174;a:5:{i:0;s:3:\"175\";i:1;s:3:\"176\";i:2;s:3:\"177\";i:3;s:3:\"178\";i:4;s:3:\"179\";}i:181;a:6:{i:0;s:3:\"182\";i:1;s:3:\"183\";i:2;s:3:\"184\";i:3;s:3:\"185\";i:4;s:3:\"186\";i:5;s:3:\"187\";}i:188;a:5:{i:0;s:3:\"189\";i:1;s:3:\"190\";i:2;s:3:\"191\";i:3;s:3:\"192\";i:4;s:3:\"193\";}i:209;a:10:{i:0;s:3:\"210\";i:1;s:3:\"211\";i:2;s:3:\"212\";i:3;s:3:\"213\";i:4;s:3:\"214\";i:5;s:3:\"215\";i:6;s:3:\"216\";i:7;s:3:\"217\";i:8;s:3:\"218\";i:9;s:3:\"219\";}i:222;a:7:{i:0;s:3:\"223\";i:1;s:3:\"233\";i:2;s:3:\"234\";i:3;s:3:\"235\";i:4;s:3:\"236\";i:5;s:3:\"237\";i:6;s:3:\"238\";}i:239;a:6:{i:0;s:3:\"240\";i:1;s:3:\"241\";i:2;s:3:\"242\";i:3;s:3:\"243\";i:4;s:3:\"244\";i:5;s:3:\"245\";}}', 125, 1, 1531990991, 1, 1567562361, 1);
+INSERT INTO `think_admin_role` VALUES (1, '超级管理员', 'a:31:{i:3;a:1:{i:0;s:1:\"4\";}i:5;a:2:{i:0;s:1:\"6\";i:1;s:1:\"7\";}i:9;a:7:{i:0;s:2:\"10\";i:1;s:2:\"11\";i:2;s:2:\"12\";i:3;s:2:\"13\";i:4;s:2:\"14\";i:5;s:2:\"15\";i:6;s:2:\"16\";}i:17;a:8:{i:0;s:2:\"18\";i:1;s:2:\"19\";i:2;s:2:\"20\";i:3;s:2:\"21\";i:4;s:2:\"22\";i:5;s:2:\"23\";i:6;s:2:\"24\";i:7;s:2:\"25\";}i:26;a:6:{i:0;s:2:\"27\";i:1;s:2:\"28\";i:2;s:2:\"29\";i:3;s:2:\"30\";i:4;s:2:\"31\";i:5;s:2:\"32\";}i:40;a:5:{i:0;s:2:\"41\";i:1;s:2:\"42\";i:2;s:2:\"43\";i:3;s:2:\"44\";i:4;s:2:\"45\";}i:46;a:9:{i:0;s:2:\"47\";i:1;s:2:\"48\";i:2;s:2:\"49\";i:3;s:2:\"50\";i:4;s:2:\"51\";i:5;s:2:\"52\";i:6;s:2:\"53\";i:7;s:2:\"54\";i:8;s:2:\"55\";}i:56;a:2:{i:0;s:2:\"57\";i:1;s:2:\"58\";}i:59;a:8:{i:0;s:2:\"60\";i:1;s:2:\"61\";i:2;s:2:\"62\";i:3;s:2:\"63\";i:4;s:2:\"64\";i:5;s:2:\"65\";i:6;s:2:\"66\";i:7;s:2:\"67\";}i:69;a:5:{i:0;s:2:\"70\";i:1;s:2:\"71\";i:2;s:2:\"72\";i:3;s:2:\"73\";i:4;s:2:\"74\";}i:75;a:5:{i:0;s:2:\"76\";i:1;s:2:\"77\";i:2;s:2:\"78\";i:3;s:2:\"79\";i:4;s:2:\"80\";}i:82;a:5:{i:0;s:2:\"83\";i:1;s:2:\"84\";i:2;s:2:\"85\";i:3;s:2:\"86\";i:4;s:2:\"87\";}i:88;a:5:{i:0;s:2:\"89\";i:1;s:2:\"90\";i:2;s:2:\"91\";i:3;s:2:\"92\";i:4;s:2:\"93\";}i:94;a:8:{i:0;s:2:\"95\";i:1;s:2:\"96\";i:2;s:2:\"97\";i:3;s:2:\"98\";i:4;s:2:\"99\";i:5;s:3:\"100\";i:6;s:3:\"101\";i:7;s:3:\"102\";}i:104;a:8:{i:0;s:3:\"105\";i:1;s:3:\"106\";i:2;s:3:\"107\";i:3;s:3:\"108\";i:4;s:3:\"109\";i:5;s:3:\"110\";i:6;s:3:\"111\";i:7;s:3:\"112\";}i:113;a:8:{i:0;s:3:\"114\";i:1;s:3:\"115\";i:2;s:3:\"116\";i:3;s:3:\"117\";i:4;s:3:\"118\";i:5;s:3:\"119\";i:6;s:3:\"120\";i:7;s:3:\"121\";}i:123;a:8:{i:0;s:3:\"124\";i:1;s:3:\"125\";i:2;s:3:\"126\";i:3;s:3:\"127\";i:4;s:3:\"128\";i:5;s:3:\"129\";i:6;s:3:\"130\";i:7;s:3:\"131\";}i:132;a:3:{i:0;s:3:\"133\";i:1;s:3:\"134\";i:2;s:3:\"135\";}i:147;a:4:{i:0;s:3:\"148\";i:1;s:3:\"149\";i:2;s:3:\"150\";i:3;s:3:\"151\";}i:152;a:2:{i:0;s:3:\"153\";i:1;s:3:\"154\";}i:137;a:9:{i:0;s:3:\"138\";i:1;s:3:\"139\";i:2;s:3:\"140\";i:3;s:3:\"141\";i:4;s:3:\"142\";i:5;s:3:\"143\";i:6;s:3:\"144\";i:7;s:3:\"145\";i:8;s:3:\"146\";}i:155;a:8:{i:0;s:3:\"156\";i:1;s:3:\"157\";i:2;s:3:\"158\";i:3;s:3:\"159\";i:4;s:3:\"160\";i:5;s:3:\"161\";i:6;s:3:\"162\";i:7;s:3:\"163\";}i:166;a:5:{i:0;s:3:\"167\";i:1;s:3:\"168\";i:2;s:3:\"169\";i:3;s:3:\"170\";i:4;s:3:\"171\";}i:172;a:6:{i:0;s:3:\"173\";i:1;s:3:\"174\";i:2;s:3:\"175\";i:3;s:3:\"176\";i:4;s:3:\"177\";i:5;s:3:\"178\";}i:180;a:5:{i:0;s:3:\"181\";i:1;s:3:\"182\";i:2;s:3:\"183\";i:3;s:3:\"184\";i:4;s:3:\"185\";}i:186;a:5:{i:0;s:3:\"187\";i:1;s:3:\"188\";i:2;s:3:\"189\";i:3;s:3:\"190\";i:4;s:3:\"191\";}i:193;a:6:{i:0;s:3:\"194\";i:1;s:3:\"195\";i:2;s:3:\"196\";i:3;s:3:\"197\";i:4;s:3:\"198\";i:5;s:3:\"199\";}i:200;a:5:{i:0;s:3:\"201\";i:1;s:3:\"202\";i:2;s:3:\"203\";i:3;s:3:\"204\";i:4;s:3:\"205\";}i:207;a:10:{i:0;s:3:\"208\";i:1;s:3:\"209\";i:2;s:3:\"210\";i:3;s:3:\"211\";i:4;s:3:\"212\";i:5;s:3:\"213\";i:6;s:3:\"214\";i:7;s:3:\"215\";i:8;s:3:\"216\";i:9;s:3:\"217\";}i:220;a:7:{i:0;s:3:\"221\";i:1;s:3:\"222\";i:2;s:3:\"223\";i:3;s:3:\"224\";i:4;s:3:\"225\";i:5;s:3:\"226\";i:6;s:3:\"227\";}i:228;a:6:{i:0;s:3:\"229\";i:1;s:3:\"230\";i:2;s:3:\"231\";i:3;s:3:\"232\";i:4;s:3:\"233\";i:5;s:3:\"234\";}}', 125, 1, 1531990991, 1, 1577946660, 1);
 INSERT INTO `think_admin_role` VALUES (23, '超级管理员', NULL, 125, 0, 1560952891, 1, 1561470347, 0);
-INSERT INTO `think_admin_role` VALUES (24, '测试员', 'a:1:{i:3;a:2:{i:0;s:1:\"4\";i:1;s:1:\"5\";}}', 125, 1, 1562147389, 1, 1562147668, 1);
+INSERT INTO `think_admin_role` VALUES (24, '测试员', 'a:1:{i:3;a:2:{i:0;s:1:\"4\";i:1;s:1:\"5\";}}', 125, 1, 1562147389, 1, 1562147668, 0);
 INSERT INTO `think_admin_role` VALUES (25, 'wqqq', '', 125, 1, 1562406819, 0, 0, 0);
-INSERT INTO `think_admin_role` VALUES (26, 'test222', '', 125, 1, 1562654501, 1, 1562834454, 1);
-INSERT INTO `think_admin_role` VALUES (27, '呃呃呃asdf', 'a:4:{i:3;a:1:{i:0;s:1:\"5\";}i:6;a:1:{i:0;s:1:\"8\";}i:111;a:6:{i:0;s:3:\"113\";i:1;s:3:\"115\";i:2;s:3:\"116\";i:3;s:3:\"117\";i:4;s:3:\"118\";i:5;s:3:\"119\";}i:222;a:1:{i:0;s:3:\"223\";}}', 125, 1, 1563779767, 1, 1563843077, 1);
-INSERT INTO `think_admin_role` VALUES (28, 'yyy', '', 125, 1, 1563981936, 0, 0, 1);
+INSERT INTO `think_admin_role` VALUES (26, 'test222', '', 125, 1, 1562654501, 1, 1562834454, 0);
+INSERT INTO `think_admin_role` VALUES (27, '呃呃呃asdf', 'a:4:{i:3;a:1:{i:0;s:1:\"5\";}i:6;a:1:{i:0;s:1:\"8\";}i:111;a:6:{i:0;s:3:\"113\";i:1;s:3:\"115\";i:2;s:3:\"116\";i:3;s:3:\"117\";i:4;s:3:\"118\";i:5;s:3:\"119\";}i:222;a:1:{i:0;s:3:\"223\";}}', 125, 1, 1563779767, 1, 1563843077, 0);
+INSERT INTO `think_admin_role` VALUES (28, 'yyy', '', 125, 1, 1563981936, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for think_admin_rom
@@ -370,32 +378,32 @@ CREATE TABLE `think_admin_rom`  (
   `mark` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `type_id`(`type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 121 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色菜单人员关系表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 145 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '角色菜单人员关系表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_admin_rom
 -- ----------------------------
 INSERT INTO `think_admin_rom` VALUES (1, 1, 1, 14, '15,460,461,16,462,463,164,464', 1, 1532330247, 1, 1560957700, 0);
-INSERT INTO `think_admin_rom` VALUES (2, 1, 1, 17, '18,19,20,21,156,157,301', 1, 1532330247, 1, 1560957699, 0);
+INSERT INTO `think_admin_rom` VALUES (2, 1, 1, 17, '18,19,20,21,22,23,24,25', 1, 1532330247, 1, 1577946660, 1);
 INSERT INTO `think_admin_rom` VALUES (3, 1, 1, 22, '23,24,25,26,145,146,147,165', 1, 1532330247, 1, 1560957699, 0);
-INSERT INTO `think_admin_rom` VALUES (4, 1, 1, 27, '28,29,30,31,32,33', 1, 1532330247, 1, 1567562361, 1);
+INSERT INTO `think_admin_rom` VALUES (4, 1, 1, 27, '28,29,30,31,32,33', 1, 1532330247, 1, 1574993538, 0);
 INSERT INTO `think_admin_rom` VALUES (5, 1, 1, 32, '33,34,35,36,195', 1, 1532330247, 1, 1560957699, 0);
-INSERT INTO `think_admin_rom` VALUES (6, 1, 1, 132, '133,134,135,447,136,448,449,168,450', 1, 1532330247, 1, 1560957700, 0);
-INSERT INTO `think_admin_rom` VALUES (7, 1, 1, 47, '48,49,50,51,52,53,54,55,56', 1, 1532330247, 1, 1567562361, 1);
+INSERT INTO `think_admin_rom` VALUES (6, 1, 1, 132, '133,134,135', 1, 1532330247, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (7, 1, 1, 47, '48,49,50,51,52,53,54,55,56', 1, 1532330247, 1, 1574993538, 0);
 INSERT INTO `think_admin_rom` VALUES (8, 1, 1, 48, '123,124,125,126,170', 1, 1532330247, 1, 1547349950, 0);
 INSERT INTO `think_admin_rom` VALUES (9, 1, 1, 49, '55,56,57,58,163', 1, 1532330247, 1, 1560957700, 0);
 INSERT INTO `think_admin_rom` VALUES (10, 1, 1, 127, '128,129,130,466,131,467,171,468', 1, 1532330247, 1, 1560957700, 0);
 INSERT INTO `think_admin_rom` VALUES (11, 1, 1, 50, '59,60,61,62,172', 1, 1532330247, 1, 1560957700, 0);
 INSERT INTO `think_admin_rom` VALUES (12, 1, 1, 63, '64,65,66,67,173', 1, 1532330247, 1, 1560957700, 0);
-INSERT INTO `think_admin_rom` VALUES (13, 1, 1, 46, '68,69,70,71,174,196', 1, 1532330247, 1, 1560957700, 0);
+INSERT INTO `think_admin_rom` VALUES (13, 1, 1, 46, '47,48,49,50,51,52,53,54,55', 1, 1532330247, 1, 1577946660, 1);
 INSERT INTO `think_admin_rom` VALUES (14, 1, 1, 72, '73,74,75,76,175', 1, 1532330247, 1, 1560957700, 0);
 INSERT INTO `think_admin_rom` VALUES (15, 1, 1, 77, '78,79,80,81,176', 1, 1532330247, 1, 1560957700, 0);
-INSERT INTO `think_admin_rom` VALUES (16, 1, 1, 82, '83,84,85,86,87,88,89,90', 1, 1532330247, 1, 1567562361, 1);
+INSERT INTO `think_admin_rom` VALUES (16, 1, 1, 82, '83,84,85,86,87', 1, 1532330247, 1, 1577946660, 1);
 INSERT INTO `think_admin_rom` VALUES (17, 1, 1, 87, '88,90,91,346', 1, 1532330248, 1, 1547349951, 0);
-INSERT INTO `think_admin_rom` VALUES (18, 1, 1, 92, '93,94,95,96,97,98,99,100', 1, 1532330248, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (19, 1, 1, 40, '41,42,43,44,258,180,297,298,326,327,336,344', 1, 1532330248, 1, 1547349949, 0);
-INSERT INTO `think_admin_rom` VALUES (20, 1, 1, 137, '138,139,144,181,295,296', 1, 1532330248, 1, 1547349952, 0);
-INSERT INTO `think_admin_rom` VALUES (21, 1, 1, 140, '141,142', 1, 1532330248, 1, 1567562361, 1);
+INSERT INTO `think_admin_rom` VALUES (18, 1, 1, 92, '93,94,95,96,97,98,99,100', 1, 1532330248, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (19, 1, 1, 40, '41,42,43,44,45', 1, 1532330248, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (20, 1, 1, 137, '138,139,140,141,142,143,144,145,146', 1, 1532330248, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (21, 1, 1, 140, '141,142', 1, 1532330248, 1, 1574993538, 0);
 INSERT INTO `think_admin_rom` VALUES (22, 1, 1, 100, '101,465', 1, 1532330248, 1, 1560957700, 0);
 INSERT INTO `think_admin_rom` VALUES (23, 1, 1, 112, '113,114,115,116,184', 1, 1532330248, 1, 1547349953, 0);
 INSERT INTO `think_admin_rom` VALUES (24, 1, 1, 118, '119,121,122,213,260,262', 1, 1532330248, 1, 1547349951, 0);
@@ -416,11 +424,11 @@ INSERT INTO `think_admin_rom` VALUES (38, 1, 1, 187, '188,189,190,191,192', 1, 1
 INSERT INTO `think_admin_rom` VALUES (39, 2, 1, 187, '192', 1, 1534495322, 0, 0, 0);
 INSERT INTO `think_admin_rom` VALUES (40, 2, 1, 132, '134,135,136,168', 1, 1535015113, 0, 0, 0);
 INSERT INTO `think_admin_rom` VALUES (41, 1, 1, 197, '198,199,200', 1, 1536402796, 1, 1547349954, 0);
-INSERT INTO `think_admin_rom` VALUES (42, 1, 1, 201, '202,203,204,205,206', 1, 1537584769, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (43, 1, 1, 207, '208,209,210,211,212', 1, 1537587074, 1, 1560957700, 0);
+INSERT INTO `think_admin_rom` VALUES (42, 1, 1, 201, '202,203,204,205,206', 1, 1537584769, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (43, 1, 1, 207, '208,209,210,211,212,213,214,215,216,217', 1, 1537587074, 1, 1577946660, 1);
 INSERT INTO `think_admin_rom` VALUES (44, 1, 1, 214, '215,120', 1, 1538987585, 1, 1547349952, 0);
 INSERT INTO `think_admin_rom` VALUES (45, 1, 1, 217, '218,219,220,221,45', 1, 1538993471, 1, 1547349949, 0);
-INSERT INTO `think_admin_rom` VALUES (46, 1, 1, 222, '223,233,234,235,236,237,238', 1, 1539077401, 1, 1567562361, 1);
+INSERT INTO `think_admin_rom` VALUES (46, 1, 1, 222, '223,233,234,235,236,237,238', 1, 1539077401, 1, 1574993538, 0);
 INSERT INTO `think_admin_rom` VALUES (47, 1, 1, 229, '230,247,252', 1, 1539597031, 1, 1539691900, 0);
 INSERT INTO `think_admin_rom` VALUES (48, 1, 1, 232, '233,248,249', 1, 1539597031, 1, 1539691900, 0);
 INSERT INTO `think_admin_rom` VALUES (49, 1, 1, 235, '236,250', 1, 1539597031, 1, 1539691900, 0);
@@ -465,36 +473,60 @@ INSERT INTO `think_admin_rom` VALUES (87, 1, 1, 320, '321,322,493,324', 1, 15471
 INSERT INTO `think_admin_rom` VALUES (88, 1, 1, 354, '355,357', 1, 1547192459, 1, 1547349954, 0);
 INSERT INTO `think_admin_rom` VALUES (89, 1, 1, 359, '360,361', 1, 1547192459, 1, 1547349954, 0);
 INSERT INTO `think_admin_rom` VALUES (90, 1, 1, 451, '452,453,454,455,456,457,458,459', 0, 0, 1, 1560957700, 0);
-INSERT INTO `think_admin_rom` VALUES (91, 1, 1, 3, '5', 1, 1561468679, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (92, 1, 1, 6, '7,8', 1, 1561468679, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (93, 1, 1, 10, '11,12,13,14,15,16,17', 1, 1561468679, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (94, 1, 1, 18, '21,22,23,24,25', 1, 1561468679, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (95, 1, 1, 34, '35,36,37,38,39,40', 1, 1561468680, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (96, 1, 1, 41, '42,43,44,45,46', 1, 1561468680, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (97, 1, 1, 57, '58,59', 1, 1561468681, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (98, 1, 1, 60, '61,62,63,64,65,66,67,68', 1, 1561468681, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (99, 1, 1, 70, '71,72,73,74,75', 1, 1561468681, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (100, 1, 1, 76, '77,78,79,80,81', 1, 1561468682, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (101, 1, 1, 101, '102,103,104,105,106,107,108,109', 1, 1561468683, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (102, 1, 1, 111, '112,113,114,115,116,117,118,119', 1, 1561468683, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (103, 1, 1, 120, '121,122,123', 1, 1561468683, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (104, 1, 1, 125, '126,127,128,129,130,131,132,133,134', 1, 1561468684, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (105, 1, 1, 135, '136,137,138,139', 1, 1561468684, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (106, 1, 1, 143, '144,145,146,147,148,149,150,151', 1, 1561468684, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (107, 1, 1, 154, '155,156,157,158,159', 1, 1561468684, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (108, 1, 1, 160, '161,162,163,164,165,166', 1, 1561468684, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (109, 1, 1, 168, '169,170,171,172,173', 1, 1561468685, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (110, 1, 1, 174, '175,176,177,178,179', 1, 1561468685, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (111, 1, 1, 181, '182,183,184,185,186,187', 1, 1561468685, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (112, 1, 1, 188, '189,190,191,192,193', 1, 1561468685, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (113, 1, 1, 195, '196,197,198,199,200', 1, 1561468685, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (114, 1, 1, 209, '210,211,212,213,214,215,216,217,218,219', 1, 1561468685, 1, 1567562361, 1);
-INSERT INTO `think_admin_rom` VALUES (115, 1, 1, 239, '240,241,242,243,244,245', 1, 1561642739, 1, 1567562361, 1);
+INSERT INTO `think_admin_rom` VALUES (91, 1, 1, 3, '4', 1, 1561468679, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (92, 1, 1, 6, '7,8', 1, 1561468679, 1, 1572854775, 0);
+INSERT INTO `think_admin_rom` VALUES (93, 1, 1, 10, '11,12,14,17', 1, 1561468679, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (94, 1, 1, 18, '22,23,25,26', 1, 1561468679, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (95, 1, 1, 34, '35,36,37,39,40', 1, 1561468680, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (96, 1, 1, 41, '42,43,44,46', 1, 1561468680, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (97, 1, 1, 57, '58,59', 1, 1561468681, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (98, 1, 1, 60, '61,62,63,64,65,66,67,68', 1, 1561468681, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (99, 1, 1, 70, '71,72,73,74,75', 1, 1561468681, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (100, 1, 1, 76, '77,78,79,80,81', 1, 1561468682, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (101, 1, 1, 101, '102,103,104,105,106,107,108,109', 1, 1561468683, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (102, 1, 1, 111, '112,113,114,115,116,117,118,119', 1, 1561468683, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (103, 1, 1, 120, '121,122,123', 1, 1561468683, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (104, 1, 1, 125, '126,127,128,129,130,131,132,133,134', 1, 1561468684, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (105, 1, 1, 135, '136,137,138,139', 1, 1561468684, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (106, 1, 1, 143, '144,145,146,147,148,149,150,151', 1, 1561468684, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (107, 1, 1, 154, '155,156,157,158,159', 1, 1561468684, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (108, 1, 1, 160, '161,162,163,164,165,166', 1, 1561468684, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (109, 1, 1, 168, '169,170,171,172,173', 1, 1561468685, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (110, 1, 1, 174, '175,176,177,178,179', 1, 1561468685, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (111, 1, 1, 181, '182,183,184,185,186,187', 1, 1561468685, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (112, 1, 1, 188, '189,190,191,192,193', 1, 1561468685, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (113, 1, 1, 195, '196,197,198,199,200', 1, 1561468685, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (114, 1, 1, 209, '210,211,212,213,214,215,216,217,218,219', 1, 1561468685, 1, 1574993538, 0);
+INSERT INTO `think_admin_rom` VALUES (115, 1, 1, 239, '240,241,242,243,244,245', 1, 1561642739, 1, 1574993538, 0);
 INSERT INTO `think_admin_rom` VALUES (116, 1, 24, 3, '4,5', 1, 1562147668, 0, 0, 1);
 INSERT INTO `think_admin_rom` VALUES (117, 1, 27, 3, '5', 1, 1563779804, 0, 0, 1);
 INSERT INTO `think_admin_rom` VALUES (118, 1, 27, 6, '8', 1, 1563779804, 0, 0, 1);
 INSERT INTO `think_admin_rom` VALUES (119, 1, 27, 111, '113,115,116,117,118,119', 1, 1563779804, 0, 0, 1);
 INSERT INTO `think_admin_rom` VALUES (120, 1, 27, 222, '223', 1, 1563779804, 0, 0, 1);
+INSERT INTO `think_admin_rom` VALUES (121, 1, 1, 5, '6,7', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (122, 1, 1, 9, '10,11,12,13,14,15,16', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (123, 1, 1, 26, '27,28,29,30,31,32', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (124, 1, 1, 33, '34,35,36,37,38,39', 1, 1577937149, 1, 1577946603, 0);
+INSERT INTO `think_admin_rom` VALUES (125, 1, 1, 56, '57,58', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (126, 1, 1, 59, '60,61,62,63,64,65,66,67', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (127, 1, 1, 69, '70,71,72,73,74', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (128, 1, 1, 75, '76,77,78,79,80', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (129, 1, 1, 88, '89,90,91,92,93', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (130, 1, 1, 94, '95,96,97,98,99,100,101,102', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (131, 1, 1, 104, '105,106,107,108,109,110,111,112', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (132, 1, 1, 113, '114,115,116,117,118,119,120,121', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (133, 1, 1, 123, '124,125,126,127,128,129,130,131', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (134, 1, 1, 147, '148,149,150,151', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (135, 1, 1, 152, '153,154', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (136, 1, 1, 155, '156,157,158,159,160,161,162,163', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (137, 1, 1, 166, '167,168,169,170,171', 1, 1577937149, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (138, 1, 1, 172, '173,174,175,176,177,178', 1, 1577937150, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (139, 1, 1, 180, '181,182,183,184,185', 1, 1577937150, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (140, 1, 1, 186, '187,188,189,190,191', 1, 1577937150, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (141, 1, 1, 193, '194,195,196,197,198,199', 1, 1577937150, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (142, 1, 1, 200, '201,202,203,204,205', 1, 1577937150, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (143, 1, 1, 220, '221,222,223,224,225,226,227', 1, 1577937150, 1, 1577946660, 1);
+INSERT INTO `think_admin_rom` VALUES (144, 1, 1, 228, '229,230,231,232,233,234', 1, 1577937150, 1, 1577946660, 1);
 
 -- ----------------------------
 -- Table structure for think_article
@@ -523,7 +555,7 @@ CREATE TABLE `think_article`  (
   INDEX `item_id`(`item_id`) USING BTREE,
   INDEX `cate_id`(`cate_id`) USING BTREE,
   INDEX `mark`(`mark`, `is_show`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1002 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章管理表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '文章管理表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_article
@@ -850,26 +882,26 @@ INSERT INTO `think_attachment` VALUES (22, '扫地机器人.jpg', 1, 'temp/20190
 INSERT INTO `think_attachment` VALUES (23, '无人机.png', 1, 'temp/201902/11/e22fe11d44991e7fc917304b0abb2130.png', 349340, 'image/png', 1, 'dcb399be6a0cef417e9f61c63fc537126e7dac35', 1, 'upload_image', 1, 1549865962, 1557134316, 1);
 INSERT INTO `think_attachment` VALUES (24, '办公用品导入模板.xlsx', 3, 'temp/201902/15/d2cc4e4cb05361bc3355010fd04dfb44.xlsx', 8712, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 1, 'ddd8b4cb30e6b5a5aba231a4d1009327999aa236', 0, 'upload_image', 2, 1550196092, 1550196092, 1);
 INSERT INTO `think_attachment` VALUES (25, '办公用品导入模板.xlsx', 3, 'temp/201902/15/1bebe8740691dde14507ce623173c20a.xlsx', 8669, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 1, 'd612c40fdafb03fb7615e489aad64df747aa9a1e', 0, 'upload_image', 2, 1550196329, 1550196329, 1);
-INSERT INTO `think_attachment` VALUES (26, '办公用品导入模板.xlsx', 3, 'temp/201902/15/739a8eea0c42f95ad5f5b28bb437b9d1.xlsx', 8622, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 1, '1ed4a5518574039fa8ab9c9b11472d6e7965d84d', 0, 'upload_image', 2, 1550201280, 1550201280, 1);
-INSERT INTO `think_attachment` VALUES (27, '智能制造.png', 1, 'temp/201902/15/b7780b2279ed80a8c2838477f3b3dd0b.png', 109129, 'image/png', 1, '4d08eca69a842384765e60d337cadb3caee464cc', 0, 'upload_image', 2, 1550203038, 1550203038, 1);
-INSERT INTO `think_attachment` VALUES (28, 'timg.jpg', 1, 'temp/201904/01/81d7576988ac11992bcdcd0fa821c3a7.jpg', 46156, 'image/jpeg', 1, '60a28910fc43a67e713c07049cdd0d1b87abdbbf', 10, 'upload_image', 1, 1554084533, 1555655481, 1);
-INSERT INTO `think_attachment` VALUES (29, 'ERP二期技术研发规划.docx', 3, 'temp/201904/01/93db75267f64e20e176d834d9943e8c8.docx', 13733, 'application/octet-stream', 1, 'b05a7e4674ed8da1745d5d910823196f4e3e16bc', 0, 'upload_image', 2, 1554084559, 1554084559, 1);
-INSERT INTO `think_attachment` VALUES (30, 'bom (13).xls', 3, 'temp/201904/13/5d7d2719c47ea907ee31d1851103d63d.xls', 33792, 'application/vnd.ms-excel', 1, 'f35faf58ec05905b69a8fa3f94f78f7198fb31bc', 0, 'upload_image', 2, 1555142922, 1555142922, 1);
-INSERT INTO `think_attachment` VALUES (31, 'ERP第二期项目跟进计划表.xlsx', 3, 'temp/201904/19/f4ef5b4da75ee7c4b67ff5c67b19b9ff.xlsx', 12563, 'application/octet-stream', 1, 'fe2c7a850dca86aaa46fb742ef5d53ca5fc87be5', 14, 'upload_image', 1, 1555653786, 1555659017, 1);
-INSERT INTO `think_attachment` VALUES (32, '云恒ERP周报格式.xlsx', 3, 'temp/201904/19/b8f99377293ed0dc2d4123fb8e75f11f.xlsx', 11003, 'application/octet-stream', 1, 'cc97a6fad1e118376cbf74ca1410766d7f63dbd2', 3, 'upload_image', 1, 1555654409, 1555659017, 1);
-INSERT INTO `think_attachment` VALUES (33, '云恒ERP工作日报、周报格式.xlsx', 3, 'temp/201904/19/634eec699eb230370829fd2fb64f2b4e.xlsx', 13031, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 1, '1c3ad9755843298b846dfa74d3711df6f9492ef1', 0, 'upload_image', 2, 1555654612, 1555654612, 1);
-INSERT INTO `think_attachment` VALUES (34, '财务统计导出20190418100125.xls', 3, 'temp/201904/19/970f7c26dfccc01f54c68bb47510419f.xls', 6144, 'application/vnd.ms-excel', 1, '5b5e5b067289426ae32dd36831fa76e7fc83fb34', 2, 'upload_image', 1, 1555654739, 1555656610, 1);
-INSERT INTO `think_attachment` VALUES (35, '日报2019-04-18.xlsx', 3, 'temp/201904/19/caeeec62a5a053cdc93c25fea101d71f.xlsx', 12548, 'application/octet-stream', 1, '1184ac8fde931a6bd39aaec9da1859f07725e919', 2, 'upload_image', 1, 1555655735, 1555657450, 1);
-INSERT INTO `think_attachment` VALUES (36, '财务统计导出20190418103038.xls', 3, 'temp/201904/19/7291d4b599526363445e0f8e30c721fd.xls', 5120, 'application/vnd.ms-excel', 1, '312ffa7c381f232f4dc6883fb2c95b54dcbd5cf7', 0, 'upload_image', 2, 1555656107, 1555656107, 1);
-INSERT INTO `think_attachment` VALUES (37, '固定资产导出20190418092541.xls', 3, 'temp/201904/19/46cd68aac0b8859fb602197c6cdf0b3b.xls', 6144, 'application/vnd.ms-excel', 1, 'd3ba9af3a022349b041a821532c88d3e18c00840', 0, 'upload_image', 2, 1555657175, 1555657175, 1);
-INSERT INTO `think_attachment` VALUES (38, '固定资产导出20190418095155.xls', 3, 'temp/201904/19/5b24c5b3cfe00a3036e40f540c59e8d5.xls', 6144, 'application/vnd.ms-excel', 1, '9f4f27b31626ebc610063effa908d7cedc8f2618', 0, 'upload_image', 2, 1555657363, 1555657363, 1);
-INSERT INTO `think_attachment` VALUES (39, 'PCB制版能力.doc', 3, 'temp/201905/05/aca3c0109d37dda6dea58e5df40399ad.doc', 27334, 'application/msword', 1, '8927078ce78872a5af71828ce7d36cacb48e320d', 6, 'upload_image', 1, 1557043992, 1557141472, 1);
-INSERT INTO `think_attachment` VALUES (40, 'PCB报价规则.doc', 3, 'temp/201905/05/a8367ad7cec0c41862449410ff86854e.doc', 44544, 'application/msword', 1, '6e0262084152c90cb0cae44735e9528363ed8248', 4, 'upload_image', 1, 1557044989, 1557141677, 1);
-INSERT INTO `think_attachment` VALUES (41, '周报4月第5报周.xlsx', 3, 'temp/201905/06/a26eb9cb46756221da4bbf60566e27ff.xlsx', 12194, 'application/octet-stream', 1, '0b112d017cc302f27b30ba8da0d825603076812d', 1, 'upload_image', 1, 1557135168, 1564020681, 1);
-INSERT INTO `think_attachment` VALUES (42, '拓恒ERP需求文档12.25.docx', 3, 'temp/201905/06/c3a46bcb3315236fbf40deffbd865080.docx', 1465556, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 1, '1945946b904dec8df508d5702d63a8f9ba2f1941', 1, 'upload_image', 1, 1557137490, 1564020652, 1);
-INSERT INTO `think_attachment` VALUES (43, 'logo.png', 1, 'temp/201905/07/5f57c39463ebaa7ca6fc9b4d5e1fbb35.png', 36140, 'image/png', 1, '157e02c82fdaae4c4e46183877b1f3e0eb3038b6', 1, 'upload_image', 1, 1557224319, 1557224360, 1);
-INSERT INTO `think_attachment` VALUES (44, 'bom.xls', 3, 'temp/201905/08/c6059bce9a8a6bbea2ec285b86062943.xls', 31232, 'application/vnd.ms-excel', 1, 'ceae5e1f4c180f2a674e1bc180297ed8f3c0581d', 1, 'upload_image', 1, 1557282486, 1557282503, 1);
-INSERT INTO `think_attachment` VALUES (45, '拓恒ERP需求 v1.1.docx', 3, 'temp/201905/08/216aa0d0114f69e7290675acc37622b9.docx', 63842, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 1, 'ddfc609debc919d0261c86e0c0b734a1f4cb3306', 1, 'upload_image', 2, 1557287926, 1565423541, 1);
+INSERT INTO `think_attachment` VALUES (26, '办公用品导入模板.xlsx', 3, 'temp/201902/15/739a8eea0c42f95ad5f5b28bb437b9d1.xlsx', 8622, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 1, '1ed4a5518574039fa8ab9c9b11472d6e7965d84d', 0, 'upload_image', 2, 1550201280, 1550201280, 0);
+INSERT INTO `think_attachment` VALUES (27, '智能制造.png', 1, 'temp/201902/15/b7780b2279ed80a8c2838477f3b3dd0b.png', 109129, 'image/png', 1, '4d08eca69a842384765e60d337cadb3caee464cc', 0, 'upload_image', 2, 1550203038, 1550203038, 0);
+INSERT INTO `think_attachment` VALUES (28, 'timg.jpg', 1, 'temp/201904/01/81d7576988ac11992bcdcd0fa821c3a7.jpg', 46156, 'image/jpeg', 1, '60a28910fc43a67e713c07049cdd0d1b87abdbbf', 10, 'upload_image', 1, 1554084533, 1555655481, 0);
+INSERT INTO `think_attachment` VALUES (29, 'ERP二期技术研发规划.docx', 3, 'temp/201904/01/93db75267f64e20e176d834d9943e8c8.docx', 13733, 'application/octet-stream', 1, 'b05a7e4674ed8da1745d5d910823196f4e3e16bc', 0, 'upload_image', 2, 1554084559, 1554084559, 0);
+INSERT INTO `think_attachment` VALUES (30, 'bom (13).xls', 3, 'temp/201904/13/5d7d2719c47ea907ee31d1851103d63d.xls', 33792, 'application/vnd.ms-excel', 1, 'f35faf58ec05905b69a8fa3f94f78f7198fb31bc', 0, 'upload_image', 2, 1555142922, 1555142922, 0);
+INSERT INTO `think_attachment` VALUES (31, 'ERP第二期项目跟进计划表.xlsx', 3, 'temp/201904/19/f4ef5b4da75ee7c4b67ff5c67b19b9ff.xlsx', 12563, 'application/octet-stream', 1, 'fe2c7a850dca86aaa46fb742ef5d53ca5fc87be5', 14, 'upload_image', 1, 1555653786, 1555659017, 0);
+INSERT INTO `think_attachment` VALUES (32, '云恒ERP周报格式.xlsx', 3, 'temp/201904/19/b8f99377293ed0dc2d4123fb8e75f11f.xlsx', 11003, 'application/octet-stream', 1, 'cc97a6fad1e118376cbf74ca1410766d7f63dbd2', 3, 'upload_image', 1, 1555654409, 1555659017, 0);
+INSERT INTO `think_attachment` VALUES (33, '云恒ERP工作日报、周报格式.xlsx', 3, 'temp/201904/19/634eec699eb230370829fd2fb64f2b4e.xlsx', 13031, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 1, '1c3ad9755843298b846dfa74d3711df6f9492ef1', 0, 'upload_image', 2, 1555654612, 1555654612, 0);
+INSERT INTO `think_attachment` VALUES (34, '财务统计导出20190418100125.xls', 3, 'temp/201904/19/970f7c26dfccc01f54c68bb47510419f.xls', 6144, 'application/vnd.ms-excel', 1, '5b5e5b067289426ae32dd36831fa76e7fc83fb34', 2, 'upload_image', 1, 1555654739, 1555656610, 0);
+INSERT INTO `think_attachment` VALUES (35, '日报2019-04-18.xlsx', 3, 'temp/201904/19/caeeec62a5a053cdc93c25fea101d71f.xlsx', 12548, 'application/octet-stream', 1, '1184ac8fde931a6bd39aaec9da1859f07725e919', 2, 'upload_image', 1, 1555655735, 1555657450, 0);
+INSERT INTO `think_attachment` VALUES (36, '财务统计导出20190418103038.xls', 3, 'temp/201904/19/7291d4b599526363445e0f8e30c721fd.xls', 5120, 'application/vnd.ms-excel', 1, '312ffa7c381f232f4dc6883fb2c95b54dcbd5cf7', 0, 'upload_image', 2, 1555656107, 1555656107, 0);
+INSERT INTO `think_attachment` VALUES (37, '固定资产导出20190418092541.xls', 3, 'temp/201904/19/46cd68aac0b8859fb602197c6cdf0b3b.xls', 6144, 'application/vnd.ms-excel', 1, 'd3ba9af3a022349b041a821532c88d3e18c00840', 0, 'upload_image', 2, 1555657175, 1555657175, 0);
+INSERT INTO `think_attachment` VALUES (38, '固定资产导出20190418095155.xls', 3, 'temp/201904/19/5b24c5b3cfe00a3036e40f540c59e8d5.xls', 6144, 'application/vnd.ms-excel', 1, '9f4f27b31626ebc610063effa908d7cedc8f2618', 0, 'upload_image', 2, 1555657363, 1555657363, 0);
+INSERT INTO `think_attachment` VALUES (39, 'PCB制版能力.doc', 3, 'temp/201905/05/aca3c0109d37dda6dea58e5df40399ad.doc', 27334, 'application/msword', 1, '8927078ce78872a5af71828ce7d36cacb48e320d', 6, 'upload_image', 1, 1557043992, 1557141472, 0);
+INSERT INTO `think_attachment` VALUES (40, 'PCB报价规则.doc', 3, 'temp/201905/05/a8367ad7cec0c41862449410ff86854e.doc', 44544, 'application/msword', 1, '6e0262084152c90cb0cae44735e9528363ed8248', 4, 'upload_image', 1, 1557044989, 1557141677, 0);
+INSERT INTO `think_attachment` VALUES (41, '周报4月第5报周.xlsx', 3, 'temp/201905/06/a26eb9cb46756221da4bbf60566e27ff.xlsx', 12194, 'application/octet-stream', 1, '0b112d017cc302f27b30ba8da0d825603076812d', 1, 'upload_image', 1, 1557135168, 1564020681, 0);
+INSERT INTO `think_attachment` VALUES (42, '拓恒ERP需求文档12.25.docx', 3, 'temp/201905/06/c3a46bcb3315236fbf40deffbd865080.docx', 1465556, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 1, '1945946b904dec8df508d5702d63a8f9ba2f1941', 1, 'upload_image', 1, 1557137490, 1564020652, 0);
+INSERT INTO `think_attachment` VALUES (43, 'logo.png', 1, 'temp/201905/07/5f57c39463ebaa7ca6fc9b4d5e1fbb35.png', 36140, 'image/png', 1, '157e02c82fdaae4c4e46183877b1f3e0eb3038b6', 1, 'upload_image', 1, 1557224319, 1557224360, 0);
+INSERT INTO `think_attachment` VALUES (44, 'bom.xls', 3, 'temp/201905/08/c6059bce9a8a6bbea2ec285b86062943.xls', 31232, 'application/vnd.ms-excel', 1, 'ceae5e1f4c180f2a674e1bc180297ed8f3c0581d', 1, 'upload_image', 1, 1557282486, 1557282503, 0);
+INSERT INTO `think_attachment` VALUES (45, '拓恒ERP需求 v1.1.docx', 3, 'temp/201905/08/216aa0d0114f69e7290675acc37622b9.docx', 63842, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 1, 'ddfc609debc919d0261c86e0c0b734a1f4cb3306', 1, 'upload_image', 2, 1557287926, 1565423541, 0);
 INSERT INTO `think_attachment` VALUES (46, '优惠券系统设计.doc', 3, 'temp/201905/08/3bea26a4ad72cdd37383bbc7cc65bdae.doc', 2247730, 'application/msword', 1, '3d6af3d0df670fcee6fcfb2274041ab13aed5382', 1, 'upload_image', 1, 1557296215, 1557296216, 0);
 
 -- ----------------------------
@@ -4240,27 +4272,27 @@ CREATE TABLE `think_config`  (
 -- ----------------------------
 INSERT INTO `think_config` VALUES (1, 'site_name', '站点名称', 'a', '', 1, 0, 'text', 1, 125, '站点名称', 1, 1557234364, 1, 1564726664, 0);
 INSERT INTO `think_config` VALUES (2, '2', '2', '2', '2', 2, 0, 'readonly', 1, 125, '2', 1, 1557235971, 0, 0, 1);
-INSERT INTO `think_config` VALUES (3, 'smtp_type', '邮件发送方式', '1', '1:SMTP\n2:Mail', 5, 0, 'select', 1, 125, '邮件发送方式', 1, 1562329239, 1, 1564726709, 1);
-INSERT INTO `think_config` VALUES (4, 'smtp_serve', 'SMTP服务器', 'smtp.qq.com2', '', 5, 0, 'text', 1, 125, 'SMTP服务器', 1, 1562329327, 1, 1564726709, 1);
-INSERT INTO `think_config` VALUES (5, 'smtp_port', 'SMTP端口', '4635', '', 5, 0, 'text', 1, 125, 'SMTP端口', 1, 1562329359, 1, 1564726709, 1);
-INSERT INTO `think_config` VALUES (6, 'smtp_user', 'SMTP用户名', '10000', '', 5, 0, 'text', 1, 125, 'SMTP用户名', 1, 1562329408, 1, 1564726709, 1);
-INSERT INTO `think_config` VALUES (7, 'smtp_password', 'SMTP密码', '123456', '', 5, 0, 'password', 1, 125, 'SMTP密码', 1, 1562329439, 1, 1564726709, 1);
-INSERT INTO `think_config` VALUES (8, 'smtp_ssl', 'SMTP验证方式', '1', '1:TLS\n2:SSL', 5, 0, 'select', 1, 125, 'SMTP验证方式', 1, 1562329489, 1, 1564726709, 1);
-INSERT INTO `think_config` VALUES (9, 'smtp_send_mail', '发件人邮箱', '1175401194@qq.com', '', 5, 0, 'text', 1, 125, '发件人邮箱', 1, 1562329536, 1, 1564726709, 1);
+INSERT INTO `think_config` VALUES (3, 'smtp_type', '邮件发送方式', '1', '1:SMTP\n2:Mail', 5, 0, 'select', 1, 125, '邮件发送方式', 1, 1562329239, 1, 1564726709, 0);
+INSERT INTO `think_config` VALUES (4, 'smtp_serve', 'SMTP服务器', 'smtp.qq.com2', '', 5, 0, 'text', 1, 125, 'SMTP服务器', 1, 1562329327, 1, 1564726709, 0);
+INSERT INTO `think_config` VALUES (5, 'smtp_port', 'SMTP端口', '4635', '', 5, 0, 'text', 1, 125, 'SMTP端口', 1, 1562329359, 1, 1564726709, 0);
+INSERT INTO `think_config` VALUES (6, 'smtp_user', 'SMTP用户名', '10000', '', 5, 0, 'text', 1, 125, 'SMTP用户名', 1, 1562329408, 1, 1564726709, 0);
+INSERT INTO `think_config` VALUES (7, 'smtp_password', 'SMTP密码', '123456', '', 5, 0, 'password', 1, 125, 'SMTP密码', 1, 1562329439, 1, 1564726709, 0);
+INSERT INTO `think_config` VALUES (8, 'smtp_ssl', 'SMTP验证方式', '1', '1:TLS\n2:SSL', 5, 0, 'select', 1, 125, 'SMTP验证方式', 1, 1562329489, 1, 1564726709, 0);
+INSERT INTO `think_config` VALUES (9, 'smtp_send_mail', '发件人邮箱', '1175401194@qq.com', '', 5, 0, 'text', 1, 125, '发件人邮箱', 1, 1562329536, 1, 1564726709, 0);
 INSERT INTO `think_config` VALUES (10, 'site_beian', '备案号', 'dasfg', '', 1, 0, 'text', 1, 125, '备案号', 1, 1562330555, 1, 1564726664, 0);
 INSERT INTO `think_config` VALUES (11, 'site_cdnurl', 'CDN地址', 'ddfasd', '', 1, 0, 'text', 1, 125, 'CDN地址', 1, 1562330588, 1, 1564726664, 0);
 INSERT INTO `think_config` VALUES (12, 'site_version', '版本号', 'v2.0.0', '', 1, 0, 'text', 2, 125, '版本号', 1, 1562330618, 1, 1565241113, 0);
-INSERT INTO `think_config` VALUES (13, 'website_name', '网站名称', '南京RXThink工作室', '', 4, 0, 'text', 1, 125, '网站名称', 1, 1562331116, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (14, 'website_title', '网站标题', '南京RXThink工作室', '', 4, 0, 'text', 1, 125, '网站标题', 1, 1562331148, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (15, 'website_url', '网站地址', 'http://www.rxthink.cn', '', 4, 0, 'text', 1, 125, '网站地址', 1, 1562331178, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (16, 'website_logo', '网站LOGO', '/config/20190810//ce6e6ebe5881477b838.jpg', '', 4, 0, 'image', 1, 125, '网站LOGO', 1, 1562331206, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (17, 'website_description', '网站描述', '暂无', '', 4, 0, 'textarea', 1, 125, '网站描述', 1, 1562331246, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (18, 'website_keywords', '网站关键词', '暂无', '', 4, 0, 'text', 1, 125, '网站关键词', 1, 1562331273, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (19, 'website_copyright', '版权信息', '暂无', '', 4, 0, 'text', 1, 125, '版权信息', 1, 1562331294, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (20, 'website_icp', '网站备案号', '暂无', '', 4, 0, 'text', 1, 125, '网站备案号', 1, 1562331315, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (21, 'website_cdnurl', '网站CDN', '暂无', '', 4, 0, 'text', 1, 125, '网站CDN', 1, 1562331337, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (22, 'website_version', '系统版本号', 'v2.0.0', '', 4, 0, 'text', 1, 125, '系统版本号', 1, 1562331373, 1, 1565407678, 1);
-INSERT INTO `think_config` VALUES (23, 'website_statistics', '站点统计', '暂无', '', 4, 0, 'textarea', 1, 125, '站点统计', 1, 1562331395, 1, 1565407678, 1);
+INSERT INTO `think_config` VALUES (13, 'website_name', '网站名称', '南京RXThink工作室', '', 4, 0, 'text', 1, 125, '网站名称', 1, 1562331116, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (14, 'website_title', '网站标题', '南京RXThink工作室', '', 4, 0, 'text', 1, 125, '网站标题', 1, 1562331148, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (15, 'website_url', '网站地址', 'http://www.rxthink.cn', '', 4, 0, 'text', 1, 125, '网站地址', 1, 1562331178, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (16, 'website_logo', '网站LOGO', '/config/20190810//ce6e6ebe5881477b838.jpg', '', 4, 0, 'image', 1, 125, '网站LOGO', 1, 1562331206, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (17, 'website_description', '网站描述', '暂无', '', 4, 0, 'textarea', 1, 125, '网站描述', 1, 1562331246, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (18, 'website_keywords', '网站关键词', '暂无', '', 4, 0, 'text', 1, 125, '网站关键词', 1, 1562331273, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (19, 'website_copyright', '版权信息', '暂无', '', 4, 0, 'text', 1, 125, '版权信息', 1, 1562331294, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (20, 'website_icp', '网站备案号', '暂无', '', 4, 0, 'text', 1, 125, '网站备案号', 1, 1562331315, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (21, 'website_cdnurl', '网站CDN', '暂无', '', 4, 0, 'text', 1, 125, '网站CDN', 1, 1562331337, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (22, 'website_version', '系统版本号', 'v2.0.0', '', 4, 0, 'text', 1, 125, '系统版本号', 1, 1562331373, 1, 1569737331, 1);
+INSERT INTO `think_config` VALUES (23, 'website_statistics', '站点统计', '暂无', '', 4, 0, 'textarea', 1, 125, '站点统计', 1, 1562331395, 1, 1569737331, 1);
 
 -- ----------------------------
 -- Table structure for think_config_group
@@ -4285,8 +4317,8 @@ CREATE TABLE `think_config_group`  (
 INSERT INTO `think_config_group` VALUES (1, '基础配置', 125, 1, 1537586187, 1, 1556116678, 1);
 INSERT INTO `think_config_group` VALUES (2, '系统配置', 125, 1, 1557217970, 0, 0, 1);
 INSERT INTO `think_config_group` VALUES (3, '数据库', 125, 1, 1557218002, 0, 0, 1);
-INSERT INTO `think_config_group` VALUES (4, '网站配置', 125, 1, 1557218014, 0, 0, 1);
-INSERT INTO `think_config_group` VALUES (5, '邮箱配置', 125, 1, 1557218034, 1, 1565683769, 1);
+INSERT INTO `think_config_group` VALUES (4, '网站配置', 125, 1, 1557218014, 0, 0, 0);
+INSERT INTO `think_config_group` VALUES (5, '邮箱配置', 125, 1, 1557218034, 1, 1565683769, 0);
 
 -- ----------------------------
 -- Table structure for think_crontab
@@ -4340,7 +4372,7 @@ CREATE TABLE `think_dic`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `title`(`title`) USING BTREE,
   INDEX `mark`(`mark`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典管理表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '字典管理表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_dic
@@ -4383,7 +4415,7 @@ CREATE TABLE `think_dic_type`  (
 -- Records of think_dic_type
 -- ----------------------------
 INSERT INTO `think_dic_type` VALUES (1, 'PHP工程师', 125, 1, 1530090856, 1, 1556114951, 0);
-INSERT INTO `think_dic_type` VALUES (2, 'IOS工程师2', 125, 1, 1530090861, 1, 1562161151, 1);
+INSERT INTO `think_dic_type` VALUES (2, 'IOS工程师2', 125, 1, 1530090861, 1, 1562161151, 0);
 INSERT INTO `think_dic_type` VALUES (3, '测试22233', 125, 1, 1532002884, 1, 1532078592, 0);
 INSERT INTO `think_dic_type` VALUES (4, '测试职位2', 125, 1, 1532326158, 1, 1532658112, 0);
 INSERT INTO `think_dic_type` VALUES (5, 'manager', 125, 1, 1565514611, 0, 0, 1);
@@ -4430,7 +4462,7 @@ CREATE TABLE `think_image_cut`  (
   `mark` tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '有效标记',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `index_type`(`type`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '切图配置表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '切图配置表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_image_cut
@@ -4439,6 +4471,11 @@ INSERT INTO `think_image_cut` VALUES (1, 1, 100, 100, '暂无', 125, 1, 0, 15574
 INSERT INTO `think_image_cut` VALUES (2, 1, 200, 200, '暂无', 125, 1, 1, 1557407928, 1563788938, 1);
 INSERT INTO `think_image_cut` VALUES (3, 1, 100, 100, '暂无', 125, 1, 0, 1565492715, 0, 1);
 INSERT INTO `think_image_cut` VALUES (4, 1, 100, 100, '暂无', 125, 1, 0, 1567071220, 0, 1);
+INSERT INTO `think_image_cut` VALUES (5, 1, 100, 100, '暂无', 125, 1, 0, 1569200219, 0, 1);
+INSERT INTO `think_image_cut` VALUES (6, 1, 100, 100, '暂无', 125, 1, 0, 1570467808, 0, 1);
+INSERT INTO `think_image_cut` VALUES (7, 1, 100, 100, '暂无', 125, 1, 0, 1570467812, 0, 0);
+INSERT INTO `think_image_cut` VALUES (8, 1, 200, 200, '暂无', 125, 1, 0, 1570855625, 0, 0);
+INSERT INTO `think_image_cut` VALUES (9, 1, 200, 200, '暂无', 125, 1, 0, 1572396475, 0, 1);
 
 -- ----------------------------
 -- Table structure for think_item
@@ -4568,20 +4605,16 @@ CREATE TABLE `think_level`  (
   `mark` tinyint(1) UNSIGNED NULL DEFAULT 1 COMMENT '有效标识',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '职级表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '职级表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_level
 -- ----------------------------
-INSERT INTO `think_level` VALUES (1, 'PHP工程师', 2, 125, 1, 1530090856, 1, 1556114951, 0);
-INSERT INTO `think_level` VALUES (2, '总经理', 1, 125, 1, 1530090861, 1, 1556115830, 1);
-INSERT INTO `think_level` VALUES (3, '测试22233', 1, 125, 1, 1532002884, 1, 1532078592, 0);
-INSERT INTO `think_level` VALUES (4, '测试职位2', 1, 125, 1, 1532326158, 1, 1532658112, 0);
-INSERT INTO `think_level` VALUES (5, '2222', 1, 125, 1, 1556115794, 0, 0, 1);
-INSERT INTO `think_level` VALUES (6, '2222', 1, 125, 1, 1556115802, 0, 0, 1);
-INSERT INTO `think_level` VALUES (7, '11111', 1, 125, 1, 1556115806, 1, 1561644476, 1);
-INSERT INTO `think_level` VALUES (8, '2222', 1, 125, 1, 1556115864, 0, 0, 1);
-INSERT INTO `think_level` VALUES (9, '哈哈', 1, 125, 1, 1561358782, 1, 1561643806, 1);
+INSERT INTO `think_level` VALUES (1, '总经理', 1, 125, 1, 1577942890, 0, 0, 1);
+INSERT INTO `think_level` VALUES (2, '副总经理', 1, 125, 1, 1577942895, 0, 0, 1);
+INSERT INTO `think_level` VALUES (3, '总监', 1, 125, 1, 1577942912, 0, 0, 1);
+INSERT INTO `think_level` VALUES (4, '经理', 1, 125, 1, 1577942916, 0, 0, 1);
+INSERT INTO `think_level` VALUES (5, '主管', 1, 125, 1, 1577942920, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for think_link
@@ -4611,8 +4644,8 @@ CREATE TABLE `think_link`  (
 -- ----------------------------
 -- Records of think_link
 -- ----------------------------
-INSERT INTO `think_link` VALUES (1, 0, 0, 1, 1, 2, '视觉中国', '/link/20190429//40f6a59bdac3e62d923.jpg', 'http://www.baidu.com', 1, 125, 1, 1, 1556544005, 1556545607, 1);
-INSERT INTO `think_link` VALUES (2, 0, 0, 2, 1, 2, '1', '/link/20190429//9b39567fe660df39213.jpg', '2', 1, 125, 1, 0, 1556544793, 0, 1);
+INSERT INTO `think_link` VALUES (1, 0, 0, 1, 1, 2, '视觉中国', '/link/20190429//40f6a59bdac3e62d923.jpg', 'http://www.baidu.com', 1, 125, 1, 1, 1556544005, 1556545607, 0);
+INSERT INTO `think_link` VALUES (2, 0, 0, 2, 1, 2, '1', '/link/20190429//9b39567fe660df39213.jpg', '2', 1, 125, 1, 0, 1556544793, 0, 0);
 
 -- ----------------------------
 -- Table structure for think_menu
@@ -4638,279 +4671,245 @@ CREATE TABLE `think_menu`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `parent_id`(`parent_id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 271 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 235 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单管理表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_menu
 -- ----------------------------
-INSERT INTO `think_menu` VALUES (1, 0, '系统管理', 'yun-jiaoseguanli2', '', '', '', 1, 1, 2, 1, 1, 1561463463, 1, 1562654317, 1);
-INSERT INTO `think_menu` VALUES (2, 1, '控制面板', 'yun-wangzhan', '', '', '', 2, 1, 2, 1, 1, 1561463464, 1, 1562493326, 1);
-INSERT INTO `think_menu` VALUES (3, 2, '后台主页', 'larry-xitong', '', '', '', 3, 2, 2, 1, 1, 1561463464, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (4, 3, '主面板', 'larry-xitong', '/Index/index', '', 'sys:index:index', 4, 2, 2, 1, 1, 1561463464, 1, 2018, 0);
-INSERT INTO `think_menu` VALUES (5, 3, '欢迎页', 'larry-xitong', '/Index/main', '', 'sys:index:main', 4, 2, 2, 5, 1, 1561463464, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (6, 2, '文件上传', 'larry-xitong', '', '', '', 3, 2, 2, 10, 1, 1561463464, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (7, 6, '图片上传', 'larry-xitong', '/Upload/uploadImg', '', 'sys:upload:uploadImg', 4, 2, 2, 1, 1, 1561463464, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (8, 6, '上传附件', 'larry-xitong', '/Upload/uploadFile', '', 'sys:upload:uploadFile', 4, 1, 2, 5, 1, 1561463464, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (9, 1, '权限管理', 'yun-setting-permissions', '', '', '', 2, 1, 2, 5, 1, 1561463464, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (10, 9, '菜单管理', 'yun-yingyong', 'Menu', '', '', 3, 1, 2, 1, 1, 1561463464, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (11, 10, '查看', 'larry-xitong', '/Menu/index', '', 'sys:menu:index', 4, 1, 2, 1, 1, 1561463464, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (12, 10, '新增', 'larry-xitong', '/Menu/edit', '', 'sys:menu:add', 4, 1, 2, 5, 1, 1561463464, 1, 1563779690, 1);
-INSERT INTO `think_menu` VALUES (13, 10, '修改', 'larry-xitong', '/Menu/edit', '', 'sys:menu:edit', 4, 1, 2, 10, 1, 1561463464, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (14, 10, '删除', 'larry-xitong', '/Menu/drop', '', 'sys:menu:drop', 4, 1, 2, 15, 1, 1561463464, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (15, 10, '面板菜单', 'larry-xitong', '/Menu/getMenuList', '', 'sys:menu:getMenuList', 4, 2, 2, 20, 1, 1561463465, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (16, 10, '图标选择', 'larry-xitong', '/Menu/getSysIcon', '', 'sys:menu:getSysIcon', 4, 2, 2, 25, 1, 1561463465, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (17, 10, '批量设置节点', 'larry-xitong', '/Menu/batchFunc', '', 'sys:menu:batchFunc', 4, 1, 2, 30, 1, 1561463465, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (18, 9, '管理人员', 'yun-icon-test', '', '', '', 3, 1, 2, 5, 1, 1561463465, 1, 1561643051, 1);
-INSERT INTO `think_menu` VALUES (19, 18, '查看', 'larry-xitong', '/Admin/index', '', 'sys:admin:index', 4, 1, 2, 1, 1, 1561463465, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (20, 18, '新增', 'larry-xitong', '/Admin/edit', '', 'sys:admin:add', 4, 1, 2, 5, 1, 1561463465, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (21, 18, '修改', 'larry-xitong', '/Admin/edit', '', 'sys:admin:edit', 4, 1, 2, 10, 1, 1561463465, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (22, 18, '删除', 'larry-xitong', '/Admin/drop', '', 'sys:admin:drop', 4, 1, 2, 15, 1, 1561463465, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (23, 18, '独立权限', 'larry-xitong', '/Admin/setAuth', '', 'sys:admin:setAuth', 4, 1, 2, 20, 1, 1561463465, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (24, 18, '角色设置', 'larry-xitong', '/Admin/setRole', '', 'sys:admin:setRole', 4, 1, 2, 25, 1, 1561463465, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (25, 18, '初始密码', 'larry-xitong', '/Admin/resetPwd', '', 'sys:admin:resetPwd', 4, 1, 2, 30, 1, 1561463465, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (26, 18, '批量删除', 'larry-xitong', '/Admin/batchDrop', '', 'sys:admin:batchDrop', 4, 1, 2, 35, 1, 1561463465, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (27, 9, '角色管理', 'yun-jiaoseguanli4', '', '', '', 3, 1, 2, 10, 1, 1561463466, 1, 1561643072, 1);
-INSERT INTO `think_menu` VALUES (28, 27, '查看', 'larry-xitong', '/AdminRole/index', '', 'sys:adminRole:index', 4, 1, 2, 1, 1, 1561463466, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (29, 27, '新增', 'larry-xitong', '/AdminRole/edit', '', 'sys:adminRole:add', 4, 1, 2, 5, 1, 1561463466, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (30, 27, '修改', 'larry-xitong', '/AdminRole/edit', '', 'sys:adminRole:edit', 4, 1, 2, 10, 1, 1561463466, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (31, 27, '删除', 'larry-xitong', '/AdminRole/drop', '', 'sys:adminRole:drop', 4, 1, 2, 15, 1, 1561463466, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (32, 27, '角色权限', 'larry-xitong', '/AdminRole/setAuth', '', 'sys:adminRole:setAuth', 4, 1, 2, 20, 1, 1561463466, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (33, 27, '批量删除', 'larry-xitong', '/AdminRole/batchDrop', '', 'sys:adminRole:batchDrop', 4, 1, 2, 25, 1, 1561463466, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (34, 9, '组织机构', 'yun-bangong-jigou', '', '', '', 3, 1, 2, 14, 1, 1561463466, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (35, 34, '查看', 'larry-xitong', '/AdminOrg/index', '', 'sys:adminOrg:index', 4, 1, 2, 1, 1, 1561463466, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (36, 34, '新增', 'larry-xitong', '/AdminOrg/edit', '', 'sys:adminOrg:add', 4, 1, 2, 5, 1, 1561463466, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (37, 34, '修改', 'larry-xitong', '/AdminOrg/edit', '', 'sys:adminOrg:edit', 4, 1, 2, 10, 1, 1561463466, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (38, 34, '删除', 'larry-xitong', '/AdminOrg/drop', '', 'sys:adminOrg:drop', 4, 1, 2, 15, 1, 1561463466, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (39, 34, '批量删除', 'larry-xitong', '/AdminOrg/batchDrop', '', 'sys:adminOrg:batchDrop', 4, 1, 2, 20, 1, 1561463466, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (40, 34, '组织权限', 'larry-xitong', '/AdminOrg/setAuth', '', 'sys:adminOrg:setAuth', 4, 1, 2, 25, 1, 1561463467, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (41, 9, '部门管理', 'yun-custom-form', '', '', '', 3, 1, 2, 15, 1, 1561463467, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (42, 41, '查看', 'larry-xitong', '/AdminDep/index', '', 'sys:adminDep:index', 4, 1, 2, 1, 1, 1561463467, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (43, 41, '新增', 'larry-xitong', '/AdminDep/edit', '', 'sys:adminDep:add', 4, 1, 2, 5, 1, 1561463467, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (44, 41, '修改', 'larry-xitong', '/AdminDep/edit', '', 'sys:adminDep:edit', 4, 1, 2, 10, 1, 1561463467, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (45, 41, '删除', 'larry-xitong', '/AdminDep/drop', '', 'sys:adminDep:drop', 4, 1, 2, 15, 1, 1561463467, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (46, 41, '部门权限', 'larry-xitong', '/AdminDep/setAuth', '', 'sys:adminDep:setAuth', 4, 1, 2, 20, 1, 1561463467, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (47, 9, '岗位管理', 'yun-zhiweiguanli', '', '', '', 3, 1, 2, 20, 1, 1561463467, 1, 1562493351, 1);
-INSERT INTO `think_menu` VALUES (48, 47, '查看', 'larry-xitong', '/Position/index', '', 'sys:position:index', 4, 1, 2, 5, 1, 1561463467, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (49, 47, '新增', 'larry-xitong', '/Position/edit', '', 'sys:position:edit', 4, 1, 2, 10, 1, 1561463467, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (50, 47, '修改', 'larry-xitong', '/AdminPosition/edit', '', 'sys:adminPosition:edit', 4, 1, 2, 10, 1, 1561463467, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (51, 47, '编辑', '', '/Position/edit', '', 'sys:position:edit', 4, 1, 2, 15, 1, 1561463467, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (52, 47, '删除', 'larry-xitong', '/Position/drop', '', 'sys:position:drop', 4, 1, 2, 20, 1, 1561463468, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (53, 47, '复制', '', '/Position/copy', '', 'sys:position:copy', 4, 1, 2, 25, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (54, 47, '缓存', '', '/Position/cache', '', 'sys:position:cache', 4, 1, 2, 30, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (55, 47, '批量删除', 'larry-xitong', '/Position/batchDrop', '', 'sys:position:batchDrop', 4, 1, 2, 35, 1, 1561463468, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (56, 47, '批量缓存', '', '/Position/batchCache', '', 'sys:position:batchCache', 4, 1, 2, 40, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (57, 9, '权限设置', 'larry-xitong', '', '', '', 3, 2, 2, 25, 1, 1561463468, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (58, 57, '列表', 'larry-xitong', '/AdminAuth/index', '', 'sys:adminAuth:index', 4, 1, 2, 1, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (59, 57, '保存权限', 'larry-xitong', '/AdminAuth/setAuth', '', 'sys:adminAuth:setAuth', 4, 1, 2, 5, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (60, 9, '职级管理', 'yun-wangzhan', '', '', '', 3, 1, 2, 125, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (61, 60, '查看', '', '/Level/index', '', 'sys:level:index', 4, 1, 2, 5, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (62, 60, '新增', '', '/Level/edit', '', 'sys:level:edit', 4, 1, 2, 10, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (63, 60, '编辑', '', '/Level/edit', '', 'sys:level:edit', 4, 1, 2, 15, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (64, 60, '删除', '', '/Level/drop', '', 'sys:level:drop', 4, 1, 2, 20, 1, 1561463468, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (65, 60, '复制', '', '/Level/copy', '', 'sys:level:copy', 4, 1, 2, 25, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (66, 60, '缓存', '', '/Level/cache', '', 'sys:level:cache', 4, 1, 2, 30, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (67, 60, '批量删除', '', '/Level/batchDrop', '', 'sys:level:batchDrop', 4, 1, 2, 35, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (68, 60, '批量缓存', '', '/Level/batchCache', '', 'sys:level:batchCache', 4, 1, 2, 40, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (69, 1, '数据中心', 'yun-ziliaoku', '', '', '', 2, 1, 2, 15, 1, 1561463469, 1, 1561642900, 1);
-INSERT INTO `think_menu` VALUES (70, 69, '友链管理', 'yun-lianjie', '', '', '', 3, 1, 2, 1, 1, 1561463469, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (71, 70, '查看', 'larry-xitong', '/Link/index', '', 'sys:link:index', 4, 1, 2, 1, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (72, 70, '新增', 'larry-xitong', '/Link/edit', '', 'sys:link:add', 4, 1, 2, 5, 1, 1561463469, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (73, 70, '修改', 'larry-xitong', '/Link/edit', '', 'sys:link:edit', 4, 1, 2, 10, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (74, 70, '删除', 'larry-xitong', '/Link/drop', '', 'sys:link:drop', 4, 1, 2, 15, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (75, 70, '批量删除', 'larry-xitong', '/Link/batchDrop', '', 'sys:link:batchDrop', 4, 1, 2, 20, 1, 1561463469, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (76, 69, '城市管理', 'yun-chengshi3', '', '', '', 3, 1, 2, 10, 1, 1561463469, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (77, 76, '查看', 'larry-xitong', '/City/index', '', 'sys:city:index', 4, 1, 2, 1, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (78, 76, '新增', 'larry-xitong', '/City/edit', '', 'sys:city:add', 4, 1, 2, 5, 1, 1561463470, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (79, 76, '修改', 'larry-xitong', '/City/edit', '', 'sys:city:edit', 4, 1, 2, 10, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (80, 76, '删除', 'larry-xitong', '/City/drop', '', 'sys:city:drop', 4, 1, 2, 15, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (81, 76, '城市选择挂件', 'larry-xitong', '/City/getChilds', '', 'sys:city:getChilds', 4, 2, 2, 20, 1, 1561463470, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (82, 69, '附件管理', 'yun-banbenweihu', '', '', '', 3, 1, 2, 15, 1, 1561463470, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (83, 82, '查看', 'larry-xitong', '/Attachment/index', '', 'sys:attachment:index', 4, 1, 2, 5, 1, 1561463470, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (84, 82, '新增', 'larry-xitong', '/Attachment/edit', '', 'sys:attachment:edit', 4, 1, 2, 10, 1, 1561463470, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (85, 82, '修改', 'larry-xitong', '/Version/edit', '', 'sys:version:edit', 4, 1, 2, 10, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (86, 82, '编辑', '', '/Attachment/edit', '', 'sys:attachment:edit', 4, 1, 2, 15, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (87, 82, '删除', 'larry-xitong', '/Attachment/drop', '', 'sys:attachment:drop', 4, 1, 2, 20, 1, 1561463470, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (88, 82, '缓存', '', '/Attachment/cache', '', 'sys:attachment:cache', 4, 1, 2, 25, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (89, 82, '批量删除', 'larry-xitong', '/Attachment/batchDrop', '', 'sys:attachment:batchDrop', 4, 1, 2, 30, 1, 1561463470, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (90, 82, '批量缓存', '', '/Attachment/batchCache', '', 'sys:attachment:batchCache', 4, 1, 2, 35, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (91, 1, '字典管理', 'yun-guanli', '', '', '', 2, 1, 2, 20, 1, 1561463470, 1, 1561642921, 1);
-INSERT INTO `think_menu` VALUES (92, 91, '字典类型', 'yun-b_ysj', '', '', '', 3, 1, 2, 1, 1, 1561463470, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (93, 92, '查看', '', '/Dictype/index', '', 'sys:dictype:index', 4, 1, 2, 5, 1, 1561463470, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (94, 92, '新增', '', '/Dictype/edit', '', 'sys:dictype:edit', 4, 1, 2, 10, 1, 1561463470, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (95, 92, '编辑', '', '/Dictype/edit', '', 'sys:dictype:edit', 4, 1, 2, 15, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (96, 92, '删除', '', '/Dictype/drop', '', 'sys:dictype:drop', 4, 1, 2, 20, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (97, 92, '复制', '', '/Dictype/copy', '', 'sys:dictype:copy', 4, 1, 2, 25, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (98, 92, '缓存', '', '/Dictype/cache', '', 'sys:dictype:cache', 4, 1, 2, 30, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (99, 92, '批量删除', '', '/Dictype/batchDrop', '', 'sys:dictype:batchDrop', 4, 1, 2, 35, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (100, 92, '批量缓存', '', '/Dictype/batchCache', '', 'sys:dictype:batchCache', 4, 1, 2, 40, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (101, 91, '字典管理', 'yun-jifenmingxi', '', '', '', 3, 1, 2, 5, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (102, 101, '查看', '', '/Dic/index', '', 'sys:dic:index', 4, 1, 2, 5, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (103, 101, '新增', '', '/Dic/edit', '', 'sys:dic:edit', 4, 1, 2, 10, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (104, 101, '编辑', '', '/Dic/edit', '', 'sys:dic:edit', 4, 1, 2, 15, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (105, 101, '删除', '', '/Dic/drop', '', 'sys:dic:drop', 4, 1, 2, 20, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (106, 101, '复制', '', '/Dic/copy', '', 'sys:dic:copy', 4, 1, 2, 25, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (107, 101, '缓存', '', '/Dic/cache', '', 'sys:dic:cache', 4, 1, 2, 30, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (108, 101, '批量删除', '', '/Dic/batchDrop', '', 'sys:dic:batchDrop', 4, 1, 2, 35, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (109, 101, '批量缓存', '', '/Dic/batchCache', '', 'sys:dic:batchCache', 4, 1, 2, 40, 1, 1561463471, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (110, 1, '行为管理', 'yun-zhushujuguanli', '', '', '', 2, 1, 2, 40, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (111, 110, '用户行为', 'yun-jiedianhuiyuanmingdan', '', '', '', 3, 1, 2, 5, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (112, 111, '查看', 'larry-xitong', '/Action/index', '', 'sys:action:index', 4, 1, 2, 5, 1, 1561463471, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (113, 111, '新增', '', '/Action/edit', '', 'sys:action:edit', 4, 1, 2, 10, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (114, 111, '编辑', '', '/Action/edit', '', 'sys:action:edit', 4, 1, 2, 15, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (115, 111, '删除', 'larry-xitong', '/Action/drop', '', 'sys:action:drop', 4, 1, 2, 20, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (116, 111, '复制', '', '/Action/copy', '', 'sys:action:copy', 4, 1, 2, 25, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (117, 111, '缓存', '', '/Action/cache', '', 'sys:action:cache', 4, 1, 2, 30, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (118, 111, '批量删除', 'larry-xitong', '/Action/batchDrop', '', 'sys:action:batchDrop', 4, 1, 2, 35, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (119, 111, '批量缓存', '', '/Action/batchCache', '', 'sys:action:batchCache', 4, 1, 2, 40, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (120, 110, '行为日志', 'yun-tongji', '', '', '', 3, 1, 2, 10, 1, 1561463472, 1, 1561643103, 1);
-INSERT INTO `think_menu` VALUES (121, 120, '查看', 'larry-xitong', '/Actionlog/index', '', 'sys:actionlog:index', 4, 1, 2, 5, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (122, 120, '删除', 'larry-xitong', '/Actionlog/drop', '', 'sys:actionlog:drop', 4, 1, 2, 10, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (123, 120, '批量删除', 'larry-xitong', '/Actionlog/batchDrop', '', 'sys:actionlog:batchDrop', 4, 1, 2, 15, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (124, 1, '应用中心', 'yun-wangzhan', '', '', '', 2, 1, 2, 45, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (125, 124, '定时任务', 'yun-renwudanyulanchaxun', '', '', '', 3, 1, 2, 1, 1, 1561463472, 1, 1561642981, 1);
-INSERT INTO `think_menu` VALUES (126, 125, '查看', '', '/Crontab/index', '', 'sys:crontab:index', 4, 1, 2, 5, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (127, 125, '新增', '', '/Crontab/edit', '', 'sys:crontab:edit', 4, 1, 2, 10, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (128, 125, '修改', '', '/Coupon/edit', '', 'sys:coupon:edit', 4, 1, 2, 15, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (129, 125, '编辑', '', '/Crontab/edit', '', 'sys:crontab:edit', 4, 1, 2, 15, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (130, 125, '删除', '', '/Crontab/drop', '', 'sys:crontab:drop', 4, 1, 2, 20, 1, 1561463472, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (131, 125, '复制', '', '/Crontab/copy', '', 'sys:crontab:copy', 4, 1, 2, 25, 1, 1561463472, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (132, 125, '缓存', '', '/Crontab/cache', '', 'sys:crontab:cache', 4, 1, 2, 30, 1, 1561463473, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (133, 125, '批量删除', '', '/Crontab/batchDrop', '', 'sys:crontab:batchDrop', 4, 1, 2, 35, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (134, 125, '批量缓存', '', '/Crontab/batchCache', '', 'sys:crontab:batchCache', 4, 1, 2, 40, 1, 1561463473, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (135, 124, '数据库管理', 'yun-caidanguanli4', '', '', '', 3, 1, 2, 1, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (136, 135, '查看', '', '/Database/index', '', 'sys:database:index', 4, 1, 2, 5, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (137, 135, '立即备份', 'yun-wangzhan', '/Database/backup', '', 'sys:database:backup', 4, 1, 2, 10, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (138, 135, '优化表', 'yun-wangzhan', '/Database/optimize', '', 'sys:database:optimize', 4, 1, 2, 15, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (139, 135, '修复表', 'yun-wangzhan', '/Database/repair', '', 'sys:database:repair', 4, 1, 2, 20, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (140, 124, '网站设置', 'yun-wangzhan', '', '', '', 3, 1, 2, 1, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (141, 140, '查看', 'larry-xitong', '/Config/group', '', 'sys:config:group', 4, 1, 2, 5, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (142, 140, '编辑', '', '/Config/edit', '', 'sys:config:edit', 4, 1, 2, 10, 1, 1561463473, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (143, 124, '切图管理', 'yun-shangjiarenzheng', '', '', '', 3, 1, 2, 5, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (144, 143, '查看', 'larry-xitong', '/Imagecut/index', '?user_type=2', 'sys:imagecut:index', 4, 1, 2, 5, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (145, 143, '新增', '', '/Imagecut/edit', '', 'sys:imagecut:edit', 4, 1, 2, 10, 1, 1561463473, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (146, 143, '编辑', '', '/Imagecut/edit', '', 'sys:imagecut:edit', 4, 1, 2, 15, 1, 1561463473, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (147, 143, '删除', '', '/Imagecut/drop', '', 'sys:imagecut:drop', 4, 1, 2, 20, 1, 1561463473, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (148, 143, '复制', '', '/Imagecut/copy', '', 'sys:imagecut:copy', 4, 1, 2, 25, 1, 1561463473, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (149, 143, '缓存', '', '/Imagecut/cache', '', 'sys:imagecut:cache', 4, 1, 2, 30, 1, 1561463473, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (150, 143, '批量删除', '', '/Imagecut/batchDrop', '', 'sys:imagecut:batchDrop', 4, 1, 2, 35, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (151, 143, '批量缓存', '', '/Imagecut/batchCache', '', 'sys:imagecut:batchCache', 4, 1, 2, 40, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (152, 0, '运营管理', 'yun-hetongguanli2', '', '', '', 1, 1, 2, 5, 1, 1561463474, 1, 2019, 0);
-INSERT INTO `think_menu` VALUES (153, 207, '站点栏目', 'yun-zhandianguanli2', '', '', '', 2, 1, 2, 1, 1, 1561463474, 1, 1561630024, 1);
-INSERT INTO `think_menu` VALUES (154, 153, '站点管理', 'yun-zhandianguanli2', '', '', '', 3, 1, 2, 1, 1, 1561463474, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (155, 154, '查看', 'larry-xitong', '/Item/index', '', 'sys:item:index', 4, 1, 2, 1, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (156, 154, '新增', 'larry-xitong', '/Item/edit', '', 'sys:item:add', 4, 1, 2, 5, 1, 1561463474, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (157, 154, '修改', 'larry-xitong', '/Item/edit', '', 'sys:item:edit', 4, 1, 2, 10, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (158, 154, '删除', 'larry-xitong', '/Item/drop', '', 'sys:item:drop', 4, 1, 2, 15, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (159, 154, '批量删除', 'larry-xitong', '/Item/batchDrop', '', 'sys:item:batchDrop', 4, 1, 2, 20, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (160, 153, '栏目管理', 'yun-lanmuguanli', '', '', '', 3, 1, 2, 5, 1, 1561463474, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (161, 160, '查看', 'larry-xitong', '/ItemCate/index', '', 'sys:itemCate:index', 4, 1, 2, 1, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (162, 160, '新增', 'larry-xitong', '/ItemCate/edit', '', 'sys:itemCate:add', 4, 1, 2, 5, 1, 1561463474, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (163, 160, '修改', 'larry-xitong', '/ItemCate/edit', '', 'sys:itemCate:edit', 4, 1, 2, 10, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (164, 160, '删除', 'larry-xitong', '/ItemCate/drop', '', 'sys:itemCate:drop', 4, 1, 2, 15, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (165, 160, '批量删除', 'larry-xitong', '/ItemCate/batchDrop', '', 'sys:itemCate:batchDrop', 4, 1, 2, 20, 1, 1561463474, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (166, 160, '栏目挂件', 'larry-xitong', '/ItemCate/getChilds', '', 'sys:itemCate:getChilds', 4, 2, 2, 25, 1, 1561463474, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (167, 207, '广告管理', 'yun-guanggaoguanli', '', '', '', 2, 1, 2, 5, 1, 1561463474, 1, 1561642791, 1);
-INSERT INTO `think_menu` VALUES (168, 167, '广告位管理', 'yun-guanggaoguanli', '', '', '', 3, 1, 2, 1, 1, 1561463474, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (169, 168, '查看', 'larry-xitong', '/AdSort/index', '', 'sys:adSort:index', 4, 1, 2, 1, 1, 1561463475, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (170, 168, '新增', 'larry-xitong', '/AdSort/edit', '', 'sys:adSort:add', 4, 1, 2, 5, 1, 1561463475, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (171, 168, '修改', 'larry-xitong', '/AdSort/edit', '', 'sys:adSort:edit', 4, 1, 2, 10, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (172, 168, '删除', 'larry-xitong', '/AdSort/drop', '', 'sys:adSort:drop', 4, 1, 2, 15, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (173, 168, '批量删除', 'larry-xitong', '/AdSort/batchDrop', '', 'sys:adSort:batchDrop', 4, 1, 2, 20, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (174, 167, '广告管理', 'yun-guanggaoweiguanli', '', '', '', 3, 1, 2, 5, 1, 1561463475, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (175, 174, '查看', 'larry-xitong', '/Ad/index', '', 'sys:ad:index', 4, 1, 2, 1, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (176, 174, '新增', 'larry-xitong', '/Ad/edit', '', 'sys:ad:add', 4, 1, 2, 5, 1, 1561463475, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (177, 174, '修改', 'larry-xitong', '/Ad/edit', '', 'sys:ad:edit', 4, 1, 2, 10, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (178, 174, '删除', 'larry-xitong', '/Ad/drop', '', 'sys:ad:drop', 4, 1, 2, 15, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (179, 174, '批量删除', 'larry-xitong', '/Ad/batchDrop', '', 'sys:ad:batchDrop', 4, 1, 2, 20, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (180, 207, '布局管理', 'yun-buju', '', '', '', 2, 1, 2, 10, 1, 1561463475, 1, 1561642809, 1);
-INSERT INTO `think_menu` VALUES (181, 180, '布局描述管理', 'yun-buju', '', '', '', 3, 1, 2, 1, 1, 1561463475, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (182, 181, '查看', 'larry-xitong', '/LayoutDesc/index', '', 'sys:layoutDesc:index', 4, 1, 2, 1, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (183, 181, '新增', 'larry-xitong', '/LayoutDesc/edit', '', 'sys:layoutDesc:add', 4, 1, 2, 5, 1, 1561463475, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (184, 181, '修改', 'larry-xitong', '/LayoutDesc/edit', '', 'sys:layoutDesc:edit', 4, 1, 2, 10, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (185, 181, '删除', 'larry-xitong', '/LayoutDesc/drop', '', 'sys:layoutDesc:drop', 4, 1, 2, 15, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (186, 181, '批量删除', 'larry-xitong', '/LayoutDesc/batchDrop', '', 'sys:layoutDesc:batchDrop', 4, 1, 2, 20, 1, 1561463475, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (187, 181, '布局描述挂件', 'larry-xitong', '/LayoutDesc/getChilds', '', 'sys:layoutDesc:getChilds', 4, 1, 2, 25, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (188, 180, '布局管理', 'yun-layout2', '', '', '', 3, 1, 2, 5, 1, 1561463476, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (189, 188, '查看', 'larry-xitong', '/Layout/index', '', 'sys:layout:index', 4, 1, 2, 1, 1, 1561463476, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (190, 188, '新增', 'larry-xitong', '/Layout/edit', '', 'sys:layout:add', 4, 1, 2, 5, 1, 1561463476, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (191, 188, '修改', 'larry-xitong', '/Layout/edit', '', 'sys:layout:edit', 4, 1, 2, 10, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (192, 188, '删除', 'larry-xitong', '/Layout/drop', '', 'sys:layout:drop', 4, 1, 2, 15, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (193, 188, '批量删除', 'larry-xitong', '/Layout/batchDrop', '', 'sys:layout:batchDrop', 4, 1, 2, 20, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (194, 1, '配置管理', 'yun-peizhiguanli4', '', '', '', 2, 1, 2, 10, 1, 1561463476, 1, 1561514209, 1);
-INSERT INTO `think_menu` VALUES (195, 194, '配置分组', 'yun-peizhiguanli3', '', '', '', 3, 1, 2, 1, 1, 1561463476, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (196, 195, '查看', 'larry-xitong', '/ConfigGroup/index', '', 'sys:configGroup:index', 4, 1, 2, 1, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (197, 195, '添加', 'larry-xitong', '/ConfigGroup/edit', '', 'sys:configGroup:add', 4, 1, 2, 5, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (198, 195, '编辑', 'larry-xitong', '/ConfigGroup/edit', '', 'sys:configGroup:edit', 4, 1, 2, 10, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (199, 195, '删除', 'larry-xitong', '/ConfigGroup/drop', '', 'sys:configGroup:drop', 4, 1, 2, 15, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (200, 195, '批量删除', 'larry-xitong', '/ConfigGroup/batchDrop', '', 'sys:configGroup:batchDrop', 4, 1, 2, 20, 1, 1561463476, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (201, 194, '配置管理', 'yun-peizhiguanli4', '', '', '', 3, 1, 2, 5, 1, 1561463477, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (202, 201, '查看', 'larry-xitong', '/Config/index', '', 'sys:config:index', 4, 1, 2, 1, 1, 1561463477, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (203, 201, '添加', 'larry-xitong', '/Config/edit', '', 'sys:config:add', 4, 1, 2, 5, 1, 1561463477, 1, 2018, 1);
-INSERT INTO `think_menu` VALUES (204, 201, '编辑', 'larry-xitong', '/Config/edit', '', 'sys:config:edit', 4, 1, 2, 10, 1, 1561463477, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (205, 201, '删除', 'larry-xitong', '/Config/drop', '', 'sys:config:drop', 4, 1, 2, 15, 1, 1561463477, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (206, 201, '批量删除', 'larry-xitong', '/Config/batchDrop', '', 'sys:config:batchDrop', 4, 1, 2, 20, 1, 1561463477, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (207, 0, '内容管理', 'yun-wangzhan', '', '', '', 1, 1, 2, 5, 1, 1561463477, 1, 1561635890, 1);
-INSERT INTO `think_menu` VALUES (208, 207, '内容管理', 'yun-wangzhanzonglan1', '', '', '', 2, 1, 2, 15, 1, 1561463477, 1, 1561642821, 1);
-INSERT INTO `think_menu` VALUES (209, 208, '内容管理', 'yun-wangzhanzonglan1', '', '', '', 3, 1, 2, 1, 1, 1561463477, 1, 1561629981, 1);
-INSERT INTO `think_menu` VALUES (210, 209, '查看', '', '/Article/index', '', 'sys:article:index', 4, 1, 2, 5, 1, 1561463477, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (211, 209, '新增', '', '/Article/edit', '', 'sys:article:edit', 4, 1, 2, 10, 1, 1561463477, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (212, 209, '修改', '', '/Article/edit', '', 'sys:article:edit', 4, 1, 2, 15, 1, 1561463477, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (213, 209, '编辑', '', '/Article/edit', '', 'sys:article:edit', 4, 1, 2, 15, 1, 1561463478, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (214, 209, '删除', '', '/Article/drop', '', 'sys:article:drop', 4, 1, 2, 20, 1, 1561463478, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (215, 209, '复制', '', '/Article/copy', '', 'sys:article:copy', 4, 1, 2, 25, 1, 1561463478, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (216, 209, '显示状态', 'larry-xitong', '/Article/setIsShow', '', 'sys:article:setIsShow', 4, 1, 2, 30, 1, 1561463478, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (217, 209, '缓存', '', '/Article/cache', '', 'sys:article:cache', 4, 1, 2, 30, 1, 1561463478, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (218, 209, '批量删除', '', '/Article/batchDrop', '', 'sys:article:batchDrop', 4, 1, 2, 35, 1, 1561463478, 1, 2019, 1);
-INSERT INTO `think_menu` VALUES (219, 209, '批量缓存', '', '/Article/batchCache', '', 'sys:article:batchCache', 4, 1, 2, 40, 1, 1561463478, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (220, 0, '用户中心', 'yun-wangzhan', '', '', '', 2, 1, 2, 10, 1, 1561463478, 1, 1563347688, 1);
-INSERT INTO `think_menu` VALUES (221, 220, '用户管理', 'yun-wangzhanzonglan1', '', '', '', 2, 1, 2, 1, 1, 1561463478, 1, 1561635917, 1);
-INSERT INTO `think_menu` VALUES (222, 221, '用户分组', 'yun-wangzhanzonglan1', '', '', '', 3, 1, 2, 1, 1, 1561463478, 1, 1561635938, 1);
-INSERT INTO `think_menu` VALUES (223, 222, '查看', '', '/Usergroup/index', '', 'sys:usergroup:index', 4, 1, 2, 5, 1, 1561463478, 1, 1561642629, 1);
-INSERT INTO `think_menu` VALUES (224, 222, '新增', '', '/Article/edit', '', 'sys:article:edit', 4, 1, 2, 10, 1, 1561463478, 1, 2019, 0);
-INSERT INTO `think_menu` VALUES (225, 222, '修改', '', '/Article/edit', '', 'sys:article:edit', 4, 1, 2, 15, 1, 1561463478, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (226, 222, '编辑', '', '/Article/edit', '', 'sys:article:edit', 4, 1, 2, 15, 1, 1561463479, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (227, 222, '删除', '', '/Article/drop', '', 'sys:article:drop', 4, 1, 2, 20, 1, 1561463479, 1, 2019, 0);
-INSERT INTO `think_menu` VALUES (228, 222, '复制', '', '/Article/copy', '', 'sys:article:copy', 4, 1, 2, 25, 1, 1561463479, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (229, 222, '显示状态', 'larry-xitong', '/Article/setIsShow', '', 'sys:article:setIsShow', 4, 1, 2, 30, 1, 1561463479, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (230, 222, '缓存', '', '/Article/cache', '', 'sys:article:cache', 4, 1, 2, 30, 1, 1561463479, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (231, 222, '批量删除', '', '/Article/batchDrop', '', 'sys:article:batchDrop', 4, 1, 2, 35, 1, 1561463479, 1, 2019, 0);
-INSERT INTO `think_menu` VALUES (232, 222, '批量缓存', '', '/Article/batchCache', '', 'sys:article:batchCache', 4, 1, 2, 40, 1, 1561463479, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (233, 222, '新增', '', '/Usergroup/edit', '', 'sys:usergroup:edit', 4, 1, 2, 10, 1, 1561642629, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (234, 222, '编辑', '', '/Usergroup/edit', '', 'sys:usergroup:edit', 4, 1, 2, 15, 1, 1561642629, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (235, 222, '删除', '', '/Usergroup/drop', '', 'sys:usergroup:drop', 4, 1, 2, 20, 1, 1561642629, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (236, 222, '缓存', '', '/Usergroup/cache', '', 'sys:usergroup:cache', 4, 1, 2, 25, 1, 1561642629, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (237, 222, '批量删除', '', '/Usergroup/batchDrop', '', 'sys:usergroup:batchDrop', 4, 1, 2, 30, 1, 1561642629, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (238, 222, '批量缓存', '', '/Usergroup/batchCache', '', 'sys:usergroup:batchCache', 4, 1, 2, 35, 1, 1561642629, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (239, 221, '用户管理', 'yun-wangzhan', '', '', '', 3, 1, 2, 5, 1, 1561642663, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (240, 239, '查看', '', '/User/index', '', 'sys:user:index', 4, 1, 2, 5, 1, 1561642720, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (241, 239, '新增', '', '/User/edit', '', 'sys:user:edit', 4, 1, 2, 10, 1, 1561642720, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (242, 239, '编辑', '', '/User/edit', '', 'sys:user:edit', 4, 1, 2, 15, 1, 1561642720, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (243, 239, '删除', '', '/User/drop', '', 'sys:user:drop', 4, 1, 2, 20, 1, 1561642720, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (244, 239, '批量删除', '', '/User/batchDrop', '', 'sys:user:batchDrop', 4, 1, 2, 25, 1, 1561642720, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (245, 239, '批量缓存', '', '/User/batchCache', '', 'sys:user:batchCache', 4, 1, 2, 30, 1, 1561642720, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (248, 0, '12', 'yun-wangzhan', '', '', '', 1, 1, 2, 125, 1, 1562745090, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (249, 0, '0.3.', 'yun-wangzhan', '3', '', '2', 1, 1, 2, 125, 1, 1562745110, 0, 0, 0);
-INSERT INTO `think_menu` VALUES (250, 3, '查看', '', '/新建菜单/index', '', 'sys:新建菜单:index', 4, 1, 2, 5, 1, 1563171352, 1, 1564297404, 0);
-INSERT INTO `think_menu` VALUES (251, 3, '新增', '', '/新建菜单/edit', '', 'sys:新建菜单:edit', 4, 1, 2, 10, 1, 1563171352, 1, 1564297404, 1);
-INSERT INTO `think_menu` VALUES (252, 3, '编辑', '', '/新建菜单/edit', '', 'sys:新建菜单:edit', 4, 1, 2, 15, 1, 1563171352, 1, 1564297404, 1);
-INSERT INTO `think_menu` VALUES (253, 3, '删除', '', '/新建菜单/drop', '', 'sys:新建菜单:drop', 4, 1, 2, 20, 1, 1563171352, 1, 1564297404, 0);
-INSERT INTO `think_menu` VALUES (254, 3, '批量删除', '', '/新建菜单/batchDrop', '', 'sys:新建菜单:batchDrop', 4, 1, 2, 40, 1, 1563171352, 1, 1564297404, 1);
-INSERT INTO `think_menu` VALUES (255, 3, '批量缓存', '', '/新建菜单/batchCache', '', 'sys:新建菜单:batchCache', 4, 1, 2, 45, 1, 1563171352, 1, 1564297404, 1);
-INSERT INTO `think_menu` VALUES (256, 0, '威威', 'yun-wangzhan', '威威', '', '我', 2, 1, 2, 125, 1, 1563779732, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (257, 1, 'TT', 'yun-taobaoketuiguang            ', '', '', 'tt', 2, 1, 2, 125, 1, 1563892705, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (258, 0, 'test', 'yun-wangzhan', 'test', '', '', 1, 1, 2, 125, 1, 1563946448, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (259, 3, '详情', '', '/新建菜单/detail', '', 'sys:新建菜单:detail', 4, 1, 2, 25, 1, 1564297404, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (260, 3, '复制', '', '/新建菜单/copy', '', 'sys:新建菜单:copy', 4, 1, 2, 30, 1, 1564297404, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (261, 3, '缓存', '', '/新建菜单/cache', '', 'sys:新建菜单:cache', 4, 1, 2, 35, 1, 1564297404, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (262, 0, '123', 'yun-wangzhan', '', '', '', 1, 1, 2, 125, 1, 1565408165, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (263, 262, '456', 'yun-wangzhan', '', '', '', 2, 1, 2, 125, 1, 1565408244, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (264, 0, '1111', 'yun-wangzhan', '/22222', '', '', 3, 1, 2, 125, 1, 1565514581, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (265, 264, '查看', '', '/Ces/index', '', 'sys:ces:index', 4, 1, 2, 5, 1, 1566783259, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (266, 264, '新增', '', '/Ces/edit', '', 'sys:ces:edit', 4, 1, 2, 10, 1, 1566783259, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (267, 264, '编辑', '', '/Ces/edit', '', 'sys:ces:edit', 4, 1, 2, 15, 1, 1566783259, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (268, 264, '删除', '', '/Ces/drop', '', 'sys:ces:drop', 4, 1, 2, 20, 1, 1566783259, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (269, 264, '批量删除', '', '/Ces/batchDrop', '', 'sys:ces:batchDrop', 4, 1, 2, 25, 1, 1566783259, 0, 0, 1);
-INSERT INTO `think_menu` VALUES (270, 264, '批量缓存', '', '/Ces/batchCache', '', 'sys:ces:batchCache', 4, 1, 2, 30, 1, 1566783259, 0, 0, 1);
+INSERT INTO `think_menu` VALUES (1, 0, '系统管理', 'yun-jiaoseguanli2', '', '', '', 1, 1, 2, 1, 1, 1577936938, 1, 1562654317, 1);
+INSERT INTO `think_menu` VALUES (2, 1, '控制面板', 'yun-wangzhan', '', '', '', 2, 1, 2, 1, 1, 1577936938, 1, 1562493326, 1);
+INSERT INTO `think_menu` VALUES (3, 2, '后台主页', 'larry-xitong', 'index', '', '', 3, 2, 2, 1, 1, 1577936938, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (4, 3, '欢迎页', 'larry-xitong', '/index/main', '', 'sys:index:main', 4, 2, 2, 5, 1, 1577936938, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (5, 2, '文件上传', 'larry-xitong', 'upload', '', '', 3, 2, 2, 10, 1, 1577936938, 0, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (6, 5, '图片上传', 'larry-xitong', '/upload/uploadImg', '', 'sys:upload:uploadImg', 4, 2, 2, 1, 1, 1577936938, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (7, 5, '上传附件', 'larry-xitong', '/upload/uploadFile', '', 'sys:upload:uploadFile', 4, 1, 2, 5, 1, 1577936938, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (8, 1, '权限管理', 'yun-setting-permissions', '', '', '', 2, 1, 2, 5, 1, 1577936938, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (9, 8, '菜单管理', 'yun-yingyong', 'menu', '', '', 3, 1, 2, 1, 1, 1577936938, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (10, 9, '查看', 'larry-xitong', '/menu/index', '', 'sys:menu:index', 4, 1, 2, 1, 1, 1577936938, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (11, 9, '新增', 'larry-xitong', '/menu/edit', '', 'sys:menu:add', 4, 1, 2, 5, 1, 1577936938, 1, 1563779690, 1);
+INSERT INTO `think_menu` VALUES (12, 9, '修改', 'larry-xitong', '/menu/edit', '', 'sys:menu:edit', 4, 1, 2, 10, 1, 1577936938, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (13, 9, '删除', 'larry-xitong', '/menu/drop', '', 'sys:menu:drop', 4, 1, 2, 15, 1, 1577936938, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (14, 9, '面板菜单', 'larry-xitong', '/menu/getMenuList', '', 'sys:menu:getMenuList', 4, 2, 2, 20, 1, 1577936938, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (15, 9, '图标选择', 'larry-xitong', '/menu/getSysIcon', '', 'sys:menu:getSysIcon', 4, 2, 2, 25, 1, 1577936938, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (16, 9, '批量设置节点', 'larry-xitong', '/menu/batchFunc', '', 'sys:menu:batchFunc', 4, 1, 2, 30, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (17, 8, '管理人员', 'yun-icon-test', 'admin', '', '', 3, 1, 2, 5, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (18, 17, '查看', 'larry-xitong', '/admin/index', '', 'sys:admin:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (19, 17, '新增', 'larry-xitong', '/admin/edit', '', 'sys:admin:add', 4, 1, 2, 5, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (20, 17, '修改', 'larry-xitong', '/admin/edit', '', 'sys:admin:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (21, 17, '删除', 'larry-xitong', '/admin/drop', '', 'sys:admin:drop', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (22, 17, '独立权限', 'larry-xitong', '/admin/setAuth', '', 'sys:admin:setAuth', 4, 1, 2, 20, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (23, 17, '角色设置', 'larry-xitong', '/admin/setRole', '', 'sys:admin:setRole', 4, 1, 2, 25, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (24, 17, '初始密码', 'larry-xitong', '/admin/resetPwd', '', 'sys:admin:resetPwd', 4, 1, 2, 30, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (25, 17, '批量删除', 'larry-xitong', '/admin/batchDrop', '', 'sys:admin:batchDrop', 4, 1, 2, 35, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (26, 8, '角色管理', 'yun-jiaoseguanli4', 'adminrole', '', '', 3, 1, 2, 10, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (27, 26, '查看', 'larry-xitong', '/adminrole/index', '', 'sys:adminrole:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (28, 26, '新增', 'larry-xitong', '/adminrole/edit', '', 'sys:adminrole:add', 4, 1, 2, 5, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (29, 26, '修改', 'larry-xitong', '/adminrole/edit', '', 'sys:adminrole:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (30, 26, '删除', 'larry-xitong', '/adminrole/drop', '', 'sys:adminrole:drop', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (31, 26, '角色权限', 'larry-xitong', '/adminrole/setAuth', '', 'sys:adminrole:setAuth', 4, 1, 2, 20, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (32, 26, '批量删除', 'larry-xitong', '/adminrole/batchDrop', '', 'sys:adminrole:batchDrop', 4, 1, 2, 25, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (33, 8, '组织机构', 'yun-bangong-jigou', 'adminorg', '', '', 3, 1, 2, 14, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (34, 33, '查看', 'larry-xitong', '/adminorg/index', '', 'sys:adminorg:index', 4, 1, 2, 1, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (35, 33, '新增', 'larry-xitong', '/adminorg/edit', '', 'sys:adminorg:add', 4, 1, 2, 5, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (36, 33, '修改', 'larry-xitong', '/adminorg/edit', '', 'sys:adminorg:edit', 4, 1, 2, 10, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (37, 33, '删除', 'larry-xitong', '/adminorg/drop', '', 'sys:adminorg:drop', 4, 1, 2, 15, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (38, 33, '批量删除', 'larry-xitong', '/adminorg/batchDrop', '', 'sys:adminorg:batchDrop', 4, 1, 2, 20, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (39, 33, '组织权限', 'larry-xitong', '/adminorg/setAuth', '', 'sys:adminorg:setAuth', 4, 1, 2, 25, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (40, 8, '部门管理', 'yun-custom-form', 'admindep', '', '', 3, 1, 2, 15, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (41, 40, '查看', 'larry-xitong', '/admindep/index', '', 'sys:admindep:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (42, 40, '新增', 'larry-xitong', '/admindep/edit', '', 'sys:admindep:add', 4, 1, 2, 5, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (43, 40, '修改', 'larry-xitong', '/admindep/edit', '', 'sys:admindep:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (44, 40, '删除', 'larry-xitong', '/admindep/drop', '', 'sys:admindep:drop', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (45, 40, '部门权限', 'larry-xitong', '/admindep/setAuth', '', 'sys:admindep:setAuth', 4, 1, 2, 20, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (46, 8, '岗位管理', 'yun-zhiweiguanli', 'position', '', '', 3, 1, 2, 20, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (47, 46, '查看', 'larry-xitong', '/position/index', '', 'sys:position:index', 4, 1, 2, 5, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (48, 46, '新增', 'larry-xitong', '/position/edit', '', 'sys:position:add', 4, 1, 2, 10, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (49, 46, '修改', 'larry-xitong', '/adminposition/edit', '', 'sys:adminposition:edit', 4, 1, 2, 10, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (50, 46, '编辑', '', '/position/edit', '', 'sys:position:edit', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (51, 46, '删除', 'larry-xitong', '/position/drop', '', 'sys:position:drop', 4, 1, 2, 20, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (52, 46, '复制', '', '/position/copy', '', 'sys:position:copy', 4, 1, 2, 25, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (53, 46, '缓存', '', '/position/cache', '', 'sys:position:cache', 4, 1, 2, 30, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (54, 46, '批量删除', 'larry-xitong', '/position/batchDrop', '', 'sys:position:batchDrop', 4, 1, 2, 35, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (55, 46, '批量缓存', '', '/position/batchCache', '', 'sys:position:batchCache', 4, 1, 2, 40, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (56, 8, '权限设置', 'larry-xitong', 'adminauth', '', '', 3, 2, 2, 25, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (57, 56, '列表', 'larry-xitong', '/adminauth/index', '', 'sys:adminauth:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (58, 56, '保存权限', 'larry-xitong', '/adminauth/setAuth', '', 'sys:adminauth:setAuth', 4, 1, 2, 5, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (59, 8, '职级管理', 'yun-wangzhan', 'level', '', '', 3, 1, 2, 125, 1, 1577936939, 0, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (60, 59, '查看', '', '/level/index', '', 'sys:level:index', 4, 1, 2, 5, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (61, 59, '新增', '', '/level/edit', '', 'sys:level:add', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (62, 59, '编辑', '', '/level/edit', '', 'sys:level:edit', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (63, 59, '删除', '', '/level/drop', '', 'sys:level:drop', 4, 1, 2, 20, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (64, 59, '复制', '', '/level/copy', '', 'sys:level:copy', 4, 1, 2, 25, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (65, 59, '缓存', '', '/level/cache', '', 'sys:level:cache', 4, 1, 2, 30, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (66, 59, '批量删除', '', '/level/batchDrop', '', 'sys:level:batchDrop', 4, 1, 2, 35, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (67, 59, '批量缓存', '', '/level/batchCache', '', 'sys:level:batchCache', 4, 1, 2, 40, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (68, 1, '配置管理', 'yun-peizhiguanli4', '', '', '', 2, 1, 2, 10, 1, 1577936939, 1, 1561514209, 1);
+INSERT INTO `think_menu` VALUES (69, 68, '配置分组', 'yun-peizhiguanli3', 'configgroup', '', '', 3, 1, 2, 1, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (70, 69, '查看', 'larry-xitong', '/configgroup/index', '', 'sys:configgroup:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (71, 69, '添加', 'larry-xitong', '/configgroup/edit', '', 'sys:configgroup:add', 4, 1, 2, 5, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (72, 69, '编辑', 'larry-xitong', '/configgroup/edit', '', 'sys:configgroup:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (73, 69, '删除', 'larry-xitong', '/configgroup/drop', '', 'sys:configgroup:drop', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (74, 69, '批量删除', 'larry-xitong', '/configgroup/batchDrop', '', 'sys:configgroup:batchDrop', 4, 1, 2, 20, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (75, 68, '配置管理', 'yun-peizhiguanli4', 'config', '', '', 3, 1, 2, 5, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (76, 75, '查看', 'larry-xitong', '/config/index', '', 'sys:config:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (77, 75, '添加', 'larry-xitong', '/config/edit', '', 'sys:config:add', 4, 1, 2, 5, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (78, 75, '编辑', 'larry-xitong', '/config/edit', '', 'sys:config:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (79, 75, '删除', 'larry-xitong', '/config/drop', '', 'sys:config:drop', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (80, 75, '批量删除', 'larry-xitong', '/config/batchDrop', '', 'sys:config:batchDrop', 4, 1, 2, 20, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (81, 1, '数据中心', 'yun-ziliaoku', '', '', '', 2, 1, 2, 15, 1, 1577936939, 1, 1561642900, 1);
+INSERT INTO `think_menu` VALUES (82, 81, '友链管理', 'yun-lianjie', 'link', '', '', 3, 1, 2, 1, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (83, 82, '查看', 'larry-xitong', '/link/index', '', 'sys:link:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (84, 82, '新增', 'larry-xitong', '/link/edit', '', 'sys:link:add', 4, 1, 2, 5, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (85, 82, '修改', 'larry-xitong', '/link/edit', '', 'sys:link:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (86, 82, '删除', 'larry-xitong', '/link/drop', '', 'sys:link:drop', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (87, 82, '批量删除', 'larry-xitong', '/link/batchDrop', '', 'sys:link:batchDrop', 4, 1, 2, 20, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (88, 81, '城市管理', 'yun-chengshi3', 'city', '', '', 3, 1, 2, 10, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (89, 88, '查看', 'larry-xitong', '/city/index', '', 'sys:city:index', 4, 1, 2, 1, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (90, 88, '新增', 'larry-xitong', '/city/edit', '', 'sys:city:add', 4, 1, 2, 5, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (91, 88, '修改', 'larry-xitong', '/city/edit', '', 'sys:city:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (92, 88, '删除', 'larry-xitong', '/city/drop', '', 'sys:city:drop', 4, 1, 2, 15, 1, 1577936939, 0, 1577937197, 1);
+INSERT INTO `think_menu` VALUES (93, 88, '城市选择挂件', 'larry-xitong', '/city/getChilds', '', 'sys:city:getChilds', 4, 2, 2, 20, 1, 1577936939, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (94, 81, '附件管理', 'yun-banbenweihu', 'attachment', '', '', 3, 1, 2, 15, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (95, 94, '查看', 'larry-xitong', '/attachment/index', '', 'sys:attachment:index', 4, 1, 2, 5, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (96, 94, '新增', 'larry-xitong', '/attachment/edit', '', 'sys:attachment:add', 4, 1, 2, 10, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (97, 94, '修改', 'larry-xitong', '/version/edit', '', 'sys:version:edit', 4, 1, 2, 10, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (98, 94, '编辑', '', '/attachment/edit', '', 'sys:attachment:edit', 4, 1, 2, 15, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (99, 94, '删除', 'larry-xitong', '/attachment/drop', '', 'sys:attachment:drop', 4, 1, 2, 20, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (100, 94, '缓存', '', '/attachment/cache', '', 'sys:attachment:cache', 4, 1, 2, 25, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (101, 94, '批量删除', 'larry-xitong', '/attachment/batchDrop', '', 'sys:attachment:batchDrop', 4, 1, 2, 30, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (102, 94, '批量缓存', '', '/attachment/batchCache', '', 'sys:attachment:batchCache', 4, 1, 2, 35, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (103, 1, '字典管理', 'yun-guanli', '', '', '', 2, 1, 2, 20, 1, 1577936939, 1, 1561642921, 1);
+INSERT INTO `think_menu` VALUES (104, 103, '字典类型', 'yun-b_ysj', 'dictype', '', '', 3, 1, 2, 1, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (105, 104, '查看', '', '/dictype/index', '', 'sys:dictype:index', 4, 1, 2, 5, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (106, 104, '新增', '', '/dictype/edit', '', 'sys:dictype:add', 4, 1, 2, 10, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (107, 104, '编辑', '', '/dictype/edit', '', 'sys:dictype:edit', 4, 1, 2, 15, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (108, 104, '删除', '', '/dictype/drop', '', 'sys:dictype:drop', 4, 1, 2, 20, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (109, 104, '复制', '', '/dictype/copy', '', 'sys:dictype:copy', 4, 1, 2, 25, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (110, 104, '缓存', '', '/dictype/cache', '', 'sys:dictype:cache', 4, 1, 2, 30, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (111, 104, '批量删除', '', '/dictype/batchDrop', '', 'sys:dictype:batchDrop', 4, 1, 2, 35, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (112, 104, '批量缓存', '', '/dictype/batchCache', '', 'sys:dictype:batchCache', 4, 1, 2, 40, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (113, 103, '字典管理', 'yun-jifenmingxi', 'dic', '', '', 3, 1, 2, 5, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (114, 113, '查看', '', '/dic/index', '', 'sys:dic:index', 4, 1, 2, 5, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (115, 113, '新增', '', '/dic/edit', '', 'sys:dic:add', 4, 1, 2, 10, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (116, 113, '编辑', '', '/dic/edit', '', 'sys:dic:edit', 4, 1, 2, 15, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (117, 113, '删除', '', '/dic/drop', '', 'sys:dic:drop', 4, 1, 2, 20, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (118, 113, '复制', '', '/dic/copy', '', 'sys:dic:copy', 4, 1, 2, 25, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (119, 113, '缓存', '', '/dic/cache', '', 'sys:dic:cache', 4, 1, 2, 30, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (120, 113, '批量删除', '', '/dic/batchDrop', '', 'sys:dic:batchDrop', 4, 1, 2, 35, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (121, 113, '批量缓存', '', '/dic/batchCache', '', 'sys:dic:batchCache', 4, 1, 2, 40, 1, 1577936939, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (122, 1, '行为管理', 'yun-zhushujuguanli', '', '', '', 2, 1, 2, 40, 1, 1577936939, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (123, 122, '用户行为', 'yun-jiedianhuiyuanmingdan', 'action', '', '', 3, 1, 2, 5, 1, 1577936939, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (124, 123, '查看', 'larry-xitong', '/action/index', '', 'sys:action:index', 4, 1, 2, 5, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (125, 123, '新增', '', '/action/edit', '', 'sys:action:add', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (126, 123, '编辑', '', '/action/edit', '', 'sys:action:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (127, 123, '删除', 'larry-xitong', '/action/drop', '', 'sys:action:drop', 4, 1, 2, 20, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (128, 123, '复制', '', '/action/copy', '', 'sys:action:copy', 4, 1, 2, 25, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (129, 123, '缓存', '', '/action/cache', '', 'sys:action:cache', 4, 1, 2, 30, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (130, 123, '批量删除', 'larry-xitong', '/action/batchDrop', '', 'sys:action:batchDrop', 4, 1, 2, 35, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (131, 123, '批量缓存', '', '/action/batchCache', '', 'sys:action:batchCache', 4, 1, 2, 40, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (132, 122, '行为日志', 'yun-tongji', 'actionlog', '', '', 3, 1, 2, 10, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (133, 132, '查看', 'larry-xitong', '/actionlog/index', '', 'sys:actionlog:index', 4, 1, 2, 5, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (134, 132, '删除', 'larry-xitong', '/actionlog/drop', '', 'sys:actionlog:drop', 4, 1, 2, 10, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (135, 132, '批量删除', 'larry-xitong', '/actionlog/batchDrop', '', 'sys:actionlog:batchDrop', 4, 1, 2, 15, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (136, 1, '应用中心', 'yun-wangzhan', '', '', '', 2, 1, 2, 45, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (137, 136, '定时任务', 'yun-renwudanyulanchaxun', 'crontab', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (138, 137, '查看', '', '/crontab/index', '', 'sys:crontab:index', 4, 1, 2, 5, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (139, 137, '新增', '', '/crontab/edit', '', 'sys:crontab:add', 4, 1, 2, 10, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (140, 137, '修改', '', '/coupon/edit', '', 'sys:coupon:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (141, 137, '编辑', '', '/crontab/edit', '', 'sys:crontab:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (142, 137, '删除', '', '/crontab/drop', '', 'sys:crontab:drop', 4, 1, 2, 20, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (143, 137, '复制', '', '/crontab/copy', '', 'sys:crontab:copy', 4, 1, 2, 25, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (144, 137, '缓存', '', '/crontab/cache', '', 'sys:crontab:cache', 4, 1, 2, 30, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (145, 137, '批量删除', '', '/crontab/batchDrop', '', 'sys:crontab:batchDrop', 4, 1, 2, 35, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (146, 137, '批量缓存', '', '/crontab/batchCache', '', 'sys:crontab:batchCache', 4, 1, 2, 40, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (147, 136, '数据库管理', 'yun-caidanguanli4', 'database', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (148, 147, '查看', '', '/database/index', '', 'sys:database:index', 4, 1, 2, 5, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (149, 147, '立即备份', 'yun-wangzhan', '/database/backup', '', 'sys:database:backup', 4, 1, 2, 10, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (150, 147, '优化表', 'yun-wangzhan', '/database/optimize', '', 'sys:database:optimize', 4, 1, 2, 15, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (151, 147, '修复表', 'yun-wangzhan', '/database/repair', '', 'sys:database:repair', 4, 1, 2, 20, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (152, 136, '网站设置', 'yun-wangzhan', 'config', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (153, 152, '查看', 'larry-xitong', '/config/group', '', 'sys:config:group', 4, 1, 2, 5, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (154, 152, '编辑', '', '/config/edit', '', 'sys:config:edit', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (155, 136, '切图管理', 'yun-shangjiarenzheng', 'imagecut', '', '', 3, 1, 2, 5, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (156, 155, '查看', 'larry-xitong', '/imagecut/index', '?user_type=2', 'sys:imagecut:index', 4, 1, 2, 5, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (157, 155, '新增', '', '/imagecut/edit', '', 'sys:imagecut:add', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (158, 155, '编辑', '', '/imagecut/edit', '', 'sys:imagecut:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (159, 155, '删除', '', '/imagecut/drop', '', 'sys:imagecut:drop', 4, 1, 2, 20, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (160, 155, '复制', '', '/imagecut/copy', '', 'sys:imagecut:copy', 4, 1, 2, 25, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (161, 155, '缓存', '', '/imagecut/cache', '', 'sys:imagecut:cache', 4, 1, 2, 30, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (162, 155, '批量删除', '', '/imagecut/batchDrop', '', 'sys:imagecut:batchDrop', 4, 1, 2, 35, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (163, 155, '批量缓存', '', '/imagecut/batchCache', '', 'sys:imagecut:batchCache', 4, 1, 2, 40, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (164, 0, '内容管理', 'yun-wangzhan', '', '', '', 1, 1, 2, 5, 1, 1577936940, 1, 1561635890, 1);
+INSERT INTO `think_menu` VALUES (165, 164, '站点栏目', 'yun-zhandianguanli2', '', '', '', 2, 1, 2, 1, 1, 1577936940, 1, 1561630024, 1);
+INSERT INTO `think_menu` VALUES (166, 165, '站点管理', 'yun-zhandianguanli2', 'item', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (167, 166, '查看', 'larry-xitong', '/item/index', '', 'sys:item:index', 4, 1, 2, 1, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (168, 166, '新增', 'larry-xitong', '/item/edit', '', 'sys:item:add', 4, 1, 2, 5, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (169, 166, '修改', 'larry-xitong', '/item/edit', '', 'sys:item:edit', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (170, 166, '删除', 'larry-xitong', '/item/drop', '', 'sys:item:drop', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (171, 166, '批量删除', 'larry-xitong', '/item/batchDrop', '', 'sys:item:batchDrop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (172, 165, '栏目管理', 'yun-lanmuguanli', 'itemcate', '', '', 3, 1, 2, 5, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (173, 172, '查看', 'larry-xitong', '/itemcate/index', '', 'sys:itemcate:index', 4, 1, 2, 1, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (174, 172, '新增', 'larry-xitong', '/itemcate/edit', '', 'sys:itemcate:add', 4, 1, 2, 5, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (175, 172, '修改', 'larry-xitong', '/itemcate/edit', '', 'sys:itemcate:edit', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (176, 172, '删除', 'larry-xitong', '/itemcate/drop', '', 'sys:itemcate:drop', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (177, 172, '批量删除', 'larry-xitong', '/itemcate/batchDrop', '', 'sys:itemcate:batchDrop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (178, 172, '栏目挂件', 'larry-xitong', '/itemcate/getChilds', '', 'sys:itemcate:getChilds', 4, 2, 2, 25, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (179, 164, '广告管理', 'yun-guanggaoguanli', '', '', '', 2, 1, 2, 5, 1, 1577936940, 1, 1561642791, 1);
+INSERT INTO `think_menu` VALUES (180, 179, '广告位管理', 'yun-guanggaoguanli', 'adsort', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (181, 180, '查看', 'larry-xitong', '/adsort/index', '', 'sys:adsort:index', 4, 1, 2, 1, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (182, 180, '新增', 'larry-xitong', '/adsort/edit', '', 'sys:adsort:add', 4, 1, 2, 5, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (183, 180, '修改', 'larry-xitong', '/adsort/edit', '', 'sys:adsort:edit', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (184, 180, '删除', 'larry-xitong', '/adsort/drop', '', 'sys:adsort:drop', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (185, 180, '批量删除', 'larry-xitong', '/adsort/batchDrop', '', 'sys:adsort:batchDrop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (186, 179, '广告管理', 'yun-guanggaoweiguanli', 'ad', '', '', 3, 1, 2, 5, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (187, 186, '查看', 'larry-xitong', '/ad/index', '', 'sys:ad:index', 4, 1, 2, 1, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (188, 186, '新增', 'larry-xitong', '/ad/edit', '', 'sys:ad:add', 4, 1, 2, 5, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (189, 186, '修改', 'larry-xitong', '/ad/edit', '', 'sys:ad:edit', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (190, 186, '删除', 'larry-xitong', '/ad/drop', '', 'sys:ad:drop', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (191, 186, '批量删除', 'larry-xitong', '/ad/batchDrop', '', 'sys:ad:batchDrop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (192, 164, '布局管理', 'yun-buju', '', '', '', 2, 1, 2, 10, 1, 1577936940, 1, 1561642809, 1);
+INSERT INTO `think_menu` VALUES (193, 192, '布局描述管理', 'yun-buju', 'layoutdesc', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (194, 193, '查看', 'larry-xitong', '/layoutdesc/index', '', 'sys:layoutdesc:index', 4, 1, 2, 1, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (195, 193, '新增', 'larry-xitong', '/layoutdesc/edit', '', 'sys:layoutdesc:add', 4, 1, 2, 5, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (196, 193, '修改', 'larry-xitong', '/layoutdesc/edit', '', 'sys:layoutdesc:edit', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (197, 193, '删除', 'larry-xitong', '/layoutdesc/drop', '', 'sys:layoutdesc:drop', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (198, 193, '批量删除', 'larry-xitong', '/layoutdesc/batchDrop', '', 'sys:layoutdesc:batchDrop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (199, 193, '布局描述挂件', 'larry-xitong', '/layoutdesc/getChilds', '', 'sys:layoutdesc:getChilds', 4, 1, 2, 25, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (200, 192, '布局管理', 'yun-layout2', 'layout', '', '', 3, 1, 2, 5, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (201, 200, '查看', 'larry-xitong', '/layout/index', '', 'sys:layout:index', 4, 1, 2, 1, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (202, 200, '新增', 'larry-xitong', '/layout/edit', '', 'sys:layout:add', 4, 1, 2, 5, 1, 1577936940, 1, 2018, 1);
+INSERT INTO `think_menu` VALUES (203, 200, '修改', 'larry-xitong', '/layout/edit', '', 'sys:layout:edit', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (204, 200, '删除', 'larry-xitong', '/layout/drop', '', 'sys:layout:drop', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (205, 200, '批量删除', 'larry-xitong', '/layout/batchDrop', '', 'sys:layout:batchDrop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (206, 164, '内容管理', 'yun-wangzhanzonglan1', '', '', '', 2, 1, 2, 15, 1, 1577936940, 1, 1561642821, 1);
+INSERT INTO `think_menu` VALUES (207, 206, '内容管理', 'yun-wangzhanzonglan1', 'article', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (208, 207, '查看', '', '/article/index', '', 'sys:article:index', 4, 1, 2, 5, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (209, 207, '新增', '', '/article/edit', '', 'sys:article:add', 4, 1, 2, 10, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (210, 207, '修改', '', '/article/edit', '', 'sys:article:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (211, 207, '编辑', '', '/article/edit', '', 'sys:article:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (212, 207, '删除', '', '/article/drop', '', 'sys:article:drop', 4, 1, 2, 20, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (213, 207, '复制', '', '/article/copy', '', 'sys:article:copy', 4, 1, 2, 25, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (214, 207, '显示状态', 'larry-xitong', '/article/setIsShow', '', 'sys:article:setIsShow', 4, 1, 2, 30, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (215, 207, '缓存', '', '/article/cache', '', 'sys:article:cache', 4, 1, 2, 30, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (216, 207, '批量删除', '', '/article/batchDrop', '', 'sys:article:batchDrop', 4, 1, 2, 35, 1, 1577936940, 1, 2019, 1);
+INSERT INTO `think_menu` VALUES (217, 207, '批量缓存', '', '/article/batchCache', '', 'sys:article:batchCache', 4, 1, 2, 40, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (218, 0, '用户中心', 'yun-wangzhan', '', '', '', 2, 1, 2, 10, 1, 1577936940, 1, 1563347688, 1);
+INSERT INTO `think_menu` VALUES (219, 218, '用户管理', 'yun-wangzhanzonglan1', '', '', '', 2, 1, 2, 1, 1, 1577936940, 1, 1561635917, 1);
+INSERT INTO `think_menu` VALUES (220, 219, '用户分组', 'yun-wangzhanzonglan1', 'usergroup', '', '', 3, 1, 2, 1, 1, 1577936940, 1, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (221, 220, '查看', '', '/usergroup/index', '', 'sys:usergroup:index', 4, 1, 2, 5, 1, 1577936940, 1, 1561642629, 1);
+INSERT INTO `think_menu` VALUES (222, 220, '新增', '', '/usergroup/edit', '', 'sys:usergroup:add', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (223, 220, '编辑', '', '/usergroup/edit', '', 'sys:usergroup:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (224, 220, '删除', '', '/usergroup/drop', '', 'sys:usergroup:drop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (225, 220, '缓存', '', '/usergroup/cache', '', 'sys:usergroup:cache', 4, 1, 2, 25, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (226, 220, '批量删除', '', '/usergroup/batchDrop', '', 'sys:usergroup:batchDrop', 4, 1, 2, 30, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (227, 220, '批量缓存', '', '/usergroup/batchCache', '', 'sys:usergroup:batchCache', 4, 1, 2, 35, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (228, 219, '用户管理', 'yun-wangzhan', 'user', '', '', 3, 1, 2, 5, 1, 1577936940, 0, 1577937201, 1);
+INSERT INTO `think_menu` VALUES (229, 228, '查看', '', '/user/index', '', 'sys:user:index', 4, 1, 2, 5, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (230, 228, '新增', '', '/user/edit', '', 'sys:user:add', 4, 1, 2, 10, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (231, 228, '编辑', '', '/user/edit', '', 'sys:user:edit', 4, 1, 2, 15, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (232, 228, '删除', '', '/user/drop', '', 'sys:user:drop', 4, 1, 2, 20, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (233, 228, '批量删除', '', '/user/batchDrop', '', 'sys:user:batchDrop', 4, 1, 2, 25, 1, 1577936940, 0, 1577937196, 1);
+INSERT INTO `think_menu` VALUES (234, 228, '批量缓存', '', '/user/batchCache', '', 'sys:user:batchCache', 4, 1, 2, 30, 1, 1577936940, 0, 1577937196, 1);
 
 -- ----------------------------
 -- Table structure for think_plugin
@@ -4958,7 +4957,7 @@ CREATE TABLE `think_position`  (
   `mark` tinyint(1) UNSIGNED NULL DEFAULT 1 COMMENT '有效标识',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '岗位表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of think_position
@@ -4968,6 +4967,18 @@ INSERT INTO `think_position` VALUES (2, 'IOS工程师', 1, 125, 1, 1530090861, 1
 INSERT INTO `think_position` VALUES (3, '测试22233', 1, 125, 1, 1532002884, 1, 1532078592, 0);
 INSERT INTO `think_position` VALUES (4, '测试职位2', 1, 125, 1, 1532326158, 1, 1532658112, 0);
 INSERT INTO `think_position` VALUES (5, '222111222', 1, 125, 1, 1561643768, 1, 1563416991, 0);
+INSERT INTO `think_position` VALUES (7, '相约在冬季', 1, 125, 0, 0, 0, 0, 0);
+INSERT INTO `think_position` VALUES (8, '相约在冬季', 1, 125, 0, 0, 0, 0, 0);
+INSERT INTO `think_position` VALUES (9, '相约在冬季', 1, 125, 0, 0, 0, 0, 0);
+INSERT INTO `think_position` VALUES (10, '相约在冬季', 1, 125, 0, 0, 0, 0, 0);
+INSERT INTO `think_position` VALUES (11, '总经理', 1, 125, 1, 1577942771, 0, 0, 1);
+INSERT INTO `think_position` VALUES (12, '技术总监', 1, 125, 1, 1577942779, 0, 0, 1);
+INSERT INTO `think_position` VALUES (13, '产品总监', 1, 125, 1, 1577942787, 0, 0, 1);
+INSERT INTO `think_position` VALUES (14, '市场总监', 1, 125, 1, 1577942793, 0, 0, 1);
+INSERT INTO `think_position` VALUES (15, '人事总监', 1, 125, 1, 1577942798, 0, 0, 1);
+INSERT INTO `think_position` VALUES (16, '财务总监', 1, 125, 1, 1577942803, 0, 0, 1);
+INSERT INTO `think_position` VALUES (17, '技术经理', 1, 125, 1, 1577942812, 0, 0, 1);
+INSERT INTO `think_position` VALUES (18, '技术主管', 1, 125, 1, 1577942818, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for think_user

@@ -31,8 +31,9 @@ class InstallValidate extends Validate
         'admin_repassword' => 'require|confirm:admin_password',
         'admin_email' => 'require|email',
         //网站信息验证规则
-        'web_site_title' => 'require',
-        'index_url' => 'require',
+        'site_name' => 'require',
+        'nick_name' => 'require',
+        'main_url' => 'require',
         'web_site_description' => 'require',
         'web_site_keyword' => 'require',
         //数据库验证规则
@@ -57,8 +58,9 @@ class InstallValidate extends Validate
         'admin_email.require' => '请填写邮箱',
         'admin_email.email' => '邮箱格式不正确',
 
-        'web_site_title.require' => '请填写完整网站信息',
-        'index_url.require' => '请填写完整网站信息',
+        'site_name.require' => '请填写完整网站信息',
+        'nick_name.require' => '请填写网站昵称',
+        'main_url.require' => '请填写完整网站信息',
         'web_site_description.require' => '请填写完整网站信息',
         'web_site_keyword.require' => '请填写完整网站信息',
 
@@ -75,7 +77,7 @@ class InstallValidate extends Validate
     // 验证场景
     protected $scene = [
         'admin_info' => ['admin_username', 'admin_password', 'admin_repassword', 'admin_email'],
-        'web_config' => ['web_site_title', 'index_url', 'web_site_description', 'web_site_keyword'],
+        'web_config' => ['site_name', 'nick_name', 'main_url', 'web_site_description', 'web_site_keyword'],
         'db_config' => ['type', 'hostname', 'database', 'username', 'hostport', 'prefix'],
     ];
 }

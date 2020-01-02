@@ -120,11 +120,11 @@ class InitApp
      */
     private function initRabbitMq()
     {
-        define('MQ_HOST', \Env::get('rabbutmq.host'));
-        define('MQ_IP', \Env::get('rabbutmq.ip'));
-        define('MQ_PORT', \Env::get('rabbutmq.port'));
-        define('MQ_USER', \Env::get('rabbutmq.user'));
-        define('MQ_PWD', \Env::get('rabbutmq.password'));
+        define('MQ_HOST', \Env::get('rabbitmq.host'));
+        define('MQ_IP', \Env::get('rabbitmq.ip'));
+        define('MQ_PORT', \Env::get('rabbitmq.port'));
+        define('MQ_USER', \Env::get('rabbitmq.user'));
+        define('MQ_PWD', \Env::get('rabbitmq.password'));
     }
 
     /**

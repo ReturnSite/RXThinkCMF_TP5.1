@@ -162,32 +162,29 @@ function write_config($config, $web_config)
 {
     if (is_array($config)) {
 
-        // 系统名称
-        $web_site_title = $web_config['web_site_title'];
+        // 网站名称
+        $site_name = $web_config['site_name'];
+        // 网站简称
+        $nick_name = $web_config['nick_name'];
         // 后台访问地址
-        $index_url = $web_config['index_url'];
-        $itemArr = explode('://', $index_url);
-        if (is_array($itemArr)) {
-            $result = explode('.', $itemArr[1]);
-            $domain = $result[1] . "." . $result[2];
+        $main_url = $web_config['main_url'];
+        $config['main_url'] = $main_url;
+        $config['site_name'] = $site_name;
+        $config['nick_name'] = $nick_name;
+        $config['attach_path'] = ROOT_PATH;
 
-            // 设置域名及系统名称配置
-            $config['domain'] = $domain;
-            $config['site_name'] = $web_site_title;
-            $config['attachment_path'] = ROOT_PATH;
-        }
         //读取配置内容
-        $conf = file_get_contents(APP_PATH . 'install/data/config.inc.tpl');
+        $conf = file_get_contents(APP_PATH . 'install/data/.env.tpl');
         //替换配置项
         foreach ($config as $name => $value) {
-            $conf = str_replace("[{$name}]", $value, $conf);
+            $conf = str_replace("#[{$name}]", $value, $conf);
         }
 //        //安装信息
 //        Accredit::runAccredit();
         //file_put_contents(APP_PATH . 'install.lock', 'ok');
 
         //写入应用配置文件
-        if (file_put_contents(ROOT_PATH . 'config/config.inc.php', $conf)) {
+        if (file_put_contents(ROOT_PATH . '.env', $conf)) {
             show_msg('配置文件写入成功');
         } else {
             show_msg('配置文件写入失败！', 'error');
@@ -278,12 +275,13 @@ function update_webconfig($db, $prefix, $webconfig)
 
     $sql = "UPDATE `{$prefix}config`
     SET value = CASE name
-    WHEN 'web_site_title' THEN '{$webconfig['web_site_title']}'
-		        WHEN 'index_url' THEN '{$webconfig['index_url']}'
+    WHEN 'site_name' THEN '{$webconfig['site_name']}'
+    WHEN 'nick_name' THEN '{$webconfig['nick_name']}'
+		        WHEN 'main_url' THEN '{$webconfig['main_url']}'
     		        WHEN 'web_site_description' THEN '{$webconfig['web_site_description']}'
 		        WHEN 'web_site_keyword' THEN '{$webconfig['web_site_keyword']}'
 		    END
-    		            WHERE name IN ('web_site_title','index_url','web_site_description','web_site_keyword')";
+    		            WHERE name IN ('site_name','nick_name','main_url','web_site_description','web_site_keyword')";
     $db->execute($sql);
     show_msg('更新网站配置完成！');
 }
