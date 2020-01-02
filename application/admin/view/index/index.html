@@ -69,7 +69,7 @@
                 <!-- 管理员信息      -->
                 <div class="user-info">
                     <div class="photo">
-                        <img src="{if condition='$admin_info.avatar_url neq null'}{$admin_info.avatar_url}{else}__ADMIN__/images/logo_mini.png{/if}" id="user_photo" alt="">
+                        <img src="{if $admin_info.avatar_url neq null}{$admin_info.avatar_url}{else}__ADMIN__/images/logo_mini.png{/if}" id="user_photo" alt="">
                     </div>
                     <p><span id="uname">【{$admin_info.realname}】</span>您好！欢迎登录</p>
                 </div>
