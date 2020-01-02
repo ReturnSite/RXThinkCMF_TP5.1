@@ -2137,3 +2137,19 @@ if (!function_exists('unzip_file')) {
         return $zipArc->close();
     }
 }
+
+if (!function_exists("check_action_exists")) {
+    /**
+     * 检查操作是否存在
+     * @param $request
+     * @return bool
+     */
+    function check_action_exists($request)
+    {
+        $action = $request->action();
+        $module = $request->module();
+        $controller = $request->controller();
+        $classpath = sprintf('app\\%s\\controller\\%s', $module, $controller);
+        return method_exists($classpath, $action);
+    }
+}

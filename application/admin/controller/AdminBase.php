@@ -105,6 +105,11 @@ class AdminBase extends BaseController
         $this->system_auth = $this->admin_info['system_auth'];
     }
 
+    public function CheckAuthEx()
+    {
+        print_r("222");exit;
+    }
+
     /**
      * 检查权限
      * @return array 返回结果

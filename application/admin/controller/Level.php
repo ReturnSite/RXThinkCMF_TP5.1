@@ -36,4 +36,9 @@ class Level extends AdminBase
         $this->service = new LevelService();
         $this->validate = new LevelValidate();
     }
+
+    public function CheckAuthEx()
+    {
+        print_r("222");exit;
+    }
 }
