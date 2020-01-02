@@ -78,25 +78,19 @@
 	</div>
 	<div class="layui-form-item">
 		<div class="layui-inline">
-			<label class="layui-form-label">所属组织：</label>
-			<div class="layui-input-inline">
-				{:widget('adminOrg/select',array('organization_id|1|组织机构|name|id',isset($info['organization_id']) ? $info['organization_id'] : 0))}
-			</div>
-		</div>
-		<div class="layui-inline">
 			<label class="layui-form-label">所属部门：</label>
 			<div class="layui-input-inline">
 				{:widget('adminDep/complexSelect',array('dept_id',isset($info['dept_id']) ? $info['dept_id'] : 0))}
 			</div>
 		</div>
-	</div>
-	<div class="layui-form-item">
 		<div class="layui-inline">
 			<label class="layui-form-label">管理员：</label>
 			<div class="layui-input-inline">
 				{:widget('common/switchCheck',array('is_admin','是|否',isset($info['is_admin']) ? $info['is_admin'] : 2))}
 			</div>
 		</div>
+	</div>
+	<div class="layui-form-item">
 		<div class="layui-inline">
 			<label class="layui-form-label">状态：</label>
 			<div class="layui-input-inline">

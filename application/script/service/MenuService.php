@@ -62,43 +62,102 @@ class MenuService extends ScriptService
         }
 
         if ($list) {
-            foreach ($list as $val) {
-                unset($val['id']);
-                $val['create_user'] = 1;
-                $val['create_time'] = time();
-                $menuId = $this->model->edit($val);
+            foreach ($list as $valItem) {
+                unset($valItem['id']);
+                $valItem['create_user'] = 1;
+                $valItem['create_time'] = time();
+                $menuId = $this->model->edit($valItem);
                 if (!$menuId) {
                     continue;
                 }
-                foreach ($val['children'] as $val2) {
-                    unset($val2['id']);
-                    $val2['create_user'] = 1;
-                    $val2['create_time'] = time();
-                    $val2['parent_id'] = $menuId;
-                    $menuId2 = $this->model->edit($val2);
+                foreach ($valItem['children'] as $val2Item) {
+                    unset($val2Item['id']);
+                    $val2Item['create_user'] = 1;
+                    $val2Item['create_time'] = time();
+                    $val2Item['parent_id'] = $menuId;
+                    $menuId2 = $this->model->edit($val2Item);
                     if (!$menuId2) {
                         continue;
                     }
 
-                    foreach ($val2['children'] as $val3) {
-                        unset($val3['id']);
-                        $val3['create_user'] = 1;
-                        $val3['create_time'] = time();
-                        $val3['parent_id'] = $menuId2;
-                        $menuId3 = $this->model->edit($val3);
+                    foreach ($val2Item['children'] as $val3Item) {
+                        unset($val3Item['id']);
+                        $val3Item['create_user'] = 1;
+                        $val3Item['create_time'] = time();
+                        $val3Item['parent_id'] = $menuId2;
+                        $menuId3 = $this->model->edit($val3Item);
                         if (!$menuId3) {
                             continue;
                         }
 
-                        foreach ($val3['children'] as $val4) {
-                            unset($val4['id']);
-                            $val4['create_user'] = 1;
-                            $val4['create_time'] = time();
-                            $val4['parent_id'] = $menuId3;
-                            $this->model->edit($val4);
+                        foreach ($val3Item['children'] as $val4Item) {
+                            unset($val4Item['id']);
+
+                            // 重组URL
+                            $item = explode('/', $val4Item['url']);
+                            $url = "/" . strtolower($item[1]) . "/" . $item[2];
+                            $val4Item['url'] = $url;
+
+                            // 重组权限点
+                            $subItem = explode(':', $val4Item['auth']);
+                            $val4Item['auth'] = 'sys:' . strtolower($subItem[1]) . ':' . ($val4Item['name'] == '新增' ? 'add' : $subItem[2]);
+
+                            $val4Item['create_user'] = 1;
+                            $val4Item['create_time'] = time();
+                            $val4Item['parent_id'] = $menuId3;
+                            $this->model->edit($val4Item);
+                            unset($val4Item);
                         }
+                        unset($val3);
                     }
+                    unset($val2);
                 }
+                unset($valItem);
+            }
+        }
+    }
+
+    public function menu()
+    {
+        $result = $this->model->getList([
+            ['type', '=', 4],
+        ]);
+        if ($result) {
+            foreach ($result as $val) {
+                // 重组URL
+                $item = explode('/', $val['url']);
+                $url = "/" . strtolower($item[1]) . "/" . $item[2];
+                $val['url'] = $url;
+
+                // 重组权限点
+                $subItem = explode(':', $val['auth']);
+                $val['auth'] = 'sys:' . strtolower($subItem[1]) . ':' . ($val['name'] == '新增' ? 'add' : $subItem[2]);
+                $this->model->edit($val);
+            }
+        }
+    }
+
+    public function test()
+    {
+        $result = $this->model->getList([
+            ['type', '=', 3],
+        ]);
+        if ($result) {
+            foreach ($result as $val) {
+                $info = $this->model->getInfoByAttr([
+                    ['parent_id', '=', $val['id']],
+                ]);
+                $url = getter($info, 'url');
+                if (!$url) {
+                    continue;
+                }
+                // 重组URL
+                $item = explode('/', $url);
+
+                $this->model->edit([
+                    'id' => $val['id'],
+                    'url' => strtolower($item[1]),
+                ]);
             }
         }
     }

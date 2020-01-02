@@ -46,6 +46,7 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method CreateKeyPair createKeyPair(array $options = [])
  * @method CreateLaunchTemplate createLaunchTemplate(array $options = [])
  * @method CreateLaunchTemplateVersion createLaunchTemplateVersion(array $options = [])
+ * @method CreateMaintenanceProperty createMaintenanceProperty(array $options = [])
  * @method CreateNatGateway createNatGateway(array $options = [])
  * @method CreateNetworkInterface createNetworkInterface(array $options = [])
  * @method CreateNetworkInterfacePermission createNetworkInterfacePermission(array $options = [])
@@ -76,6 +77,7 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method DeleteKeyPairs deleteKeyPairs(array $options = [])
  * @method DeleteLaunchTemplate deleteLaunchTemplate(array $options = [])
  * @method DeleteLaunchTemplateVersion deleteLaunchTemplateVersion(array $options = [])
+ * @method DeleteMaintenanceProperty deleteMaintenanceProperty(array $options = [])
  * @method DeleteNatGateway deleteNatGateway(array $options = [])
  * @method DeleteNetworkInterface deleteNetworkInterface(array $options = [])
  * @method DeleteNetworkInterfacePermission deleteNetworkInterfacePermission(array $options = [])
@@ -137,6 +139,7 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method DescribeLaunchTemplates describeLaunchTemplates(array $options = [])
  * @method DescribeLaunchTemplateVersions describeLaunchTemplateVersions(array $options = [])
  * @method DescribeLimitation describeLimitation(array $options = [])
+ * @method DescribeMaintenanceProperty describeMaintenanceProperty(array $options = [])
  * @method DescribeNatGateways describeNatGateways(array $options = [])
  * @method DescribeNetworkInterfacePermissions describeNetworkInterfacePermissions(array $options = [])
  * @method DescribeNetworkInterfaces describeNetworkInterfaces(array $options = [])
@@ -225,6 +228,7 @@ use AlibabaCloud\Client\Resolver\ApiResolver;
  * @method ModifyInstanceVncPasswd modifyInstanceVncPasswd(array $options = [])
  * @method ModifyInstanceVpcAttribute modifyInstanceVpcAttribute(array $options = [])
  * @method ModifyLaunchTemplateDefaultVersion modifyLaunchTemplateDefaultVersion(array $options = [])
+ * @method ModifyMaintenanceProperty modifyMaintenanceProperty(array $options = [])
  * @method ModifyNetworkInterfaceAttribute modifyNetworkInterfaceAttribute(array $options = [])
  * @method ModifyPhysicalConnectionAttribute modifyPhysicalConnectionAttribute(array $options = [])
  * @method ModifyPrepayInstanceSpec modifyPrepayInstanceSpec(array $options = [])
@@ -678,6 +682,12 @@ class AttachClassicLinkVpc extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getKeyPairName()
+ * @method $this withKeyPairName($value)
+ * @method string getBootable()
+ * @method $this withBootable($value)
+ * @method string getPassword()
+ * @method $this withPassword($value)
  * @method string getDiskId()
  * @method $this withDiskId($value)
  * @method string getDeleteWithInstance()
@@ -2168,6 +2178,42 @@ class CreateLaunchTemplateVersion extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getStartTime()
+ * @method $this withStartTime($value)
+ * @method string getActionOnMaintenance()
+ * @method $this withActionOnMaintenance($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getEndTime()
+ * @method $this withEndTime($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method array getInstanceId()
+ */
+class CreateMaintenanceProperty extends Rpc
+{
+
+    /**
+     * @param array $instanceId
+     *
+     * @return $this
+     */
+	public function withInstanceId(array $instanceId)
+	{
+	    $this->data['InstanceId'] = $instanceId;
+		foreach ($instanceId as $i => $iValue) {
+			$this->options['query']['InstanceId.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
  * @method string getClientToken()
  * @method $this withClientToken($value)
  * @method string getDescription()
@@ -2229,6 +2275,7 @@ class CreateNatGateway extends Rpc
  * @method $this withOwnerAccount($value)
  * @method string getOwnerId()
  * @method $this withOwnerId($value)
+ * @method array getSecurityGroupIds()
  * @method string getVSwitchId()
  * @method $this withVSwitchId($value)
  * @method string getPrimaryIpAddress()
@@ -2248,6 +2295,21 @@ class CreateNetworkInterface extends Rpc
 		foreach ($tag as $depth1 => $depth1Value) {
 			$this->options['query']['Tag.' . ($depth1 + 1) . '.Key'] = $depth1Value['Key'];
 			$this->options['query']['Tag.' . ($depth1 + 1) . '.Value'] = $depth1Value['Value'];
+		}
+
+		return $this;
+    }
+
+    /**
+     * @param array $securityGroupIds
+     *
+     * @return $this
+     */
+	public function withSecurityGroupIds(array $securityGroupIds)
+	{
+	    $this->data['SecurityGroupIds'] = $securityGroupIds;
+		foreach ($securityGroupIds as $i => $iValue) {
+			$this->options['query']['SecurityGroupIds.' . ($i + 1)] = $iValue;
 		}
 
 		return $this;
@@ -2981,6 +3043,36 @@ class DeleteLaunchTemplateVersion extends Rpc
 	    $this->data['DeleteVersion'] = $deleteVersion;
 		foreach ($deleteVersion as $i => $iValue) {
 			$this->options['query']['DeleteVersion.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method array getInstanceId()
+ */
+class DeleteMaintenanceProperty extends Rpc
+{
+
+    /**
+     * @param array $instanceId
+     *
+     * @return $this
+     */
+	public function withInstanceId(array $instanceId)
+	{
+	    $this->data['InstanceId'] = $instanceId;
+		foreach ($instanceId as $i => $iValue) {
+			$this->options['query']['InstanceId.' . ($i + 1)] = $iValue;
 		}
 
 		return $this;
@@ -5242,6 +5334,40 @@ class DescribeLimitation extends Rpc
  * @method $this withPageNumber($value)
  * @method string getPageSize()
  * @method $this withPageSize($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method array getInstanceId()
+ */
+class DescribeMaintenanceProperty extends Rpc
+{
+
+    /**
+     * @param array $instanceId
+     *
+     * @return $this
+     */
+	public function withInstanceId(array $instanceId)
+	{
+	    $this->data['InstanceId'] = $instanceId;
+		foreach ($instanceId as $i => $iValue) {
+			$this->options['query']['InstanceId.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
+ * @method string getPageNumber()
+ * @method $this withPageNumber($value)
+ * @method string getPageSize()
+ * @method $this withPageSize($value)
  * @method string getNatGatewayId()
  * @method $this withNatGatewayId($value)
  * @method string getResourceOwnerAccount()
@@ -5306,6 +5432,8 @@ class DescribeNetworkInterfacePermissions extends Rpc
  * @method $this withPageNumber($value)
  * @method string getResourceGroupId()
  * @method $this withResourceGroupId($value)
+ * @method string getNextToken()
+ * @method $this withNextToken($value)
  * @method string getPageSize()
  * @method $this withPageSize($value)
  * @method array getTag()
@@ -5326,6 +5454,8 @@ class DescribeNetworkInterfacePermissions extends Rpc
  * @method $this withVpcId($value)
  * @method string getPrimaryIpAddress()
  * @method $this withPrimaryIpAddress($value)
+ * @method string getMaxResults()
+ * @method $this withMaxResults($value)
  * @method array getNetworkInterfaceId()
  */
 class DescribeNetworkInterfaces extends Rpc
@@ -6677,6 +6807,8 @@ class DetachClassicLinkVpc extends Rpc
  * @method $this withResourceOwnerId($value)
  * @method string getDiskId()
  * @method $this withDiskId($value)
+ * @method string getDeleteWithInstance()
+ * @method $this withDeleteWithInstance($value)
  * @method string getResourceOwnerAccount()
  * @method $this withResourceOwnerAccount($value)
  * @method string getOwnerAccount()
@@ -7940,6 +8072,8 @@ class ModifyInstanceChargeType extends Rpc
 /**
  * @method string getResourceOwnerId()
  * @method $this withResourceOwnerId($value)
+ * @method string getInstanceType()
+ * @method $this withInstanceType($value)
  * @method string getDeploymentSetId()
  * @method $this withDeploymentSetId($value)
  * @method string getResourceOwnerAccount()
@@ -8137,6 +8271,42 @@ class ModifyInstanceVpcAttribute extends Rpc
  */
 class ModifyLaunchTemplateDefaultVersion extends Rpc
 {
+}
+
+/**
+ * @method string getResourceOwnerId()
+ * @method $this withResourceOwnerId($value)
+ * @method string getStartTime()
+ * @method $this withStartTime($value)
+ * @method string getActionOnMaintenance()
+ * @method $this withActionOnMaintenance($value)
+ * @method string getResourceOwnerAccount()
+ * @method $this withResourceOwnerAccount($value)
+ * @method string getOwnerAccount()
+ * @method $this withOwnerAccount($value)
+ * @method string getEndTime()
+ * @method $this withEndTime($value)
+ * @method string getOwnerId()
+ * @method $this withOwnerId($value)
+ * @method array getInstanceId()
+ */
+class ModifyMaintenanceProperty extends Rpc
+{
+
+    /**
+     * @param array $instanceId
+     *
+     * @return $this
+     */
+	public function withInstanceId(array $instanceId)
+	{
+	    $this->data['InstanceId'] = $instanceId;
+		foreach ($instanceId as $i => $iValue) {
+			$this->options['query']['InstanceId.' . ($i + 1)] = $iValue;
+		}
+
+		return $this;
+    }
 }
 
 /**
@@ -9556,6 +9726,9 @@ class RunInstances extends Rpc
 			$this->options['query']['NetworkInterface.' . ($depth1 + 1) . '.PrimaryIpAddress'] = $depth1Value['PrimaryIpAddress'];
 			$this->options['query']['NetworkInterface.' . ($depth1 + 1) . '.VSwitchId'] = $depth1Value['VSwitchId'];
 			$this->options['query']['NetworkInterface.' . ($depth1 + 1) . '.SecurityGroupId'] = $depth1Value['SecurityGroupId'];
+			foreach ($depth1Value['SecurityGroupIds'] as $i => $iValue) {
+				$this->options['query']['NetworkInterface.' . ($depth1 + 1) . '.SecurityGroupIds.' . ($i + 1)] = $iValue;
+			}
 			$this->options['query']['NetworkInterface.' . ($depth1 + 1) . '.NetworkInterfaceName'] = $depth1Value['NetworkInterfaceName'];
 			$this->options['query']['NetworkInterface.' . ($depth1 + 1) . '.Description'] = $depth1Value['Description'];
 		}

@@ -35,4 +35,14 @@ class Menu extends BaseScript
     {
         $this->service->updateMenu();
     }
+
+    public function menu()
+    {
+        $this->service->menu();
+    }
+
+    public function test()
+    {
+        $this->service->test();
+    }
 }

@@ -95,6 +95,7 @@ class InitApp
         // 系统名称
         define('SITE_NAME', \Env::get('system.site_name'));
         define('NICK_NAME', \Env::get('system.nick_name'));
+        define('SYSTEM_VERSION', \Env::get('system.version'));
     }
 
     /**

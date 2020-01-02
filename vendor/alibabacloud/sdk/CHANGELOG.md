@@ -1,5 +1,297 @@
 # CHANGELOG
 
+## 1.8.44 - 2019-12-31
+- Add OTA APIs, including GenerateOTAUploadURL, CreateOTAFirmware, etc.
+- Add UpdateProductFilterConfig interface, support setting product filter config.
+
+
+## 1.8.43 - 2019-12-31
+- Supported SQL SERVER support delete backup set according to time range.
+
+
+## 1.8.42 - 2019-12-31
+- Add CreateMarketCellSpace method.
+
+
+## 1.8.41 - 2019-12-31
+- Support asymmetric keys.
+
+
+## 1.8.40 - 2019-12-31
+- Add request parameter groupType for OnsGroupCreate.
+
+
+## 1.8.39 - 2019-12-31
+- Supported image for process.
+
+
+## 1.8.38 - 2019-12-31
+- Generated 2019-09-28 for `reid`.
+
+
+## 1.8.37 - 2019-12-31
+- Support DeleteDBCluster.
+- Support ModifyDBCluster.
+- Support DescribeAvailableResource.
+
+
+## 1.8.36 - 2019-12-30
+- Disable Base64 string data support.
+
+
+## 1.8.35 - 2019-12-30
+- Disable Base64 string data support.
+
+
+## 1.8.34 - 2019-12-30
+- Disable Base64 string data support.
+
+
+## 1.8.33 - 2019-12-30
+- Disable Base64 Image string data support.
+
+
+## 1.8.32 - 2019-12-30
+- Visionai online.
+
+
+## 1.8.31 - 2019-12-29
+- Add new api.
+
+
+## 1.8.30 - 2019-12-29
+- Add new api.
+
+
+## 1.8.29 - 2019-12-29
+- Add new api.
+
+
+## 1.8.28 - 2019-12-29
+- Add new api.
+
+
+## 1.8.27 - 2019-12-29
+- Add new api.
+
+
+## 1.8.26 - 2019-12-27
+- Support set accountType.
+
+
+## 1.8.25 - 2019-12-27
+- Support set accountType.
+
+
+## 1.8.24 - 2019-12-26
+- NlpAutoml add async api.
+
+
+## 1.8.23 - 2019-12-26
+- Modify CreateRestoreTask.
+
+
+## 1.8.22 - 2019-12-25
+- Support merchant sync item info.
+
+
+## 1.8.21 - 2019-12-25
+- Support merchant sync item info.
+
+
+## 1.8.20 - 2019-12-25
+- Support merchant sync item info.
+
+
+## 1.8.19 - 2019-12-24
+- Generated 2018-12-12, 2018-12-07 for `UniMkt`.
+
+
+## 1.8.18 - 2019-12-20
+- Support miniapp.
+- Support account type.
+
+
+## 1.8.17 - 2019-12-20
+- Supported Authorization API, includes GrantUserPermission, RevokeUserPermission, ListDatabaseUserPermssions, ListUserPermissions.
+- Supported Database or Table Metadata synchronization API, includes SyncInstanceMeta, SyncDatabaseMeta.
+- Supported Database or Table Owner set up API.
+- Supported GetUser API to get information of one DMS user.
+- Supported set Dingding mobile number with RegisterUser API.
+
+
+## 1.8.16 - 2019-12-20
+- Supported Search stream predict task list use modelId for IVISION.
+
+
+## 1.8.15 - 2019-12-20
+- Add result value for OnsConsumerStatus.
+
+
+## 1.8.14 - 2019-12-19
+- Add DescribeSlowLogRecords,DescribeSlowLogs for SlowLog.
+
+
+## 1.8.13 - 2019-12-19
+- Generated 2019-09-28 for `reid`.
+
+
+## 1.8.12 - 2019-12-19
+- DescribeNetworkInterfaces Supports NextToken.
+
+
+## 1.8.11 - 2019-12-18
+- Third sdk version.
+
+
+## 1.8.10 - 2019-12-18
+- Second sdk version.
+
+
+## 1.8.9 - 2019-12-18
+- Second sdk version.
+
+
+## 1.8.8 - 2019-12-18
+- Second sdk version.
+
+
+## 1.8.7 - 2019-12-18
+- First sdk version.
+
+
+## 1.8.6 - 2019-12-18
+- First sdk version.
+
+
+## 1.8.5 - 2019-12-18
+- First sdk version.
+
+
+## 1.8.4 - 2019-12-18
+- First sdk version.
+
+
+## 1.8.3 - 2019-12-18
+- First sdk version.
+
+
+## 1.8.2 - 2019-12-18
+- First sdk version.
+
+
+## 1.8.1 - 2019-12-18
+- First sdk version.
+
+
+## 1.7.197 - 2019-12-16
+- DescribeTransferDomains add query param, TargetUserId, FromUserId, DomainName.
+
+
+## 1.7.196 - 2019-12-14
+- Generated 2015-01-01 for `R-kvstore`.
+
+
+## 1.7.195 - 2019-12-14
+- Update DescribeAvailableResource.
+
+
+## 1.7.194 - 2019-12-14
+- Update DescribeAvailableResource.
+
+
+## 1.7.193 - 2019-12-11
+- Add api `BatchAddThingTopo`, support add multiple sub-devices for a gateway.
+- Add api `QueryDeviceByStatus`, support query device list by device status.
+- Support grouping products and rules.
+- Support using RAM to authorize resouces, including products, devices, rules, groups and instances, to RAM users.
+
+
+## 1.7.192 - 2019-12-11
+- Add tag API.
+- Add group process monitoring API.
+- Add API for batch setting alarm rules.
+
+
+## 1.7.191 - 2019-12-5
+- Add api QueryMetric.
+
+
+## 1.7.190 - 2019-12-4
+- Delete invalid Api.
+
+
+## 1.7.189 - 2019-12-4
+- Generated 2019-01-01 for `HBase`.
+
+
+## 1.7.188 - 2019-12-4
+- Supported ModifyDBInstanceSpec for Direction param.
+
+
+## 1.7.187 - 2019-12-4
+- Supported ModifyDBInstanceSpec for Direction param.
+
+
+## 1.7.186 - 2019-12-3
+- Supported face library operation.
+- Supported task template and words.
+
+
+## 1.7.185 - 2019-12-2
+- Remove QuerySmsProdStatus OpenAPI.
+
+
+## 1.7.184 - 2019-11-29
+- Add RenewInstance.
+- Add RenewLogstash.
+- Add UpdateInstanceChargeType.
+- Add UpdateLogstashChargeType.
+
+
+## 1.7.183 - 2019-11-28
+- Supported API GetTxtRecordForVerify.
+- Supported API RetrieveDomain.
+
+
+## 1.7.182 - 2019-11-28
+- Supported dash for compress.
+
+
+## 1.7.181 - 2019-11-28
+- Eni Supports Multi-SecurityGroup.
+
+
+## 1.7.180 - 2019-11-28
+- Support Order Basis API, include CreateOrder, CloseOrder, ListOrders, GetOrderBaseInfo.
+- Support Order Approval API, include SubmitOrderApproval, ApproveOrder, GetApprovalDetail.
+- Support DataCorrect Order Operation API, include ExecuteDataCorrect, GetDataCorrectOrderDetail, GetDataCorrectBackupFiles.
+- Support DDL Order Operation API, include CreatePublishGroupTask.
+- Support DataExport Operation API, include ExecuteDataExport, GetDataExportOrderDetail, GetDataExportDownloadURL.
+
+
+## 1.7.179 - 2019-11-27
+- CreateReplicationJob API supports the specified instance type.
+
+
+## 1.7.178 - 2019-11-26
+- Generated 2018-12-12, 2018-12-07 for `UniMkt`.
+
+
+## 1.7.177 - 2019-11-26
+- Modify QueryBill, add SubOrderId in item of response.
+
+
+## 1.7.176 - 2019-11-26
+- Supported API BindInstanceDomains.
+- Supported API UnbindInstanceDomains.
+- Supported API AddCustomLine.
+- Supported API UpdateCustomLine.
+- Supported API DeleteCustomLines.
+- Supported API DescribeCustomLine.
+- Supported API DescribeCustomLines.
+
+
 ## 1.7.175 - 2019-11-25
 - One or more people can be subscribed when creating tasks.
 

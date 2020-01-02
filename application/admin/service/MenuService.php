@@ -190,12 +190,12 @@ class MenuService extends BaseService
 
         // 菜单处理
         foreach ($list1 as $key => &$val) {
-            $menuList2 = $list2[$key];
+            $menuList2 = isset($list2[$key]) ? $list2[$key] : [];
             if (!is_array($menuList2)) {
                 continue;
             }
             foreach ($menuList2 as $kt => &$vt) {
-                $menuList3 = $list3[$kt];
+                $menuList3 = isset($list3[$kt]) ? $list3[$kt] : [];
                 if (!is_array($menuList3)) {
                     continue;
                 }

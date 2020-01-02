@@ -67,6 +67,7 @@ class AdminBase extends BaseController
         // 获取系统配置信息
         $this->assign('site_name', SITE_NAME);
         $this->assign('nick_name', NICK_NAME);
+        $this->assign('version', SYSTEM_VERSION);
 
         // 请求参数
         $this->param = $this->request->param();

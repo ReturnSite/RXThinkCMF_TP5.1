@@ -6,5 +6,5 @@ use app\common\model\BaseModel;
 
 class Test extends BaseModel
 {
-    protected $table = 'think_menu2';
+    protected $table = DB_PREFIX . 'menu2';
 }

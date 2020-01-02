@@ -92,6 +92,7 @@ class ItemCate extends BaseModel
         if ($item_id) {
             $map['item_id'] = $item_id;
         }
+        $list = [];
         $result = $this->where($map)->order("sort asc")->select();
         if ($result) {
             foreach ($result as $val) {
