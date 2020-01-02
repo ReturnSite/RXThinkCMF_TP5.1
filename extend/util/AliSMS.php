@@ -27,15 +27,15 @@ class AliSMS
     public function __construct()
     {
         // 用户标识号
-        $this->accessKeyId = "LTAI4Fn8nyBWEnxdV5RKnwQs";
+        $this->accessKeyId = "";
         // 验证秘钥
-        $this->accessKeySecret = "dc5hJj8DsPUdfVwvztcY1xaPEbcFRK";
+        $this->accessKeySecret = "";
         // 区域ID
         $this->regionId = "cn-hangzhou";
         // 短信签名
         $this->signName = "大学圈";
         // 模板ID
-        $this->templateCode = "SMS_176912630";
+        $this->templateCode = "";
 
         // 初始化SDK
         AlibabaCloud::accessKeyClient($this->accessKeyId, $this->accessKeySecret)
