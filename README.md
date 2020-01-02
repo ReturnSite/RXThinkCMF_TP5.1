@@ -96,33 +96,33 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 ## 官方技术交流二维码：期待您的加入，欢迎您跟RXThink团队一起成长！！
 
-![QQ群二维码](http://images.tp3.2.rxthink.cn/demo/qq.png "gh_03bc4364b4dc_344.jpg")
+![QQ群二维码](http://images.tp5.1.rxthink.cn/demo/qq_group.png)
 
 ## 效果图展示
 
 #### 1、系统登录
- ![系统登录](http://images.tp5.1.rxthink.cn/1.png)
+ ![系统登录](http://images.tp5.1.rxthink.cn/demo/1.png)
  
 #### 2、系统主页
- ![系统主页](http://images.tp5.1.rxthink.cn/2.png)
+ ![系统主页](http://images.tp5.1.rxthink.cn/demo/2.png)
  
 #### 3、func.js方法类库
- ![JS核心类库](http://images.tp5.1.rxthink.cn/3.png)
+ ![JS核心类库](http://images.tp5.1.rxthink.cn/demo/3.png)
  
 #### 4、common.js函数类库
- ![JS核心类库](http://images.tp5.1.rxthink.cn/4.png)
+ ![JS核心类库](http://images.tp5.1.rxthink.cn/demo/4.png)
  
 #### 5、列表JS案例
- ![列表JS案例](http://images.tp5.1.rxthink.cn/5.png)
+ ![列表JS案例](http://images.tp5.1.rxthink.cn/demo/5.png)
  
 #### 6、缓存基类封装
- ![底层缓存基类封装](http://images.tp5.1.rxthink.cn/6.png)
+ ![底层缓存基类封装](http://images.tp5.1.rxthink.cn/demo/6.png)
  
 #### 7、模型基类封装
- ![模型基类封装](http://images.tp5.1.rxthink.cn/7.png)
+ ![模型基类封装](http://images.tp5.1.rxthink.cn/demo/7.png)
  
 #### 8、系统公共函数封装
- ![系系统公共函数封装](http://images.tp5.1.rxthink.cn/9.png)
+ ![系系统公共函数封装](http://images.tp5.1.rxthink.cn/demo/8.png)
 
 ## 部署说明
 
@@ -130,6 +130,16 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 
 ## 更新说明
+
+# 2020-01-01更新  
+1、【完成】系统架构进行重新设计，全部采用环境变量的形式进行参数配置，移除config.inc.php配置文件(多数人不理解此文件) 
+2、【完成】动态设置数据表前缀，安装时可以自定义数据表前缀，而不是之前指定的前缀think_
+
+
+# 2019-12-25更新  
+1、【修复】解决新版权限按钮小组件失效的问题  
+2、【修复】修复在使用中已完善的BUG
+
 
 # 2019-05-17更新  
 1、【新增】按钮组件公共JS方法实现btnFunc  
