@@ -64,10 +64,12 @@ class AdminBase extends BaseController
      */
     public function initConfig()
     {
+        // 获取系统配置信息
+        $this->assign('site_name', SITE_NAME);
+        $this->assign('nick_name', NICK_NAME);
+
         // 请求参数
         $this->param = $this->request->param();
-        $this->assign('site_name', config('config')['site_name']);
-        $this->assign('nick_name', config('config')['nick_name']);
 
         // 分页基础默认值
         defined('PERPAGE') or define('PERPAGE', isset($this->param['limit']) ? $this->param['limit'] : 20);

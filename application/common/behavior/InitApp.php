@@ -57,8 +57,14 @@ class InitApp
         // 初始化系统常量
         $this->initSystemConst();
 
+        // 初始化域名常量
+        $this->initDomainConst();
+
         // 初始化数据库
         $this->initDbInfo();
+
+        // 初始化消息队列参数
+        $this->initRabbitMq();
     }
 
     /**
@@ -69,6 +75,7 @@ class InitApp
      */
     private function initSystemConst()
     {
+        // 基础常量
         define('THINK_PATH', \Env::get('think_path'));
         define('ROOT_PATH', \Env::get('root_path'));
         define('APP_PATH', \Env::get('app_path'));
@@ -79,6 +86,44 @@ class InitApp
         define('VENDOR_PATH', \Env::get('vendor_path'));
         define('PLUGIN_PATH', ROOT_PATH . 'plugins');
         define('PUBLIC', ROOT_PATH . 'public');
+
+        // 附件常量
+        define('ATTACHMENT_PATH', \Env::get('system.attach_path'));
+        define('IMG_PATH', ATTACHMENT_PATH . "/img");
+        define('UPLOAD_TEMP_PATH', IMG_PATH . '/temp');
+
+        // 系统名称
+        define('SITE_NAME', \Env::get('system.site_name'));
+        define('NICK_NAME', \Env::get('system.nick_name'));
+    }
+
+    /**
+     * 初始化域名常量
+     * @author 牧羊人
+     * @date 2019/12/31
+     */
+    private function initDomainConst()
+    {
+        define('SITE_URL', \Env::get('domain.site_url'));
+        define('MAIN_URL', \Env::get('domain.main_url'));
+        define('WAP_URL', \Env::get('domain.wap_url'));
+        define('API_URL', \Env::get('domain.api_url'));
+        define('SCRIPT_URL', \Env::get('domain.script_url'));
+        define('IMG_URL', \Env::get('domain.image_url'));
+    }
+
+    /**
+     * 初始化消息队列参数
+     * @author 牧羊人
+     * @date 2020/1/2
+     */
+    private function initRabbitMq()
+    {
+        define('MQ_HOST', \Env::get('rabbutmq.host'));
+        define('MQ_IP', \Env::get('rabbutmq.ip'));
+        define('MQ_PORT', \Env::get('rabbutmq.port'));
+        define('MQ_USER', \Env::get('rabbutmq.user'));
+        define('MQ_PWD', \Env::get('rabbutmq.password'));
     }
 
     /**
@@ -89,7 +134,7 @@ class InitApp
     private function initDbInfo()
     {
         // 数据表前缀
-        define('DB_PREFIX', config('database.prefix'));
+        define('DB_PREFIX', \Env::get('database.prefix'));
 
         // 数据库分页数
         $list_rows = config('paginate.list_rows');

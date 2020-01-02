@@ -11,5 +11,30 @@
 
 // 上传配置
 return [
-
+    //上传图片参数配置
+    'image_config' => [
+        // 图片后缀限制
+        'upload_image_ext' => 'jpg|png|gif|bmp|jpeg',
+        // 最大上传文件大小(默认：10MB)
+        'upload_image_size' => 1024 * 10,
+        // 最大上传数量限制(默认：9张)
+        'upload_image_max' => 9,
+    ],
+    //上传视频参数配置
+    'video_config' => [
+        // 视频后缀限制
+        'upload_video_ext' => 'mp4|avi|mov|rmvb|flv',
+        // 最大上传文件大小(默认：10MB)
+        'upload_video_size' => 1024 * 10,
+        // 最大上传数量限制(默认：3个)
+        'upload_video_max' => 3,
+    ],
+    'file_config' => [
+        // 文件后缀限制
+        'upload_file_ext' => 'doc|docx|xls|xlsx',
+        // 最大上传文件大小(默认：10MB)
+        'upload_file_size' => 1024 * 10,
+        // 最大上传数量限制(默认：3个)
+        'upload_file_max' => 3,
+    ],
 ];

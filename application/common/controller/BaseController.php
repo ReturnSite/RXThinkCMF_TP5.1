@@ -47,39 +47,8 @@ class BaseController extends Controller
         // 初始化全局地址
         $this->initRequestUrl();
 
-//         $config = Db::getConfig();
-//         print_r($config['prefix']);exit;
-
-
-//         // 自定义常规变量
-//         define('REQUEST_METHOD',$_SERVER['REQUEST_METHOD']);
-//         define('IS_GET', REQUEST_METHOD =='GET' ? true : false);
-//         define('IS_POST', REQUEST_METHOD =='POST' ? true : false);
-//         define('IS_PUT', REQUEST_METHOD =='PUT' ? true : false);
-//         define('IS_DELETE', REQUEST_METHOD =='DELETE' ? true : false);
-
-//         // 设置基础参数
-//         $this->assign("siteName", Config::get('config.site_name'));
-//         $this->assign("nickName", Config::get('config.nick_name'));
-
-//         // 图片域名
-//         $this->assign('imgUrl',IMG_URL);
-
-        // 系统应用参数
-
-
-        // 上传配置
-        $uploadConfig = Config::get('app.config.upload');
-
-        // 图片配置
-        $this->assign('uploadImgExt', $uploadConfig['image_config']['upload_image_ext']);
-        $this->assign('uploadImgSize', $uploadConfig['image_config']['upload_image_size']);
-        $this->assign('uploadImgMax', $uploadConfig['image_config']['upload_image_max']);
-
-        // 视频配置
-        $this->assign('uploadVideoExt', $uploadConfig['video_config']['upload_video_ext']);
-        $this->assign('uploadVideoSize', $uploadConfig['video_config']['upload_video_size']);
-        $this->assign('uploadVideoMax', $uploadConfig['video_config']['upload_video_max']);
+        // 初始化上传配置
+        $this->initUploadConfig();
     }
 
     /**
@@ -149,9 +118,6 @@ class BaseController extends Controller
      */
     public function initRequestUrl()
     {
-        // 系统根域名
-        $this->assign('domainUrl', URL_DOMAIN);
-
         // 系统前台域名
         $this->assign('siteUrl', SITE_URL);
 
@@ -167,19 +133,30 @@ class BaseController extends Controller
         // 系统脚本域名
         $this->assign('scriptUrl', SCRIPT_URL);
 
-        // 系统静态资源域名
-        $this->assign('staticUrl', STATIC_URL);
-
         // 图片域名
         $this->assign('imgUrl', IMG_URL);
     }
 
     /**
-     * 初始化配置信息
+     * 初始化上传配置
      * @author 牧羊人
-     * @date 2019/3/20
+     * @date 2020/1/2
      */
-    public function initConfigInfo()
+    public function initUploadConfig()
     {
+        // 图片上传配置
+        $this->assign('uploadImgExt', config("upload.image_config.upload_image_ext"));
+        $this->assign('uploadImgSize', config("upload.image_config.upload_image_size"));
+        $this->assign('uploadImgMax', config("upload.image_config.upload_image_max"));
+
+        // 视频上传配置
+        $this->assign('uploadVideoExt', config("upload.video_config.upload_video_ext"));
+        $this->assign('uploadVideoSize', config("upload.video_config.upload_video_size"));
+        $this->assign('uploadVideoMax', config("upload.video_config.upload_video_max"));
+
+        // 文件上传配置
+        $this->assign('uploadVideoExt', config("upload.file_config.upload_file_ext"));
+        $this->assign('uploadVideoSize', config("upload.file_config.upload_file_size"));
+        $this->assign('uploadVideoMax', config("upload.file_config.upload_file_max"));
     }
 }

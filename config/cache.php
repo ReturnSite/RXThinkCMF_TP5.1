@@ -12,10 +12,8 @@
 // +----------------------------------------------------------------------
 // | 缓存设置
 // +----------------------------------------------------------------------
-
-// 緩存類型
 $cache_type = Env::get('cache.type', '');
-if (isset($cache_type) && $cache_type === 'redis') {
+if ($cache_type === 'redis') {
     $cache = [
         // 驱动方式
         'type' => 'redis',
@@ -34,14 +32,14 @@ if (isset($cache_type) && $cache_type === 'redis') {
         // 缓存有效期 0表示永久缓存
         'expire' => 0,
     ];
-} elseif (isset($cache_type) && $cache_type === 'memcache') {
+} elseif ($cache_type === 'memcache') {
     $cache = [
         // 驱动方式
         'type' => 'Memcache',
         // 服务器地址
         'host' => Env::get('cache.host', '127.0.0.1'),
         // 服务器端口号
-        'port' => Env::get('cache.port', '11211'),
+        'port' => Env::get('cache.port', '6379'),
         // 超时时间（单位：毫秒）
         'timeout' => 3600,
         // 缓存前缀

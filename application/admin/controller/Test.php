@@ -23,6 +23,7 @@ class Test extends AdminBase
 
     public function index()
     {
+        print_r(config());exit;
         return $this->fetch("test_index");
     }
 
