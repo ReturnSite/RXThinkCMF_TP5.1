@@ -56,7 +56,7 @@ class BaseController extends Controller
      * @author 牧羊人
      * @date 2019/3/20
      */
-    public function initRequestConfig()
+    private function initRequestConfig()
     {
         // 定义是否GET请求
         defined('IS_GET') or define('IS_GET', $this->request->isGet());
@@ -116,7 +116,7 @@ class BaseController extends Controller
      * @author 牧羊人
      * @date 2019/3/20
      */
-    public function initRequestUrl()
+    private function initRequestUrl()
     {
         // 系统前台域名
         $this->assign('siteUrl', SITE_URL);
@@ -142,7 +142,7 @@ class BaseController extends Controller
      * @author 牧羊人
      * @date 2020/1/2
      */
-    public function initUploadConfig()
+    private function initUploadConfig()
     {
         // 图片上传配置
         $this->assign('uploadImgExt', config("upload.image_config.upload_image_ext"));

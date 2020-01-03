@@ -62,7 +62,7 @@ class AdminBase extends BaseController
      * @author 牧羊人
      * @date 2019/2/25
      */
-    public function initConfig()
+    private function initConfig()
     {
         // 获取系统配置信息
         $this->assign('site_name', SITE_NAME);
@@ -82,7 +82,7 @@ class AdminBase extends BaseController
      * @author 牧羊人
      * @date 2019/2/25
      */
-    public function checkLogin()
+    private function checkLogin()
     {
         $noLoginActs = ['Login'];
         if (session('admin_id') == null && !in_array($this->request->controller(), $noLoginActs)) {
@@ -105,11 +105,6 @@ class AdminBase extends BaseController
         $this->system_auth = $this->admin_info['system_auth'];
     }
 
-    public function CheckAuthEx()
-    {
-        print_r("222");exit;
-    }
-
     /**
      * 检查权限
      * @return array 返回结果
@@ -119,7 +114,7 @@ class AdminBase extends BaseController
      * @author 牧羊人
      * @date 2019/2/25
      */
-    public function checkAuth()
+    private function checkAuth()
     {
         if (!in_array($this->request->controller(), ['Login', 'Index'])) {
             // 获取菜单模块信息

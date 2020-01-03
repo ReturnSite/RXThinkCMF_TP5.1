@@ -42,19 +42,19 @@ layui.use(['func', 'laydate'], function () {
             }
             , {field: 'status', width: 80, title: '状态', align: 'center', templet: '#statusTpl'}
             , {field: 'login_num', width: 100, title: '登录次数', align: 'center'}
-            , {fixed: 'right', width: 300, title: '功能操作', align: 'center', toolbar: '#toolBar'}
+            , {fixed: 'right', width: 400, title: '功能操作', align: 'center', toolbar: '#toolBar'}
         ];
 
         //【TABLE渲染】
         func.tableIns(cols, "tableList", function (layEvent, data) {
-            if (layEvent === 'auth') {
+            if (layEvent === 'setAuth') {
                 //独立权限设置
                 location.href = "/Adminauth/index/?type=2&type_id=" + data.id;
-            } else if (layEvent === 'role') {
+            } else if (layEvent === 'setRole') {
                 //设置角色
                 var url = cUrl + "/setRole/?admin_id=" + data.id;
                 func.showWin("角色配置", url, 600, 350);
-            } else if (layEvent === 'reset') {
+            } else if (layEvent === 'resetPwd') {
                 //初始化密码
                 var url = cUrl + "/resetPwd/?id=" + data.id;
                 func.ajaxPost(url, {'id': data.id}, function (data, success) {
