@@ -367,22 +367,23 @@ if (!function_exists('decrypt')) {
 
     /**
      * DES解密
-     * @param string $str 解密字符串
+     * @param string $data 解密字符串
      * @param string $key 解密KEY
      * @return mixed
      * @author 牧羊人
      * @date 2019/6/6
      */
-    function decrypt($str, $key = 'p@ssw0rd')
+    function decrypt($data, $key = 'p@ssw0rd')
     {
-        $str = base64_decode($str);
-        $str = mcrypt_decrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
-        $block = mcrypt_get_block_size('des', 'ecb');
-        $pad = ord($str[($len = strlen($str)) - 1]);
-        if ($pad && $pad < $block && preg_match('/' . chr($pad) . '{' . $pad . '}$/', $str)) {
-            $str = substr($str, 0, strlen($str) - $pad);
-        }
-        return unserialize($str);
+//        $str = base64_decode($str);
+//        $str = mcrypt_decrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
+//        $block = mcrypt_get_block_size('des', 'ecb');
+//        $pad = ord($str[($len = strlen($str)) - 1]);
+//        if ($pad && $pad < $block && preg_match('/' . chr($pad) . '{' . $pad . '}$/', $str)) {
+//            $str = substr($str, 0, strlen($str) - $pad);
+//        }
+//        return unserialize($str);
+        return openssl_decrypt($data, 'des-ecb', $key);
     }
 }
 
@@ -390,21 +391,22 @@ if (!function_exists('encrypt')) {
 
     /**
      *
-     * @param string $str 加密字符串
+     * @param string $data 加密字符串
      * @param string $key 加密KEY
      * @return string
      * @author 牧羊人
      * @date 2019/6/6
      */
-    function encrypt($str, $key = 'p@ssw0rd')
+    function encrypt($data, $key = 'p@ssw0rd')
     {
-        $prep_code = serialize($str);
-        $block = mcrypt_get_block_size('des', 'ecb');
-        if (($pad = $block - (strlen($prep_code) % $block)) < $block) {
-            $prep_code .= str_repeat(chr($pad), $pad);
-        }
-        $encrypt = mcrypt_encrypt(MCRYPT_DES, $key, $prep_code, MCRYPT_MODE_ECB);
-        return base64_encode($encrypt);
+//        $prep_code = serialize($data);
+//        $block = mcrypt_get_block_size('des', 'ecb');
+//        if (($pad = $block - (strlen($prep_code) % $block)) < $block) {
+//            $prep_code .= str_repeat(chr($pad), $pad);
+//        }
+//        $encrypt = mcrypt_encrypt(MCRYPT_DES, $key, $prep_code, MCRYPT_MODE_ECB);
+//        return base64_encode($encrypt);
+        return openssl_encrypt($data, 'des-ecb', $key);
     }
 }
 
@@ -474,6 +476,39 @@ if (!function_exists('format_time')) {
             }
         }
         return date('Y-m-d', $time);
+    }
+}
+
+if (!function_exists('format_age')) {
+
+    /**
+     * 格式化出生日期获取年龄
+     * @param $birthday
+     * @return false|string
+     * @author 牧羊人
+     * @date 2019/10/29
+     */
+    function format_age($birthday)
+    {
+        if (!$birthday) {
+            return 0;
+        }
+        //格式化出生时间年月日
+        $byear = date('Y', $birthday);
+        $bmonth = date('m', $birthday);
+        $bday = date('d', $birthday);
+
+        //格式化当前时间年月日
+        $tyear = date('Y');
+        $tmonth = date('m');
+        $tday = date('d');
+
+        //开始计算年龄
+        $age = $tyear - $byear;
+        if ($bmonth > $tmonth || $bmonth == $tmonth && $bday > $tday) {
+            $age--;
+        }
+        return $age;
     }
 }
 
@@ -559,6 +594,24 @@ if (!function_exists('format_money')) {
             $number = $number / 100;
         }
         return number_format($number, 2, '.', '');
+    }
+}
+
+if (!function_exists('format_gmdate')) {
+
+    /**
+     * 视频时间格式化：时：分：秒
+     * @param $duration
+     * @return string
+     * @author 牧羊人
+     * @date 2019/11/21
+     */
+    function format_gmdate($duration)
+    {
+        if (empty($duration) || $duration < 1000) {
+            return "0:00:00";
+        }
+        return gmdate('H:i:s', $duration / 1000);
     }
 }
 
@@ -662,7 +715,7 @@ if (!function_exists('getter')) {
     {
         $result = $default;
         if (isset($data[$field])) {
-            $result = $data[$field];
+            $result = trim($data[$field]);
         }
         return $result;
     }
@@ -898,7 +951,7 @@ if (!function_exists('get_format_time')) {
         } elseif ($int < 1728000) {
             $str = sprintf('%d天前', floor($int / 86400));
         } else {
-            $str = date('Y-m-d H:i:s', $time);
+            $str = date('Y年m月d日', $time);
         }
         return $str;
     }
@@ -1185,14 +1238,15 @@ if (!function_exists('is_mobile')) {
 
     /**
      * 判断是否为手机号
-     * @param string $num 手机号码
+     * @param string $mobile 手机号码
      * @return false 返回结果true或false
      * @author 牧羊人
      * @date 2019/4/5
      */
-    function is_mobile($num)
+    function is_mobile($mobile)
     {
-        return preg_match('/^1(3|4|5|7|8)\d{9}$/', $num);
+//        return preg_match('/^1(3|4|5|6|7|8|9)\d{9}$/', $mobile);
+        return preg_match('/^1[3456789]{1}\d{9}$/', $mobile);
     }
 
 }
@@ -1491,6 +1545,28 @@ if (!function_exists('mbsubstr')) {
     }
 }
 
+if (!function_exists('format_num')) {
+
+    /**
+     * 格式化阅读量等数字单位
+     * @param $num
+     * @return string
+     * @author 牧羊人
+     * @date 2019/10/31
+     */
+    function format_num($num)
+    {
+        if ($num >= 10000) {
+            $num = round($num / 10000 * 100) / 100 . 'W';
+        } elseif ($num >= 1000) {
+            $num = round($num / 1000 * 100) / 100 . 'K';
+        } else {
+            $num = $num;
+        }
+        return $num;
+    }
+}
+
 if (!function_exists('object_array')) {
 
     /**
@@ -1746,6 +1822,28 @@ if (!function_exists('sub_str')) {
 
 }
 
+if (!function_exists('cutstr_html')) {
+
+    /**
+     * 提取纯文本
+     * @param $str 原字符串
+     * @return string 过滤后的字符串
+     * @author 牧羊人
+     * @date 2019/11/19
+     */
+    function cutstr_html($str)
+    {
+        $str = trim(strip_tags($str)); //清除字符串两边的空格
+        $str = preg_replace("/\t/", "", $str); //使用正则表达式替换内容，如：空格，换行，并将替换为空。
+        $str = preg_replace("/\r\n/", "", $str);
+        $str = preg_replace("/\r/", "", $str);
+        $str = preg_replace("/\n/", "", $str);
+        $str = preg_replace("/ /", "", $str);
+        $str = preg_replace("/  /", "", $str);  //匹配html中的空格
+        return trim($str); //返回字符串
+    }
+}
+
 if (!function_exists('save_image')) {
 
     /**
@@ -1811,7 +1909,7 @@ if (!function_exists('create_image_path')) {
             mkdir($image_path, 0777, true);
         }
         $file_name = substr(md5(time() . rand(0, 999999)), 8, 16) . rand(100, 999) . ".{$image_ext}";
-        $file_path = $image_dir . "/" . $file_name;
+        $file_path = $image_dir . $file_name;
         return $file_path;
     }
 }
@@ -1828,6 +1926,8 @@ if (!function_exists('save_remote_image')) {
      */
     function save_remote_image($img_url, $save_dir = '/')
     {
+        print_r($img_url);
+        exit;
         $content = file_get_contents($img_url);
         if (!$content) {
             return false;
@@ -1870,22 +1970,31 @@ if (!function_exists('save_image_content')) {
      */
     function save_image_content(&$content, $title = false, $path = 'article')
     {
+        // 图片处理
         preg_match_all("/<img.*?src=[\"|\']?(.*?)[\"|\']?\s.*?>/i", str_ireplace("\\", "", $content), $match);
-        if (!$match[1]) {
-            return false;
-        }
-        $i = 0;
-        foreach ($match[1] as $id => $val) {
-            $save_image = save_image($val, $path);
-            if ($save_image) {
-                $content = str_replace($val, "[IMG_URL]" . $save_image, $content);
-                $i++;
+        if ($match[1]) {
+            foreach ($match[1] as $id => $val) {
+                $save_image = save_image($val, $path);
+                if ($save_image) {
+                    $content = str_replace($val, "[IMG_URL]" . $save_image, $content);
+                }
             }
         }
+        // 视频处理
+        preg_match_all("/<embed .*?src=[\"|\']?(.*?)[\"|\']?\s.*?>/i", str_ireplace("\\", "", $content), $match2);
+        if ($match2[1]) {
+            foreach ($match2[1] as $vo) {
+                $save_video = save_image($vo, $path);
+                if ($save_video) {
+                    $content = str_replace($vo, "[IMG_URL]" . $save_video, $content);
+                }
+            }
+        }
+        // 提示标签替换
         if ((strpos($content, 'alt=\"\"') !== false) && $title) {
             $content = str_replace('alt=\"\"', 'alt=\"' . $title . '\"', $content);
         }
-        return $i;
+        return true;
     }
 }
 
@@ -1894,17 +2003,20 @@ if (!function_exists('upload_image')) {
     /**
      * 上传单张图片
      * @param string $form_name 文件表单名
+     * @param string $save_dir 保存文件夹名
+     * @param string $error 错误信息
      * @return array 返回结果
      * @author 牧羊人
-     * @date 2019/6/11
+     * @date 2019/10/31
      */
-    function upload_image($form_name = 'file')
+    function upload_image($form_name = 'file', $save_dir = "", &$error = '')
     {
         // 获取文件对象
         $file = \request()->file($form_name);
         // 判断是否有上传的文件
         if (!$file) {
-            return message("请选择图片", false);
+            $error = "请选择图片";
+            return false;
         }
 
         // 上传验证参数
@@ -1916,7 +2028,7 @@ if (!function_exists('upload_image')) {
         ];
 
         // 文件上传路径
-        $file_dir = UPLOAD_TEMP_PATH;
+        $file_dir = empty($save_dir) ? UPLOAD_TEMP_PATH : (IMG_PATH . '/' . $save_dir);
         // 检测文件路径是否存在,不存在则创建
         if (!file_exists($file_dir)) {
             mkdirs($file_dir, 0777, true);
@@ -1924,9 +2036,11 @@ if (!function_exists('upload_image')) {
 
         // 移动文件至指定目录
         $info = $file->validate($config)->move($file_dir);
+        file_put_contents(RUNTIME_PATH . "97.txt", json_encode($info));
         if (!$info) {
             // 上传失败
-            return message($file->getError(), false);
+            $error = $file->getError();
+            return false;
         }
         // 获取图片信息
 
@@ -1936,14 +2050,72 @@ if (!function_exists('upload_image')) {
         $save_name = $info->getSaveName();
         // 文件名
         $file_name = $info->getFilename();
+        // 路径及文件名
+        $save_name = '/' . $save_dir . "/" . $save_name;
+        file_put_contents(RUNTIME_PATH . "96.txt", $save_name);
+        return $save_name;
+    }
+}
 
-        // 返回结果
-        $result = [
-            'img_ext' => $ext,
-            'save_name' => $save_name,
-            'file_name' => $file_name,
-        ];
-        return message(MESSAGE_OK, true, $result);
+if (!function_exists('formUpload')) {
+
+    /**
+     * 表单提交图片(多图上传)
+     * @param $name
+     * @param string $dir
+     * @param int $width
+     * @param int $height
+     * @param int $tooSmall
+     * @return array
+     * @author 牧羊人
+     * @date 2019/10/30
+     */
+    function formUpload($name, $dir = "", $width = 0, $height = 0, &$tooSmall = 0)
+    {
+        $allowedExts = array("jpg", "jpeg", "gif", "png");
+        $fileData = $_FILES[$name];
+        $fileList = $fileData['tmp_name'];
+        if (!$fileList) {
+            return array();
+        }
+        if (!is_array($fileList)) {
+            $fileList = array($fileList);
+            $tempData = $fileData;
+            $fileData = array();
+            $fileData['error'][0] = $tempData['error'];
+            $fileData['name'][0] = $tempData['name'];
+        }
+        $images = array();
+        foreach ($fileList as $key => $row) {
+            if ($fileData['error'][$key] !== 0) {
+                continue;
+            }
+            $tempFile = $row;
+            $filename = $fileData['name'][$key];
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            if (!in_array($ext, $allowedExts)) {
+                continue;
+            }
+            $imgPath = create_image_path($dir, $ext);
+            $rs = @move_uploaded_file($tempFile, IMG_PATH . $imgPath);
+            if ($rs) {
+                $images[] = $imgPath;
+            } else {
+                $realPath = IMG_PATH . $imgPath;
+                if ($width || $height) {
+                    $imageInfo = getimagesize($realPath);
+                    $imageWidth = $imageInfo['width'];
+                    $heightWidth = $imageInfo['height'];
+                }
+                if ($width && $imageWidth < $width) {
+                    $tooSmall = 1;
+                }
+                if ($height && $heightWidth < $height) {
+                    $tooSmall = 1;
+                }
+            }
+        }
+        return $images;
     }
 }
 
@@ -1952,17 +2124,20 @@ if (!function_exists('upload_file')) {
     /**
      * 上传单个文件
      * @param string $form_name 文件表单名
+     * @param string $save_dir 存储文件夹名
+     * @param string $error 错误信息
      * @return array 返回结果
      * @author 牧羊人
-     * @date 2019/6/13
+     * @date 2019/10/31
      */
-    function upload_file($form_name = 'file')
+    function upload_file($form_name = 'file', $save_dir = "", &$error = '')
     {
         // 获取文件对象
         $file = \request()->file($form_name);
         // 判断是否有上传的文件
         if (!$file) {
-            return message("请选择文件", false);
+            $error = "请选择文件";
+            return false;
         }
 
         // 上传验证参数
@@ -1970,11 +2145,11 @@ if (!function_exists('upload_file')) {
             // 限制上传最大值MAX=10MB
             'size' => 1024 * 1024 * 10,
             // 限制上传文件后缀
-            'ext' => 'xls,xlsx,csv'
+            'ext' => 'mp4,flv,mov'
         ];
 
         // 文件上传路径
-        $file_dir = UPLOAD_TEMP_PATH;
+        $file_dir = empty($save_dir) ? UPLOAD_TEMP_PATH : (IMG_PATH . '/' . $save_dir);
         // 检测文件路径是否存在,不存在则创建
         if (!file_exists($file_dir)) {
             mkdirs($file_dir, 0777, true);
@@ -1984,7 +2159,8 @@ if (!function_exists('upload_file')) {
         $info = $file->validate($config)->move($file_dir);
         if (!$info) {
             // 上传失败
-            return message($file->getError(), false);
+            $error = $file->getError();
+            return false;
         }
         // 获取图片信息
 
@@ -1994,14 +2170,9 @@ if (!function_exists('upload_file')) {
         $save_name = $info->getSaveName();
         // 文件名
         $file_name = $info->getFilename();
-
-        // 返回结果
-        $result = [
-            'file_ext' => $ext,
-            'save_name' => $save_name,
-            'file_name' => $file_name,
-        ];
-        return message(MESSAGE_OK, true, $result);
+        // 文件路径及文件名
+        $save_name = "/" . $save_dir . "/" . $save_name;
+        return $save_name;
     }
 }
 
@@ -2138,18 +2309,380 @@ if (!function_exists('unzip_file')) {
     }
 }
 
-if (!function_exists("check_action_exists")) {
+if (!function_exists('createSMSCode')) {
+
     /**
-     * 检查操作是否存在
-     * @param $request
+     * 创建短信验证码
+     * @param $mobile 手机号码
+     * @param $vcode 验证码
+     * @param int $disbaledTime
      * @return bool
+     * @author 牧羊人
+     * @date 2019/10/24
      */
-    function check_action_exists($request)
+    function createSMSCode($mobile, &$vcode, $disbaledTime = 60)
     {
-        $action = $request->action();
-        $module = $request->module();
-        $controller = $request->controller();
-        $classpath = sprintf('app\\%s\\controller\\%s', $module, $controller);
-        return method_exists($classpath, $action);
+        // 创建存储目录
+        $sms_path = RUNTIME_PATH . "sms/";
+        if (!is_dir($sms_path)) {
+            // 创建文件夹并设置权限
+            mkdir($sms_path, 0777, true);
+        }
+        $sms_file = $sms_path . $mobile;
+        if (file_exists($sms_file)) {
+            $fileTime = filemtime($sms_file);
+            $durTime = time() - $fileTime;
+            if ($durTime < $disbaledTime) {
+                $content = trim(file_get_contents($sms_file));
+                $info = json_decode($content, 1);
+                $vcode = $info['sms']['code'];
+                return false;
+            }
+        } else {
+            @mkdir($sms_path);
+        }
+        // 生成随机6位验证码
+        $vcode = rand(111111, 999999);
+        $info['sms']['code'] = $vcode;
+        $info['sms']['mobile'] = $mobile;
+        $info['sms']['error'] = 0;
+        $content = json_encode($info);
+        file_put_contents($sms_file, $content);
+        return true;
+    }
+}
+
+if (!function_exists('checkSMSCode')) {
+
+    /**
+     * 验证码校验
+     * @param $mobile 手机号码
+     * @param $vcode 验证码
+     * @param $errorMsg 错误信息
+     * @param bool $destory
+     * @return bool
+     * @author 牧羊人
+     * @date 2019/10/24
+     */
+    function checkSMSCode($mobile, $vcode, &$errorMsg, $destory = false)
+    {
+        if (!$mobile) {
+            $errorMsg = "请输入手机号";
+            return false;
+        }
+        if (!$vcode) {
+            $errorMsg = "请输入验证码";
+            return false;
+        }
+        $sms_dir = RUNTIME_PATH . "sms/";
+        $flagFile = $sms_dir . $mobile;
+        if (!file_exists($flagFile)) {
+            $errorMsg = "验证码文件不存在";
+            return false;
+        }
+        $restTime = time() - filemtime($flagFile);
+        if ($restTime > 600) {
+            $errorMsg = "验证码已过期";
+            return false;
+        }
+        $content = file_get_contents($flagFile);
+        $info = json_decode($content, true);
+        if (!$info) {
+            $errorMsg = "验证码不存在";
+            return false;
+        }
+        if ($info['sms']['error'] > 3) {
+            $errorMsg = "验证码已失效，请重新获取";
+            return false;
+        }
+        $flag = false;
+        do {
+            if ($vcode != $info['sms']['code']) {
+                $info['sms']['error']++;
+                $errorMsg = "您输入的验证码有误请重新输入";
+                $flag = false;
+                break;
+            }
+            if ($mobile != $info['sms']['mobile']) {
+                $info['sms']['error']++;
+                $errorMsg = "验证码错误";
+                $flag = false;
+                break;
+            }
+            if ($vcode == $info['sms']['code']) {
+                if ($destory) {
+                    $info['sms'] = array();
+                }
+                $errorMsg = "验证码正确";
+                $flag = true;
+            }
+        } while (0);
+        $content = json_encode($info);
+        file_put_contents($flagFile, $content);
+        return $flag;
+    }
+}
+
+if (!function_exists('getVideoCover')) {
+    /**
+     * 获取视频封面
+     * @param $file 本地视频地址
+     * @param array $times 缩略图时间数组
+     * @param string $size 缩略图尺寸
+     * @return array 返回结果
+     * @author 牧羊人
+     * @date 2019/11/21
+     */
+    function getVideoCover($file, $times = [1], $size = '640x360')
+    {
+        $result = [];
+        if (strpos($file, IMG_PATH) === false) {
+            $file = IMG_PATH . $file;
+        }
+        if (is_file($file)) {
+            $fileInfo = pathinfo($file);
+            $filename = $fileInfo['dirname'] . "/" . $fileInfo['filename'] . "_";
+            foreach ($times as $k => $v) {
+                $savePath = $filename . $v . ".jpg";
+                $command = "/usr/local/ffmpeg/bin/ffmpeg -i {$file} -y -f image2 -ss {$v} -vframes 1 -s {$size} {$savePath}";
+                exec($command);
+                //chmod($filename . $v . "jpg", 0644);
+//                array_push($result, $savePath);
+                $result[] = str_replace(IMG_PATH, '', $savePath);
+            }
+        }
+        return $result;
+    }
+}
+
+if (!function_exists('getVideoInfo')) {
+    /**
+     * 获取视频信息
+     * @param $file 本地视频地址
+     * @return array
+     * @author 牧羊人
+     * @date 2019/11/21
+     */
+    function getVideoInfo($file)
+    {
+        if (strpos($file, IMG_PATH) === false) {
+            $file = IMG_PATH . $file;
+        }
+        if (!is_file($file)) {
+            return [];
+        }
+        // 执行命令
+        $command = sprintf('/usr/local/ffmpeg/bin/ffmpeg -i "%s" 2>&1', $file);
+
+        // 获取缓冲区信息
+        ob_start();
+        passthru($command);
+        $info = ob_get_contents();
+        ob_end_clean();
+
+        $result = [];
+        if (preg_match("/Duration: (.*?), start: (.*?), bitrate: (\d*) kb\/s/", $info, $match)) {
+            if (strpos($match[1], '.') !== false) {
+                $item = explode('.', $match[1]);
+                $result['duration'] = $item[0]; //播放时间
+            } else {
+                $result['duration'] = $match[1]; //播放时间
+            }
+            $arr_duration = explode(':', $match[1]);
+            $result['seconds'] = $arr_duration[0] * 3600 + $arr_duration[1] * 60 + $arr_duration[2]; //转换播放时间为秒数
+            $result['start'] = $match[2]; //开始时间
+            $result['bitrate'] = $match[3]; //码率(kb)
+        }
+        if (preg_match("/Video: (.*?), (.*?), (.*?)[,\s]/", $info, $match)) {
+            $result['vcodec'] = $match[1]; //视频编码格式
+            $result['vformat'] = $match[2]; //视频格式
+            $result['resolution'] = $match[3]; //视频分辨率
+            if (strpos($match[3], 'x') !== false) {
+                $arr_resolution = explode('x', $match[3]);
+                $result['width'] = $arr_resolution[0];
+                $result['height'] = $arr_resolution[1];
+            }
+        }
+        if (preg_match("/Audio: (\w*), (\d*) Hz/", $info, $match)) {
+            $result['acodec'] = $match[1]; //音频编码
+            $result['asamplerate'] = $match[2]; //音频采样频率
+        }
+        if (isset($data['seconds']) && isset($data['start'])) {
+            $result['play_time'] = $result['seconds'] + $result['start']; //实际播放时间
+        }
+        $result['size'] = filesize($file); //文件大小
+        return $result;
+    }
+}
+
+if (!function_exists('addRabbitmq')) {
+
+    /**
+     * 加入队列
+     * @param string $queue_name 队列名称
+     * @param $data 数据源
+     * @return bool
+     * @author zongjl
+     * @date 2019/7/4
+     */
+    function addRabbitmq($queue_name, $data)
+    {
+        $queue = new \util\Rabbitmq($queue_name);
+        $queue->send($data);
+        $queue->close();
+        return true;
+    }
+}
+
+if (!function_exists('getRabbitmq')) {
+    /**
+     * 获取队列
+     * @param string $queue_name 队列名称
+     * @return mixed 返回结果
+     * @author zongjl
+     * @date 2019/7/4
+     */
+    function getRabbitmq($queue_name)
+    {
+        $queue = new \util\Rabbitmq($queue_name);
+        return $queue->receive();
+    }
+}
+
+if (!function_exists('sendNotifyAll')) {
+    /**
+     * 广播推送通知
+     * @param $param
+     * @return bool
+     * @author 牧羊人
+     * @date 2019/11/23
+     */
+    function sendNotifyAll($param)
+    {
+        // 推送内容
+        $content = $param['content'];
+        // 推送类型：1复杂推送 2普通推送
+        $type = $param['type'];
+        // 推送标题
+        $title = isset($param['title']) ? $param['title'] : '';
+        // 自定义参数
+        $extras = isset($param['extras']) ? $param['extras'] : [];
+
+        $app_key = '';
+        $master_secret = '';
+        $jpush = new \util\JPushNotice($app_key, $master_secret);
+        $result = $jpush->sendNotifyAll($content, $type, $title, $extras);
+        return $result;
+    }
+}
+
+if (!function_exists('sendNotifySpecial')) {
+    /**
+     * 指定设备推送通知
+     * @param $param
+     * @return bool
+     * @author 牧羊人
+     * @date 2019/11/23
+     */
+    function sendNotifySpecial($param)
+    {
+        // 推送内容
+        $content = $param['content'];
+        // 推送类型：1复杂推送 2普通推送
+        $type = $param['type'];
+        // 推送别名
+        $alias = $param['alias'];
+        // 推送标题
+        $title = isset($param['title']) ? $param['title'] : '';
+        // 自定义参数
+        $extras = isset($param['extras']) ? $param['extras'] : [];
+
+        $app_key = '';
+        $master_secret = '';
+        $jpush = new \util\JPushNotice($app_key, $master_secret);
+        $result = $jpush->sendNotifySpecial($content, $type, $alias, $title, $extras);
+        return $result;
+    }
+}
+
+if (!function_exists('checkWords')) {
+    /**
+     * 检查敏感词
+     * @param $list
+     * @param $str
+     * @return string
+     * @author 牧羊人
+     * @date 2019/12/10
+     */
+    function checkWords($list, $str, $flag = false)
+    {
+        $count = 0; //违规词的个数
+        $sensitiveWord = '';  //违规词
+        $stringAfter = $str;  //替换后的内容
+        $pattern = "/" . implode("|", $list) . "/i"; //定义正则表达式
+        if (preg_match_all($pattern, $str, $matches)) { //匹配到了结果
+            $patternList = $matches[0];  //匹配到的数组
+            $count = count($patternList);
+            $sensitiveWord = implode(',', $patternList); //敏感词数组转字符串
+//            $replaceArray = array_combine($patternList, array_fill(0, count($patternList), '***')); //把匹配到的数组进行合并，替换使用
+//            $stringAfter = strtr($str, $replaceArray); //结果替换
+
+            // 临时解决方案
+            $itemArr = [];
+            if (!empty($patternList)) {
+                foreach ($patternList as $val) {
+                    if (!$val) {
+                        continue;
+                    }
+                    $itemArr[] = str_pad("", mb_strlen($val), "*", STR_PAD_LEFT);
+                }
+            }
+            $replaceArray = array_combine($patternList, $itemArr); //把匹配到的数组进行合并，替换使用
+            $stringAfter = strtr($str, $replaceArray); //结果替换
+        }
+        $log = "原句为 [ {$str} ]<br/>";
+        if ($count == 0) {
+            $log .= "暂未匹配到敏感词！";
+        } else {
+            $log .= "匹配到 [ {$count} ]个敏感词：[ {$sensitiveWord} ]<br/>" .
+                "替换后为：[ {$stringAfter} ]";
+        }
+        if (!$flag) {
+            return $stringAfter;
+        } else {
+            return $count;
+        }
+    }
+}
+
+if (!function_exists('sendUmengNotify')) {
+    /**
+     * 友盟推送
+     * @param $param 推送参数
+     * @return string
+     * @author 牧羊人
+     * @date 2019/12/10
+     */
+    function sendUmengNotify($param, $device = 0)
+    {
+        $result = [];
+        // 推送给苹果
+        if (!$device || $device == 1) {
+            $ios_app_key = config("umeng.ios_app_key");
+            $ios_app_master_secret = config("umeng.ios_app_master_secret");
+            // 初始化推送
+            $umengPush = new \util\Umeng($ios_app_key, $ios_app_master_secret);
+            $result[] = $umengPush->sendUmengNotify($param, 1);
+        }
+
+        // 推送给安卓
+        if (!$device || $device == 2) {
+            $android_app_key = config("umeng.android_app_key");
+            $android_app_master_secret = config("umeng.android_app_master_secret");
+            // 初始化推送
+            $umengPush = new \util\Umeng($android_app_key, $android_app_master_secret);
+            $result[] = $umengPush->sendUmengNotify($param, 2);
+        }
+        return $result;
     }
 }
