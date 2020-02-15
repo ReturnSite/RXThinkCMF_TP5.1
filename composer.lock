@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a4dd507c7eb0d65c85231f8f914e843",
+    "content-hash": "d5d126657f977466a299400b8997726e",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -1256,6 +1256,7 @@
                 "cron",
                 "schedule"
             ],
+            "abandoned": "dragonmantank/cron-expression",
             "time": "2019-12-28T04:23:06+00:00"
         },
         {
@@ -3025,17 +3026,20 @@
         },
         {
             "name": "topthink/think-oracle",
-            "version": "v1.2",
+            "version": "v2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/think-oracle.git",
-                "reference": "02e902b0cc63502e60995431a0da521454cd6f34"
+                "reference": "f953e17c34408a58b21298f981d13b1ddecae0e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-oracle/zipball/02e902b0cc63502e60995431a0da521454cd6f34",
-                "reference": "02e902b0cc63502e60995431a0da521454cd6f34",
+                "url": "https://api.github.com/repos/top-think/think-oracle/zipball/f953e17c34408a58b21298f981d13b1ddecae0e4",
+                "reference": "f953e17c34408a58b21298f981d13b1ddecae0e4",
                 "shasum": ""
+            },
+            "require": {
+                "topthink/framework": "~5.1.9"
             },
             "type": "library",
             "autoload": {
@@ -3055,7 +3059,7 @@
                 }
             ],
             "description": "Oracle driver for thinkphp5",
-            "time": "2017-02-06T02:03:03+00:00"
+            "time": "2018-04-14T00:44:42+00:00"
         },
         {
             "name": "topthink/think-queue",
@@ -3368,7 +3372,6 @@
                 "stdlib",
                 "zf"
             ],
-            "abandoned": "laminas/laminas-stdlib",
             "time": "2018-08-28T21:34:05+00:00"
         }
     ],

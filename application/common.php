@@ -1926,8 +1926,6 @@ if (!function_exists('save_remote_image')) {
      */
     function save_remote_image($img_url, $save_dir = '/')
     {
-        print_r($img_url);
-        exit;
         $content = file_get_contents($img_url);
         if (!$content) {
             return false;

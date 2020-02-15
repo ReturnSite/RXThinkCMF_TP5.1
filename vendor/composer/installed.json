@@ -1287,7 +1287,8 @@
         "keywords": [
             "cron",
             "schedule"
-        ]
+        ],
+        "abandoned": "dragonmantank/cron-expression"
     },
     {
         "name": "mtdowling/jmespath.php",
@@ -3122,20 +3123,23 @@
     },
     {
         "name": "topthink/think-oracle",
-        "version": "v1.2",
-        "version_normalized": "1.2.0.0",
+        "version": "v2.1",
+        "version_normalized": "2.1.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-oracle.git",
-            "reference": "02e902b0cc63502e60995431a0da521454cd6f34"
+            "reference": "f953e17c34408a58b21298f981d13b1ddecae0e4"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/top-think/think-oracle/zipball/02e902b0cc63502e60995431a0da521454cd6f34",
-            "reference": "02e902b0cc63502e60995431a0da521454cd6f34",
+            "url": "https://api.github.com/repos/top-think/think-oracle/zipball/f953e17c34408a58b21298f981d13b1ddecae0e4",
+            "reference": "f953e17c34408a58b21298f981d13b1ddecae0e4",
             "shasum": ""
         },
-        "time": "2017-02-06T02:03:03+00:00",
+        "require": {
+            "topthink/framework": "~5.1.9"
+        },
+        "time": "2018-04-14T00:44:42+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -3481,7 +3485,6 @@
             "ZendFramework",
             "stdlib",
             "zf"
-        ],
-        "abandoned": "laminas/laminas-stdlib"
+        ]
     }
 ]

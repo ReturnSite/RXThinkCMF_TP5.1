@@ -18,7 +18,7 @@ use think\db\Connection as BaseConnection;
 class Connection extends BaseConnection
 {
 
-    protected $builder = '\\think\\oracle\\Builder';
+    protected $builderClassName = '\\think\\oracle\\Builder';
 
     /**
      * 解析pdo连接的dsn信息
@@ -85,6 +85,19 @@ class Connection extends BaseConnection
             $info[$key] = current($val);
         }
         return $info;
+    }
+
+    /**
+     * 获取最近插入的ID
+     * @access public
+     * @param string  $sequence     自增序列名
+     * @return string
+     */
+    public function getLastInsID($sequence = null)
+    {
+        $pdo    = $this->linkID->query("select {$sequence}.currval as id from dual");
+        $result = $pdo->fetchColumn();
+        return $result;
     }
 
     /**
