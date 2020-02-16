@@ -223,7 +223,7 @@ layui.use(['func'], function () {
                 }
             }
             , {field: 'sort', width: 100, title: '排序', align: 'center'}
-            , {fixed: 'right', width: 280, title: '功能操作', align: 'left', toolbar: '#toolBar'}
+            , { width: 280, title: '功能操作', align: 'left', toolbar: '#toolBar'}
         ];
 
         //【渲染TABLE】

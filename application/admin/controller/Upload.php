@@ -57,4 +57,35 @@ class Upload extends AdminBase
             return message($error, false);
         }
     }
+
+    /**
+     * 上传附件
+     *
+     * @author zongjl
+     * @date 2018-12-21
+     */
+    function uploadFile()
+    {
+        // 设置上传约束
+        $config = [
+            'size' => 1024 * 1024 * 10,
+            'ext' => 'mp4,avi,mov,rmvb,flv,xls,xlsx,doc,docx'
+        ];
+        $file = $this->request->file('file');
+        $upload_path = UPLOAD_TEMP_PATH;
+        $info = $file->validate($config)->move($upload_path);
+        if ($info) {
+            //上传成功
+            $file_path = IMG_URL . "/temp/" . $info->getSaveName();
+            $result = [
+                'fileName' => $info->getInfo('name'),
+                'savePath' => $file_path,
+            ];
+            return message("上传成功", true, $result);
+        } else {
+            //上传失败
+            $error = $file->getError();
+            return message($error, false);
+        }
+    }
 }

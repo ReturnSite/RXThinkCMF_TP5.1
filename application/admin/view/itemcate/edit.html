@@ -5,7 +5,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">栏目名称：</label>
 			<div class="layui-input-inline">
-				<input name="name" id="name" value="{$info.name|default=''}" lay-verify="required" autocomplete="off" placeholder="请输入栏目名称" class="layui-input pinyin" type="text">
+				<input name="name" id="name" value="{$info.name|default=''}" lay-verify="required" autocomplete="off" placeholder="请输入栏目名称" class="layui-input" type="text">
 			</div>
 		</div>
 		<div class="layui-inline">
@@ -15,7 +15,6 @@
 			</div>
 		</div>
 	</div>
-	{:widget('common/pinyin',array($info['pinyin'],$info['code']))}
 	<div class="layui-form-item">
 		<div class="layui-inline">
 			<label class="layui-form-label">有无封面：</label>
@@ -32,14 +31,14 @@
 		</div>
 		{/if}
 	</div>
-	<div class="layui-form-item {if $info.is_cover neq 1}layui-hide{/if} cover">
+	<div class="layui-form-item {if isset($info['is_cover']) && $info['is_cover'] neq 1}layui-hide{/if} cover">
 		<label class="layui-form-label">栏目封面：</label>
 		{:widget('upload/uploadSingleImage',array('cover',isset($info['cover_url']) ? $info['cover_url'] : '','90x90','封面'))}
 	</div>
 	<div class="layui-form-item layui-form-text" style="width:665px;">
 		<label class="layui-form-label">栏目说明：</label>
 		<div class="layui-input-block">
-			<textarea name="note" id="note" placeholder="请输入栏目说明" class="layui-textarea">{$info.note}</textarea>
+			<textarea name="note" id="note" placeholder="请输入栏目说明" class="layui-textarea">{$info.note|default=''}</textarea>
 		</div>
 	</div>
 	<div class="layui-form-item">

@@ -3,7 +3,7 @@
 layui.use(['form'], function(){
 	var form = layui.form,
 		$ = layui.$;
-	
+
 	form.on('switch({$name})', function(data) {
 		console.log('switch开关选择状态：'+this.checked);
 	    $(data.elem).attr('type', 'hidden').val(this.checked ? 1 : 2);

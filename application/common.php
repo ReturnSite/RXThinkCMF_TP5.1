@@ -715,7 +715,11 @@ if (!function_exists('getter')) {
     {
         $result = $default;
         if (isset($data[$field])) {
-            $result = trim($data[$field]);
+            if (is_array($data[$field])) {
+                $result = $data[$field];
+            } else {
+                $result = trim($data[$field]);
+            }
         }
         return $result;
     }
