@@ -87,16 +87,7 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 ## 技术支持
 
 技术支持QQ：1175401194    
-[官方交流群：262206078](http://shang.qq.com/wpa/qunwpa?idkey=84899631e9f8d6b1d4c2749dbb1ebecc3faca80b3595877a9109447941128bf1)
 
-## QQ交流群
-
-官方交流群：262206078 [![点击加群](https://images.gitee.com/uploads/images/2019/0519/192303_fb9f6f39_478496.png "点击加群")](https://jq.qq.com/?_wv=1027&k=5sCX1VA)，如有问题会有人解答和修复，免费开源版源码请至群内获取。
-
-
-## 官方技术交流二维码：期待您的加入，欢迎您跟RXThink团队一起成长！！
-
-![QQ群二维码](http://images.tp5.1.rxthink.cn/demo/qq_group.png)
 
 ## 效果图展示
 
