@@ -19,14 +19,10 @@
     </a>
 </p>
 
-<p align="center">
-<img src="https://images.gitee.com/uploads/images/2019/0517/232335_2588e5e3_478496.png" />
-</p>
-
 ### 如果对您有帮助，您可以点右上角 "Star" 支持一下 谢谢！
 ### 如果您想获悉项目实时更新信息，您可以点右上角 <a href='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1'><img src='https://gitee.com/ruoxi520_admin/RXThinkCMF_TP5.1/widgets/widget_3.svg' alt='Fork me on Gitee'></img></a> 感谢您的支持！git 
 ### 官方网址：http://www.rxthink.cn/
-### 帮助文档：http://docs.tp5.1.rxthink.cn
+### 帮助文档：http://docs.v5.1.rxthink.cn
 ### 本项目还在不断开发完善中,如有建议或问题请官方论坛反馈，论坛地址:http://www.rxthink.cn
 
 ## 项目介绍
@@ -66,7 +62,7 @@ RXThinkCMF_TP5.1 基于 ThinkPHP5.1 +Layui2.4.5 开发权限(RBAC)及内容管�
 * 作者[牧羊人]：南京RXThink研发工作室
 * 作者QQ：1175401194  
 * 官网网址：[http://www.rxthink.cn/](http://www.rxthink.cn/)  
-* 文档网址：[http://docs.tp5.1.rxthink.cn](http://docs.tp5.1.rxthink.cn)  
+* 文档网址：[http://docs.v5.1.rxthink.cn](http://docs.v5.1.rxthink.cn)  
 * 开源协议：Apache 2.0
 
 ### jwt token鉴权机制
@@ -117,7 +113,7 @@ jwt token鉴权机制是指若需要请求服务器接口，必须通过AuthCont
 
 ## 部署说明
 
-[点击查看技术文档](http://docs.tp5.1.rxthink.cn)
+[点击查看技术文档](http://docs.v5.1.rxthink.cn)
 
 
 ## 更新说明

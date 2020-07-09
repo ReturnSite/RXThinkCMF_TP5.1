@@ -2074,7 +2074,7 @@ if (!function_exists('formUpload')) {
      */
     function formUpload($name, $dir = "", $width = 0, $height = 0, &$tooSmall = 0)
     {
-        $allowedExts = array("jpg", "jpeg", "gif", "png");
+        $allowedExts = array("jpg", "JPG", "jpeg", "JPEG", "gif", "GIF", "png", "PNG", "bmp", "BMP", "tif", "TIF", "svg", "SVG");
         $fileData = $_FILES[$name];
         $fileList = $fileData['tmp_name'];
         if (!$fileList) {
