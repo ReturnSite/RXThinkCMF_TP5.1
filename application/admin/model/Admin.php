@@ -2,54 +2,46 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\model;
 
 use app\common\model\BaseModel;
-use app\admin\model\AdminRole as AdminRoleModel;
+use app\admin\model\Role as AdminRoleModel;
 
 /**
- * 人员管理-模型
- * @author zongjl
- * @date 2019/6/10
+ * 人员-模型
+ * @author 牧羊人
+ * @since 2020/7/11
  * Class Admin
  * @package app\admin\model
  */
 class Admin extends BaseModel
 {
     // 设置数据表
-    protected $table = DB_PREFIX . 'admin';
+    protected $name = 'admin';
 
-    /**
-     * 初始化模型
-     * @author zongjl
-     * @date 2019/6/10
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        // TODO...
-    }
+    // 开启单表缓存
+    protected $is_cache = true;
 
     /**
      * 获取缓存信息
      * @param int $id 记录ID
-     * @return mixed 返回结果
+     * @return \app\common\model\数据信息|mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
-     * @author zongjl
-     * @date 2019/6/10
+     * @since 2020/7/11
+     * @author 牧羊人
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id, true);
+        $info = parent::getInfo($id);
         if ($info) {
             // 头像
             if ($info['avatar']) {
@@ -63,54 +55,34 @@ class Admin extends BaseModel
 
             // 性别
             if ($info['gender']) {
-                $info['gender_name'] = config('config.gender_list')[$info['gender']];
+                $info['gender_name'] = config('admin.gender_list')[$info['gender']];
             }
 
             // 岗位
             if ($info['position_id']) {
-                $position_model = new Position();
-                $position_info = $position_model->getInfo($info['position_id']);
-                $info['position_name'] = $position_info['name'];
+                $positionModel = new Position();
+                $positionInfo = $positionModel->getInfo($info['position_id']);
+                $info['position_name'] = $positionInfo['name'];
             }
 
-            // 独立权限
-            $auth_list = [];
-            if ($info['auth']) {
-                $admin_auth = unserialize($info['auth']);
-                if (is_array($admin_auth)) {
-                    foreach ($admin_auth as $key => $val) {
-                        $auth_list[$key][] = $val;
-                    }
-                }
+            // 职级
+            if ($info['level_id']) {
+                $levelMod = new Level();
+                $levelInfo = $levelMod->getInfo($info['level_id']);
+                $info['level_name'] = $levelInfo['name'];
             }
 
-            // 角色权限
-            if ($info['role_ids']) {
-                $role_ids = explode(',', $info['role_ids']);
-                $admin_role_model = new AdminRoleModel();
-                $role_auth = $admin_role_model->getRoleAuth($role_ids);
-                if (is_array($role_auth)) {
-                    foreach ($role_auth as $kt => $vt) {
-                        $auth_list[$kt][] = $vt;
-                    }
-                }
+            // 所属城市
+            if ($info['district_id']) {
+                $cityMod = new City();
+                $cityName = $cityMod->getCityName($info['district_id'], " ");
+                $info['city_name'] = $cityName;
             }
 
-            // 权限重组
-            $auth = [];
-            foreach ($auth_list as $key => $val) {
-                if (!in_array($key, array_keys($auth))) {
-                    $auth[$key] = array();
-                }
-                foreach ($val as $vt) {
-                    foreach ($vt as $v) {
-                        if (!in_array($v, $auth[$key])) {
-                            $auth[$key][] = $v;
-                        }
-                    }
-                }
-            }
-            $info['system_auth'] = $auth;
+            // 获取人员权限
+            $adminRomMod = new AdminRom();
+            $permissionList = $adminRomMod->getPermissionList($id);
+            $info['permission'] = $permissionList;
         }
         return $info;
     }

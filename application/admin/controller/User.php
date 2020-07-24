@@ -2,27 +2,26 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
 
-use app\admin\model\User as UserModel;
 use app\admin\service\UserService;
-use app\admin\validate\User as UserValidate;
+use app\common\controller\Backend;
 
 /**
- * 会员-控制器
+ * 会员管理-控制器
  * @author 牧羊人
- * @date 2019/4/30
+ * @since 2020/7/11
  * Class User
  * @package app\admin\controller
  */
-class User extends AdminBase
+class User extends Backend
 {
     /**
      * 初始化方法
@@ -32,22 +31,8 @@ class User extends AdminBase
     public function initialize()
     {
         parent::initialize();
-        $this->model = new UserModel();
+        $this->model = new \app\admin\model\User();
         $this->service = new UserService();
-        $this->validate = new UserValidate();
-    }
-
-    /**
-     * 设置状态
-     * @return mixed
-     * @author 牧羊人
-     * @date 2019/4/30
-     */
-    public function setStatus()
-    {
-        if (IS_POST) {
-            $result = $this->service->setStatus();
-            return $result;
-        }
+        $this->validate = new \app\admin\validate\User();
     }
 }

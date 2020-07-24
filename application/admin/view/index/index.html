@@ -1,160 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="UTF-8">
-	<title>{$site_name}</title>
-	<meta name="renderer" content="webkit">	
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">	
-    <meta name="Author" content="larry" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">	
-	<meta name="apple-mobile-web-app-capable" content="yes">	
-	<meta name="format-detection" content="telephone=no">	
-	<link rel="Shortcut Icon" href="__ADMIN__/images/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="__ADMIN__/layui/css/layui.css" media="all">
-    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/global.css" media="all">
-    <link rel="stylesheet" type="text/css" href="__ADMIN__/css/larryms.css" media="all">
-	<!-- load css -->
-    <script>
-        /^http(s*):\/\//.test(location.href) || alert('【系统】提示您 请先部署到 localhost 下再访问！！！');
-    </script>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{$siteName}</title>
+    <link href="__ADMIN__/assets/images/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="__ADMIN__/assets/libs/layui/css/layui.css"/>
+    <link rel="stylesheet" href="__ADMIN__/assets/module/admin.css?v=318"/>
+    <link rel="stylesheet" href="__ADMIN__/assets/css/theme-all.css?v=318"/>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
-<div class="layui-layout layui-layout-admin layui-fluid larryms-layout" id="larry_layout">
-	<!-- 顶部导航 -->
-	<div class="layui-header larryms-header" id="larry_head">
-        <div class="larryms-topbar-left" id="topbarL">
-        	<span class="mini-logo"><img src="__ADMIN__/images/logo_mini.png" alt=""></span>
-         	<a class="layui-logo larryms-logo">{$nick_name}</a>
-         	<span class="larryms-switch larryms-icon-fold" id="menufold"><i class="larry-icon larry-fold7"></i></span>
-         	<div class="larryms-mobile-menu" id="larrymsMobileMenu"><i class="larry-icon yun-liebiao"></i></div>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 头部 -->
+    <div class="layui-header">
+        <div class="layui-logo">
+            <img src="__ADMIN__/assets/images/logo.png"/>
+            <cite>&nbsp;&nbsp;{$nickName}{$version}&emsp;</cite>
         </div>
-        <div class="larryms-extend">
-         	<div class="larryms-topbar-menu larryms-hide-xs clearfix">
-         	    <ul class="larryms-nav clearfix fl" id="larryms_top_menu" lay-filter='TopMenu'>
-         	    	 <!-- 若开启顶部菜单，此处动态生成 -->
-                     
-         	    </ul>
-         	    <div class="dropdown extend-show" id="larryms_topSubMenu">
-         	    	 <i class="submenubtn larry-icon larry-sandianshu" id="subMenuButton"></i>
-         	    	 <ul class="dropdown-menu larryms-nav" id="dropdown">
-         	    	 	
-         	    	 </ul>
-         	    </div>
-            </div>
-            <!-- 右侧常用菜单 -->
-            <div class="larryms-topbar-right" id="topbarR">
-            	<ul class="layui-nav clearfix">
-                    <li class="layui-nav-item">
-                        <a id="fullScreen"><i class="larry-icon yun-quanping1"></i><cite>全屏切换</cite></a>
-                    </li>
-                    <li class="layui-nav-item" lay-unselect>
-                        <a id="clearCached"><i class="larry-icon yun-qingchu"></i><cite>清除缓存</cite></a>
-                    </li>
-                    <li class="layui-nav-item" lay-unselect>
-                        <a id="larryTheme"><i class="larry-icon yun-huabanzhuti"></i><cite>主题设置</cite></a>
-                    </li>   
-            		<li class="layui-nav-item exit" lay-unselect>
-                        <a id="logout" data-url="/Login/login?do=exit"><i class="larry-icon yun-tuichu"></i><cite>退出</cite></a>
-                    </li>
-            	</ul>
-            </div>
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item" lay-unselect>
+                <a ew-event="flexible" title="侧边伸缩"><i class="layui-icon layui-icon-shrink-right"></i></a>
+            </li>
+            <li class="layui-nav-item" lay-unselect>
+                <a ew-event="refresh" title="刷新"><i class="layui-icon layui-icon-refresh-3"></i></a>
+            </li>
+            {if $menuList}
+            {foreach name='menuList' item='val' key='key'}
+            <li class="layui-nav-item layui-hide-xs {if $key eq 0}layui-this{/if}" lay-unselect><a
+                    nav-bind="xt{$key+1}">{$val.name}</a></li>
+            {/foreach}
+            {/if}
+            <!-- 小屏幕下变为下拉形式 -->
+            <li class="layui-nav-item layui-hide-sm layui-show-xs-inline-block" lay-unselect>
+                <a>更多</a>
+                <dl class="layui-nav-child">
+                    <dd lay-unselect><a nav-bind="xt1">系统一</a></dd>
+                    <dd lay-unselect><a nav-bind="xt2">系统二</a></dd>
+                    <dd lay-unselect><a nav-bind="xt3">系统二</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" lay-unselect>
+                <a ew-event="message" title="消息">
+                    <i class="layui-icon layui-icon-notice"></i>
+                    <span class="layui-badge-dot"></span>
+                </a>
+            </li>
+            <li class="layui-nav-item" lay-unselect>
+                <a ew-event="note" title="便签"><i class="layui-icon layui-icon-note"></i></a>
+            </li>
+            <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                <a ew-event="fullScreen" title="全屏"><i class="layui-icon layui-icon-screen-full"></i></a>
+            </li>
+            <li class="layui-nav-item layui-hide-xs" lay-unselect>
+                <a ew-event="lockScreen" title="锁屏"><i class="layui-icon layui-icon-password"></i></a>
+            </li>
+            <li class="layui-nav-item" lay-unselect>
+                <a>
+                    <img src="{if condition='$adminInfo.avatar_url neq null'}{$adminInfo.avatar_url}{else}__ADMIN__/images/logo_mini.png{/if}" class="layui-nav-img">
+                    <cite>{$adminInfo['realname']}</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd lay-unselect><a ew-href="/index/userInfo">个人中心</a></dd>
+                    <dd lay-unselect><a ew-event="psw">修改密码</a></dd>
+                    <hr>
+                    <dd lay-unselect><a ew-event="logout" data-url="/login/logout">退出</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" lay-unselect>
+                <a ew-event="theme" title="主题"><i class="layui-icon layui-icon-more-vertical"></i></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 侧边栏 -->
+    <div class="layui-side">
+        <div class="layui-side-scroll">
+            {if $menuList}
+            {foreach name='menuList' item='val' key='key'}
+            <ul class="layui-nav layui-nav-tree {if $key > 0}layui-hide{/if}" nav-id="xt{$key+1}" lay-filter="admin-side-nav" lay-shrink="_all" style="margin: 15px 0;">
+                {foreach name='val.children' item='vo' key='ko'}
+                <li  class="layui-nav-item">
+                    <a><i class="layui-icon layui-icon-set"></i>&emsp;<cite>{$vo.name}</cite></a>
+                    <dl class="layui-nav-child">
+                        {foreach name='vo.children' item='v' key='k'}
+                        <dd><a lay-href="{$v.url}">{$v.name}</a></dd>
+                        {/foreach}
+                    </dl>
+                </li>
+                {/foreach}
+            </ul>
+            {/foreach}
+            {/if}
         </div>
-	</div>
-	<!-- 内容主体 -->
-	<div class="larryms-body" id="larryms_body">
-		<!-- 左侧导航区域 -->
-		<div class="layui-side pos-a larryms-left layui-bg-black" id="larry_left">
-			<div class="layui-side-scroll">
-                <!-- 管理员信息      -->
-                <div class="user-info">
-                    <div class="photo">
-                        <img src="{if $admin_info.avatar_url neq null}{$admin_info.avatar_url}{else}__ADMIN__/images/logo_mini.png{/if}" id="user_photo" alt="">
-                    </div>
-                    <p><span id="uname">【{$admin_info.realname}】</span>您好！欢迎登录</p>
-                </div>
-                <!-- 系统菜单 -->
-                <div class="sys-menu-box" >
-                    <ul class="larryms-nav larryms-nav-tree" id="larryms_left_menu" lay-filter="LarrySide" data-group='0'>
-                        <!-- 此次动态生成 -->
-                        
-                    </ul>
-                </div>    
-			</div> 
-		</div>
-		<!-- 右侧框架内容区域 -->
-		<div class="layui-body pos-a larryms-right" id="larry_right">
-			<div class="layui-tab larryms-tab" id="larry_tab" lay-filter="larryTab">
-                <div class="larryms-title-box clearfix" id="larryms_title">
-                    <div class="larryms-btn-default larryms-press larryms-pull-left hide" id="goLeft"><i class="larry-icon yun-arrowDoLRight"></i></div> 
-                    <ul class="layui-tab-title larryms-tab-title" lay-allowclose='false' id="larry_tab_title" lay-filter='larrymsTabTitle'>
-                        <li class="layui-this" id="larryms_home" lay-id="0" data-group="0" data-id="larryms-home" fresh="1" data-url="html/main1.html">
-                            <i class="larry-icon yun-shouye" data-icon="yun-shouye" data-font="larry-icon"></i><cite>后台首页</cite>
-                        </li>
-                    </ul>
-                    <div class="larryms-btn-group clearfix">
-                        <div class="larryms-btn-default larryms-press larryms-pull-right hide" id="goRight"><i class="larry-icon yun-shuangjiantouyou"></i></div>
-                        <div class="refresh larryms-press" id="larryms_refresh">
-                            <i class="larry-icon yun-shuaxin"></i>
-                            <cite>刷新</cite>
-                        </div>
-                        <div class="larryms-press often" lay-filter="larryOperate" id="buttonRCtrl">
-                            <ul class="larryms-nav">
-                                <li class="larryms-nav-item">
-                                    <a class="top"><i class="larry-icon yun-dianji1"></i><cite>常用操作</cite><span class="larryms-nav-more"></span></a>
-                                    <dl class="larryms-nav-child layui-anim layui-anim-upbit">
-                                        <dd id="tabCtrD">
-                                            <a data-ename="positionCurrent"><i class="larry-icon yun-shuangjiantou1"></i><cite>定位当前选项卡</cite></a>
-                                        </dd>
-                                        <dd id="tabCtrA">
-                                            <a data-ename="closeCurrent"><i class="larry-icon yun-guanbi4"></i><cite>关闭当前选项卡</cite></a>
-                                        </dd>
-                                        <dd id="tabCtrB">
-                                            <a data-ename="closeOther"><i class="larry-icon yun-guanbi1"></i><cite>关闭其他选项卡</cite></a>
-                                        </dd>
-                                        <dd id="tabCtrC">
-                                            <a data-ename="closeAll"><i class="larry-icon yun-close-all"></i><cite>关闭全部选项卡</cite></a>
-                                        </dd>
-                                        <dd>
-                                            <a data-ename="refreshAdmin"><i class="larry-icon yun-shuaxin1"></i><cite>刷新最外层框架</cite></a>
-                                        </dd>
-                                    </dl>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> 
-                <!-- tab title end -->
-                <div class="layui-tab-content larryms-tab-content" id="larry_tab_content">
-                    <div class="layui-tab-item layui-show">
-                        <iframe class="larry-iframe" data-id='0' name="ifr_0" id='ifr0'  src="/index/main" frameborder="no" border="0"></iframe>
-                    </div>
-                </div>
-                <!-- tab content end -->
-            </div>
-		</div>
-		<!-- 移动端支持 -->
-		<div class="larryms-mobile-shade" id="larrymsMobileShade"></div>
-	</div>
-	<!-- 底部固定区域 -->
-	<div class="layui-footer larryms-footer" data-show='on' id="larry_footer">
-        <div class="copyright inline-block pos-al"><a href="javascript:">最终解释权归【<a href="http://www.rxthink.cn" target="_blank">RXThinkCMF研发中心</a>】所有</a></div>
-        <p class="block">技术支持：相约在冬季(QQ:<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1175401194&amp;site=qq&amp;menu=yes">1175401194</a>)</p>
-		 <div class="larryms-info inline-block pos-ar">当前版本：{$version}<i class="layui-icon">&#xe67c;</i></div>
-	</div>
+    </div>
+
+    <!-- 主体部分 -->
+    <div class="layui-body"></div>
+    <!-- 底部 -->
+    <div class="layui-footer layui-text">
+        copyright © 2020 <a href="http://www.rxthink.cn" target="_blank">rxthink.cn</a> all rights reserved.
+        <span class="pull-right">版本号：{$version}</span>
+    </div>
 </div>
-<!-- 加载js文件-->
-<script type="text/javascript" src="__ADMIN__/layui/layui.js"></script>
-<script type="text/javascript">
-layui.cache.menusUrl = "/menu/getNavbarMenu";
-layui.cache.page = 'think_{$app}'; 
-//layui.cache.rightMenu = 'custom'; //默认开启页面右键菜单，设置为 custom 时需要自定义右键菜单，设置为false 关闭右键菜单
-layui.config({
-   version:"2.0.7",
-   base:'__ADMIN__',
-}).extend({
-    larry:'/js/base'
-}).use('larry');
+
+<!-- 加载动画 -->
+<div class="page-loading">
+    <div class="ball-loader">
+        <span></span><span></span><span></span><span></span>
+    </div>
+</div>
+
+<!-- js部分 -->
+<script type="text/javascript" src="__ADMIN__/assets/libs/layui/layui.js"></script>
+<script type="text/javascript" src="__ADMIN__/assets/js/common.js?v=318"></script>
+<script>
+    layui.use(['index'], function () {
+        var $ = layui.jquery;
+        var index = layui.index;
+
+        // 默认加载主页
+        index.loadHome({
+            menuPath: '/index/main',
+            menuName: '<i class="layui-icon layui-icon-home"></i>'
+        });
+
+    });
 </script>
 </body>
 </html>

@@ -2,38 +2,37 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
 
-use app\admin\model\ConfigGroup as ConfigGroupModel;
 use app\admin\service\ConfigGroupService;
-use app\admin\validate\ConfigGroup as ConfigGroupValidate;
+use app\common\controller\Backend;
 
 /**
  * 配置分组-控制器
  * @author 牧羊人
- * @date 2019/4/24
+ * @since 2020/7/10
  * Class Configgroup
  * @package app\admin\controller
  */
-class Configgroup extends AdminBase
+class Configgroup extends Backend
 {
     /**
-     * 初始化方法
+     * 初始化
      * @author 牧羊人
-     * @date 2019/4/24
+     * @since 2020/7/10
      */
     public function initialize()
     {
         parent::initialize();
-        $this->model = new ConfigGroupModel();
+        $this->model = new \app\admin\model\ConfigGroup();
         $this->service = new ConfigGroupService();
-        $this->validate = new ConfigGroupValidate();
+        $this->validate = new \app\admin\validate\ConfigGroup();
     }
 }

@@ -2,38 +2,37 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
 
-use app\admin\model\Dictype as DictypeModel;
-use app\admin\service\DictypeService;
-use app\admin\validate\Dictype as DictypeValidate;
+use app\admin\service\DicTypeService;
+use app\common\controller\Backend;
 
 /**
  * 字典类型-控制器
  * @author 牧羊人
- * @date 2019/5/9
+ * @since 2020/7/10
  * Class Dictype
  * @package app\admin\controller
  */
-class Dictype extends AdminBase
+class Dictype extends Backend
 {
     /**
-     * 初始化方法
+     * 初始化
      * @author 牧羊人
-     * @date 2019/5/9
+     * @since 2020/7/10
      */
     public function initialize()
     {
         parent::initialize();
-        $this->model = new DictypeModel();
-        $this->service = new DictypeService();
-        $this->validate = new DictypeValidate();
+        $this->model = new \app\admin\model\DicType();
+        $this->service = new DicTypeService();
+        $this->validate = new \app\admin\validate\DicType();
     }
 }

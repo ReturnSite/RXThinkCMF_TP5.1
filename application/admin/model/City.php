@@ -2,11 +2,11 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\model;
@@ -16,63 +16,33 @@ use app\common\model\BaseModel;
 /**
  * 城市-模型
  * @author 牧羊人
- * @date 2019/6/10
+ * @since 2020/7/10
  * Class City
  * @package app\admin\model
  */
 class City extends BaseModel
 {
-    // 设置数据表
-    protected $table = DB_PREFIX . 'city';
+    // 设置数据表名
+    protected $name = 'city';
 
     /**
-     * 初始化模型
-     * @author 牧羊人
-     * @date 2019/6/10
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        // TODO...
-    }
-
-    /**
-     * 获取缓存信息
-     * @param int $id 记录ID
-     * @return mixed 返回结果
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     * @author 牧羊人
-     * @date 2019/6/10
-     */
-    public function getInfo($id)
-    {
-        $info = parent::getInfo($id, true);
-        if ($info) {
-            // TODO...
-        }
-        return $info;
-    }
-
-    /**
-     * 获取子级
-     * @param int $parent_id 上级ID
-     * @param bool $flag 是否查询子级true或false
+     * 获取子级城市
+     * @param $pid 上级ID
+     * @param bool $flag 是否获取子级
      * @return array
      * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\DbException
      * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019/6/10
+     * @since: 2020/7/10
      */
-    public function getChilds($parent_id, $flag = false)
+    public function getChilds($pid, $flag = false)
     {
         $list = [];
         $result = $this->where([
-            'parent_id' => $parent_id,
+            'pid' => $pid,
             'mark' => 1
-        ])->order("id asc")->select();
+        ])->order("id asc")->select()->toArray();
         if ($result) {
             foreach ($result as $val) {
                 $id = (int)$val['id'];
@@ -95,48 +65,36 @@ class City extends BaseModel
 
     /**
      * 获取城市名称
-     * @param int $city_id 城市ID
-     * @param string $delimiter 分隔符
-     * @param bool $is_replace 是否替换true或false
-     * @return string 返回结果
+     * @param $cityId 城市ID
+     * @param string $delimiter 拼接字符串
+     * @param bool $isReplace 是否替换关键词
+     * @return string
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019/6/10
+     * @since: 2020/7/10
      */
-    public function getCityName($city_id, $delimiter = "", $is_replace = false)
+    public function getCityName($cityId, $delimiter = "", $isReplace = false)
     {
+        $names = [];
         do {
-            $info = $this->getInfo($city_id);
-            if ($is_replace) {
-                $names[] = str_replace(array("省", "市", "维吾尔", "壮族", "回族", "自治区"), "", $info['name']);
-            } else {
-                $names[] = $info['name'];
+            $info = $this->getInfo($cityId);
+            if ($info) {
+                if ($isReplace) {
+                    $names[] = str_replace(array("省", "市", "维吾尔", "壮族", "回族", "自治区"), "", $info['name']);
+                } else {
+                    $names[] = $info['name'];
+                }
             }
-            $city_id = $info['parent_id'];
-        } while ($city_id > 1);
-        $names = array_reverse($names);
-        if (strpos($names[1], $names[0]) === 0) {
-            unset($names[0]);
+            $cityId = isset($info['pid']) ? (int)$info['pid'] : 0;
+        } while ($cityId > 1);
+        if (!empty($names)) {
+            $names = array_reverse($names);
+            if (strpos($names[1], $names[0]) === 0) {
+                unset($names[0]);
+            }
+            return implode($delimiter, $names);
         }
-        return implode($delimiter, $names);
+        return null;
     }
-
-//    /**
-//     * 设置全表缓存
-//     * @param array $map 查询条件
-//     * @param bool $is_pri 是否只缓存主键true或false
-//     * @param bool $pri_key 是否以主键作为键值true或false
-//     * @return array 返回结果
-//     * @throws \think\db\exception\DataNotFoundException
-//     * @throws \think\db\exception\ModelNotFoundException
-//     * @throws \think\exception\DbException
-//     * @author zongjl
-//     * @date 2019/5/7
-//     */
-//    public function cacheAll($map = [], $is_pri = false, $pri_key = false)
-//    {
-//        return $this->getChilds(1, true);
-//    }
 }

@@ -2,42 +2,43 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
 
-use app\admin\service\AdminService;
+use app\admin\service\LoginService;
+use app\common\controller\Backend;
 
 /**
  * 系统登录-控制器
  * @author 牧羊人
- * @date 2019/4/18
+ * @since 2020/7/11
  * Class Login
  * @package app\admin\controller
  */
-class Login extends AdminBase
+class Login extends Backend
 {
     /**
-     * 初始化方法
+     * 初始化
      * @author 牧羊人
-     * @date 2019/4/18
+     * @since 2020/7/11
      */
     public function initialize()
     {
         parent::initialize();
-        $this->service = new AdminService();
+        $this->service = new LoginService();
     }
 
     /**
-     * 登录首页
+     * 登录页
      * @return mixed
+     * @since 2020/7/11
      * @author 牧羊人
-     * @date 2019/4/18
      */
     public function index()
     {
@@ -49,8 +50,8 @@ class Login extends AdminBase
     /**
      * 系统登录
      * @return mixed
+     * @since 2020/7/11
      * @author 牧羊人
-     * @date 2019/4/18
      */
     public function login()
     {
@@ -58,9 +59,17 @@ class Login extends AdminBase
             $result = $this->service->login();
             return $result;
         }
-        if ($_GET['do'] == 'exit') {
-            session('admin_id', null);
-            $this->redirect('/login/index');
-        }
+    }
+
+    /**
+     * 退出登录
+     * @author 牧羊人
+     * @since 2020/7/11
+     */
+    public function logout()
+    {
+        // 清除SESSION值
+        session('adminId', null);
+        $this->redirect('/login/index');
     }
 }

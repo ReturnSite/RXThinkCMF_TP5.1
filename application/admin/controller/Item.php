@@ -2,38 +2,37 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
 
-use app\admin\model\Item as ItemModel;
 use app\admin\service\ItemService;
-use app\admin\validate\Item as ItemValidate;
+use app\common\controller\Backend;
 
 /**
- * 站点-控制器
+ * 站点管理-控制器
  * @author 牧羊人
- * @date 2019/5/5
+ * @since 2020/7/10
  * Class Item
  * @package app\admin\controller
  */
-class Item extends AdminBase
+class Item extends Backend
 {
     /**
-     * 初始化方法
+     * 初始化
      * @author 牧羊人
-     * @date 2019/5/5
+     * @since 2020/7/10
      */
     public function initialize()
     {
         parent::initialize();
-        $this->model = new ItemModel();
+        $this->model = new \app\admin\model\Item();
         $this->service = new ItemService();
-        $this->validate = new ItemValidate();
+        $this->validate = new \app\admin\validate\Item();
     }
 }

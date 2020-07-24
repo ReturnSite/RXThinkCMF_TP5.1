@@ -2,61 +2,53 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
 
-use app\admin\model\LayoutDesc as LayoutDescModel;
 use app\admin\service\LayoutDescService;
-use app\admin\validate\LayoutDesc as LayoutDescValidate;
+use app\common\controller\Backend;
 
 /**
  * 布局描述-控制器
  * @author 牧羊人
- * @date 2019/5/6
+ * @since 2020/7/10
  * Class Layoutdesc
  * @package app\admin\controller
  */
-class Layoutdesc extends AdminBase
+class Layoutdesc extends Backend
 {
     /**
-     * 初始化方法
-     *
+     * 初始化
      * @author 牧羊人
-     * @date 2019-05-05
-     * (non-PHPdoc)
-     * @see \app\admin\controller\AdminBase::initialize()
-     */
-    /**
-     * 初始化方法
-     * @author 牧羊人
-     * @date 2019/5/6
+     * @since 2020/7/10
      */
     public function initialize()
     {
         parent::initialize();
-        $this->model = new LayoutDescModel();
+        $this->model = new \app\admin\model\LayoutDesc();
         $this->service = new LayoutDescService();
-        $this->validate = new LayoutDescValidate();
+        $this->validate = new \app\admin\validate\LayoutDesc();
     }
 
     /**
-     * 获取子级
+     * 根据站点ID获取描述列表
      * @return array
+     * @since 2020/7/10
      * @author 牧羊人
-     * @date 2019/5/6
      */
-    public function getChilds()
+    public function getLayoutDescList()
     {
         if (IS_POST) {
-            $item_id = request()->param('item_id');
-            $list = $this->model->getChilds($item_id);
-            return message('获取成功', true, $list);
+            // 站点ID
+            $itemId = request()->param("item_id", 0);
+            $list = $this->model->where(['item_id' => $itemId, 'mark' => 1])->order("sort asc")->select();
+            return message("操作成功", true, $list);
         }
     }
 }

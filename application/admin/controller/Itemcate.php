@@ -2,28 +2,26 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\controller;
 
-use app\admin\model\ItemCate as ItemCateModel;
 use app\admin\service\ItemCateService;
-use app\admin\validate\ItemCate as ItemCateValidate;
-use app\admin\model\Item;
+use app\common\controller\Backend;
 
 /**
- * 栏目-控制器
+ * 栏目管理-控制器
  * @author 牧羊人
- * @date 2019/5/5
+ * @since 2020/7/10
  * Class Itemcate
  * @package app\admin\controller
  */
-class Itemcate extends AdminBase
+class Itemcate extends Backend
 {
     /**
      * 初始化方法
@@ -33,35 +31,8 @@ class Itemcate extends AdminBase
     public function initialize()
     {
         parent::initialize();
-        $this->model = new ItemCateModel();
+        $this->model = new \app\admin\model\ItemCate();
         $this->service = new ItemCateService();
-        $this->validate = new ItemCateValidate();
-    }
-
-    /**
-     * 添加或编辑
-     * @return mixed
-     * @throws \think\db\exception\DataNotFoundException
-     * @throws \think\db\exception\ModelNotFoundException
-     * @throws \think\exception\DbException
-     * @author 牧羊人
-     * @date 2019/5/5
-     */
-    public function edit()
-    {
-        $parent_id = request()->param('pid');
-        if ($parent_id) {
-            $parent_info = $this->model->getInfo($parent_id);
-        }
-
-        // 获取站点
-        $item_model = new Item();
-        $item_list = $item_model->where(['status' => 1, 'mark' => 1])->select();
-        $this->assign('item_list', $item_list ? $item_list->toArray() : []);
-
-        return parent::edit([
-            'parent_id' => $parent_id,
-            'parent_name' => isset($parent_info['name']) ? $parent_info['name'] : '',
-        ]);
+        $this->validate = new \app\admin\validate\ItemCate();
     }
 }

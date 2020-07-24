@@ -2,11 +2,11 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 use think\facade\Env;
@@ -715,10 +715,10 @@ if (!function_exists('getter')) {
     {
         $result = $default;
         if (isset($data[$field])) {
-            if (is_array($data[$field])) {
-                $result = $data[$field];
-            } else {
+            if (is_string($data[$field])) {
                 $result = trim($data[$field]);
+            } else {
+                $result = $data[$field];
             }
         }
         return $result;
@@ -1097,9 +1097,9 @@ if (!function_exists('get_uid')) {
      */
     function get_uid()
     {
-        $admin_info = session('admin_info');
-        if (session('admin_auth_sign') == data_auth_sign($admin_info)) {
-            return $admin_info['uid'];
+        $adminInfo = session('adminInfo');
+        if (session('admin_auth_sign') == data_auth_sign($adminInfo)) {
+            return $adminInfo['uid'];
         } else {
             return false;
         }
@@ -2074,7 +2074,7 @@ if (!function_exists('formUpload')) {
      */
     function formUpload($name, $dir = "", $width = 0, $height = 0, &$tooSmall = 0)
     {
-        $allowedExts = array("jpg", "JPG", "jpeg", "JPEG", "gif", "GIF", "png", "PNG", "bmp", "BMP", "tif", "TIF", "svg", "SVG");
+        $allowedExts = array("jpg", "jpeg", "gif", "png");
         $fileData = $_FILES[$name];
         $fileList = $fileData['tmp_name'];
         if (!$fileList) {

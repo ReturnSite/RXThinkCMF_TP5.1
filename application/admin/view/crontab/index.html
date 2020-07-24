@@ -6,25 +6,25 @@
 {block name='content'}
 
 	<!-- 功能操作区一 -->
-	<form class="layui-form">
-		<div class="layui-form">
-			<div class="layui-form-item">
-				<div class="layui-inline">
-					<div class="layui-input-inline">
-						<input type="text" name="title" placeholder="请输入任务标题" autocomplete="off" class="layui-input">
-					</div>
+	<form class="layui-form toolbar">
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label w-auto">任务标题：</label>
+				<div class="layui-input-inline">
+					<input type="text" name="title" placeholder="请输入任务标题" autocomplete="off" class="layui-input">
 				</div>
-				<div class="layui-inline">
-					<div class="layui-input-inline">
-						{:widget('common/singleSelect',array('crontab_type|0|任务类型|name|id',config('config.crontab_type'),0))}
-					</div>
+			</div>
+			<div class="layui-inline">
+				<label class="layui-form-label w-auto">任务类型：</label>
+				<div class="layui-input-inline">
+					{:widget('common/select',array('crontab_type|0|任务类型|name|id',config('admin.crontab_type'),0))}
 				</div>
-				<div class="layui-inline">
-					<div class="layui-input-inline" style="width: auto;">
-						{:widget('func/btnQuery',array('查询'))}
-						{:widget('func/btnAdd',array('添加定时任务'))}
-						{:widget('func/btnDAll',array('批量删除'))}
-					</div>
+			</div>
+			<div class="layui-inline">
+				<div class="layui-input-inline" style="width: auto;">
+					{:widget('func/query',array('查询'))}
+					{:widget('func/add',array('添加定时任务'))}
+					{:widget('func/dall',array('批量删除'))}
 				</div>
 			</div>
 		</div>
@@ -35,8 +35,13 @@
 	
 	<!-- 操作功能区二 -->
 	<script type="text/html" id="toolBar">
-	  	{:widget('func/btnEdit',array('编辑'))}
-		{:widget('func/btnDel',array('删除'))}
+		{:widget('func/edit',array('编辑'))}
+		{:widget('func/delete',array('删除'))}
+	</script>
+
+	<!-- 状态 -->
+	<script type="text/html" id="statusTpl">
+		<input type="checkbox" name="status" value="{literal}{{ d.id }}{/literal}" lay-skin="switch" lay-text="正常|禁用" lay-filter="status" {literal}{{ d.status == 1 ? 'checked' : '' }}{/literal} >
 	</script>
 	
 {/block}

@@ -2,11 +2,11 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\model;
@@ -16,84 +16,52 @@ use app\common\model\BaseModel;
 /**
  * 菜单-模型
  * @author 牧羊人
- * @date 2019/4/21
+ * @since 2020/7/10
  * Class Menu
  * @package app\admin\model
  */
 class Menu extends BaseModel
 {
-    // 设置数据表
-    protected $table = DB_PREFIX . 'menu';
-
-    /**
-     * 初始化模型
-     * @author 牧羊人
-     * @date 2019/4/21
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        // TODO...
-    }
+    // 设置数据表名
+    protected $name = 'menu';
 
     /**
      * 获取缓存信息
      * @param int $id 记录ID
-     * @return mixed 返回结果
+     * @return \app\common\model\数据信息|mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
+     * @since 2020/7/10
      * @author 牧羊人
-     * @date 2019/4/21
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id, true);
+        $info = parent::getInfo($id);
         if ($info) {
             // 菜单类型
             if ($info['type']) {
-                $info['type_name'] = config('config.menu_type')[$info['type']];
-            }
-
-            // 上级菜单
-            if ($info['parent_id']) {
-                $parent_info = $this->getInfo($info['parent_id']);
-                $info['parent_name'] = $parent_info['name'];
-            }
-
-            // 菜单地址
-            if ($info['type'] == 3) {
-                $map = [
-                    'parent_id' => $id,
-                    'type' => 4,
-                    'name' => "查看",
-                    'is_show' => 1,
-                    'mark' => 1,
-                ];
-                $result = $this->where($map)->find();
-                if ($result) {
-                    $info['to_url'] = $result['url'] . $result['param'];
-                }
+                $info['type_name'] = config('admin.menu_type')[$info['type']];
             }
         }
         return $info;
     }
 
     /**
-     * 获取子级
-     * @param int $parent_id 上级ID
-     * @param bool $isMenu 是否菜单true或false
+     * 获取子级菜单
+     * @param int $pid 上级ID
+     * @param bool $isMenu 是否获取菜单
      * @return array
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
      * @author 牧羊人
-     * @date 2019/4/21
+     * @since 2020/7/10
      */
-    public function getChilds($parent_id = 0, $isMenu = true)
+    public function getChilds($pid = 0, $isMenu = true)
     {
         $map = [
-            'parent_id' => $parent_id,
+            'pid' => $pid,
             'mark' => 1,
         ];
         $result = $this->where($map)->order("sort asc")->select();

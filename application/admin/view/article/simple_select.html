@@ -6,10 +6,11 @@
 <block name='content'> 
 
 	<!-- 功能操作区一 -->
-	<div class="layui-form toolbar">
+	<form class="layui-form toolbar">
        <div class="layui-form-item">
            <div class="layui-inline">
 				<form class="layui-form">
+					<label class="layui-form-label w-auto">文章标题：</label>
 					<div class="layui-input-inline">
 						<input type="text" name="title" placeholder="请输入文章标题" autocomplete="off" class="layui-input">
 					</div>
@@ -17,7 +18,7 @@
 				</form>
 			</div>
        </div>
-	</div>
+	</form>
 
 	<!-- TABLE渲染区 -->
 	<table class="layui-hide" id="tableList2" lay-filter="tableList2"></table>

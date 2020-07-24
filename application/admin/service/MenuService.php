@@ -2,140 +2,198 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\service;
 
-use app\admin\model\Menu as MenuModel;
+use app\admin\model\Menu;
+use app\common\service\BaseService;
 
 /**
- * 菜单-服务类
+ * 菜单管理-服务类
  * @author 牧羊人
- * @date 2019/4/22
+ * @since 2020/7/10
  * Class MenuService
  * @package app\admin\service
  */
 class MenuService extends BaseService
 {
     /**
-     * 初始化方法
+     * 初始化
      * @author 牧羊人
-     * @date 2019/4/22
+     * @since 2020/7/10
      */
     public function initialize()
     {
         parent::initialize();
-        $this->model = new MenuModel();
+        $this->model = new Menu();
     }
 
     /**
      * 获取数据列表
      * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @since: 2020/7/10
      * @author 牧羊人
-     * @date 2019/4/22
      */
     public function getList()
     {
-        $list = $this->model->getList([], 'sort asc');
+        $list = $this->model->getList([], 'id asc');
+        if ($list) {
+            foreach ($list as &$val) {
+                if (intval($val['type']) <= 2) {
+                    $val['open'] = true;
+                } else {
+                    $val['open'] = false;
+                }
+            }
+        }
         return message("操作成功", true, $list);
     }
 
     /**
-     * 批量设置节点
-     *
+     * 添加或编辑
+     * @return array
+     * @throws \think\db\exception\BindParamException
+     * @throws \think\exception\PDOException
+     * @since 2020/7/10
      * @author 牧羊人
-     * @date 2019-05-06
      */
-    public function batchFunc()
+    public function edit()
     {
+        // 请求参数
         $data = request()->param();
-
-        //菜单ID
-        $menu_id = (int)$data['menu_id'];
-        if (!$menu_id) {
-            return message('菜单ID不能为空', false);
+        $result = $this->model->edit($data);
+        if (!$result) {
+            return message("操作失败", false);
         }
-        $info = $this->model->getInfo($menu_id);
-        if (!$info) {
-            return message('菜单信息不存在', false);
-        }
-        if ($info['type'] != 3) {
-            return message('当前不是菜单,无法添加权限节点', false);
-        }
-
-        //菜单名称
-        $name = trim($data['name']);
-        if (!$name) {
-            return message('菜单名称不能为空', false);
-        }
-
-        //节点数组
-        $func = $data['func'];
-        if (!$func) {
-            return message('请选择权限节点', false);
-        }
-        $funcList = array_keys($func);
-
-        $sortNum = 0;
-        $totalNum = 0;
-        foreach ($funcList as $val) {
-            $sortNum++;
-            $func_arr = explode('|', $val);
-
-            // 节点名称
-            $func_name = $func_arr[0];
-            $func_title = $func_arr[1];
-
-            // 获取已存在的
-            $menu_info = $this->model->getOne([
-                ['parent_id', '=', $menu_id],
-                ['name', '=', $func_title],
-                ['type', '=', 4],
-            ]);
-            $update_id = isset($menu_info['id']) ? $menu_info['id'] : 0;
-
-            // 操作方法
-            if ($func_name == 'add') {
-                $func_name = 'edit';
+        // 节点参数
+        $func = isset($data['func']) ? $data['func'] : "";
+        // URL地址
+        $url = trim($data['url']);
+        if ($data['type'] == 3 && $func && $url) {
+            $item = explode("/", $url);
+            if (count($item) == 3) {
+                // 模块名
+                $module = $item[1];
+                $funcList = explode(",", $func);
+                foreach ($funcList as $val) {
+                    $data = [];
+                    if ($val == 1) {
+                        // 列表
+                        $data = [
+                            'name' => "列表",
+                            'url' => "/{$module}/list",
+                            'permission' => "sys:{$module}:list",
+                            'pid' => $result,
+                            'type' => 4,
+                            'status' => 1,
+                            'is_public' => 2,
+                            'sort' => $val,
+                        ];
+                    } else if ($val == 5) {
+                        // 添加
+                        $data = [
+                            'name' => "添加",
+                            'url' => "/{$module}/edit",
+                            'permission' => "sys:{$module}:add",
+                            'pid' => $result,
+                            'type' => 4,
+                            'status' => 1,
+                            'is_public' => 2,
+                            'sort' => $val,
+                        ];
+                    } else if ($val == 10) {
+                        // 修改
+                        $data = [
+                            'name' => "修改",
+                            'url' => "/{$module}/edit",
+                            'permission' => "sys:{$module}:edit",
+                            'pid' => $result,
+                            'type' => 4,
+                            'status' => 1,
+                            'is_public' => 2,
+                            'sort' => $val,
+                        ];
+                    } else if ($val == 15) {
+                        // 删除
+                        $data = [
+                            'name' => "删除",
+                            'url' => "/{$module}/drop",
+                            'permission' => "sys:{$module}:drop",
+                            'pid' => $result,
+                            'type' => 4,
+                            'status' => 1,
+                            'is_public' => 2,
+                            'sort' => $val,
+                        ];
+                    } else if ($val == 20) {
+                        // 详情
+                        $data = [
+                            'name' => "详情",
+                            'url' => "/{$module}/detail",
+                            'permission' => "sys:{$module}:detail",
+                            'pid' => $result,
+                            'type' => 4,
+                            'status' => 1,
+                            'is_public' => 2,
+                            'sort' => $val,
+                        ];
+                    } else if ($val == 25) {
+                        // 状态
+                        $data = [
+                            'name' => "状态",
+                            'url' => "/{$module}/setStatus",
+                            'permission' => "sys:{$module}:status",
+                            'pid' => $result,
+                            'type' => 4,
+                            'status' => 1,
+                            'is_public' => 2,
+                            'sort' => $val,
+                        ];
+                    } else if ($val == 30) {
+                        // 批量删除
+                        $data = [
+                            'name' => "批量删除",
+                            'url' => "/{$module}/batchDrop",
+                            'permission' => "sys:{$module}:batchDrop",
+                            'pid' => $result,
+                            'type' => 4,
+                            'status' => 1,
+                            'is_public' => 2,
+                            'sort' => $val,
+                        ];
+                    }
+                    $menuMod = new Menu();
+                    $menuMod->edit($data);
+                }
             }
-
-            // 更新数据源
-            $item = [
-                'id' => $update_id,
-                'parent_id' => $menu_id,
-                'name' => $func_arr[1],
-                'type' => 4,
-                'url' => "/" . ucfirst($name) . "/" . $func_name,
-                'auth' => "sys:" . lcfirst($name) . ":{$func_name}",
-                'sort' => $sortNum * 5,
-            ];
-            $result = $this->model->edit($item);
-            if ($result) {
-                $totalNum++;
-            }
         }
-        return message("本次共添加【{$totalNum}】个节点权限");
+        return message();
     }
 
     /**
      * 获取导航菜单
-     * @param $system_auth
+     * @param $permission
      * @return array
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
      * @author 牧羊人
-     * @date 2019/4/22
+     * @since: 2020/7/10
      */
-    public function getNavbarMenu($system_auth)
+    public function getNavbarMenu($permission)
     {
         $list1 = [];
         $list2 = [];
         $list3 = [];
 
-        foreach ($system_auth as $key => $val) {
+        foreach ($permission as $key => $val) {
             if (count($val) <= 0) {
                 continue;
             }
@@ -145,7 +203,7 @@ class MenuService extends BaseService
                 $funcIds = implode(',', $val);
                 $funcNum = $this->model->where([
                     'id' => array('in', $funcIds),
-                    'is_show' => 1,
+                    'status' => 1,
                 ])->count();
                 if ($funcNum <= 0) {
                     continue;
@@ -155,12 +213,9 @@ class MenuService extends BaseService
             $item = [];
             do {
                 $info = $this->model->getInfo($key);
-                if ($info && $info['is_show'] == 1) {
-                    $info['title'] = $info['name'];
-                    $info['font'] = "larry-icon";
-                    $info['url'] = isset($info['to_url']) ? $info['to_url'] : '';
+                if ($info && $info['status'] == 1) {
                     $item[] = $info;
-                    $key = (int)$info['parent_id'];
+                    $key = isset($info['pid']) ? (int)$info['pid'] : 0;
                 } else {
                     $key = 0;
                 }

@@ -2,11 +2,11 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\model;
@@ -14,49 +14,38 @@ namespace app\admin\model;
 use app\common\model\BaseModel;
 
 /**
- * 配置-模型
+ * 配置管理-模型
  * @author 牧羊人
- * @date 2019/4/24
+ * @since 2020/7/10
  * Class Config
  * @package app\admin\model
  */
 class Config extends BaseModel
 {
-    // 设置数据表
-    protected $table = DB_PREFIX . 'config';
-
-    /**
-     * 初始化模型
-     * @author 牧羊人
-     * @date 2019/4/24
-     */
-    public function initialize()
-    {
-        parent::initialize();
-        // TODO...
-    }
+    // 设置数据表名
+    protected $name = 'config';
 
     /**
      * 获取缓存信息
      * @param int $id 记录ID
-     * @return mixed 返回结果
+     * @return \app\common\model\数据信息|mixed
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
+     * @since 2020/7/10
      * @author 牧羊人
-     * @date 2019/4/24
      */
     public function getInfo($id)
     {
-        $info = parent::getInfo($id, true);
+        $info = parent::getInfo($id);
         if ($info) {
             // 类型名称
-            $info['type_name'] = config('config.config_type')[$info['type']];
+            $info['type_name'] = config('admin.config_type')[$info['type']];
 
             // 分组名称
             if ($info['group_id']) {
-                $config_group_model = new ConfigGroup();
-                $groupInfo = $config_group_model->getInfo($info['group_id']);
+                $configGroupMod = new ConfigGroup();
+                $groupInfo = $configGroupMod->getInfo($info['group_id']);
                 $info['group_name'] = $groupInfo['name'];
             }
 
@@ -73,7 +62,7 @@ class Config extends BaseModel
                         foreach ($imgArr as $val) {
                             $imgList[] = get_image_url($val);
                         }
-                        $info['imgs_list'] = $imgList;
+                        $info['imgsList'] = $imgList;
                     }
                     break;
                 case "ueditor":

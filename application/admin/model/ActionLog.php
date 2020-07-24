@@ -2,11 +2,11 @@
 // +----------------------------------------------------------------------
 // | RXThinkCMF框架 [ RXThinkCMF ]
 // +----------------------------------------------------------------------
-// | 版权所有 2017~2019 南京RXThink工作室
+// | 版权所有 2017~2020 南京RXThinkCMF研发中心
 // +----------------------------------------------------------------------
 // | 官方网站: http://www.rxthink.cn
 // +----------------------------------------------------------------------
-// | Author: 牧羊人 <rxthink.cn@gmail.com>
+// | Author: 牧羊人 <1175401194@qq.com>
 // +----------------------------------------------------------------------
 
 namespace app\admin\model;
@@ -16,7 +16,7 @@ use app\common\model\BaseModel;
 /**
  * 行为日志-模型
  * @author 牧羊人
- * @date 2019/4/4
+ * @since 2020/7/10
  * Class ActionLog
  * @package app\admin\model
  */
@@ -30,9 +30,11 @@ class ActionLog extends BaseModel
     protected static $content = '';
 
     /**
-     * 初始化模型
+     * 初始化
+     * @throws \think\db\exception\BindParamException
+     * @throws \think\exception\PDOException
      * @author 牧羊人
-     * @date 2019/4/4
+     * @since 2020/7/10
      */
     public function initialize()
     {
@@ -45,11 +47,11 @@ class ActionLog extends BaseModel
 
     /**
      * 初始化行为日志表
-     * @return string
+     * @return |null
      * @throws \think\db\exception\BindParamException
      * @throws \think\exception\PDOException
+     * @since 2020/7/10
      * @author 牧羊人
-     * @date 2019/4/4
      */
     public function initTable()
     {
@@ -80,10 +82,10 @@ class ActionLog extends BaseModel
     }
 
     /**
-     * 设置标题
-     * @param string $title 标题
+     * 设置日志标题
+     * @param $title 标题
+     * @since 2020/7/10
      * @author 牧羊人
-     * @date 2019/4/4
      */
     public static function setTitle($title)
     {
@@ -91,10 +93,10 @@ class ActionLog extends BaseModel
     }
 
     /**
-     * 设置内容
-     * @param string $content 内容
+     * 设置日志内容
+     * @param $content 内容
+     * @since 2020/7/10
      * @author 牧羊人
-     * @date 2019/4/4
      */
     public static function setContent($content)
     {
@@ -102,9 +104,9 @@ class ActionLog extends BaseModel
     }
 
     /**
-     * 记录行为日志
+     * 创建行为日志
      * @author 牧羊人
-     * @date 2019/4/4
+     * @since 2020/7/10
      */
     public static function record()
     {
@@ -116,7 +118,7 @@ class ActionLog extends BaseModel
             'method' => request()->method(),
             'url' => request()->url(true), // 获取完成URL
             'param' => request()->param() ? json_encode(request()->param()) : '',
-            'title' => self::$title,
+            'title' => self::$title ? self::$title : '操作日志',
             'content' => self::$content,
             'ip' => request()->ip(),
             'user_agent' => request()->server('HTTP_USER_AGENT'),

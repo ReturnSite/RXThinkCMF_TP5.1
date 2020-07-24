@@ -28,13 +28,13 @@ class MenuService extends ScriptService
     {
         $menu_model = new Test();
         $list = $menu_model->where([
-            'parent_id' => 0,
+            'pid' => 0,
             'mark' => 1,
         ])->order('sort', 'asc')->select()->toArray();
         if ($list) {
             foreach ($list as &$val) {
                 $childs2 = $menu_model->where([
-                    'parent_id' => $val['id'],
+                    'pid' => $val['id'],
                     'mark' => 1,
                 ])->order('sort', 'asc')->select()->toArray();
                 $val['children'] = $childs2;
@@ -42,7 +42,7 @@ class MenuService extends ScriptService
                 if ($childs2) {
                     foreach ($val['children'] as &$val2) {
                         $childs3 = $menu_model->where([
-                            'parent_id' => $val2['id'],
+                            'pid' => $val2['id'],
                             'mark' => 1,
                         ])->order('sort', 'asc')->select()->toArray();
                         $val2['children'] = $childs3;
@@ -50,7 +50,7 @@ class MenuService extends ScriptService
                         if ($childs3) {
                             foreach ($val2['children'] as &$val3) {
                                 $childs4 = $menu_model->where([
-                                    'parent_id' => $val3['id'],
+                                    'pid' => $val3['id'],
                                     'mark' => 1,
                                 ])->order('sort', 'asc')->select()->toArray();
                                 $val3['children'] = $childs4;
@@ -74,7 +74,7 @@ class MenuService extends ScriptService
                     unset($val2Item['id']);
                     $val2Item['create_user'] = 1;
                     $val2Item['create_time'] = time();
-                    $val2Item['parent_id'] = $menuId;
+                    $val2Item['pid'] = $menuId;
                     $menuId2 = $this->model->edit($val2Item);
                     if (!$menuId2) {
                         continue;
@@ -84,7 +84,7 @@ class MenuService extends ScriptService
                         unset($val3Item['id']);
                         $val3Item['create_user'] = 1;
                         $val3Item['create_time'] = time();
-                        $val3Item['parent_id'] = $menuId2;
+                        $val3Item['pid'] = $menuId2;
                         $menuId3 = $this->model->edit($val3Item);
                         if (!$menuId3) {
                             continue;
@@ -104,7 +104,7 @@ class MenuService extends ScriptService
 
                             $val4Item['create_user'] = 1;
                             $val4Item['create_time'] = time();
-                            $val4Item['parent_id'] = $menuId3;
+                            $val4Item['pid'] = $menuId3;
                             $this->model->edit($val4Item);
                             unset($val4Item);
                         }
@@ -145,7 +145,7 @@ class MenuService extends ScriptService
         if ($result) {
             foreach ($result as $val) {
                 $info = $this->model->getInfoByAttr([
-                    ['parent_id', '=', $val['id']],
+                    ['pid', '=', $val['id']],
                 ]);
                 $url = getter($info, 'url');
                 if (!$url) {
